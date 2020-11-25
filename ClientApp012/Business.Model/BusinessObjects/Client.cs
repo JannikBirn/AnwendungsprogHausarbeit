@@ -9,7 +9,10 @@ namespace De.HsFlensburg.ClientApp012.Business.Model.BusinessObjects
     public class Client
     {
         //hi
+
         public int Id { get; set; }
         public String Name { get; set; }
+
+        public long test;
     }
 }
