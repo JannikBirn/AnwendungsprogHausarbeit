@@ -11,5 +11,7 @@ namespace De.HsFlensburg.ClientApp012.Business.Model.BusinessObjects
         // nochmal hi
         public int Id { get; set; }
         public String Name { get; set; }
+
+        public long test;
     }
 }
