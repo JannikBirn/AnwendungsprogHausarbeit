@@ -8,7 +8,6 @@ namespace De.HsFlensburg.ClientApp012.Business.Model.BusinessObjects
 {
     public class Client
     {
-        // nochmal hi
         public int Id { get; set; }
         public String Name { get; set; }
 
