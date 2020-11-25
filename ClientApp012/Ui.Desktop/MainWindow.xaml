@@ -1,0 +1,33 @@
+﻿<Window x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
+        xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="211.2" Width="500">
+    <Window.Resources>
+        <viewModels:MainWindowViewModel x:Key="myViewModel"></viewModels:MainWindowViewModel>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource myViewModel}"/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Grid.Column="0" Columns ="2" Background="#FF252526">
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Identifier</Label>
+            <TextBox x:Name="IdTextBox" VerticalAlignment="Center" Background="#FF333337" BorderBrush="#FF404045" Margin="10" Foreground="White" ></TextBox>
+            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Name</Label>
+            <TextBox x:Name="NameTextBox" VerticalAlignment="Center" Background="#FF333337" BorderBrush="#FF404045" Margin="10" Foreground="White"> </TextBox>
+            <Button Command="{Binding AddClientToList, Mode=OneWay}" >ViewModel Neuer Kunde</Button>
+            <Button  >ViewModel Element löschen</Button>
+            <Button  >ViewModel Collection löschen</Button>
+        </UniformGrid>
+        <DataGrid Grid.Column="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
+    </Grid>
+</Window>
