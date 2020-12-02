@@ -2,13 +2,13 @@
 
 public class Card
 {
-    public CardAnswers[] cardAnswers;
+    public CardAnswer[] cardAnswers;
     public enum Difficulty {Leicht, Schwer};
     public string QuestionText;
-    public video questionVideo;
+    public string questionVideo; //Video refrence
     public System.IO.Stream questionAudio;
     public string AnswerText;
-    public video answerVideo;
+    public string answerVideo; //Video refrence
     public System.IO.Stream answerAudio;
 
 

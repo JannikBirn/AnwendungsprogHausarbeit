@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 
-public class TopicCollection
+public class TopicCollection : ObservableCollection<Topic>
 {
 	public TopicCollection()
 	{
