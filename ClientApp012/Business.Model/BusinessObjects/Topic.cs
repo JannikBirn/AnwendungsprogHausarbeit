@@ -4,9 +4,10 @@ using System.Collections.ObjectModel;
 
 public class Topic : ObservableCollection<Card>
 {
-	public String name;
-	// public Image img;
-	public TopicStatistics topicStatistics;
+	public String name { set; get; }
+	public String img { set; get; }
+
+	public TopicStatistics topicStatistics { set; get; }
 
 	public Topic()
 	{
@@ -27,6 +28,13 @@ public class Topic : ObservableCollection<Card>
 	public void updateDifficulties()
     {
 		//updating the difficulties of the cards of this collection
+    }
+
+
+	//Override
+	public new void Add(Card card)
+    {
+
     }
 
 }
