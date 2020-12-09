@@ -8,18 +8,13 @@ public class TopicCollection : ObservableCollection<Topic>
 	
 	}
 
-	public void getTopics()
+
+
+	//Override
+	public new void Add(Topic topic)
 	{
 
 	}
 
-	public void addTopic()
-	{
 
-	}
-
-	public void deleteTopic()
-	{
-
-	}
 }

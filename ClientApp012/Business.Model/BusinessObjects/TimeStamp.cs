@@ -2,8 +2,8 @@
 
 public class TimeStamp
 {
-    public long start;
-    public long end;
+    public long start { set; get; }
+    public long end { set; get; }
 
 
     public TimeStamp()
