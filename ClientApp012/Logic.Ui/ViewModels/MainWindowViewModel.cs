@@ -1,21 +1,29 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
+﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
+using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
         public ClientCollectionViewModel MyList { get; set; }
-        public RelayCommand AddClientToList { get; }
+        public RelayCommand OpenNewClientWindow { get; }
 
-        public MainWindowViewModel()
+        public MainWindowViewModel(ClientCollectionViewModel model)
         {
-            AddClientToList = new RelayCommand(() => AddClientToListMethod());
-            MyList = new ClientCollectionViewModel();
+            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
+            MyList = model;
+        }
+
+        private void OpenNewClientWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
         }
 
         private void AddClientToListMethod()
@@ -23,8 +31,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ClientViewModel clientVM = new ClientViewModel();
             //clientVM.Id = Int16.Parse(IdTextBox.Text);
             //clientVM.Name = NameTextBox.Text;
-            MyList.Add(clientVM);
-            
+            MyList.Add(clientVM);            
         }
 
 

@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+             xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui;assembly=Logic.Ui"
+             xmlns:desktop="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <viewModels:ViewModelLocator x:Key="ViewModelLocator"></viewModels:ViewModelLocator>
+        <desktop:MessageListener x:Key="MessageListener"></desktop:MessageListener>
     </Application.Resources>
 </Application>

@@ -9,24 +9,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="211.2" Width="500">
     <Window.Resources>
-        <viewModels:MainWindowViewModel x:Key="myViewModel"></viewModels:MainWindowViewModel>
+        
     </Window.Resources>
     <Window.DataContext>
-        <Binding Source="{StaticResource myViewModel}"/>
+        <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}" 
+                 Path="BindableProperty"></Binding>
+    </Window.IsEnabled>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Column="0" Columns ="2" Background="#FF252526">
-            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Identifier</Label>
-            <TextBox x:Name="IdTextBox" VerticalAlignment="Center" Background="#FF333337" BorderBrush="#FF404045" Margin="10" Foreground="White" ></TextBox>
-            <Label HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White">Name</Label>
-            <TextBox x:Name="NameTextBox" VerticalAlignment="Center" Background="#FF333337" BorderBrush="#FF404045" Margin="10" Foreground="White"> </TextBox>
-            <Button Command="{Binding AddClientToList, Mode=OneWay}" >ViewModel Neuer Kunde</Button>
-            <Button  >ViewModel Element löschen</Button>
-            <Button  >ViewModel Collection löschen</Button>
+        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526">
+            <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Background="#FF333337" BorderBrush="#FF404045" Foreground="White">Neuer Kunde</Button>
         </UniformGrid>
         <DataGrid Grid.Column="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
     </Grid>
