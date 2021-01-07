@@ -4,28 +4,28 @@ using System.Collections.ObjectModel;
 
 public class Topic : ObservableCollection<Card>
 {
-	public String name { set; get; }
-	public String img { set; get; }
+	public String Name { set; get; }
+	public String Img { set; get; }
 
-	public TopicStatistics topicStatistics { set; get; }
+	public TopicStatistics TopicStatistics { set; get; }
 
 	public Topic()
 	{
 
 	}
 
-	public List<Card> startQuestioning()
+	public List<Card> StartQuestioning()
     {
-		//generating a list of cards, with theire difficulty in mind
+		//generating a list of cards, with their difficulty in mind
         return null;
     }
 
-	public void finishQuestioning()
+	public void FinishQuestioning()
     {
 		//End the questioning, genearte end timestap
     }
 
-	public void updateDifficulties()
+	public void UpdateDifficulties()
     {
 		//updating the difficulties of the cards of this collection
     }

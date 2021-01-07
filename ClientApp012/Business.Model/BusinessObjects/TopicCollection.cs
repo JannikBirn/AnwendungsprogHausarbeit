@@ -5,15 +5,17 @@ public class TopicCollection : ObservableCollection<Topic>
 {
 	public TopicCollection()
 	{
-	
+		// get list
 	}
 
 
 
 	//Override
-	public new void Add(Topic topic)
+	public new bool Add(Topic topic)
 	{
-
+		//Check if topic has a String
+		//returns boolean
+		return true;
 	}
 
 

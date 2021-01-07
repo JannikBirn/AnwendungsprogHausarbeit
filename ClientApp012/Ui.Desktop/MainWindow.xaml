@@ -9,7 +9,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="211.2" Width="500">
     <Window.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styleguide.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
         <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
@@ -23,8 +27,8 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526">
-            <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Background="#FF333337" BorderBrush="#FF404045" Foreground="White">Neuer Kunde</Button>
+        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526" Style="{DynamicResource DefaultGridStyle}">
+            <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Style="{DynamicResource DefaultButtonStyle}">Neuer Kunde</Button>
         </UniformGrid>
         <DataGrid Grid.Column="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
     </Grid>

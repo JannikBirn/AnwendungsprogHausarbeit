@@ -2,8 +2,8 @@
 
 public class TimeStamp
 {
-    public long start { set; get; }
-    public long end { set; get; }
+    public long Start { set; get; }
+    public long End { set; get; }
 
 
     public TimeStamp()
@@ -11,18 +11,18 @@ public class TimeStamp
 
     }
 
-    public void setStart()
+    public void SetStart()
     {
         //TODO set start time
     }
 
-    public void setEnd()
+    public void SetEnd()
     {
         //TODO set end time
     }
 
-    public long getSpan()
+    public long GetSpan()
     {
-        return end - start;
+        return End - Start;
     }
 }
