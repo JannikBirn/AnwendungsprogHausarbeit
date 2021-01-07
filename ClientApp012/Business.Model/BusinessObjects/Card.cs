@@ -5,27 +5,27 @@ public class Card
 {
     public List<CardAnswer> cardAnswers;
     public enum Difficulty {Leicht, Mittel, Schwer};
-    public string QuestionText { set; get; }
-    public string questionVideo { set; get; } //Video refrence
-public string questionImage { set; get; }
-    public System.IO.Stream questionAudio { set; get; }
-    public string AnswerText { set; get; }
-    public string answerVideo { set; get; }//Video refrence
-    public string answerImage { set; get; }
-    public System.IO.Stream answerAudio { set; get; }
+    public String QuestionText { set; get; }
+    public String QuestionVideo { set; get; } //Video reference
+    public String QuestionImage { set; get; }
+    public String QuestionAudio { set; get; }
+    public String AnswerText { set; get; }
+    public String AnswerVideo { set; get; }//Video reference
+    public String AnswerImage { set; get; }
+    public String AnswerAudio { set; get; }
 
 
     public Card()
     {
-
+        // do stuff
     }
 
-    public void startAnswering()
+    public void StartAnswering()
     {
-
+        // for statistic
     }
 
-    public void finishAnswer(bool bol)
+    public void FinishAnswer(bool bol)
     {
 
     }
