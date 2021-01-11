@@ -57,6 +57,8 @@
     </ApplicationDefinition>
     <Compile Include="TopicCollectionWindow.xaml.cs">
       <DependentUpon>TopicCollectionWindow.xaml</DependentUpon>
+    <Compile Include="StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -71,6 +73,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,6 +13,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     public class MainWindowViewModel
     {
         public ClientCollectionViewModel MyList { get; set; }
+        public TopicCollectionViewModel TopicCollectionObject { get; set; }
         public RelayCommand OpenNewClientWindow { get; }
 
         public MainWindowViewModel(ClientCollectionViewModel model)
@@ -32,6 +33,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //clientVM.Id = Int16.Parse(IdTextBox.Text);
             //clientVM.Name = NameTextBox.Text;
             MyList.Add(clientVM);            
+        }
+
+        private void SerializeToBinMethod()
+        {
+            //BinarySerializerFileHandler.Save(TopicCollectionObject.Model);
+        }
+
+        private void DeserializeFromBinMethod()
+        {
+            TopicCollectionObject = new TopicCollectionViewModel();
+            //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
         }
 
 

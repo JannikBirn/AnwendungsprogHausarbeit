@@ -7,4 +7,10 @@ public class CardAnswer : TimeStamp
 	public CardAnswer()
 	{
 	}
+
+	public void SetEnd(bool bol)
+    {
+		IsAnswerCorrect = bol;
+		End = DateTime.Now.Ticks;
+	}
 }

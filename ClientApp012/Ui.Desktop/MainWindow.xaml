@@ -27,7 +27,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526" Style="{DynamicResource DefaultGridStyle}">
+        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526">
             <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Style="{DynamicResource DefaultButtonStyle}">Neuer Kunde</Button>
         </UniformGrid>
         <DataGrid Grid.Column="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
