@@ -1,5 +1,6 @@
 ﻿using System;
 
+[Serializable]
 public class TimeStamp
 {
     public long Start { set; get; }
@@ -13,12 +14,12 @@ public class TimeStamp
 
     public void SetStart()
     {
-        //TODO set start time
+        Start = DateTime.Now.Ticks;
     }
 
     public void SetEnd()
     {
-        //TODO set end time
+        End = DateTime.Now.Ticks;
     }
 
     public long GetSpan()
