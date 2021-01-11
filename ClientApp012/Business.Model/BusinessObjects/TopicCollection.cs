@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 
+[Serializable]
 public class TopicCollection : ObservableCollection<Topic>
 {
-	public TopicCollection()
-	{
-		// get list
-	}
+    public TopicCollection()
+    {
+
+    }
 
 
 
-	//Override
-	public new bool Add(Topic topic)
-	{
-		//Check if topic has a String
-		//returns boolean
-		return true;
-	}
+    //Override
+    public new bool Add(Topic topic)
+    {
+        if (topic.Name == null)
+            return false;
+
+        base.Add(topic);
+
+        return true;
+    }
 
 
 }

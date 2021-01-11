@@ -48,8 +48,14 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
+    <Compile Include="Wrapper\AbstractViewModels\IViewModel.cs" />
+    <Compile Include="Wrapper\AbstractViewModels\ViewModelBase.cs" />
+    <Compile Include="Wrapper\AbstractViewModels\ViewModelSyncCollection.cs" />
+    <Compile Include="Wrapper\CardViewModel.cs" />
     <Compile Include="Wrapper\ClientCollectionViewModel.cs" />
     <Compile Include="Wrapper\ClientViewModel.cs" />
+    <Compile Include="Wrapper\TopicCollectionViewModel.cs" />
+    <Compile Include="Wrapper\TopicViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">

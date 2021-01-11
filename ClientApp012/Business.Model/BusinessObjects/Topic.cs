@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+[Serializable]
 public class Topic : ObservableCollection<Card>
 {
 	public String Name { set; get; }
@@ -16,12 +17,17 @@ public class Topic : ObservableCollection<Card>
 
 	public List<Card> StartQuestioning()
     {
+		TopicStatistics.SetStart();
 		//generating a list of cards, with their difficulty in mind
-        return null;
+		//TODO Sort
+		List<Card> cards = new List<Card>(this);
+
+		return cards;
     }
 
 	public void FinishQuestioning()
     {
+		TopicStatistics.SetEnd();
 		//End the questioning, genearte end timestap
     }
 
@@ -34,6 +40,12 @@ public class Topic : ObservableCollection<Card>
 	//Override
 	public new void Add(Card card)
     {
+        if (card.QuestionText == null || card.AnswerText == null)
+        {
+			throw new EntryPointNotFoundException();
+        }
+
+        base.Add(card);
 
     }
 
