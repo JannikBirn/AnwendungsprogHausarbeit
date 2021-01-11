@@ -54,9 +54,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="TopicCollectionWindow.xaml.cs">
-      <DependentUpon>TopicCollectionWindow.xaml</DependentUpon>
+    </ApplicationDefinition>    
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
