@@ -62,8 +62,12 @@
         <Setter Property="Background" Value="#FF202225" />
     </Style>
 
-    <Style TargetType="Button" x:Key="SquareButton" BasedOn="{StaticResource DefaultButtonStyle}">
+    <Style TargetType="Button" x:Key="BackButton" BasedOn="{StaticResource DefaultButtonStyle}">
         <Setter Property="MinHeight" Value="{Binding ActualWidth, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        
     </Style>
 
 </ResourceDictionary>
