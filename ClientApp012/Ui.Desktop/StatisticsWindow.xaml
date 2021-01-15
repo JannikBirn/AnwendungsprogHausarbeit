@@ -20,7 +20,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Button Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Center" Style="{DynamicResource SquareButton}" Width="80" />
+        <Button Content="Button" Style="{DynamicResource BackButton}"  />
 
 
 
