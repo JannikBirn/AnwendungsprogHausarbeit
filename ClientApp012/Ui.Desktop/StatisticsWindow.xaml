@@ -20,7 +20,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
-        <Button Content="Button" Style="{DynamicResource BackButton}"  />
+        <Button Content="Button" Style="{DynamicResource BackButton}"/>
+        <Label Content="Label" Grid.Row="1" Style="{DynamicResource DefaultLabel}" />
 
 
 
