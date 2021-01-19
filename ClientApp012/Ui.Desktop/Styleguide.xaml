@@ -7,6 +7,9 @@
     <SolidColorBrush x:Key="Static.Page.Background" Color="#202225"/>
     <SolidColorBrush x:Key="Static.Background" Color="#FF2F3136"/>
     <SolidColorBrush x:Key="Static.Foreground" Color="#707070"/>
+    <SolidColorBrush x:Key="Static.Red" Color="Red"/>
+    <SolidColorBrush x:Key="Static.Blue" Color="Blue"/>
+    <SolidColorBrush x:Key="Static.Green" Color="Green"/>
 
     <!-- Button Colors -->
     <SolidColorBrush x:Key="Static.Border" Color="Transparent"/>
@@ -36,6 +39,8 @@
         <Setter Property="Background" Value="{StaticResource Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Static.Border}"/>
         <Setter Property="Foreground" Value="{StaticResource Static.Foreground}"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="24"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -98,6 +103,13 @@
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
         <Setter Property="VerticalContentAlignment" Value="Top"/>
+    </Style>
+
+    <!-- Rectangle as line -->
+    <Style x:Key="ReactangleLine" TargetType="{x:Type Rectangle}">
+        <Setter Property="Fill" Value="{DynamicResource Static.Foreground}"/>
+        <Setter Property="Height" Value="3"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
     </Style>
 
 </ResourceDictionary>
