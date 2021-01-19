@@ -12,8 +12,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
     {
         public ClientCollectionViewModel MyList { get; set; }
 
+        public RootViewModel RootViewModel { get; set; }
+
         public ViewModelLocator()
         {
+            RootViewModel = new RootViewModel();
+
+            //TopicViewModel topicVM = new TopicViewModel();         
+            //CardViewModel cardVM = topicVM[2];
+            //cardVM.Model.QuestionText;
+
             MyList = new ClientCollectionViewModel();
 
             MainWindiwVM = new MainWindowViewModel(MyList);
