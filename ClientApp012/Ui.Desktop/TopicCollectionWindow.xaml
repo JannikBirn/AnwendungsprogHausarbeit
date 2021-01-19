@@ -19,15 +19,13 @@
             <ColumnDefinition Width="4*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="33,243,0,0"/>
-        <Label Content="Themenübersicht" Grid.Column="1" Style="{DynamicResource TitleLabelStyle}"/>
-        <TextBox HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="33,201,0,0"/>
-        <TextBox HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1" Margin="33,158,0,0"/>
-        <Button Content="Back" HorizontalAlignment="Left" Margin="27,36,0,0" VerticalAlignment="Top" Width="36" Height="43"/>
+        <Label Content="Topic Collection" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
+        <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="36" Height="43" Style="{DynamicResource BackButton}"/>
         <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
+        <Button Content="Create New Topic" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="120" Height="30" Style="{DynamicResource DefaultButtonStyle }"/>
     </Grid>
 </Window>
