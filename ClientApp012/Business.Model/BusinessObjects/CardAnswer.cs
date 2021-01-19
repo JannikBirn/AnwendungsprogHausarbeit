@@ -1,5 +1,7 @@
 ﻿using System;
 
+
+[Serializable]
 public class CardAnswer : TimeStamp
 {
 	public bool IsAnswerCorrect { set; get; }

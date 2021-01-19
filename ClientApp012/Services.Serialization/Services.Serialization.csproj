@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{682A27C5-EFAC-4770-84C7-BA70D956C427}</ProjectGuid>
+    <ProjectGuid>{6B911606-D830-4B81-A201-8F2E3C7D6084}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>De.HsFlensburg.ClientApp012.Logic.Ui</RootNamespace>
-    <AssemblyName>Logic.Ui</AssemblyName>
+    <RootNamespace>Services.Serialization</RootNamespace>
+    <AssemblyName>Services.Serialization</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,7 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,31 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MessageBusMessages\OpenNewClientWindowMessage.cs" />
+    <Compile Include="BinarySerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelayCommand.cs" />
-    <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
-    <Compile Include="Wrapper\AbstractViewModels\IViewModel.cs" />
-    <Compile Include="Wrapper\AbstractViewModels\ViewModelBase.cs" />
-    <Compile Include="Wrapper\AbstractViewModels\ViewModelSyncCollection.cs" />
-    <Compile Include="Wrapper\CardViewModel.cs" />
-    <Compile Include="Wrapper\ClientCollectionViewModel.cs" />
-    <Compile Include="Wrapper\ClientViewModel.cs" />
-    <Compile Include="Wrapper\RootViewModel.cs" />
-    <Compile Include="Wrapper\TopicCollectionViewModel.cs" />
-    <Compile Include="Wrapper\TopicViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Business.Model\Business.Model.csproj">
-      <Project>{ce47f974-ab3a-4ba6-b218-6c4384f9dd73}</Project>
-      <Name>Business.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Services.MessageBus\Services.MessageBus.csproj">
-      <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>
-      <Name>Services.MessageBus</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

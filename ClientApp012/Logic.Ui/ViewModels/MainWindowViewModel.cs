@@ -20,6 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             MyList = model;
+
         }
 
         private void OpenNewClientWindowMethod()
