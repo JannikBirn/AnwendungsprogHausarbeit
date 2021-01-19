@@ -1,11 +1,11 @@
-﻿<Window x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.TopicCollectionWindow"
+﻿<Window x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.CardOverviewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="TopicCollectionWindow" Height="1024" Width="786">
+        Title="CardOverviewWindow" Height="1024" Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -20,12 +20,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="7*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Content="Topic Collection" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
+        <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="36" Height="43" Style="{DynamicResource BackButton}"/>
         <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
-        <Button Content="Create New Topic" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="120" Height="30" Style="{DynamicResource DefaultButtonStyle }"/>
+        <Button Content="Print all Cards" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="120" Height="30" Style="{DynamicResource DefaultButtonStyle }"/>
     </Grid>
 </Window>
