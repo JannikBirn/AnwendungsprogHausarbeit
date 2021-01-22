@@ -24,25 +24,32 @@
         <Binding Source="{StaticResource MessageListener}" 
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="File">
+                    <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
+                    <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
+                    <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+    
     
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526">
-            <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Style="{DynamicResource DefaultButtonStyle}">Neuer Kunde</Button>
-        </UniformGrid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="8*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <DataGrid Grid.Column="1" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False">
+            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>                
             </DataGrid.Columns>
         </DataGrid>
         
-        <DataGrid Grid.Column="2"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+        <DataGrid Grid.Column="1"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
                 <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
@@ -56,4 +63,5 @@
         </DataGrid>
         
     </Grid>
+    </DockPanel>
 </Window>

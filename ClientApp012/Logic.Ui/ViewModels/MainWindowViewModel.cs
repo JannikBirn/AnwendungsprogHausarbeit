@@ -16,14 +16,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand OpenNewClientWindow { get; }
+        public RelayCommand SerializeToBin { get; }
+        public RelayCommand DeserializeFromBin { get; }
 
         public MainWindowViewModel(RootViewModel model)
         {
-            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
+            //Refrenzing to the model
             RootViewModel = model;
 
-
-
+            //Adding relay commands
+            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());            
+            SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
+            DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
         }
 
         private void OpenNewClientWindowMethod()
@@ -41,11 +45,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void SerializeToBinMethod()
         {
+            throw new NotImplementedException();
             //BinarySerializerFileHandler.Save(TopicCollectionObject.Model);
         }
 
         private void DeserializeFromBinMethod()
         {
+            throw new NotImplementedException();
             //TopicCollectionObject = new TopicCollectionViewModel();
             //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
         }
