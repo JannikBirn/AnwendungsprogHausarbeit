@@ -9,35 +9,54 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
     public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic>
     {
-        //private CardViewModel cardViewModel;
+        public String Name
+        {
+            get
+            {
+                return this.Model.Name;
+            }
+            set
+            {
+                this.Model.Name = value;
+                OnPropertyChanged("Name");
+            }
+        }
 
-        //public CardViewModel CardViewModel
-        //{
-        //    get
-        //    {
-        //        return cardViewModel;
-        //    }
-        //    set
-        //    {
-        //        cardViewModel = value;
-        //        OnPropertyChanged("CardViewModel");
-        //    }
-        //}
+        public String Img
+        {
+            get
+            {
+                return this.Model.Img;
+            }
+            set
+            {
+                this.Model.Img = value;
+                OnPropertyChanged("Img");
+            }
+        }
+
+        public TopicStatistics TopicStatistics
+        {
+            get
+            {
+                return this.Model.TopicStatistics;
+            }
+            set
+            {
+                this.Model.TopicStatistics = value;
+                OnPropertyChanged("TopicStatistics");
+            }
+        }
 
         public TopicViewModel() : base()
         {
-            //CardViewModel = new CardViewModel();
-            //this.Model[0] = CardViewModel.Model;
 
-            //this.Model.Name = 
-            //this.Model.Img
-            //this.Model.TopicStatistics
 
         }
 
         public override void NewModelAssigned()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

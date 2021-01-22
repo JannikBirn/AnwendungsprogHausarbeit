@@ -12,14 +12,20 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
-        public ClientCollectionViewModel MyList { get; set; }
-        public TopicCollectionViewModel TopicCollectionObject { get; set; }
+
+        //public TopicCollectionViewModel TopicCollectionVM { get; set; }
+        public RootViewModel RootViewModel { get; set; }
         public RelayCommand OpenNewClientWindow { get; }
 
-        public MainWindowViewModel(ClientCollectionViewModel model)
+        public MainWindowViewModel(RootViewModel model)
         {
             OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
-            MyList = model;
+            RootViewModel = model;
+
+            //Adding a test vm
+            TopicViewModel test = new TopicViewModel();
+            test.Name = "Deutsch";
+            RootViewModel.TopicCollection.Add(test);
 
         }
 
@@ -30,10 +36,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void AddClientToListMethod()
         {
-            ClientViewModel clientVM = new ClientViewModel();
+            //ClientViewModel clientVM = new ClientViewModel();
             //clientVM.Id = Int16.Parse(IdTextBox.Text);
             //clientVM.Name = NameTextBox.Text;
-            MyList.Add(clientVM);            
+            //MyList.Add(clientVM);            
         }
 
         private void SerializeToBinMethod()
@@ -43,7 +49,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void DeserializeFromBinMethod()
         {
-            TopicCollectionObject = new TopicCollectionViewModel();
+            //TopicCollectionObject = new TopicCollectionViewModel();
             //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
         }
 

@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="211.2" Width="500">
+        Title="MainWindow" Height="200" Width="500">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,21 +15,28 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    
     <Window.DataContext>
         <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
+    
     <Window.IsEnabled>
         <Binding Source="{StaticResource MessageListener}" 
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+    
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <UniformGrid Grid.Column="0" Columns ="1" Background="#FF252526">
             <Button Command="{Binding OpenNewClientWindow, Mode=OneWay}" Style="{DynamicResource DefaultButtonStyle}">Neuer Kunde</Button>
         </UniformGrid>
-        <DataGrid Grid.Column="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
+
+        <DataGrid Grid.Column="1" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}"></DataGrid>
+        <DataGrid Grid.Column="2"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem.TopicViewModel}"></DataGrid>
+        
     </Grid>
 </Window>

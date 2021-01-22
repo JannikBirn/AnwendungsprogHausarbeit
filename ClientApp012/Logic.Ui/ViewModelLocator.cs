@@ -10,22 +10,23 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
 {
     public class ViewModelLocator
     {
-        public ClientCollectionViewModel MyList { get; set; }
-
         public RootViewModel RootViewModel { get; set; }
+        public TopicCollectionViewModel TopicCollectionVM { get; set; }
+
 
         public ViewModelLocator()
         {
             RootViewModel = new RootViewModel();
+            TopicCollectionVM = RootViewModel.TopicCollection;
+            //TopicCollectionVM = new TopicCollectionViewModel();
 
             //TopicViewModel topicVM = new TopicViewModel();         
             //CardViewModel cardVM = topicVM[2];
             //cardVM.Model.QuestionText;
 
-            MyList = new ClientCollectionViewModel();
 
-            MainWindiwVM = new MainWindowViewModel(MyList);
-            NewClientWindowVM = new NewClientWindowViewModel(MyList);
+            MainWindiwVM = new MainWindowViewModel(RootViewModel);
+            //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
 
         }
 

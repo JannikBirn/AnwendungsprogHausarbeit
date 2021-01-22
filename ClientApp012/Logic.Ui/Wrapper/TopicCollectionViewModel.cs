@@ -27,6 +27,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 
         public TopicCollectionViewModel() : base()
         {
+
+            //OnPropertyChanged("TopicCollectionViewModel");
+            //OnPropertyChanged("TopicCollection");
+
             //TopicViewModel = new TopicViewModel();
             //this.Model[0] = TopicViewModel.Model;
         }
