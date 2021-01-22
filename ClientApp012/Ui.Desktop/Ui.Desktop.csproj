@@ -54,10 +54,31 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </ApplicationDefinition>    
+    </ApplicationDefinition>
+<<<<<<< Updated upstream
+    <Compile Include="CardOverviewWindow.xaml.cs">
+      <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
+=======
+    <Compile Include="NewCardWindow.xaml.cs">
+      <DependentUpon>NewCardWindow.xaml</DependentUpon>
+>>>>>>> Stashed changes
+    </Compile>
     <Compile Include="StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
+    <Compile Include="TopicWindow.xaml.cs">
+      <DependentUpon>TopicWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CardOverviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+=======
+    <Compile Include="TopicOverview.xaml.cs">
+      <DependentUpon>TopicOverview.xaml</DependentUpon>
+    </Compile>
+>>>>>>> Stashed changes
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -70,6 +91,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NewCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NewClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,6 +108,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TopicCollectionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<<<<<<< Updated upstream
+    <Page Include="TopicWindow.xaml">
+=======
+    <Page Include="TopicOverview.xaml">
+>>>>>>> Stashed changes
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
