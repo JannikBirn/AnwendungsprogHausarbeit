@@ -22,10 +22,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             RootViewModel = model;
 
-            //Adding a test vm
-            TopicViewModel test = new TopicViewModel();
-            test.Name = "Deutsch";
-            RootViewModel.TopicCollection.Add(test);
+
 
         }
 

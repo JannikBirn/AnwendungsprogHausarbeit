@@ -35,18 +35,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
             }
         }
 
-        public TopicStatistics TopicStatistics
-        {
-            get
-            {
-                return this.Model.TopicStatistics;
-            }
-            set
-            {
-                this.Model.TopicStatistics = value;
-                OnPropertyChanged("TopicStatistics");
-            }
-        }
+        //public TopicStatistics TopicStatistics
+        //{
+        //    get
+        //    {
+        //        return this.Model.TopicStatistics;
+        //    }
+        //    set
+        //    {
+        //        this.Model.TopicStatistics = value;
+        //        OnPropertyChanged("TopicStatistics");
+        //    }
+        //}
 
         public TopicViewModel() : base()
         {
