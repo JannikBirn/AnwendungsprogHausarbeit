@@ -9,9 +9,106 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
     public class CardViewModel : ViewModelBase<Card>
     {
+        public String QuestionText
+        {
+            get
+            {
+                return this.Model.QuestionText;
+            }
+            set
+            {
+                this.Model.QuestionText = value;
+                OnPropertyChanged("QuestionText");
+            }
+        }
+        public String QuestionVideo
+        {
+            get
+            {
+                return this.Model.QuestionVideo;
+            }
+            set
+            {
+                this.Model.QuestionVideo = value;
+                OnPropertyChanged("QuestionVideo");
+            }
+        }
+        public String QuestionImage
+        {
+            get
+            {
+                return this.Model.QuestionImage;
+            }
+            set
+            {
+                this.Model.QuestionImage = value;
+                OnPropertyChanged("QuestionImage");
+            }
+        }
+        public String QuestionAudio
+        {
+            get
+            {
+                return this.Model.QuestionAudio;
+            }
+            set
+            {
+                this.Model.QuestionAudio = value;
+                OnPropertyChanged("QuestionAudio");
+            }
+        }
+        public String AnswerText
+        {
+            get
+            {
+                return this.Model.AnswerText;
+            }
+            set
+            {
+                this.Model.AnswerText = value;
+                OnPropertyChanged("AnswerText");
+            }
+        }
+        public String AnswerVideo
+        {
+            get
+            {
+                return this.Model.AnswerVideo;
+            }
+            set
+            {
+                this.Model.AnswerVideo = value;
+                OnPropertyChanged("AnswerVideo");
+            }
+        }
+        public String AnswerImage
+        {
+            get
+            {
+                return this.Model.AnswerImage;
+            }
+            set
+            {
+                this.Model.AnswerImage = value;
+                OnPropertyChanged("AnswerImage");
+            }
+        }
+        public String AnswerAudio
+        {
+            get
+            {
+                return this.Model.AnswerAudio;
+            }
+            set
+            {
+                this.Model.AnswerAudio = value;
+                OnPropertyChanged("AnswerAudio");
+            }
+        }
+
         public override void NewModelAssigned()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

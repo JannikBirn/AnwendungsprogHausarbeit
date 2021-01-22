@@ -10,26 +10,36 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
 {
     public class ViewModelLocator
     {
-        public ClientCollectionViewModel MyList { get; set; }
-
         public RootViewModel RootViewModel { get; set; }
+        //public TopicCollectionViewModel TopicCollectionVM { get; set; }
+
 
         public ViewModelLocator()
         {
             RootViewModel = new RootViewModel();
+            //TopicCollectionVM = RootViewModel.TopicCollection;
+
+            //Adding a test vm
+            TopicViewModel test = new TopicViewModel();
+            test.Name = "Deutsch";
+            RootViewModel.TopicCollection.Add(test);
+
+            RootViewModel.TopicCollection[0].Add(new CardViewModel());
+
+
+            //TopicCollectionVM = new TopicCollectionViewModel();
 
             //TopicViewModel topicVM = new TopicViewModel();         
             //CardViewModel cardVM = topicVM[2];
             //cardVM.Model.QuestionText;
 
-            MyList = new ClientCollectionViewModel();
 
-            MainWindiwVM = new MainWindowViewModel(MyList);
-            NewClientWindowVM = new NewClientWindowViewModel(MyList);
+            MainWindowVM = new MainWindowViewModel(RootViewModel);
+            //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
 
         }
 
-        public MainWindowViewModel MainWindiwVM { get; }
+        public MainWindowViewModel MainWindowVM { get; }
         public NewClientWindowViewModel NewClientWindowVM {get;}
     }
 }

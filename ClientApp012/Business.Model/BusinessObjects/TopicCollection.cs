@@ -12,15 +12,15 @@ public class TopicCollection : ObservableCollection<Topic>
 
 
     //Override
-    public new bool Add(Topic topic)
-    {
-        if (topic.Name == null)
-            return false;
+    //public new bool Add(Topic topic)
+    //{
+    //    if (topic.Name == null)
+    //        return false;
 
-        base.Add(topic);
+    //    base.Add(topic);
 
-        return true;
-    }
+    //    return true;
+    //}
 
 
 }
