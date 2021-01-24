@@ -67,6 +67,10 @@
       <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>
       <Name>Services.MessageBus</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.Printing\Services.Printing.csproj">
+      <Project>{c69d508c-2962-40c8-81bd-cff32d947a24}</Project>
+      <Name>Services.Printing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

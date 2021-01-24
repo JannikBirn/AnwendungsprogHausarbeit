@@ -1,12 +1,14 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
+using De.HsFlensburg.ClientApp012.Services.Printing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -18,6 +20,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewClientWindow { get; }
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
+        public RelayCommand PrintTestPage { get; }
+        public RelayCommand PrintWindow { get; }
+
 
         public MainWindowViewModel(RootViewModel model)
         {
@@ -25,9 +30,24 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Adding relay commands
-            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());            
+            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
+
+            PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
+            PrintWindow = new RelayCommand(param => PrintWPFWindow(param));
+
+        }
+
+        private void PrintTestPageMethod()
+        {
+            Services.Printing.PrintTest();
+        }
+
+        private void PrintWPFWindow(object element)
+        {
+            PrintWPFWindow instance = new PrintWPFWindow();
+            instance.PrintWindow((Window)element);
         }
 
         private void OpenNewClientWindowMethod()

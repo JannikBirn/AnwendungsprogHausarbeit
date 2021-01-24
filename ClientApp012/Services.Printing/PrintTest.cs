@@ -7,17 +7,10 @@ using System.Printing;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace De.HsFlensburg.ClientApp012.Service.PrintingService
+namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
-    public class PrintSingleCard
+    class PrintTest
     {
-
-        public Object printObject;
-
-        public PrintSingleCard()
-        {
-
-        }
         public void TestPrint() //without selecting printer
         {
             //Create a PrintDialog
@@ -57,6 +50,5 @@ namespace De.HsFlensburg.ClientApp012.Service.PrintingService
                 printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
             }
         }
-
     }
 }
