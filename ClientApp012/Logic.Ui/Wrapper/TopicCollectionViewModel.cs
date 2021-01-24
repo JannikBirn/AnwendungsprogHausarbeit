@@ -7,35 +7,40 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
-    public class TopicCollectionViewModel : ViewModelSyncCollection<TopicViewModel, Topic, TopicCollection>
+    public class TopicCollectionViewModel :
+        ViewModelSyncCollection<TopicViewModel, Topic, TopicCollection>
     {
-        private TopicViewModel topicViewModel;
+        //private TopicViewModel topicViewModel;
 
-        public TopicViewModel TopicViewModel
-        {
-            get
-            {
-                return topicViewModel;
-            }
-            set
-            {
-                topicViewModel = value;
-                OnPropertyChanged("TopicViewModel");
-            }
-        }
+        //public TopicViewModel TopicViewModel
+        //{
+        //    get
+        //    {
+        //        return topicViewModel;
+        //    }
+        //    set
+        //    {
+        //        topicViewModel = value;
+        //        OnPropertyChanged("TopicViewModel");
+        //    }
+        //}
 
-        public TopicCollectionViewModel(): base()
+        public TopicCollectionViewModel() : base()
         {
-            TopicViewModel = new TopicViewModel();
-            //this.Model.TopicViewModel = TopicCollection.Model;
+
+            //OnPropertyChanged("TopicCollectionViewModel");
+            //OnPropertyChanged("TopicCollection");
+
+            //TopicViewModel = new TopicViewModel();
+            //this.Model[0] = TopicViewModel.Model;
         }
 
         public override void NewModelAssigned()
         {
-            if (this.TopicViewModel != null)
-            {
-                //this.TopicViewModel.Model = this.Model?.TopicViewModel;
-            }
+            //if (this.TopicViewModel != null)
+            //{
+                //this.TopicViewModel.Model[0] = this.Model?[0];
+            //}
         }
     }
 }
