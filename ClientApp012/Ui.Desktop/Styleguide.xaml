@@ -34,7 +34,7 @@
 
     <!-- Button Template -->
     <Style x:Key="DefaultButtonStyle" TargetType="{x:Type Button}">
-        <Setter Property="Margin" Value="10,10,10,10" />
+        <Setter Property="Margin" Value="10,10,0,0" />
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource Static.Background}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Static.Border}"/>

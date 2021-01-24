@@ -11,11 +11,14 @@ namespace PrintingService
 {
     class PrintSingleCard
     {
+
+        public Object printObject;
+
         public PrintSingleCard()
         {
 
         }
-        public void TestPrint()
+        public void TestPrint() //without selecting printer
         {
             //Create a PrintDialog
             PrintDialog printDlg = new PrintDialog();
@@ -30,7 +33,7 @@ namespace PrintingService
             // Call PrintDocument method to send document to printer
             printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing");
         }
-        public void TestPrintWithDialogue()
+        public void TestPrintWithDialogue() //with selecting printer
         {
             // Parts of  Code from https://www.c-sharpcorner.com/uploadfile/mahesh/printing-in-wpf/
 

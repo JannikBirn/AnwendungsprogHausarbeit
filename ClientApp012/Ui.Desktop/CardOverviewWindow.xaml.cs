@@ -23,5 +23,10 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop
         {
             InitializeComponent();
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
