@@ -27,9 +27,10 @@
         <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{DynamicResource BackButton}"/>
         <DataGrid x:Name="allCards" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}" Background="{x:Null}" BorderBrush="{x:Null}"></DataGrid>
-        <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="270">
-            <Menu Background="{x:Null}" Width="620">
-                <Button Content="Test Print" DockPanel.Dock="Top"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle}"/>
+        <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
+            <Menu Background="{x:Null}" Width="620" Height="auto" VerticalAlignment="Top">
+                <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="240" Height="40" 
+                        Style="{DynamicResource DefaultButtonStyle}" Click="PrintSimpleTestButton_Click"/>
                 <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }" 
                         Command="{Binding Path=PrintWindow}" CommandParameter="{Binding ElementName=allCards}"/>
                 <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>

@@ -11,15 +11,12 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
     class PrintSingle
     {
-        public string printObject;
-        public object printer; //kann oder muss man den abfragen?
 
         public PrintSingle()
         {
-            printObject = "";
         }
-
-        public void PrintSingleCard()
+        //wo kommt der Titel her? muss eigentlich aus der Window kommen
+        public void PrintSingleCard(string title)
         {
             // Parts of  Code from https://www.c-sharpcorner.com/uploadfile/mahesh/printing-in-wpf/
 
@@ -27,7 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             PrintDialog printDlg = new PrintDialog();
 
             // Create a FlowDocument dynamically
-            FlowDocument doc = new FlowDocument(new Paragraph(new Run(printObject)));
+            FlowDocument doc = new FlowDocument(new Paragraph(new Run(title)));
             doc.Name = "FlowDoc";
 
             // Create IDocumentPaginatorSource from FlowDocument
@@ -36,15 +33,13 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             // Call PrintDocument method to send document to printer
             printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing");
 
-            if (printer != null)
+            Nullable<Boolean> print = printDlg.ShowDialog();
+            if (print == true)
             {
-                Nullable<Boolean> print = printDlg.ShowDialog();
-                if (print == true)
-                {
-                    // Call PrintDocument method to send document to printer 
-                    printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
-                }
+                // Call PrintDocument method to send document to printer 
+                printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
             }
+
         }
     }
 }
