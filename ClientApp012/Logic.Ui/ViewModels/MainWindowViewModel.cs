@@ -41,13 +41,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void PrintTestPageMethod()
         {
-            Services.Printing.PrintTest();
+          //  Services.Printing.PrintTest();
         }
 
         private void PrintWPFWindow(object element)
         {
-            PrintWPFWindow instance = new PrintWPFWindow();
-            instance.PrintWindow((Window)element);
+            //PrintWPFWindow instance = new PrintWPFWindow();
+           // instance.PrintWindow((Window)element);
         }
 
         private void OpenNewClientWindowMethod()
