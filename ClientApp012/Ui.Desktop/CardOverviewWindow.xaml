@@ -4,11 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:viewmodel="clr.namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels"
         mc:Ignorable="d"
         Title="CardOverviewWindow" Height="1024" Width="786"
         x:Name="myCardOverview">
     <Window.Resources>
         <ResourceDictionary>
+          <!--  <viewmodel:CardOverViewWindowViewModel x:Key="Hansi" ></viewmodel:CardOverViewWindowViewModel> -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styleguide.xaml"/>
             </ResourceDictionary.MergedDictionaries>
