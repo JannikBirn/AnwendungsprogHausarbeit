@@ -66,7 +66,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenCardOverViewMethod()
         {
-            ServiceBus.Instance.Send(new OpenNewCardOverview());
+            ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());
         }
 
         //private void DelCientInList(object sender, RoutedEventArgs e)
