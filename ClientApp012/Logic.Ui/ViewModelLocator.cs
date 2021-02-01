@@ -13,7 +13,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         public RootViewModel RootViewModel { get; set; }
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
 
-
         public ViewModelLocator()
         {
             RootViewModel = new RootViewModel();
@@ -36,10 +35,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
 
             MainWindowVM = new MainWindowViewModel(RootViewModel);
             //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
-
+            CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
         }
 
         public MainWindowViewModel MainWindowVM { get; }
-        public NewClientWindowViewModel NewClientWindowVM {get;}
+        public NewClientWindowViewModel NewClientWindowVM { get; }
+        public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
     }
 }

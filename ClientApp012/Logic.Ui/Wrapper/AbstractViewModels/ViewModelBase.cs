@@ -11,6 +11,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper.AbstractViewModels
          IViewModel<TypeOfModel> where TypeOfModel : new()
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        //entspricht private myModel
         private TypeOfModel model;
         public TypeOfModel Model
         {

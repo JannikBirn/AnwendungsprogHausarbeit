@@ -12,7 +12,10 @@ public class Topic : ObservableCollection<Card>
 
 	public Topic()
 	{
-
+		Card card1 = new Card();
+		card1.QuestionText = "to learn";
+		card1.AnswerText = "lernen";
+		this.Add(card1);
 	}
 
 	public List<Card> StartQuestioning()
