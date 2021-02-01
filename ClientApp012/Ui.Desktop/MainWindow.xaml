@@ -32,6 +32,9 @@
                     <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
                     <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
                 </MenuItem>
+                <MenuItem Header="Cards">
+                    <MenuItem Header="Card Overview" Command="{Binding Path=OpenCardOverView}"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
     

@@ -13,7 +13,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 
         public ClientViewModel(Client client)
         {
-            this.myClient = client; //das this darf nicht sein
+            this.myClient = client; 
         }
 
         public ClientViewModel()

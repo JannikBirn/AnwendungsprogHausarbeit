@@ -9,43 +9,20 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class CardOverViewWindowViewModel : List<TopicViewModel>
+    public class CardOverViewWindowViewModel
     {
-
-        private TopicViewModel topic;
+        public RootViewModel RootViewModel { get; set; }
+        public int TopicIndex { get; set; }
         //public RelayCommand PrintTestPage { get; }
         //public RelayCommand PrintWindow { get; }
 
-        public TopicViewModel Topic
+        public CardOverViewWindowViewModel(RootViewModel model)
         {
-            get
-            {
-                return topic;
-            }
-            set
-            {
-                topic = value;
-                //OnPropertyChanged("Topic");
-            }
-        }
-
-
-        public CardOverViewWindowViewModel()
-        {
-            Topic = new TopicViewModel();
-           // this.Model.Topic = Topic.Model;
-
-            //myCardList = new Topic();
-
-            //foreach (Card card in myCardList)
-            //{
-            //    this.Add(new TopcViewModel(card);
-            //}
-
+            RootViewModel = model;
+            TopicIndex = 1;
 
             //PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             //PrintWindow = new RelayCommand(param => PrintWPFWindow(param));
-
         }
 
         private void PrintTestPageMethod()

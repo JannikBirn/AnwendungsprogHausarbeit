@@ -20,7 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewClientWindow { get; }
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
-      
+        public RelayCommand OpenCardOverView { get; }
 
 
         public MainWindowViewModel(RootViewModel model)
@@ -32,10 +32,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
-           
+            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod());
+
         }
 
-       
+
 
         private void OpenNewClientWindowMethod()
         {
@@ -63,7 +64,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
         }
 
-
+        private void OpenCardOverViewMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewCardOverview());
+        }
 
         //private void DelCientInList(object sender, RoutedEventArgs e)
         //{
