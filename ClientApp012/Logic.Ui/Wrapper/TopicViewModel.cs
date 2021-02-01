@@ -9,6 +9,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
     public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic>
     {
+        private Topic topic;
+            
+        
         public String Name
         {
             get

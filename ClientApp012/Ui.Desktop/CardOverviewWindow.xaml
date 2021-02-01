@@ -10,7 +10,7 @@
         x:Name="myCardOverview">
     <Window.Resources>
         <ResourceDictionary>
-          <!--  <viewmodel:CardOverViewWindowViewModel x:Key="Hansi" ></viewmodel:CardOverViewWindowViewModel> -->
+          <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styleguide.xaml"/>
             </ResourceDictionary.MergedDictionaries>
@@ -28,7 +28,8 @@
         </Grid.RowDefinitions>
         <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{DynamicResource BackButton}"/>
-        <DataGrid x:Name="allCards" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}" Background="{x:Null}" BorderBrush="{x:Null}"></DataGrid>
+        <DataGrid x:Name="allCards" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=TopicViewModel.Name}" 
+                  Background="{x:Null}" BorderBrush="{x:Null}"></DataGrid>
         <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
             <Menu Background="{x:Null}" Width="620" Height="auto" VerticalAlignment="Top">
                 <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="240" Height="40" 
