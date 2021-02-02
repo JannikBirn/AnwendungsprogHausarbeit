@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -17,7 +18,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand PrintTestPage { get; }
         public RelayCommand PrintWindow { get; }
-
+        public RelayCommand PrintCards { get; }
 
         public CardOverViewWindowViewModel(RootViewModel model)
         {
@@ -25,20 +26,28 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             TopicIndex = 1;
 
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
-            PrintWindow = new RelayCommand(param => PrintWPFWindow(param));
+            PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
+            PrintCards = new RelayCommand(param => PrintCardsMethod(param));
         }
 
         private void PrintTestPageMethod()
         {
             //hier sollte die PrintMethode aufgerufen werden
-            PrintTest printTest = new PrintTest();
-            printTest.TestPrintWithDialogue();  //hier wird die Methode aus TestPrint ausgewählt
+            PrintTest instance = new PrintTest();
+            instance.TestPrintWithDialogue();  //hier wird die Methode aus TestPrint ausgewählt
         }
 
-        private void PrintWPFWindow(object element)
+        private void PrintWPFWindowMethod(object param)
         {
             PrintWPFWindow instance = new PrintWPFWindow();
-           // instance.PrintSimpleTextButton_Click((myCardOverviewWindow)element);
+            instance.PrintWindow((Window)param);
         }
+
+        private void PrintCardsMethod(object param)
+        {
+            PrintAllCards instance = new PrintAllCards();
+            instance.PrintCards(param);
+        }
+
     }
 }

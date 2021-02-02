@@ -35,14 +35,11 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             PrintDialog printDlg = new PrintDialog();
 
             // Create a FlowDocument dynamically. 
-            FlowDocument doc = new FlowDocument(new Paragraph(new Run("Here is some Text.")));
+            FlowDocument doc = new FlowDocument(new Paragraph(new Run("Here is some Text. Please enjoy.")));
             doc.Name = "FlowDoc";
 
             // Create IDocumentPaginatorSource from FlowDocument 
             IDocumentPaginatorSource idpSource = doc;
-
-            // Call PrintDocument method to send document to printer 
-            printDlg.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing");
 
             Nullable<Boolean> print = printDlg.ShowDialog();
             if (print == true)
