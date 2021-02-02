@@ -10,14 +10,6 @@ public class Topic : ObservableCollection<Card>
 
 	public TopicStatistics TopicStatistics { set; get; }
 
-	public Topic()
-	{
-		Card card1 = new Card();
-		card1.QuestionText = "to learn";
-		card1.AnswerText = "lernen";
-		this.Add(card1);
-	}
-
 	public List<Card> StartQuestioning()
     {
 		TopicStatistics.SetStart();
@@ -49,7 +41,6 @@ public class Topic : ObservableCollection<Card>
         }
 
         base.Add(card);
-
     }
 
 }

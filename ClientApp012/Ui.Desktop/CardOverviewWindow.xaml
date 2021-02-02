@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr.namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels"
         mc:Ignorable="d"
         Title="CardOverviewWindow" Height="1024" Width="786"
-        x:Name="myCardOverview">
+        x:Name="myCardOverviewWindow">
     <Window.Resources>
         <ResourceDictionary>
           <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
@@ -31,17 +31,21 @@
         </Grid.RowDefinitions>
         <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{DynamicResource BackButton}"/>
-        <DataGrid x:Name="allCards" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=RootViewModel.TopicCollection[TopicIndex]}" 
-                  Background="{x:Null}" BorderBrush="{x:Null}"></DataGrid>
+        
+        <DataGrid x:Name="allCards" Grid.ColumnSpan="2" Grid.Row="1" ItemsSource="{Binding Path=RootViewModel.TopicCollection[0]}"
+                  SelectionUnit="CellOrRowHeader"></DataGrid>
+        <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
+        
         <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
             <Menu Background="{x:Null}" Width="620" Height="auto" VerticalAlignment="Top">
                 <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="240" Height="40" 
-                        Style="{DynamicResource DefaultButtonStyle}" />
+                        Style="{DynamicResource DefaultButtonStyle}"
+                        Command="{Binding PrintTestPage}"/>
                 <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }" 
                         Command="{Binding Path=PrintWindow}" CommandParameter="{Binding ElementName=allCards}"/>
                 <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>
                 <Button Content="Print Window" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"
-                        Command="{Binding Path=PrintWindow}" CommandParameter="{Binding ElementName=myCardOverview}"/>
+                        Command="{Binding Path=PrintWindow}" CommandParameter="{Binding ElementName=myCardOverviewWindow}"/>
             </Menu>
         </DockPanel>
     </Grid>

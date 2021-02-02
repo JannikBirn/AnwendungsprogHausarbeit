@@ -1,7 +1,6 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
-using De.HsFlensburg.ClientApp012.Services.Printing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +31,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
-            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod());
+            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
 
         }
 
@@ -66,7 +65,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenCardOverViewMethod()
         {
-            ServiceBus.Instance.Send(new OpenNewCardOverview());
+            ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());
         }
 
         //private void DelCientInList(object sender, RoutedEventArgs e)

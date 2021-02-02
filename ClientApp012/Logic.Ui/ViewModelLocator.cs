@@ -24,7 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             RootViewModel.TopicCollection.Add(test);
 
             RootViewModel.TopicCollection[0].Add(new CardViewModel());
-
+            
 
             //TopicCollectionVM = new TopicCollectionViewModel();
 

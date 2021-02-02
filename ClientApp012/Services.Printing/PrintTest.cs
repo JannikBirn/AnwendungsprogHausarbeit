@@ -10,16 +10,15 @@ using System.Windows; // needed for RoutedEventArgs
 
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
-    class PrintTest
+    public class PrintTest
     {
-        //dunno how to use sender and e
-        public void PrintSimpleTestButton_Click(object sender, RoutedEventArgs e) //without selecting printer
+        public void PrintTestWindow()   //Die Parameter sind im Beispiel hier nicht drin
         {
             //Create a PrintDialog
             PrintDialog printDlg = new PrintDialog();
 
             // Create a FlowDocument dynamically
-            FlowDocument doc = new FlowDocument(new Paragraph(new Run("Here is some Text.")));
+            FlowDocument doc = new FlowDocument(new Paragraph(new Run("This is a Test print. Please enjoy.")));
             doc.Name = "FlowDoc";
 
             // Create IDocumentPaginatorSource from FlowDocument
@@ -53,27 +52,6 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             }
         }
 
-        private FlowDocument CreateFlowDocument(DataGrid dataGrid)
-        {
-            //Create FlowDocument
-            FlowDocument doc = new FlowDocument();
-            //Create Section
-            Section sec = new Section();
-            //Create first Paragraph
-            Paragraph p1 = new Paragraph();
-            //Create and add FontStyle. Got from DataGrid
-            p1.FontStyle = dataGrid.FontStyle;
-            p1.FontSize = dataGrid.FontSize;
-            p1.FontFamily = dataGrid.FontFamily;
 
-            //Add Paragraph to Section
-            sec.Blocks.Add(p1);
-            //Add Section to FlowDocument
-            doc.Blocks.Add(sec);
-
-            return doc;
-        }
-
-    
     }
 }
