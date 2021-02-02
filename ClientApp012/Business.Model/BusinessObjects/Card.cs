@@ -20,7 +20,6 @@ public class Card
     public Card()
     {
         cardAnswers = new List<CardAnswer>();
-        // do stuff
     }
 
     public void StartAnswering()

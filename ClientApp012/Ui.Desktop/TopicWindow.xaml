@@ -28,10 +28,10 @@
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="36" Height="43" Style="{DynamicResource BackButton}"/>
         <Grid Grid.Column="1" Grid.Row="2">
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Content="New Card" Width="120" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
-                <Button Content="Show all Cards" Width="120" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
-                <Button Content="Show Statistics" Width="120" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
-                <Button Content="Print all Cards" Width="120" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
+                <Button Content="New Card" Width="180" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
+                <Button Content="Show all Cards" Width="180" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
+                <Button Content="Show Statistics" Width="180" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
+                <Button Content="Print all Cards" Width="180" Height="43" Style="{DynamicResource DefaultButtonStyle}"/>
 
             </StackPanel>
         </Grid>

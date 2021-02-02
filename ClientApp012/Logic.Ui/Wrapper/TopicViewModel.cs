@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
-    public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic>
+    public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic> //soll das nicht ne Liste sein?
     {
+        public TopicViewModel() : base()
+        {
+        }
+
         public String Name
         {
             get
@@ -48,11 +52,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         //    }
         //}
 
-        public TopicViewModel() : base()
-        {
 
-
-        }
 
         public override void NewModelAssigned()
         {

@@ -40,10 +40,10 @@
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Image File to the Question" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Style="{DynamicResource DefaultButtonStyle}"/>
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Video FIle to the Question" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Style="{DynamicResource DefaultButtonStyle}"/>
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Audio File to the Question" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Style="{DynamicResource DefaultButtonStyle}"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Image File to the Answer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click" Grid.Row="3" Style="{DynamicResource DefaultButtonStyle}"/>
+       <!-- <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Image File to the Answer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Click="Button_Click" Grid.Row="3" Style="{DynamicResource DefaultButtonStyle}"/> -->
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Video FIle to the Answer" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3" Style="{DynamicResource DefaultButtonStyle}"/>
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Audio File to the Answer" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="3" Style="{DynamicResource DefaultButtonStyle}"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Create Card" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="4" Click="Button_Click_1" Style="{DynamicResource DefaultButtonStyle}"/>
+        <!-- <Button Command="{Binding AddClient, Mode=OneWay}" Content="Create Card" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="4" Click="Button_Click_1" Style="{DynamicResource DefaultButtonStyle}"/> -->
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BackButton}" Grid.Row="0"/>
         
 

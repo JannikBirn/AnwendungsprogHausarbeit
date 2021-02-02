@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 using System.Printing;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows; // needed for RoutedEventArgs
 
-namespace De.HsFlensburg.ClientApp012.Service.PrintingService
+namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
-    public class PrintSingleCard
+    class PrintTest
     {
-
-        public Object printObject;
-
-        public PrintSingleCard()
-        {
-
-        }
-        public void TestPrint() //without selecting printer
+        //dunno how to use sender and e
+        public void PrintSimpleTestButton_Click(object sender, RoutedEventArgs e) //without selecting printer
         {
             //Create a PrintDialog
             PrintDialog printDlg = new PrintDialog();
@@ -58,5 +53,27 @@ namespace De.HsFlensburg.ClientApp012.Service.PrintingService
             }
         }
 
+        private FlowDocument CreateFlowDocument(DataGrid dataGrid)
+        {
+            //Create FlowDocument
+            FlowDocument doc = new FlowDocument();
+            //Create Section
+            Section sec = new Section();
+            //Create first Paragraph
+            Paragraph p1 = new Paragraph();
+            //Create and add FontStyle. Got from DataGrid
+            p1.FontStyle = dataGrid.FontStyle;
+            p1.FontSize = dataGrid.FontSize;
+            p1.FontFamily = dataGrid.FontFamily;
+
+            //Add Paragraph to Section
+            sec.Blocks.Add(p1);
+            //Add Section to FlowDocument
+            doc.Blocks.Add(sec);
+
+            return doc;
+        }
+
+    
     }
 }
