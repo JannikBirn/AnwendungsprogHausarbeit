@@ -1,4 +1,6 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
+﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
+using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +27,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
+        private void OpenStatisticsHistoryPanel()
+        {
+            OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
+            messageObject.Message = "TEST";
+            Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
 
+        }
 
         //private void OpenNewClientWindowMethod()
         //{
         //    ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
         //}
-      
+
     }
 }

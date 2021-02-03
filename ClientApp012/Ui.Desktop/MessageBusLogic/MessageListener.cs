@@ -1,5 +1,6 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
+using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,13 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(this, delegate ()
             {
+                StatisticsWindow myWindow = new StatisticsWindow();
+                myWindow.ShowDialog();
+            });
+            Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
+            {
+                Console.WriteLine(messageObject.Message);
+
                 StatisticsWindow myWindow = new StatisticsWindow();
                 myWindow.ShowDialog();
             });
