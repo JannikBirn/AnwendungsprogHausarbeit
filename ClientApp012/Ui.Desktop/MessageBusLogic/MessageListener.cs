@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
@@ -42,7 +43,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
-                Frame statisticsFrame = (Frame) messageObject.Frame;
+                Frame statisticsFrame  = Application.Current.Windows.OfType<StatisticsWindow>().ToArray<StatisticsWindow>()[0].StatisticsPanel;
                 switch (messageObject.PanelIndex)
                 {
                     case OpenStatisticsPanelMessage.HISTORY_PANEL:

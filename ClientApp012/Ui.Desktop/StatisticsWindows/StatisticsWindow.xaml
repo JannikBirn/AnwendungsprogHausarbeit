@@ -35,12 +35,12 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="History" Grid.Column="0" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsHistoryPanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
-            <Button Content="Time" Grid.Column="1" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsTimePanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
-            <Button Content="Quality" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsQualityPanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
+            <Button Content="History" Grid.Column="0" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsHistoryPanel}" />
+            <Button Content="Time" Grid.Column="1" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsTimePanel}" />
+            <Button Content="Quality" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsQualityPanel}" />
         </Grid>
 
-        <Frame x:Name="StatisticsPanel" Grid.Row="3" NavigationUIVisibility="Hidden"/>
-
+        <Frame x:Name="StatisticsPanel" x:FieldModifier="public" Grid.Row="3" NavigationUIVisibility="Hidden"/>
+ 
     </Grid>
 </Window>
