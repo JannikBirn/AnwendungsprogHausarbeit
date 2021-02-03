@@ -44,12 +44,15 @@
   <ItemGroup>
     <Compile Include="MessageBusMessages\OpenNewCardOverViewMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewClientWindowMessage.cs" />
+    <Compile Include="MessageBusMessages\OpenStatisticsPanelMessage.cs" />
+    <Compile Include="MessageBusMessages\OpenStatisticsWindowMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\CardOverViewWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsWindowViewModel.cs" />
     <Compile Include="Wrapper\AbstractViewModels\IViewModel.cs" />
     <Compile Include="Wrapper\AbstractViewModels\ViewModelBase.cs" />
     <Compile Include="Wrapper\AbstractViewModels\ViewModelSyncCollection.cs" />
@@ -64,6 +67,10 @@
     <ProjectReference Include="..\Business.Model\Business.Model.csproj">
       <Project>{ce47f974-ab3a-4ba6-b218-6c4384f9dd73}</Project>
       <Name>Business.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.MessageBusWithParameter\Services.MessageBusWithParameter.csproj">
+      <Project>{7B379530-F431-45D4-92BD-0902481AEB92}</Project>
+      <Name>Services.MessageBusWithParameter</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.MessageBus\Services.MessageBus.csproj">
       <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>

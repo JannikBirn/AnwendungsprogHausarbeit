@@ -1,0 +1,46 @@
+﻿<Window x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="1024" Width="786">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Styleguide.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <Window.DataContext>
+        <Binding Path="StatisticsWindowVM" Source="{StaticResource ViewModelLocator}"/>
+    </Window.DataContext>
+    
+    <Grid Style="{DynamicResource DefaultGridStyle}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Button Content="Back" Grid.Row="0" Style="{DynamicResource BackButton}"/>
+        <Label Content="Statistiken" Grid.Row="0" Style="{DynamicResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Topic - All" Grid.Row="1" Margin="100,20" Style="{DynamicResource DefaultButtonStyle}"/>
+
+        <Grid Grid.Row="2" Margin="50,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="History" Grid.Column="0" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsHistoryPanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
+            <Button Content="Time" Grid.Column="1" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsTimePanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
+            <Button Content="Quality" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsQualityPanel}" CommandParameter="{Binding ElementName=StatisticsPanel}"/>
+        </Grid>
+
+        <Frame x:Name="StatisticsPanel" Grid.Row="3" NavigationUIVisibility="Hidden"/>
+
+    </Grid>
+</Window>
