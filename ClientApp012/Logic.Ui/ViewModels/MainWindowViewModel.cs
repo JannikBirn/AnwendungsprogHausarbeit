@@ -24,6 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
         public RelayCommand OpenCardOverView { get; }
+        public RelayCommand OpenStatisticsWindow { get; }
 
 
         public MainWindowViewModel(RootViewModel model)
@@ -36,23 +37,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod());
+            OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
 
         }
 
 
 
-        private void OpenNewClientWindowMethod()
-        {
-            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
-        }
-
-        private void AddClientToListMethod()
-        {
-            //ClientViewModel clientVM = new ClientViewModel();
-            //clientVM.Id = Int16.Parse(IdTextBox.Text);
-            //clientVM.Name = NameTextBox.Text;
-            //MyList.Add(clientVM);            
-        }
+        //Serialization
 
         private void SerializeToBinMethod()
         {
@@ -72,29 +63,22 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
+        //Methods for the Relay Commands to open windows
+
+        private void OpenNewClientWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
+        }
+
         private void OpenCardOverViewMethod()
         {
             ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());
         }
 
-        //private void DelCientInList(object sender, RoutedEventArgs e)
-        //{
-        //    ClientCollectionViewModel list = this.FindResource("myList") as ClientCollectionViewModel;
-        //    if (list != null)
-        //    {
-        //        list.RemoveAt(0);
-        //    }
-        //}
+        private void OpenStatisticsWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenStatisticsWindowMessage());
+        }
 
-
-
-        //private void DelCollection(object sender, RoutedEventArgs e)
-        //{
-        //    ClientCollectionViewModel list = this.FindResource("myList") as ClientCollectionViewModel;
-        //    if (list != null)
-        //    {
-        //        list.Clear();
-        //    }
-        //}
     }
 }
