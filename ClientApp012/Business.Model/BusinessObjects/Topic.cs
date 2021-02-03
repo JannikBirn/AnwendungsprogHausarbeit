@@ -12,10 +12,7 @@ public class Topic : ObservableCollection<Card>
 
 	public Topic()
 	{
-		Card card1 = new Card();
-		card1.QuestionText = "to learn";
-		card1.AnswerText = "lernen";
-		this.Add(card1);
+
 	}
 
 	public List<Card> StartQuestioning()
@@ -38,18 +35,4 @@ public class Topic : ObservableCollection<Card>
     {
 		//updating the difficulties of the cards of this collection
     }
-
-
-	//Override
-	public new void Add(Card card)
-    {
-        if (card.QuestionText == null || card.AnswerText == null)
-        {
-			throw new EntryPointNotFoundException();
-        }
-
-        base.Add(card);
-
-    }
-
 }

@@ -10,12 +10,21 @@ namespace Services.Serialization
 {
     public class BinarySerializer
     {
+        public static string PERSISTENT_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
         public static void BinarySerialize(object data, string filePath)
         {
             FileStream fileStream;
             BinaryFormatter bf = new BinaryFormatter();
             if (File.Exists(filePath))
                 File.Delete(filePath);
+
+            if (!Directory.Exists(filePath))
+            {
+                //Creates the directory if it dosnt exist
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            }
+
             fileStream = File.Create(filePath);
             bf.Serialize(fileStream, data);
             fileStream.Close();
