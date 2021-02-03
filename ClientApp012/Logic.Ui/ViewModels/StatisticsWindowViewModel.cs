@@ -14,7 +14,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
-        //public RelayCommand OpenNewClientWindow { get; }
+
+        public RelayCommand OpenNewPanel{ get; }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -23,14 +24,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Adding relay commands
-            //OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
+            OpenNewPanel = new RelayCommand(param => OpenStatisticsHistoryPanel(param));
 
         }
 
-        private void OpenStatisticsHistoryPanel()
+        private void OpenStatisticsHistoryPanel(object element)
         {
             OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
-            messageObject.Message = "TEST";
+            messageObject.PanelIndex = OpenStatisticsPanelMessage.HISTORY_PANEL;
+            messageObject.Frame = element;
+
             Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
 
         }

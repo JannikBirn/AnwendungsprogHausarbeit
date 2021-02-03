@@ -61,6 +61,9 @@
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsWindows\StatisticsHistoryPanel.xaml.cs">
+      <DependentUpon>StatisticsHistoryPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatisticsWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsHistoryPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +153,10 @@
     <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
       <Project>{682a27c5-efac-4770-84c7-ba70d956c427}</Project>
       <Name>Logic.Ui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.MessageBusWithParameter\Services.MessageBusWithParameter.csproj">
+      <Project>{7B379530-F431-45D4-92BD-0902481AEB92}</Project>
+      <Name>Services.MessageBusWithParameter</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.MessageBus\Services.MessageBus.csproj">
       <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>

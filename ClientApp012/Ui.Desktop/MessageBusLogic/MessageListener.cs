@@ -1,11 +1,13 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
+using De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 {
@@ -40,10 +42,13 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
-                Console.WriteLine(messageObject.Message);
-
-                StatisticsWindow myWindow = new StatisticsWindow();
-                myWindow.ShowDialog();
+                Frame statisticsFrame = (Frame) messageObject.Frame;
+                switch (messageObject.PanelIndex)
+                {
+                    case 0:
+                        statisticsFrame.Content = new StatisticsHistoryPanel();
+                        break;
+                }
             });
         }
     }
