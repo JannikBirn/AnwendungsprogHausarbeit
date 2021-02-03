@@ -15,7 +15,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
 
-        public RelayCommand OpenNewPanel{ get; }
+        public RelayCommand OpenStatisticsHistoryPanel { get; }
+        public RelayCommand OpenStatisticsTimePanel { get; }
+        public RelayCommand OpenStatisticsQualityPanel { get; }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -24,24 +26,21 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Adding relay commands
-            OpenNewPanel = new RelayCommand(param => OpenStatisticsHistoryPanel(param));
+            OpenStatisticsHistoryPanel = new RelayCommand(param => OpenStatisticsPanelMethod(param, OpenStatisticsPanelMessage.HISTORY_PANEL));
+            OpenStatisticsTimePanel = new RelayCommand(param => OpenStatisticsPanelMethod(param, OpenStatisticsPanelMessage.TIME_PANEL));
+            OpenStatisticsQualityPanel = new RelayCommand(param => OpenStatisticsPanelMethod(param, OpenStatisticsPanelMessage.QUALITY_PANEL));
 
-        }
+        }      
 
-        private void OpenStatisticsHistoryPanel(object element)
+        private void OpenStatisticsPanelMethod(object frame, int panelIndex)
         {
             OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
-            messageObject.PanelIndex = OpenStatisticsPanelMessage.HISTORY_PANEL;
-            messageObject.Frame = element;
+            messageObject.PanelIndex = panelIndex;
+
+            //Getting the Frame and sending it to the MessageListener 
+            messageObject.Frame = frame;
 
             Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
-
         }
-
-        //private void OpenNewClientWindowMethod()
-        //{
-        //    ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
-        //}
-
     }
 }

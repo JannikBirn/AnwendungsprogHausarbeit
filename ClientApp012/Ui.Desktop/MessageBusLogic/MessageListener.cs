@@ -45,8 +45,14 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 Frame statisticsFrame = (Frame) messageObject.Frame;
                 switch (messageObject.PanelIndex)
                 {
-                    case 0:
+                    case OpenStatisticsPanelMessage.HISTORY_PANEL:
                         statisticsFrame.Content = new StatisticsHistoryPanel();
+                        break;
+                    case OpenStatisticsPanelMessage.TIME_PANEL:
+                        statisticsFrame.Content = new StatisticsTimePanel();
+                        break;
+                    case OpenStatisticsPanelMessage.QUALITY_PANEL:
+                        statisticsFrame.Content = new StatisticsQualityPanel();
                         break;
                 }
             });

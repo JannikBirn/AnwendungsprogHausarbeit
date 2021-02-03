@@ -64,6 +64,12 @@
     <Compile Include="StatisticsWindows\StatisticsHistoryPanel.xaml.cs">
       <DependentUpon>StatisticsHistoryPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsWindows\StatisticsQualityPanel.xaml.cs">
+      <DependentUpon>StatisticsQualityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticsWindows\StatisticsTimePanel.xaml.cs">
+      <DependentUpon>StatisticsTimePanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatisticsWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
@@ -98,6 +104,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticsWindows\StatisticsHistoryPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsQualityPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsTimePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
