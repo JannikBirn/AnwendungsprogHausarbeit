@@ -1,7 +1,9 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+﻿using De.HsFlensburg.ClientApp012.Business.Model.BusinessObjects;
+using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using De.HsFlensburg.ClientApp012.Services.Printing;
+using Services.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
+        public const string FILE_NAME = "\\ClientApp012\\appdata.dat";
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
@@ -53,15 +56,20 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void SerializeToBinMethod()
         {
-            throw new NotImplementedException();
-            //BinarySerializerFileHandler.Save(TopicCollectionObject.Model);
+            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
+            Console.WriteLine("Writing Data to path:" + fullPath);
+
+            BinarySerializer.BinarySerialize(RootViewModel.Model, fullPath);
+
         }
 
         private void DeserializeFromBinMethod()
         {
-            throw new NotImplementedException();
-            //TopicCollectionObject = new TopicCollectionViewModel();
-            //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
+            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
+            Console.WriteLine("Reading Data from path:" + fullPath);
+
+            RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
+
         }
 
         private void OpenCardOverViewMethod()

@@ -73,6 +73,10 @@
       <Project>{c69d508c-2962-40c8-81bd-cff32d947a24}</Project>
       <Name>Services.Printing</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.Serialization\Services.Serialization.csproj">
+      <Project>{6B911606-D830-4B81-A201-8F2E3C7D6084}</Project>
+      <Name>Services.Serialization</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

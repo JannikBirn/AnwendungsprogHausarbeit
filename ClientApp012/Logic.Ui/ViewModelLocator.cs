@@ -19,11 +19,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             //TopicCollectionVM = RootViewModel.TopicCollection;
 
             //Adding a test vm
-            TopicViewModel test = new TopicViewModel();
-            test.Name = "Deutsch";
-            RootViewModel.TopicCollection.Add(test);
+            //TopicViewModel test = new TopicViewModel();
+            //test.Name = "Deutsch";
+            //RootViewModel.TopicCollection.Add(test);
 
-            RootViewModel.TopicCollection[0].Add(new CardViewModel());
+            //RootViewModel.TopicCollection[0].Add(new CardViewModel());
 
 
             //TopicCollectionVM = new TopicCollectionViewModel();
