@@ -16,6 +16,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
     {
         public bool BindableProperty => true;
 
+        //Window Instances
+        private StatisticsWindow StatisticsWindow { get; set; }
+
         public MessageListener()
         {
             InitMessenger();
@@ -38,12 +41,12 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(this, delegate ()
             {
-                StatisticsWindow myWindow = new StatisticsWindow();
-                myWindow.ShowDialog();
+                StatisticsWindow = new StatisticsWindow();
+                StatisticsWindow.ShowDialog();
             });
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
-                Frame statisticsFrame  = Application.Current.Windows.OfType<StatisticsWindow>().ToArray<StatisticsWindow>()[0].StatisticsPanel;
+                Frame statisticsFrame = StatisticsWindow.StatisticsFrame;
                 switch (messageObject.PanelIndex)
                 {
                     case OpenStatisticsPanelMessage.HISTORY_PANEL:

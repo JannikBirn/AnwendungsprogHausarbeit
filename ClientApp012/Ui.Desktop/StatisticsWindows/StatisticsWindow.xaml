@@ -40,7 +40,7 @@
             <Button Content="Quality" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsQualityPanel}" />
         </Grid>
 
-        <Frame x:Name="StatisticsPanel" x:FieldModifier="public" Grid.Row="3" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="StatisticsFrame" x:FieldModifier="public" Grid.Row="3" NavigationUIVisibility="Hidden"/>
  
     </Grid>
 </Window>
