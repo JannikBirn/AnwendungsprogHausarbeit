@@ -15,16 +15,22 @@
     </Window.Resources>
     <Grid  Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.06*"/>
             <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.3*"/>
             <RowDefinition Height="0.2*"/>
         </Grid.RowDefinitions>
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BackButton}" Grid.Row="0"/>
-        <Label Content="Answer:" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2"  FontFamily="Roboto" Foreground="#FF939393" FontSize="36" />
-        <Label Content="Question:" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"  FontFamily="Roboto" Foreground="#FF939393" FontSize="36" Width="160" />
-        <TextBox HorizontalAlignment="Center" Height="124" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="349" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF707070" FontFamily="Roboto" FontSize="14"/>
+        <Label Content="Answer:" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2"  FontFamily="Roboto" Foreground="#FF939393" FontSize="30" />
+        <Label Content="Question:" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"  FontFamily="Roboto" Foreground="#FF939393" FontSize="30" Width="160" />
+        <TextBox HorizontalAlignment="Center" Height="182" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="368" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF707070" FontFamily="Roboto" FontSize="14" />
         <Image HorizontalAlignment="Center" Height="184" VerticalAlignment="Center" Width="290" Margin="95,112,393,129" Grid.RowSpan="2"/>
         <MediaElement HorizontalAlignment="Center" Height="170" Grid.Row="1" VerticalAlignment="Center" Width="264" />
+        <MediaElement HorizontalAlignment="Center" Height="266" Grid.Row="2" VerticalAlignment="Center" Width="386"/>
+        <Image HorizontalAlignment="Left" Height="266" Grid.Row="2" VerticalAlignment="Top" Width="386" Margin="196,63,0,0"/>
+        <TextBox HorizontalAlignment="Center" Height="279" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="386" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF707070" FontFamily="Roboto" FontSize="14"/>
+        <Border x:Name="borderCards_Copy" BorderThickness="1" HorizontalAlignment="Center" Height="4"  Grid.Row="1" VerticalAlignment="Center" Width="778" Background="#FF707070" Margin="0,248,0,5"/>
+        <Border x:Name="borderCards_Copy1" BorderThickness="1" HorizontalAlignment="Center" Height="4"  Grid.Row="3" VerticalAlignment="Top" Width="667" Background="#FF707070"/>
+        <Border x:Name="borderCards_Copy2" BorderThickness="1" HorizontalAlignment="Center" Height="4"  Grid.Row="3" VerticalAlignment="Center" Width="265" Background="#FF707070"/>
     </Grid>
 </Window>
