@@ -8,9 +8,9 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 {
     public class TopicStatistics
     {
-        private Topic Topic { get; set; }
+        public Topic Topic { get; set; }
 
-        private CardStatistics CardStatistics { get; set; }
+        public CardStatistics CardStatistics { get; set; }
         internal TopicStatistics(Topic topic)
         {
             this.Topic = topic;

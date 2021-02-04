@@ -36,7 +36,11 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                     CardAnswer cardAnswer = new CardAnswer();
                     cardAnswer.IsAnswerCorrect = rand.NextDouble() > 0.5;
                     cardAnswer.Start = lastEndTime;
-                    lastEndTime += rand.Next(10000000 * 10, 10000000 * 60);
+                    lastEndTime += rand.Next((int)TimeSpan.FromSeconds(1).Ticks, (int)TimeSpan.FromSeconds(20).Ticks);
+                    if (rand.NextDouble() > 0.9)
+                    {
+                        lastEndTime += TimeSpan.FromDays(1).Ticks;
+                    }
                     cardAnswer.End = lastEndTime;
                     card.cardAnswers.Add(cardAnswer);
                 }

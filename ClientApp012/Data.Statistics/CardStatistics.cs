@@ -18,7 +18,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
         //Returning all Cards that have been answered between from-to
         public List<Card> GetCardsBetween(long from, long to)
         {
-            List<Card> cards = new List<Card>();
+            List<Card> result = new List<Card>();
 
             foreach (Card card in cards)
             {
@@ -26,12 +26,12 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                 {
                     if (from < cardAnswer.End && to > cardAnswer.End)
                     {
-                        cards.Add(card);
+                        result.Add(card);
                         break;
                     }
                 }
             }
-            return cards;
+            return result;
         }
 
         //Returning all CardAnswers from a Card that were answered from-to
