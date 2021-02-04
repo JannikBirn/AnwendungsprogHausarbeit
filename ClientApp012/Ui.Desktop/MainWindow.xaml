@@ -31,6 +31,7 @@
                     <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
                     <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
                     <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
+                    <MenuItem Header="Learn" Command="{Binding Path=OpenNewClientWindow}"/>
                 </MenuItem>
                 <MenuItem Header="Open Window">
                     <MenuItem Header="Card Overview" Command="{Binding Path=OpenCardOverView}"/>

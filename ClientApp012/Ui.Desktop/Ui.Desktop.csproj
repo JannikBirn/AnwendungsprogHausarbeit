@@ -58,11 +58,20 @@
     <Compile Include="CardOverviewWindow.xaml.cs">
       <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LearningCardWindows\LearningCardAnswerPanel.xaml.cs">
+      <DependentUpon>LearningCardAnswerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LearningCardWindows\LearningCardFinishPanel.xaml.cs">
+      <DependentUpon>LearningCardFinishPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LearningCardWindows\LearningCardQuestionPanel.xaml.cs">
+      <DependentUpon>LearningCardQuestionPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="QuestionCardWindow.xaml.cs">
-      <DependentUpon>QuestionCardWindow.xaml</DependentUpon>
+    <Compile Include="LearningCardWindows\LearningCardWindow.xaml.cs">
+      <DependentUpon>LearningCardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="StatisticsWindows\StatisticsHistoryPanel.xaml.cs">
       <DependentUpon>StatisticsHistoryPanel.xaml</DependentUpon>
@@ -86,6 +95,18 @@
     <Compile Include="TopicOverview.xaml.cs">
       <DependentUpon>TopicOverview.xaml</DependentUpon>
     </Compile>
+    <Page Include="LearningCardWindows\LearningCardAnswerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LearningCardWindows\LearningCardFinishPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LearningCardWindows\LearningCardQuestionPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,7 +127,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="QuestionCardWindow.xaml">
+    <Page Include="LearningCardWindows\LearningCardWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

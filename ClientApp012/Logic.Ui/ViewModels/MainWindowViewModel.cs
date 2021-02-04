@@ -26,6 +26,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenCardOverView { get; }
         public RelayCommand OpenStatisticsWindow { get; }
 
+        public RelayCommand OpenLearningCardWindow { get; }
+
 
         public MainWindowViewModel(RootViewModel model)
         {

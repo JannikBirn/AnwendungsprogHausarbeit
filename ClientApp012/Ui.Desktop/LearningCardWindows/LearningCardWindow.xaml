@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="QuestionCardWindow"  Height="1024" Width="786">
+        Title="LearningCardWindow" Height="1024" Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="..\Styleguide.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -21,12 +21,7 @@
             <RowDefinition Height="230*"/>
         </Grid.RowDefinitions>
         <Button Command="{Binding AddClient, Mode=OneWay}" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BackButton}" Grid.Row="0"/>
-        <Label Content="Question:" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0"  FontFamily="Roboto" Foreground="#FF707070" FontSize="36" Margin="308,98" />
-        <TextBox HorizontalAlignment="Center" Height="184" Grid.Row="1" TextWrapping="Wrap" Text="question" VerticalAlignment="Center" Width="270" Foreground="#FF707070" Background="{x:Null}" BorderBrush="{x:Null}" FontFamily="Roboto" FontSize="18" Margin="254,156,254,157"/>
         <Border x:Name="borderCards" BorderThickness="1" HorizontalAlignment="Left" Height="4" Margin="0,169,0,0" Grid.Row="0" VerticalAlignment="Top" Width="778" Background="#FF707070"/>
         <Border x:Name="borderCards_Copy" BorderThickness="1" HorizontalAlignment="Center" Height="4"  Grid.Row="2" VerticalAlignment="Center" Width="701" Background="#FF707070"/>
-        <Image HorizontalAlignment="Center" Height="324" VerticalAlignment="Center" Width="388" Margin="10,178,380,243" Grid.RowSpan="2"/>
-        <MediaElement HorizontalAlignment="Center" Height="348" Grid.Row="1" VerticalAlignment="Center" Width="366"/>
-        <Button x:Name="btn_Next" Content="Next" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="74" Height="56"/>
     </Grid>
 </Window>

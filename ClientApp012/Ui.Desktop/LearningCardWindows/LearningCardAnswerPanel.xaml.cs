@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace De.HsFlensburg.ClientApp012.Ui.Desktop
+namespace De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows
 {
     /// <summary>
-    /// Interaction logic for FinishCardWindow.xaml
+    /// Interaction logic for LearningCardAnswerPanel.xaml
     /// </summary>
-    public partial class FinishCardWindow : Window
+    public partial class LearningCardAnswerPanel : Page
     {
-        public FinishCardWindow()
+        public LearningCardAnswerPanel()
         {
             InitializeComponent();
         }
