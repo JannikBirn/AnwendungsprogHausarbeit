@@ -24,12 +24,12 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Button Content="Back" Grid.Row="0" Style="{DynamicResource BackButton}"/>
-        <Label Content="Select a Topic" Grid.Row="0" Style="{DynamicResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="Back" Grid.Row="0" Style="{StaticResource BackButton}"/>
+        <Label Content="Select a Topic" Grid.Row="0" Style="{StaticResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <DataGrid Grid.Row="1" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" Style="{DynamicResource DefaultDataGrid}" IsReadOnly="True">
+        <DataGrid Grid.Row="1" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" Style="{StaticResource DefaultDataGrid}" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*" CellStyle="{StaticResource DataGridContentCellCentering }" FontSize="36"/>
             </DataGrid.Columns>
             <behaviors:Interaction.Triggers>
                 <behaviors:EventTrigger EventName="SelectionChanged">
