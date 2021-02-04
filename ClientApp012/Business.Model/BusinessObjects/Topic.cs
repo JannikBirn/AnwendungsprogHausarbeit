@@ -36,16 +36,4 @@ public class Topic : ObservableCollection<Card>
 		//updating the difficulties of the cards of this collection
     }
 
-
-	//Override
-	public new void Add(Card card)
-    {
-        if (card.QuestionText == null || card.AnswerText == null)
-        {
-			throw new EntryPointNotFoundException();
-        }
-
-        base.Add(card);
-    }
-
 }

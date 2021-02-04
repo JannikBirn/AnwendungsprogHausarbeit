@@ -37,7 +37,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
-            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod());
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
 
         }
@@ -66,7 +65,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Methods for the Relay Commands to open windows
 
-        private void OpenNewClientWindowMethod()
+        private void OpenNewClientWindowMethod() //kann die raus?
         {
             ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
         }

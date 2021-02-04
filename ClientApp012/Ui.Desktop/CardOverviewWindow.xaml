@@ -10,14 +10,14 @@
         x:Name="myCardOverviewWindow">
     <Window.Resources>
         <ResourceDictionary>
-          <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
+            <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styleguide.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <Binding Path="CardOverViewWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding  Source="{StaticResource ViewModelLocator}" Path="CardOverViewWindowVM"/>
     </Window.DataContext>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
@@ -30,36 +30,34 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
         <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
-        <Button Content="Back" VerticalAlignment="Center" Style="{DynamicResource BackButton}" Margin="30,36,0,33"/>
+        <Button Content="Back" VerticalAlignment="Center" Command="{Binding CloseWindow}" 
+                CommandParameter="{Binding ElementName=myCardOverviewWindow}" Style="{DynamicResource BackButton}" Margin="30,36,0,33" Width="78"/>
 
         <DataGrid x:Name="allTopics" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False"
-                  SelectionUnit="CellOrRowHeader">
+                  Background="#FF202225">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Topic"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Topic" MinWidth="200"/>
             </DataGrid.Columns>
 
         </DataGrid>
 
-        <DataGrid x:Name="allCards" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False"
-                  SelectionUnit="CellOrRowHeader">
+        <DataGrid x:Name="allCards" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding ElementName=allTopics, Path=SelectedItem}" AutoGenerateColumns="False"
+                  SelectionUnit="CellOrRowHeader" Background="#FF202225" >
+            <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding QuestionText}" Header="Question"/>
-                <DataGridTextColumn  Binding="{Binding AnswerText}" Header="Answer"/>
-                <DataGridTextColumn  Binding="{Binding QuestionImage}" Header="Question Image"/>
-                <DataGridTextColumn  Binding="{Binding AnswerImage}" Header="Answer Image"/>
-
-            </DataGrid.Columns> 
-          
+                <DataGridTextColumn Binding="{Binding Count}" Width="auto" Header="Number" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding QuestionText}" Width="auto" MaxWidth="200" Header="Question" IsReadOnly="True"/>
+                <DataGridTextColumn  Binding="{Binding AnswerText}" Width="auto" MaxWidth="200" Header="Answer" IsReadOnly="True"/>
+            </DataGrid.Columns>
         </DataGrid>
-        <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
-        
+
         <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
             <Menu Background="{x:Null}" Width="620" Height="auto" VerticalAlignment="Top">
-                
+
                 <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="240" Height="40" 
                         Style="{DynamicResource DefaultButtonStyle}"
                         Command="{Binding PrintTestPage}"/>
-                
+
                 <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }" 
                         Command="{Binding PrintCards}" CommandParameter="{Binding ElementName=allCards}"/>
                 <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>

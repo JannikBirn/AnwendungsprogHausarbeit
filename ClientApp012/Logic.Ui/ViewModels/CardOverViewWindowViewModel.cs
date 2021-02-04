@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -19,6 +20,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PrintTestPage { get; }
         public RelayCommand PrintWindow { get; }
         public RelayCommand PrintCards { get; }
+        public RelayCommand CloseWindow { get; }
+        public RelayCommand DeserializeFromBin { get; }
 
         public CardOverViewWindowViewModel(RootViewModel model)
         {
@@ -28,7 +31,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
             PrintCards = new RelayCommand(myCardOverviewWindow => PrintCardsMethod(myCardOverviewWindow));
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
         }
+
+     
 
         private void PrintCardsMethod(object myCardOverviewWindow)
         {
@@ -49,5 +55,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             instance.PrintWindow((Window)param);
         }
 
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
+        }
     }
 }
