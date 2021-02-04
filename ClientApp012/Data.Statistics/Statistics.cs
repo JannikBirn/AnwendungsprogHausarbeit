@@ -16,7 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
         public Statistics(Root rootModel)
         {
             this.RootModel = rootModel;
-            
+
             topicStatistics = new List<TopicStatistics>();
             foreach (Topic topic in RootModel.TopicCollection)
             {
@@ -31,19 +31,20 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             long lastEndTime = DateTime.Now.Ticks;
             foreach (Card card in topic)
             {
-                for (int i = 0; i < 10; i++)
-                {
-                    CardAnswer cardAnswer = new CardAnswer();
-                    cardAnswer.IsAnswerCorrect = rand.NextDouble() > 0.5;
-                    cardAnswer.Start = lastEndTime;
-                    lastEndTime += rand.Next((int)TimeSpan.FromSeconds(1).Ticks, (int)TimeSpan.FromSeconds(20).Ticks);
-                    if (rand.NextDouble() > 0.9)
+                if (rand.NextDouble() > 0.2)
+                    for (int i = 0; i < 10; i++)
                     {
-                        lastEndTime += TimeSpan.FromDays(1).Ticks;
+                        CardAnswer cardAnswer = new CardAnswer();
+                        cardAnswer.IsAnswerCorrect = rand.NextDouble() > 0.5;
+                        cardAnswer.Start = lastEndTime;
+                        lastEndTime += rand.Next((int)TimeSpan.FromSeconds(1).Ticks, (int)TimeSpan.FromSeconds(20).Ticks);
+                        if (rand.NextDouble() > 0.9)
+                        {
+                            lastEndTime += TimeSpan.FromDays(1).Ticks;
+                        }
+                        cardAnswer.End = lastEndTime;
+                        card.cardAnswers.Add(cardAnswer);
                     }
-                    cardAnswer.End = lastEndTime;
-                    card.cardAnswers.Add(cardAnswer);
-                }
             }
 
             return topic;
