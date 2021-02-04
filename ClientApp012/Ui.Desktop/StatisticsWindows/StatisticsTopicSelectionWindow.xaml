@@ -16,13 +16,13 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Path="StatisticsWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="StatisticsTopicSelectionWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
 
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
         <Button Content="Back" Grid.Row="0" Style="{StaticResource BackButton}" Width="40" FontSize="12"/>
