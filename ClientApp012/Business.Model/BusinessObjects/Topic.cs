@@ -10,6 +10,11 @@ public class Topic : ObservableCollection<Card>
 
 	public TopicStatistics TopicStatistics { set; get; }
 
+	public Topic()
+	{
+
+	}
+
 	public List<Card> StartQuestioning()
     {
 		TopicStatistics.SetStart();

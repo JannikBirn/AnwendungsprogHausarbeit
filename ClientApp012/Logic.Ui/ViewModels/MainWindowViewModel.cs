@@ -1,6 +1,9 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+﻿using De.HsFlensburg.ClientApp012.Business.Model.BusinessObjects;
+using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
+using De.HsFlensburg.ClientApp012.Services.Printing;
+using Services.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
+        public const string FILE_NAME = "\\ClientApp012\\appdata.dat";
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
@@ -20,6 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
         public RelayCommand OpenCardOverView { get; }
+        public RelayCommand OpenStatisticsWindow { get; }
 
 
         public MainWindowViewModel(RootViewModel model)
@@ -32,35 +37,38 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
+            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod());
+            OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
 
         }
 
 
 
-        private void OpenNewClientWindowMethod()
-        {
-            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
-        }
-
-        private void AddClientToListMethod()
-        {
-            //ClientViewModel clientVM = new ClientViewModel();
-            //clientVM.Id = Int16.Parse(IdTextBox.Text);
-            //clientVM.Name = NameTextBox.Text;
-            //MyList.Add(clientVM);            
-        }
+        //Serialization
 
         private void SerializeToBinMethod()
         {
-            throw new NotImplementedException();
-            //BinarySerializerFileHandler.Save(TopicCollectionObject.Model);
+            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
+            Console.WriteLine("Writing Data to path:" + fullPath);
+
+            BinarySerializer.BinarySerialize(RootViewModel.Model, fullPath);
+
         }
 
         private void DeserializeFromBinMethod()
         {
-            throw new NotImplementedException();
-            //TopicCollectionObject = new TopicCollectionViewModel();
-            //TopicCollectionObject.Model = BinarySerializerFileHandler.Load();
+            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
+            Console.WriteLine("Reading Data from path:" + fullPath);
+
+            RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
+
+        }
+
+        //Methods for the Relay Commands to open windows
+
+        private void OpenNewClientWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
         }
 
         private void OpenCardOverViewMethod()
@@ -68,24 +76,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());
         }
 
-        //private void DelCientInList(object sender, RoutedEventArgs e)
-        //{
-        //    ClientCollectionViewModel list = this.FindResource("myList") as ClientCollectionViewModel;
-        //    if (list != null)
-        //    {
-        //        list.RemoveAt(0);
-        //    }
-        //}
+        private void OpenStatisticsWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenStatisticsWindowMessage());
+        }
 
-
-
-        //private void DelCollection(object sender, RoutedEventArgs e)
-        //{
-        //    ClientCollectionViewModel list = this.FindResource("myList") as ClientCollectionViewModel;
-        //    if (list != null)
-        //    {
-        //        list.Clear();
-        //    }
-        //}
     }
 }
