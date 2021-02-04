@@ -27,6 +27,8 @@
         </Grid.RowDefinitions>
         <Button Content="Back" Grid.Row="0" Style="{DynamicResource BackButton}"/>
         <Label Content="Statistiken" Grid.Row="0" Style="{DynamicResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Button Content="R" Grid.Row="0" Margin="657,20,50.2,20.2" Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=ReloadStatistics}"/>
+
         <Button Content="{Binding Path=SelectedTopicString}" Grid.Row="1" Margin="100,20" Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=OpenTopicSelectionWindow}"/>
 
         <Grid Grid.Row="2" Margin="50,0">

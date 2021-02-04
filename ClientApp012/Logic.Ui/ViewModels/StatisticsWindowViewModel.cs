@@ -25,6 +25,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Open Topic Selection
         public RelayCommand OpenTopicSelectionWindow { get; }
 
+        //Relod Command
+        public RelayCommand ReloadStatistics { get; }
+
         //Selected Topic
         //If Property is null -> all topics are selected
         private TopicViewModel selectedTopic;
@@ -62,7 +65,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
             OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.TIME_PANEL));
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
-            OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());                  
+            OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
+            ReloadStatistics = new RelayCommand(() => InitStatistics());
+            
+        }
+
+        private void InitStatistics()
+        {
+            //Setup Statistics
+            Statistics.AddTestData(RootViewModel.TopicCollection[0].Model); // for testing purpose
+            Statistics = new Statistics(RootViewModel.Model);
+            List<Card> cards = Statistics.topicStatistics[0].CardStatistics.GetCardsBetween(DateTime.Today.Ticks, DateTime.Today.AddDays(3).Ticks);
+
         }
 
 
@@ -75,12 +89,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenStatisticsPanelMethod(int panelIndex)
         {
-            //Setup Statistics
-            Statistics.AddTestData(RootViewModel.TopicCollection[0].Model); // for testing purpose
-            Statistics = new Statistics(RootViewModel.Model);
-            List<Card> cards = Statistics.topicStatistics[0].CardStatistics.GetCardsBetween(DateTime.Today.Ticks, DateTime.Today.AddDays(3).Ticks);
-
-
             OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
             messageObject.PanelIndex = panelIndex;
 
