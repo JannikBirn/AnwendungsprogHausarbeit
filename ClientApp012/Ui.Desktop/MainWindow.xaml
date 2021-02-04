@@ -52,20 +52,19 @@
                 <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>                
             </DataGrid.Columns>
         </DataGrid>
-        
-        <DataGrid Grid.Column="1"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
-                <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
-                <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
-                <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
-                <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
-                <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
-                <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
-                <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-    </Grid>
+
+            <DataGrid Grid.Column="1"  Name="CardDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
+                    <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
+                    <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
+                    <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
+                    <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
+                    <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
+                    <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
+                    <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </DockPanel>
 </Window>
