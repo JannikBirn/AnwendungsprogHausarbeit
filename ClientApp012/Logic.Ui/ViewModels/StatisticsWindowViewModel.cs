@@ -15,9 +15,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
 
+//Open Panel Commands
         public RelayCommand OpenStatisticsHistoryPanel { get; }
         public RelayCommand OpenStatisticsTimePanel { get; }
         public RelayCommand OpenStatisticsQualityPanel { get; }
+
+        //Open Topic Selection
+        public RelayCommand OpenTopicSelectionWindow { get; }
+
+        public string SelectedTopic { get; }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -29,8 +35,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.HISTORY_PANEL));
             OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.TIME_PANEL));
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.QUALITY_PANEL));
+            OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
 
-        }      
+            //Setup Variables
+            SelectedTopic = "All";
+        }
+
+        private void OpenTopicSelectionWindowMethod()
+        {
+            Messenger.Instance.Send<OpenTopicSelectionWindowMessage>(null);
+        }
 
         private void OpenStatisticsPanelMethod(int panelIndex)
         {

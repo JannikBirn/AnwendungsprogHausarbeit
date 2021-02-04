@@ -70,6 +70,9 @@
     <Compile Include="StatisticsWindows\StatisticsTimePanel.xaml.cs">
       <DependentUpon>StatisticsTimePanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StatisticsWindows\StatisticsTopicSelectionWindow.xaml.cs">
+      <DependentUpon>StatisticsTopicSelectionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StatisticsWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StatisticsWindows\StatisticsTimePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsTopicSelectionWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

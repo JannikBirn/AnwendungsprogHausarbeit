@@ -27,7 +27,7 @@
         </Grid.RowDefinitions>
         <Button Content="Back" Grid.Row="0" Style="{DynamicResource BackButton}"/>
         <Label Content="Statistiken" Grid.Row="0" Style="{DynamicResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Button Content="Topic - All" Grid.Row="1" Margin="100,20" Style="{DynamicResource DefaultButtonStyle}"/>
+        <Button Content="{Binding Path=SelectedTopic}" Grid.Row="1" Margin="100,20" Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=OpenTopicSelectionWindow}"/>
 
         <Grid Grid.Row="2" Margin="50,0">
             <Grid.ColumnDefinitions>
