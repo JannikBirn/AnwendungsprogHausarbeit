@@ -23,7 +23,31 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Open Topic Selection
         public RelayCommand OpenTopicSelectionWindow { get; }
 
-        public TopicViewModel SelectedTopicVM { get; set; }
+        //Selected Topic
+        //If Property is null -> all topics are selected
+        private TopicViewModel selectedTopic;
+        public TopicViewModel SelectedTopic
+        {
+            get
+            {
+                return selectedTopic;
+            }
+            set
+            {
+                selectedTopic = value;
+                OnPropertyChanged("SelectedTopic");
+                OnPropertyChanged("SelectedTopicString");
+            }
+        }
+        public string SelectedTopicString
+        {
+            get
+            {
+                if (SelectedTopic != null)
+                    return SelectedTopic.Name;
+                return "All";
+            }
+        }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -32,14 +56,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Adding relay commands
-            OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.HISTORY_PANEL));
-            OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.TIME_PANEL));
-            OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.QUALITY_PANEL));
+            OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
+            OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.TIME_PANEL));
+            OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
-          
+
         }
 
-        
+
 
 
         private void OpenTopicSelectionWindowMethod()

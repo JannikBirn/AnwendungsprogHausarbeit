@@ -10,6 +10,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class StatisticsTopicSelectionWindowViewModel : INotifyPropertyChanged
     {
+
         //Refrenzes
         public RootViewModel RootViewModel { get; set; }
         private StatisticsWindowViewModel StatisticsWindowVM { get; set; }
@@ -19,19 +20,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand SelectedTopicCommand { get; }
 
 
-        private string selectedTopic;
-        public string SelectedTopic
-        {
-            get
-            {
-                return selectedTopic;
-            }
-            set
-            {
-                selectedTopic = value;
-                OnPropertyChanged("SelectedTopic");
-            }
-        }
+        
+
         public StatisticsTopicSelectionWindowViewModel(RootViewModel model, StatisticsWindowViewModel statisticsVM)
         {
             //Refrenzing to the model
@@ -41,16 +31,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Adding relay commands
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
-            //Setup Variables
-            SelectedTopic = "All";
         }
 
 
         private void SelectedTopicCommandMethod(object topic)
         {
             TopicViewModel topicVM = (TopicViewModel)topic;
-            StatisticsWindowVM.SelectedTopicVM = topicVM;
-            SelectedTopic = topicVM.Name;
+            StatisticsWindowVM.SelectedTopic = topicVM;
         }
 
 
@@ -66,3 +53,4 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
     }
+}

@@ -53,6 +53,7 @@
     <Compile Include="ViewModels\CardOverViewWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
+    <Compile Include="ViewModels\StatisticsTopicSelectionWindowViewModel.cs" />
     <Compile Include="ViewModels\StatisticsWindowViewModel.cs" />
     <Compile Include="Wrapper\AbstractViewModels\IViewModel.cs" />
     <Compile Include="Wrapper\AbstractViewModels\ViewModelBase.cs" />
