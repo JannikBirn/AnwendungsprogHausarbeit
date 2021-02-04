@@ -18,8 +18,6 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         {
             // Create a PrintDialog  
             PrintDialog printDlg = new PrintDialog();
-            Visual visual = new Visual(); //FUCK OFF!!!!!!!!!
-            visual = cards;
             //string myCards = cards.ToString(); //Ausgabe: System.Windows.Controls.DataGrid Items.Count:2
             // Create a FlowDocument dynamically. 
             //FlowDocument doc = new FlowDocument(new Paragraph(new Run(myCards)));
@@ -32,7 +30,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             if (print == true)
             {
                 // Call PrintDocument method to send document to printer 
-                printDlg.PrintVisual(cards , "Grid Printing.");
+                //printDlg.PrintVisual(cards , "Grid Printing.");
             }
         }
 

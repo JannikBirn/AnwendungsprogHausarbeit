@@ -20,7 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
 
             //Adding a test vm
             TopicViewModel test = new TopicViewModel();
-            test.Name = "Deutsch";
+            test.Name = "Deutsch-Englisch";
             RootViewModel.TopicCollection.Add(test);
 
             RootViewModel.TopicCollection[0].Add(new CardViewModel());

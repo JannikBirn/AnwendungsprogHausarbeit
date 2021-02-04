@@ -27,7 +27,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
-            PrintCards = new RelayCommand(param => PrintCardsMethod(param));
+            PrintCards = new RelayCommand(myCardOverviewWindow => PrintCardsMethod(myCardOverviewWindow));
+        }
+
+        private void PrintCardsMethod(object myCardOverviewWindow)
+        {
+            PrintAllCards instance = new PrintAllCards();
+            instance.PrintCards(myCardOverviewWindow);
         }
 
         private void PrintTestPageMethod()
@@ -41,12 +47,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             PrintWPFWindow instance = new PrintWPFWindow();
             instance.PrintWindow((Window)param);
-        }
-
-        private void PrintCardsMethod(object param)
-        {
-            PrintAllCards instance = new PrintAllCards();
-            instance.PrintCards(param);
         }
 
     }
