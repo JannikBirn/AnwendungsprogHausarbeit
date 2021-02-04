@@ -22,12 +22,14 @@
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        <Button Content="Back" Grid.Row="0" Style="{StaticResource BackButton}"/>
+        <Button Content="Back" Grid.Row="0" Style="{StaticResource BackButton}" Width="40" FontSize="12"/>
         <Label Content="Select a Topic" Grid.Row="0" Style="{StaticResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-        <DataGrid Grid.Row="1" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" Style="{StaticResource DefaultDataGrid}" IsReadOnly="True">
+        <Rectangle Grid.Row="0"  Style="{DynamicResource ReactangleLine}" />
+        
+        <DataGrid Grid.Row="2" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" Style="{StaticResource DefaultDataGrid}" IsReadOnly="True" HeadersVisibility="None">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*" CellStyle="{StaticResource DataGridContentCellCentering }" FontSize="36"/>
             </DataGrid.Columns>
