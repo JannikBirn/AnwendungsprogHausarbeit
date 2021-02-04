@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Printing", "Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.MessageBusWithParameter", "Services.MessageBusWithParameter\Services.MessageBusWithParameter.csproj", "{7B379530-F431-45D4-92BD-0902481AEB92}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Statistics", "Data.Statistics\Data.Statistics.csproj", "{B8FF507F-D887-4226-9542-A4C1A94FEE14}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,10 @@ Global
 		{7B379530-F431-45D4-92BD-0902481AEB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B379530-F431-45D4-92BD-0902481AEB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B379530-F431-45D4-92BD-0902481AEB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8FF507F-D887-4226-9542-A4C1A94FEE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8FF507F-D887-4226-9542-A4C1A94FEE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8FF507F-D887-4226-9542-A4C1A94FEE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8FF507F-D887-4226-9542-A4C1A94FEE14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{6B911606-D830-4B81-A201-8F2E3C7D6084} = {50DC9BC4-EB4F-47F5-B677-7A65D17514F3}
 		{C69D508C-2962-40C8-81BD-CFF32D947A24} = {50DC9BC4-EB4F-47F5-B677-7A65D17514F3}
 		{7B379530-F431-45D4-92BD-0902481AEB92} = {50DC9BC4-EB4F-47F5-B677-7A65D17514F3}
+		{B8FF507F-D887-4226-9542-A4C1A94FEE14} = {BA43D13E-FFFC-4C3F-B700-25F6306C27BF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B4D533B-F4C9-4CCE-94FB-1D30DA1A2C79}

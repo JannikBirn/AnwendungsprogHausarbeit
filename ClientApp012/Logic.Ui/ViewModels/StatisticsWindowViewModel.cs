@@ -1,4 +1,5 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+﻿using De.HsFlensburg.ClientApp012.Data.Statistics;
+using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
@@ -14,6 +15,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
 
         public RootViewModel RootViewModel { get; set; }
+        private Statistics Statistics { get; set; }
 
         //Open Panel Commands
         public RelayCommand OpenStatisticsHistoryPanel { get; }
