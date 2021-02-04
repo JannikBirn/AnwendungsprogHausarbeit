@@ -3,19 +3,20 @@ using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class StatisticsWindowViewModel
+    public class StatisticsWindowViewModel : INotifyPropertyChanged
     {
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
 
-//Open Panel Commands
+        //Open Panel Commands
         public RelayCommand OpenStatisticsHistoryPanel { get; }
         public RelayCommand OpenStatisticsTimePanel { get; }
         public RelayCommand OpenStatisticsQualityPanel { get; }
@@ -26,7 +27,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Commands for StaticsTopicSelectionWindow
         public RelayCommand SelectedTopicCommand { get; }
 
-        public string SelectedTopic { get; set; }
+        private string selectedTopic;
+        public string SelectedTopic { get
+            {
+                return selectedTopic;
+            }
+            set {
+                selectedTopic = value;
+                OnPropertyChanged("SelectedTopic");
+            } 
+        }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -44,6 +54,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Setup Variables
             SelectedTopic = "All";
         }
+
+        
 
         private void SelectedTopicCommandMethod(object topic)
         {
@@ -63,6 +75,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
 
             Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
+        }
+
+
+        //For the INotifyPropertyChanged interface
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
