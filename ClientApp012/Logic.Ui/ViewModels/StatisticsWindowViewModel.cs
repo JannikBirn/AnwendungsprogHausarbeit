@@ -39,6 +39,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("SelectedTopicString");
             }
         }
+        //Selected Topic as String for the Window
         public string SelectedTopicString
         {
             get
@@ -60,7 +61,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.TIME_PANEL));
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
-
         }
 
 

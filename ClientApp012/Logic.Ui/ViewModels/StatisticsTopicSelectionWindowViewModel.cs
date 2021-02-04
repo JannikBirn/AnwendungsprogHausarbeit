@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class StatisticsTopicSelectionWindowViewModel : INotifyPropertyChanged
+    public class StatisticsTopicSelectionWindowViewModel
     {
 
         //Refrenzes
@@ -40,17 +40,5 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             StatisticsWindowVM.SelectedTopic = topicVM;
         }
 
-
-        //For the INotifyPropertyChanged interface
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }
