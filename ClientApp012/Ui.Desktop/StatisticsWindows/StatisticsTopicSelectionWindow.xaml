@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
         mc:Ignorable="d"
-        xmlns:interactive="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         Title="StatisticsTopicSelectionWindow" Height="512" Width="393">
     <Window.Resources>
         <ResourceDictionary>
@@ -31,11 +31,11 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*"/>
             </DataGrid.Columns>
-            <interactive:Interaction.Triggers>
-                <interactive:EventTrigger EventName="SelectionChanged">
-                    <interactive:InvokeCommandAction Command="{Binding MyCommand}" />
-                </interactive:EventTrigger>
-            </interactive:Interaction.Triggers>
+            <behaviors:Interaction.Triggers>
+                <behaviors:EventTrigger EventName="SelectionChanged">
+                    <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}" CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
+                </behaviors:EventTrigger>
+            </behaviors:Interaction.Triggers>
         </DataGrid>
 
     </Grid>

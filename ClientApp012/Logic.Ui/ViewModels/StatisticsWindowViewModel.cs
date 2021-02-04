@@ -23,7 +23,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Open Topic Selection
         public RelayCommand OpenTopicSelectionWindow { get; }
 
-        public string SelectedTopic { get; }
+        //Commands for StaticsTopicSelectionWindow
+        public RelayCommand SelectedTopicCommand { get; }
+
+        public string SelectedTopic { get; set; }
 
 
         public StatisticsWindowViewModel(RootViewModel model)
@@ -36,9 +39,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.TIME_PANEL));
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod( OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
+            SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
             //Setup Variables
             SelectedTopic = "All";
+        }
+
+        private void SelectedTopicCommandMethod(object topic)
+        {
+            TopicViewModel topicVM = (TopicViewModel)topic;
+            SelectedTopic = topicVM.Name;
         }
 
         private void OpenTopicSelectionWindowMethod()
