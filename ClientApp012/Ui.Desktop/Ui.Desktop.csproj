@@ -55,14 +55,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AnswerCardWindow.xaml.cs">
-      <DependentUpon>AnswerCardWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="CardOverviewWindow.xaml.cs">
       <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="FinishCardWindow.xaml.cs">
-      <DependentUpon>FinishCardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
@@ -70,16 +64,21 @@
     <Compile Include="QuestionCardWindow.xaml.cs">
       <DependentUpon>QuestionCardWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatisticsWindow.xaml.cs">
+    <Compile Include="StatisticsWindows\StatisticsHistoryPanel.xaml.cs">
+      <DependentUpon>StatisticsHistoryPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticsWindows\StatisticsQualityPanel.xaml.cs">
+      <DependentUpon>StatisticsQualityPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticsWindows\StatisticsTimePanel.xaml.cs">
+      <DependentUpon>StatisticsTimePanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StatisticsWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="TopicWindow.xaml.cs">
       <DependentUpon>TopicWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="AnswerCardWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="CardOverviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -87,10 +86,6 @@
     <Compile Include="TopicOverview.xaml.cs">
       <DependentUpon>TopicOverview.xaml</DependentUpon>
     </Compile>
-    <Page Include="FinishCardWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -112,10 +107,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuestionCardWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsHistoryPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StatisticsWindow.xaml">
+    <Page Include="StatisticsWindows\StatisticsQualityPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsTimePanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StatisticsWindows\StatisticsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +174,10 @@
     <ProjectReference Include="..\Logic.Ui\Logic.Ui.csproj">
       <Project>{682a27c5-efac-4770-84c7-ba70d956c427}</Project>
       <Name>Logic.Ui</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services.MessageBusWithParameter\Services.MessageBusWithParameter.csproj">
+      <Project>{7B379530-F431-45D4-92BD-0902481AEB92}</Project>
+      <Name>Services.MessageBusWithParameter</Name>
     </ProjectReference>
     <ProjectReference Include="..\Services.MessageBus\Services.MessageBus.csproj">
       <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>
