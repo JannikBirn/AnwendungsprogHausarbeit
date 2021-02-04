@@ -18,7 +18,6 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
         //Window Instances
         private StatisticsWindow StatisticsWindow { get; set; }
-        private StatisticsTopicSelectionWindow StatisticsTopicSelectionWindow { get; set; }
 
         public MessageListener()
         {
@@ -42,7 +41,6 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(this, delegate ()
             {
-                if (StatisticsWindow == null)
                     StatisticsWindow = new StatisticsWindow();
                 StatisticsWindow.ShowDialog();
             });
@@ -64,9 +62,8 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenTopicSelectionWindowMessage>(this, delegate (OpenTopicSelectionWindowMessage message)
             {
-                if (StatisticsTopicSelectionWindow == null)
-                    StatisticsTopicSelectionWindow = new StatisticsTopicSelectionWindow();
-                StatisticsTopicSelectionWindow.ShowDialog();
+                    StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
+                myWindow.ShowDialog();
             });
 
         }
