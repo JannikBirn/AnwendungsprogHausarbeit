@@ -6,7 +6,7 @@
       xmlns:graph="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
       xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="605.2" d:DesignWidth="656"
       Title="StatisticsHistoryPanel">
 
     <Page.Resources>
@@ -21,7 +21,7 @@
         <Binding Path="StatisticsTopicSelectionWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Page.DataContext>
 
-    <Grid Grid.Row="3">
+    <Grid Grid.Row="3" >
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="5*"/>
@@ -34,12 +34,30 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Open" Grid.Column="0" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Red}"/>
-            <Button Content="Answered" Grid.Column="1" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Blue}"/>
-            <Button Content="Answered 3+" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Green}"/>
+            <Button Grid.Column="0" Margin="10"  Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Red}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="Open" />
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="1" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Blue}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="Answered" />
+                    </Viewbox>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="2" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Green}">
+                <Button.Content>
+                    <Viewbox>
+                        <TextBlock Text="Answered 3+" />
+                    </Viewbox>
+                </Button.Content>
+            </Button>
         </Grid>
 
-        <graph:LineGraph Grid.Row="1"></graph:LineGraph>
+        <graph:LineGraph Grid.Row="1" Margin="100,20"></graph:LineGraph>
 
         <Grid Grid.Row="3" Margin="100,20">
             <Grid.RowDefinitions>
@@ -82,9 +100,6 @@
                 <Rectangle Grid.ColumnSpan="3"  Style="{DynamicResource ReactangleLine}" />
             </Grid>
 
-
-
         </Grid>
-
     </Grid>
 </Page>
