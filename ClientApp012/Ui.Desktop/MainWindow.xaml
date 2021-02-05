@@ -7,7 +7,7 @@
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="1000">
+        Title="MainWindow" Height="512" Width="900">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

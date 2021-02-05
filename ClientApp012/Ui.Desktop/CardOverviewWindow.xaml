@@ -52,18 +52,19 @@
         </DataGrid>
 
         <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
-            <Menu Background="{x:Null}" Width="620" Height="auto" VerticalAlignment="Top">
+            <Menu Background="{x:Null}" Width="auto" Height="auto" VerticalAlignment="Top">
 
-                <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="240" Height="40" 
-                        Style="{DynamicResource DefaultButtonStyle}"
+                <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="auto" Height="auto" 
+                        Style="{DynamicResource DefaultButtonStyleJan}"
                         Command="{Binding PrintTestPage}"/>
 
-                <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }" 
+                <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }" 
                         Command="{Binding PrintCards}" CommandParameter="{Binding ElementName=allCards}"/>
-                <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>
-                <Button Content="Print Window" DockPanel.Dock="Bottom"  Width="240" Height="40" Style="{DynamicResource DefaultButtonStyle }"
+                <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }"/>
+                <Button Content="Print Window" DockPanel.Dock="Bottom"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }"
                         Command="{Binding PrintWindow}" CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}"/>
             </Menu>
         </DockPanel>
+        <Label  Style="{DynamicResource DefaultLabelJan}" Content="Label" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </Window>
