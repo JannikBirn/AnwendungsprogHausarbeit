@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:graph="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
       xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
@@ -37,7 +38,8 @@
             <Button Content="Answered" Grid.Column="1" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Blue}"/>
             <Button Content="Answered 3+" Grid.Column="2" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Green}"/>
         </Grid>
-        <Rectangle Grid.Row="1" Fill="Black" Margin="100,20" />
+
+        <graph:LineGraph Grid.Row="1"></graph:LineGraph>
 
         <Grid Grid.Row="3" Margin="100,20">
             <Grid.RowDefinitions>

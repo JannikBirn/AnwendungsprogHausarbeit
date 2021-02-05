@@ -79,6 +79,9 @@
     <Compile Include="StatisticsWindows\StatisticsWindow.xaml.cs">
       <DependentUpon>StatisticsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tools\LineGraph.xaml.cs">
+      <DependentUpon>LineGraph.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TopicWindow.xaml.cs">
       <DependentUpon>TopicWindow.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styleguide.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tools\LineGraph.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

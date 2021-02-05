@@ -43,6 +43,5 @@
         </Grid>
 
         <Frame x:Name="StatisticsFrame" x:FieldModifier="public" Grid.Row="3" NavigationUIVisibility="Hidden"/>
- 
-    </Grid>
+     </Grid>
 </Window>
