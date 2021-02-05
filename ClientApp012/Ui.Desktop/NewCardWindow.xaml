@@ -5,48 +5,151 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="StatisticsWindow" Height="1024" Width="786">
+        Title="StatisticsWindow"
+        Height="1024"
+        Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <Binding Source="{StaticResource ViewModelLocator}" Path="NewCardWindowVM"></Binding>
+        <Binding Source="{StaticResource ViewModelLocator}"
+                 Path="NewCardWindowVM"></Binding>
     </Window.DataContext>
     <Window.IsEnabled>
-        <Binding Source="{StaticResource MessageListener}" Path="BindableProperty"></Binding>
+        <Binding Source="{StaticResource MessageListener}"
+                 Path="BindableProperty"></Binding>
     </Window.IsEnabled>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="Answer" Content="Question" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Style="{DynamicResource DefaultLabel}"/>
-        <Label x:Name="Answer_Copy" Content="Answer" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Style="{DynamicResource DefaultLabel}"/>
-        <Label x:Name="Answer_Copy1" Content="Create new Card" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0" Style="{DynamicResource DefaultLabel}" />
-        <TextBox HorizontalAlignment="Center" Height="50" TextWrapping="Wrap" Text="QuestionText" VerticalAlignment="Bottom" Width="200" Grid.Row="0" />
-        <TextBox HorizontalAlignment="Center" Height="50" TextWrapping="Wrap" Text="AnswerText" VerticalAlignment="Bottom" Width="200" Grid.Row="2"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Image File to the Question" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="1" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="0"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Inspect Image File" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="0"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Video File to the Question" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" Width="200" Style="{DynamicResource DefaultButtonStyle}"/>
-		<Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Audio File to the Question" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Width="200" Style="{DynamicResource DefaultButtonStyle}"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Image File to the Answer" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="3" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="0"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Inspect Image File" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="0"/>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Video File to the Answer" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="3" Width="200" Style="{DynamicResource DefaultButtonStyle}"/>
-		<Button Command="{Binding AddClient, Mode=OneWay}" Content="Insert Audio File to the Answer" HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="3" Width="200" Style="{DynamicResource DefaultButtonStyle}"/>        
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BackButton}" Grid.Row="0"/>	
-		<Button Command="{Binding AddClient, Mode=OneWay}" Content="Create Card" HorizontalAlignment="Left" VerticalAlignment="Bottom" Grid.Row="4" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="10,0"/>
-		<Button Command="{Binding AddClient, Mode=OneWay}" Content="Preview Card" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="4" Width="200" Style="{DynamicResource DefaultButtonStyle}" Margin="10,0"  Click="Button_Click"/>
+        <Label x:Name="Answer"
+               Content="Question"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Grid.Row="0"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label x:Name="Answer_Copy"
+               Content="Answer"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Grid.Row="2"
+               Style="{DynamicResource DefaultLabel}" />
+        <Label x:Name="Answer_Copy1"
+               Content="Create new Card"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               Style="{DynamicResource DefaultLabel}" />
+        <TextBox HorizontalAlignment="Center"
+                 Height="50"
+                 TextWrapping="Wrap"
+                 Text="QuestionText"
+                 VerticalAlignment="Bottom"
+                 Width="200"
+                 Grid.Row="0" />
+        <TextBox HorizontalAlignment="Center"
+                 Height="50"
+                 TextWrapping="Wrap"
+                 Text="AnswerText"
+                 VerticalAlignment="Bottom"
+                 Width="200"
+                 Grid.Row="2" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Image File to the Question"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Grid.Row="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Inspect Image File"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Video File to the Question"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.Row="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Audio File to the Question"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Image File to the Answer"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Grid.Row="3"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Inspect Image File"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="3"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Video File to the Answer"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.Row="3"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Insert Audio File to the Answer"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                Grid.Row="3"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Back"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Style="{DynamicResource BackButton}"
+                Grid.Row="0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Create Card"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Grid.Row="4"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="10,0" />
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Preview Card"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Grid.Row="4"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Margin="10,0"
+                Click="Button_Click" />
 
-	</Grid>
+    </Grid>
 </Window>
