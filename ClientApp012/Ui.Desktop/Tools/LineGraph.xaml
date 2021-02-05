@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
+             xmlns:shapes="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraphShapes;assembly=Logic.Ui"
              mc:Ignorable="d" 
              d:DesignHeight="250" d:DesignWidth="800">
 
@@ -34,17 +35,33 @@
         </Grid.RowDefinitions>
 
         <!--Canvas-->
+        <ItemsControl Name="canvasControl" ItemsSource="{Binding Shapes}" Grid.Column="3" Grid.Row="0" Margin="0">
+            <ItemsControl.Resources>
+                <DataTemplate DataType="{x:Type shapes:ShapeLine}">
+                    <Line X1="{Binding X1}" X2="{Binding X2}" Y1="{Binding Y1}" Y2="{Binding Y2}" StrokeThickness="1" Stroke="Black"></Line>
+                </DataTemplate>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas x:Name="LineGraphCanvas" Background="Violet"  />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+        
+        <!--
         <Canvas x:Name="LineGraphCanvas" Background="Violet"  Grid.Column="3" Grid.Row="0" Margin="0">
             <Rectangle Fill="AliceBlue" Width="{Binding ActualWidth, ElementName=LineGraphCanvas}" Height="5" Canvas.Bottom="0"></Rectangle>
             <Rectangle Fill="AliceBlue" Height="{Binding ActualHeight, ElementName=LineGraphCanvas}" Width="5" Canvas.Left="0"></Rectangle>
+            <Line X1="0" X2="50" Y1="0" Y2="50" StrokeThickness="1" Stroke="Black"></Line>
         </Canvas>
+        -->
 
         <!--Vertical Axis-->
         <Viewbox Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Right"  VerticalAlignment="Top">
             <Label  Content="%" Style="{StaticResource DefaultLabel}"/>
         </Viewbox>
 
-        <ItemsControl Name="verticalNumbers" ItemsSource="{Binding Path=HorizontalNumbers}" Grid.Column="1" Grid.Row="0" >
+        <ItemsControl Name="verticalNumbers" ItemsSource="{Binding Path=VerticalNumbers}" Grid.Column="1" Grid.Row="0" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1" />

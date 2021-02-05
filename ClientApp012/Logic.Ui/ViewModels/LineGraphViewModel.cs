@@ -1,4 +1,5 @@
-﻿using System;
+﻿using De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraphShapes;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,6 +11,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class LineGraphViewModel : INotifyPropertyChanged
     {
+        //Axis
+        private ObservableCollection<string> verticallNumbers;
+        public ObservableCollection<string> VerticalNumbers
+        {
+            get { return verticallNumbers; }
+            set
+            {
+                verticallNumbers = value;
+                OnPropertyChanged("VerticalNumbers");
+            }
+        }
+
         private ObservableCollection<string> horizontalNumbers;
         public ObservableCollection<string> HorizontalNumbers
         {
@@ -21,15 +34,40 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
+        //Shapes - Lines
+        private ObservableCollection<IShape> shapes;
+        public ObservableCollection<IShape> Shapes
+        {
+            get { return shapes; }
+            set
+            {
+                shapes = value;
+                OnPropertyChanged("Shapes");
+            }
+        }
+
 
         public LineGraphViewModel()
         {
+            //Axis
             HorizontalNumbers = new ObservableCollection<string>();
 
             for (int i = 0; i < 10; i++)
             {
                 HorizontalNumbers.Add("" + i);
             }
+
+            VerticalNumbers = new ObservableCollection<string>();
+
+            for (int i = 10; i < 20; i++)
+            {
+                VerticalNumbers.Add("" + i);
+            }
+
+            //Shapes
+            Shapes = new ObservableCollection<IShape>();
+            Shapes.Add(new ShapeLine(0, 0, 50, 20));
+
         }
 
         //For the INotifyPropertyChanged interface
