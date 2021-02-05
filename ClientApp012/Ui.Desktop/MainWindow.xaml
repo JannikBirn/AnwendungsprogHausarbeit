@@ -15,11 +15,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Window.DataContext>
-    
+
     <Window.IsEnabled>
         <Binding Source="{StaticResource MessageListener}" 
                  Path="BindableProperty"></Binding>
@@ -31,7 +31,7 @@
                     <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
                     <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
                     <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
-                    <MenuItem Header="Learn" Command="{Binding Path=OpenNewClientWindow}"/>
+                    <MenuItem Header="Learn" Command="{Binding Path=OpenLearningCardWindow}"/>
                 </MenuItem>
                 <MenuItem Header="Open Window">
                     <MenuItem Header="Card Overview" Command="{Binding Path=OpenCardOverView}"/>
@@ -39,34 +39,36 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-    
-    
-    <Grid>
+
+
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="18*"></ColumnDefinition>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="794*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>                
-            </DataGrid.Columns>
-        </DataGrid>
-        
-        <DataGrid Grid.Column="1"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
-                <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
-                <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
-                <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
-                <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
-                <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
-                <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
-                <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        
-    </Grid>
+            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged" Grid.ColumnSpan="3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                    <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="3"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
+                    <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
+                    <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
+                    <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
+                    <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
+                    <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
+                    <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
+                    <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
     </DockPanel>
 </Window>

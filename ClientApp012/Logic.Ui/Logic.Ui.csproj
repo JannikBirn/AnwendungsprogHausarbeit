@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageBusMessages\OpenLearningCardWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewCardOverViewMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewClientWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenStatisticsPanelMessage.cs" />

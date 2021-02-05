@@ -58,6 +58,9 @@
     <Compile Include="CardOverviewWindow.xaml.cs">
       <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LearningCardWindow.xaml.cs">
+      <DependentUpon>LearningCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LearningCardWindows\LearningCardAnswerPanel.xaml.cs">
       <DependentUpon>LearningCardAnswerPanel.xaml</DependentUpon>
     </Compile>
@@ -69,9 +72,6 @@
     </Compile>
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="LearningCardWindows\LearningCardWindow.xaml.cs">
-      <DependentUpon>LearningCardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="StatisticsWindows\StatisticsHistoryPanel.xaml.cs">
       <DependentUpon>StatisticsHistoryPanel.xaml</DependentUpon>
@@ -95,6 +95,10 @@
     <Compile Include="TopicOverview.xaml.cs">
       <DependentUpon>TopicOverview.xaml</DependentUpon>
     </Compile>
+    <Page Include="LearningCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LearningCardWindows\LearningCardAnswerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,10 +130,6 @@
     <Page Include="NewClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LearningCardWindows\LearningCardWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="StatisticsWindows\StatisticsHistoryPanel.xaml">
       <SubType>Designer</SubType>
