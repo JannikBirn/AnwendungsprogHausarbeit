@@ -38,12 +38,40 @@
         <ItemsControl Name="canvasControl" ItemsSource="{Binding Shapes}" Grid.Column="3" Grid.Row="0" Margin="0">
             <ItemsControl.Resources>
                 <DataTemplate DataType="{x:Type shapes:ShapeLine}">
+                    <!--
                     <Line X1="{Binding X1}" X2="{Binding X2}" Y1="{Binding Y1}" Y2="{Binding Y2}" StrokeThickness="0.01" Stroke="Black">
                         <Line.RenderTransform>
                             <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}" ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}"/>
                         </Line.RenderTransform>
                     </Line>
+                    -->
                 </DataTemplate>
+
+                <DataTemplate DataType="{x:Type shapes:ShapePath}">
+                    <Path Stroke="#FF56C0E9" StrokeThickness="4" Fill="Transparent" >
+                        <Path.Data>
+                            <PathGeometry> 
+                                <PathGeometry.Transform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}" ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}"/>
+                                    </TransformGroup>
+                                </PathGeometry.Transform> 
+                                <PathGeometry.Figures>
+                                    <PathFigureCollection>
+                                        <PathFigure IsFilled="False" StartPoint="{Binding StartPoint}">
+                                            <PathFigure.Segments >
+                                                <PathSegmentCollection> 
+                                                    <PolyBezierSegment Points="{Binding Points}" IsSmoothJoin="True" />
+                                                </PathSegmentCollection>
+                                            </PathFigure.Segments>
+                                        </PathFigure> 
+                                    </PathFigureCollection>
+                                </PathGeometry.Figures>
+                            </PathGeometry>
+                        </Path.Data>
+                    </Path>
+                </DataTemplate>
+
             </ItemsControl.Resources>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -51,7 +79,7 @@
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
-        
+
         <!--
         <Canvas x:Name="LineGraphCanvas" Background="Violet"  Grid.Column="3" Grid.Row="0" Margin="0">
             <Rectangle Fill="AliceBlue" Width="{Binding ActualWidth, ElementName=LineGraphCanvas}" Height="5" Canvas.Bottom="0"></Rectangle>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes
 {
@@ -12,6 +13,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes
         public double Y1 { get; set; }
         public double X2 { get; set; }
         public double Y2 { get; set; }
+        
 
         public ShapeLine(double x1, double y1, double x2, double y2)
         {

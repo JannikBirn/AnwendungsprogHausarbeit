@@ -6,11 +6,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class LineGraphViewModel : INotifyPropertyChanged
-    {
+    {        
         //Axis
         private ObservableCollection<string> verticallNumbers;
         public ObservableCollection<string> VerticalNumbers
@@ -46,7 +48,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-
         public LineGraphViewModel()
         {
 
@@ -67,8 +68,28 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
-            Shapes.Add(new ShapeLine(1, 1, 0, 0));
-            Shapes.Add(new ShapeLine(0, 1, 1, 0));
+            //Shapes.Add(new ShapeLine(0, 1, 0.1, 0.8));
+            //Shapes.Add(new ShapeLine(0.1, 0.8, 0.2, 0.7));
+
+
+            PointCollection myPointCollection = new PointCollection();
+
+            myPointCollection.Add(new Point(0, 1));
+            myPointCollection.Add(new Point(0, 0.9));
+            myPointCollection.Add(new Point(0.1, 0.9));
+
+            myPointCollection.Add(new Point(0.1, 0.9));
+            myPointCollection.Add(new Point(0.2, 0.9));
+            myPointCollection.Add(new Point(0.2, 0.8));
+
+            myPointCollection.Add(new Point(0.2, 0.8));
+            myPointCollection.Add(new Point(0.2, 0.5));
+            myPointCollection.Add(new Point(0.5, 0.5));
+
+
+            Shapes.Add(new ShapePath(myPointCollection));
+
+
 
         }
 
