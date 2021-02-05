@@ -24,7 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
             StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel);
             StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
-
+            LineGraphVM = new LineGraphViewModel();
 
         }
 
@@ -33,6 +33,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
         public StatisticsWindowViewModel StatisticsWindowVM { get; }
         public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
-        
+        public LineGraphViewModel LineGraphVM { get; }
+
     }
 }
