@@ -6,65 +6,163 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         xmlns:viewmodel="clr.namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels"
         mc:Ignorable="d"
-        Title="CardOverviewWindow" Height="1024" Width="786"
+        Title="CardOverviewWindow"
+        Height="512"
+        Width="786"
         x:Name="myCardOverviewWindow">
     <Window.Resources>
         <ResourceDictionary>
             <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <Binding  Source="{StaticResource ViewModelLocator}" Path="CardOverViewWindowVM"/>
+        <Binding  Source="{StaticResource ViewModelLocator}"
+                  Path="CardOverViewWindowVM" />
     </Window.DataContext>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*"/>
-            <RowDefinition Height="8.5*"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="8*" />
+            <RowDefinition Height="2.5*" />
         </Grid.RowDefinitions>
-        <Label Content="Card Overview" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
-        <Button Content="Back" VerticalAlignment="Center" Command="{Binding CloseWindow}" 
-                CommandParameter="{Binding ElementName=myCardOverviewWindow}" Style="{DynamicResource BackButton}" Margin="30,36,0,33" Width="78"/>
 
-        <DataGrid x:Name="allTopics" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False"
+        <Label Content="Card Overview"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               Style="{DynamicResource TitleLabelStyle}" />
+
+        <DataGrid x:Name="allTopics"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                  AutoGenerateColumns="False"
                   Background="#FF202225">
+
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Topic" MinWidth="200"/>
+                <DataGridTextColumn Header="Topic"
+                                    MinWidth="200" />
             </DataGrid.Columns>
 
         </DataGrid>
 
-        <DataGrid x:Name="allCards" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding ElementName=allTopics, Path=SelectedItem}" AutoGenerateColumns="False"
-                  SelectionUnit="CellOrRowHeader" Background="#FF202225" >
+        <DataGrid x:Name="allCards"
+                  Grid.Column="2"
+                  Grid.Row="1"
+                  ItemsSource="{Binding ElementName=allTopics, Path=SelectedItem}"
+                  AutoGenerateColumns="False"
+                  SelectionUnit="CellOrRowHeader"
+                  Background="#FF202225"
+                  ScrollViewer.CanContentScroll="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
+
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Count}" Width="auto" Header="Number" IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding QuestionText}" Width="auto" MaxWidth="200" Header="Question" IsReadOnly="True"/>
-                <DataGridTextColumn  Binding="{Binding AnswerText}" Width="auto" MaxWidth="200" Header="Answer" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Count}"
+                                    Width="auto"
+                                    Header="Number"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding QuestionText}"
+                                    Width="auto"
+                                    MaxWidth="200"
+                                    Header="Question"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding AnswerText}"
+                                    Width="auto"
+                                    MaxWidth="200"
+                                    Header="Answer"
+                                    IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
 
-        <DockPanel Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Left"  LastChildFill="False" VerticalAlignment="Top" Width="620" Height="auto">
-            <Menu Background="{x:Null}" Width="auto" Height="auto" VerticalAlignment="Top">
-
-                <Button Content="Test Print" Name="PrintSimpleTestButton" DockPanel.Dock="Top"  Width="auto" Height="auto" 
+        <DockPanel Grid.Column="1"
+                   Grid.Row="2"
+                   HorizontalAlignment="Left"
+                   LastChildFill="False"
+                   VerticalAlignment="Top"
+                   Width="620"
+                   Height="auto">
+            <Menu Background="{x:Null}"
+                  Width="auto"
+                  Height="auto"
+                  VerticalAlignment="Top">
+                <Button Content="Test Print"
+                        Name="PrintSimpleTestButton"
+                        DockPanel.Dock="Top"
+                        Width="auto"
+                        Height="auto"
                         Style="{DynamicResource DefaultButtonStyleJan}"
-                        Command="{Binding PrintTestPage}"/>
-
-                <Button Content="Print All Cards" DockPanel.Dock="Top"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }" 
-                        Command="{Binding PrintCards}" CommandParameter="{Binding ElementName=allCards}"/>
-                <Button Content="Print Selected Cards" DockPanel.Dock="Bottom"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }"/>
-                <Button Content="Print Window" DockPanel.Dock="Bottom"  Width="auto" Height="auto" Style="{DynamicResource DefaultButtonStyleJan }"
-                        Command="{Binding PrintWindow}" CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}"/>
+                        Command="{Binding PrintTestPage}" />
+                <Button Content="Print All Cards"
+                        DockPanel.Dock="Top"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleJan }"
+                        Command="{Binding PrintCards}"
+                        CommandParameter="{Binding ElementName=allCards}" />
+                <Button Content="Print Selected Cards"
+                        DockPanel.Dock="Bottom"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleJan }" />
+                <Button Content="Print Window"
+                        DockPanel.Dock="Bottom"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleJan }"
+                        Command="{Binding PrintWindow}"
+                        CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
             </Menu>
         </DockPanel>
-        <Label  Style="{DynamicResource DefaultLabelJan}" Content="Label" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top"/>
+
+        <Button Content="Back"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Margin="30,36,0,33"
+                Width="78"
+                Command="{Binding CloseWindow}"
+                Style="{DynamicResource BackButton}"
+                CommandParameter="{Binding ElementName=myCardOverviewWindow}" />
+
+        <DockPanel Margin="10"
+                   Grid.Row="2"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Height="auto"
+                   Width="150"
+                   LastChildFill="True">
+            <Label DockPanel.Dock="Top"
+                   Content="Printing:"
+                   Grid.Row="2"
+                   Style="{DynamicResource DefaultLabelJan}" />
+            <!--Should enable direct printing, without opening a Print Window-->
+            <CheckBox Name="DirectPrinting"
+                      Checked="cbDirectPrinting_CheckedChanged"
+                      Margin="0,5,0,0"
+                      DockPanel.Dock="Top"
+                      Content="Direct Printing"
+                      VerticalAlignment="Center"
+                      Grid.Row="2"
+                      Style="{DynamicResource CheckBoxControlTemplate1}"
+                      
+                      Foreground="#FF707070"
+                      IsChecked="{Binding Mode=OneWay}" />
+        </DockPanel>
+        <Label Content="Label"
+               Grid.Column="1"
+               HorizontalAlignment="Left"
+               Margin="194,176,0,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+
+               Foreground="White" />
+
+
     </Grid>
 </Window>

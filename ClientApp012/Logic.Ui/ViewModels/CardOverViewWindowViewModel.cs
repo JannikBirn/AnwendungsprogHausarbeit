@@ -21,13 +21,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PrintWindow { get; }
         public RelayCommand PrintCards { get; }
         public RelayCommand CloseWindow { get; }
-        public RelayCommand DeserializeFromBin { get; }
-
+        public bool DirectPrinting { get; } //geht noch nicht
         public CardOverViewWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
             TopicIndex = 1;
-
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
             PrintCards = new RelayCommand(myCardOverviewWindow => PrintCardsMethod(myCardOverviewWindow));

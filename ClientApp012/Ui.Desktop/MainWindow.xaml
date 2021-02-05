@@ -53,7 +53,7 @@
             </DataGrid.Columns>
         </DataGrid>
         
-        <DataGrid Grid.Column="1"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+        <DataGrid Grid.Column="1"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" IsReadOnly="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
                 <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
@@ -65,7 +65,6 @@
                 <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
             </DataGrid.Columns>
         </DataGrid>
-        
     </Grid>
     </DockPanel>
 </Window>
