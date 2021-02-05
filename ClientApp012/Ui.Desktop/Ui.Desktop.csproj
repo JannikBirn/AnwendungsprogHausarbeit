@@ -79,9 +79,6 @@
     <Compile Include="TopicWindow.xaml.cs">
       <DependentUpon>TopicWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="VideoInspectWindow.xaml.cs">
-      <DependentUpon>VideoInspectWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="CardOverviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,10 +136,6 @@
     </Page>
     <Page Include="TopicWindow.xaml" />
     <Page Include="TopicOverview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="VideoInspectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
