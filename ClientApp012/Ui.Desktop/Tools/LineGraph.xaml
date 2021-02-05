@@ -38,13 +38,11 @@
         <ItemsControl Name="canvasControl" ItemsSource="{Binding Shapes}" Grid.Column="3" Grid.Row="0" Margin="0">
             <ItemsControl.Resources>
                 <DataTemplate DataType="{x:Type shapes:ShapeLine}">
-                    <!--
                     <Line X1="{Binding X1}" X2="{Binding X2}" Y1="{Binding Y1}" Y2="{Binding Y2}" StrokeThickness="0.01" Stroke="Black">
                         <Line.RenderTransform>
                             <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}" ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}"/>
                         </Line.RenderTransform>
                     </Line>
-                    -->
                 </DataTemplate>
 
                 <DataTemplate DataType="{x:Type shapes:ShapePath}">
