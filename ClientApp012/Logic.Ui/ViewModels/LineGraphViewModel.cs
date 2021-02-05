@@ -1,4 +1,4 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraphShapes;
+﻿using De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,6 +49,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public LineGraphViewModel()
         {
+
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
 
