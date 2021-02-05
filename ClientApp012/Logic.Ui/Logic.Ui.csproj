@@ -52,7 +52,6 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\CardOverViewWindowViewModel.cs" />
-    <Compile Include="ViewModels\LineGraph\ScaleToCanvasConverter.cs" />
     <Compile Include="ViewModels\LineGraph\Shapes\IShape.cs" />
     <Compile Include="ViewModels\LineGraph\Shapes\ShapeLine.cs" />
     <Compile Include="ViewModels\LineGraphViewModel.cs" />

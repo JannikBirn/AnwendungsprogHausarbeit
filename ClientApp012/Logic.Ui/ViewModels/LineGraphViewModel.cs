@@ -67,7 +67,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
-            Shapes.Add(new ShapeLine(0, 0, 50, 20));
+            Shapes.Add(new ShapeLine(1, 1, 0, 0));
+            Shapes.Add(new ShapeLine(0, 1, 1, 0));
 
         }
 
