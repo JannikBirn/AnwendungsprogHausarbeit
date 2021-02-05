@@ -19,28 +19,32 @@
         <Binding Path="LineGraphVM" Source="{StaticResource ViewModelLocator}"/>
     </UserControl.DataContext>
 
-    <Grid>
+    <Grid Background="#FF2F3136">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" MinWidth="15" MaxWidth="20"></ColumnDefinition>
             <ColumnDefinition Width="0.05*" MinWidth="15" MaxWidth="20"></ColumnDefinition>
+            <ColumnDefinition Width="0.005*" MinWidth="5" MaxWidth="10" ></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="0.005*" MinHeight="5" MaxHeight="10"></RowDefinition>
             <RowDefinition Height="0.05*" MinHeight="25" MaxHeight="40"></RowDefinition>
             <RowDefinition Height="0.05*" MinHeight="25" MaxHeight="40"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
-        
-        <Canvas Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
+        <!--Canvas-->
+        <Canvas x:Name="LineGraphCanvas" Background="Violet"  Grid.Column="3" Grid.Row="0" Margin="0">
+            <Rectangle Fill="AliceBlue" Width="{Binding ActualWidth, ElementName=LineGraphCanvas}" Height="5" Canvas.Bottom="0"></Rectangle>
+            <Rectangle Fill="AliceBlue" Height="{Binding ActualHeight, ElementName=LineGraphCanvas}" Width="5" Canvas.Left="0"></Rectangle>
+        </Canvas>
+
+        <!--Vertical Axis-->
         <Viewbox Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Right"  VerticalAlignment="Top">
             <Label  Content="%" Style="{StaticResource DefaultLabel}"/>
-        </Viewbox>        
+        </Viewbox>
 
-
-        <ItemsControl Name="verticalNumbers"  Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Path=HorizontalNumbers}">
+        <ItemsControl Name="verticalNumbers" ItemsSource="{Binding Path=HorizontalNumbers}" Grid.Column="1" Grid.Row="0" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1" />
@@ -50,16 +54,17 @@
                 <DataTemplate>
                     <Viewbox>
                         <Label Content="{Binding}" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{StaticResource DefaultLabel}"/>
-                    </Viewbox>                    
+                    </Viewbox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <Viewbox  Grid.Column="3" Grid.Row="3" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >
+        <!--Horizontal Axis-->
+        <Viewbox  Grid.Column="4" Grid.Row="4" HorizontalAlignment="Right"  VerticalAlignment="Bottom" >
             <Label Content="date" Style="{StaticResource DefaultLabel}"/>
-        </Viewbox>        
+        </Viewbox>
 
-        <ItemsControl Name="horizontalNumbers"  Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Path=HorizontalNumbers}">
+        <ItemsControl Name="horizontalNumbers" ItemsSource="{Binding Path=HorizontalNumbers}" Grid.Column="3" Grid.Row="2" >
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="1" />
@@ -69,7 +74,7 @@
                 <DataTemplate>
                     <Viewbox>
                         <Label Content="{Binding}" VerticalAlignment="Top" HorizontalAlignment="Center"  Style="{StaticResource DefaultLabel}"/>
-                    </Viewbox>                     
+                    </Viewbox>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
