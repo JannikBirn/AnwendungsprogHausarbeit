@@ -8,46 +8,36 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 {
     public class CardStatistics
     {
-        List<Card> cards;
+        //Card Statistiks on a daily basis
+        //long is day at 0:00:00, int is times answered that day
+        public Dictionary<long, CardAnswerStatistics> AnswerePerDay { get; set; }
 
-        internal CardStatistics(List<Card> cards)
+        private Card Card { get; set; }
+
+        internal CardStatistics(Card card)
         {
-            this.cards = cards;
+            Card = card;
         }
 
-        //Returning all Cards that have been answered between from-to
-        public List<Card> GetCardsBetween(long from, long to)
+
+        public Dictionary<long, int> GetTimesAnsweredPerDay()
         {
-            List<Card> result = new List<Card>();
+            Dictionary<long, int> answerePerDay = new Dictionary<long, int>();
 
-            foreach (Card card in cards)
+            foreach (CardAnswer cardAnswer in Card.cardAnswers)
             {
-                foreach (CardAnswer cardAnswer in card.cardAnswers)
-                {
-                    if (from < cardAnswer.End && to > cardAnswer.End)
-                    {
-                        result.Add(card);
-                        break;
-                    }
-                }
-            }
-            return result;
-        }
+                CardAnswerStatistics currentAnswerStatistiks = new CardAnswerStatistics();
 
-        //Returning all CardAnswers from a Card that were answered from-to
-        public List<CardAnswer> GetCardAnswersBetween(Card card, long from, long to)
-        {
-            List<CardAnswer> cardAnswers = new List<CardAnswer>();
 
-            foreach (CardAnswer cardAnswer in card.cardAnswers)
-            {
-                if (from < cardAnswer.End && to > cardAnswer.End)
-                {
-                    cardAnswers.Add(cardAnswer);
-                }
+
+
+                //long date = new System.DateTime(cardAnswer.End).Date.Ticks;
+                //answerePerDay.Add(date, answerePerDay[date] + 1);
             }
 
-            return cardAnswers;
+
+            return answerePerDay;
         }
+
     }
 }

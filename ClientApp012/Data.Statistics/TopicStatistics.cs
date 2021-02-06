@@ -16,5 +16,40 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             this.Topic = topic;
             CardStatistics = new CardStatistics(Topic.ToList<Card>());
         }
+
+        //Returning all Cards that have been answered between from-to
+        public List<Card> GetCardsBetween(long from, long to)
+        {
+            List<Card> result = new List<Card>();
+
+            foreach (Card card in cards)
+            {
+                foreach (CardAnswer cardAnswer in card.cardAnswers)
+                {
+                    if (from < cardAnswer.End && to > cardAnswer.End)
+                    {
+                        result.Add(card);
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
+        //Returning all CardAnswers from a Card that were answered from-to
+        public List<CardAnswer> GetCardAnswersBetween(Card card, long from, long to)
+        {
+            List<CardAnswer> cardAnswers = new List<CardAnswer>();
+
+            foreach (CardAnswer cardAnswer in card.cardAnswers)
+            {
+                if (from < cardAnswer.End && to > cardAnswer.End)
+                {
+                    cardAnswers.Add(cardAnswer);
+                }
+            }
+
+            return cardAnswers;
+        }
     }
 }
