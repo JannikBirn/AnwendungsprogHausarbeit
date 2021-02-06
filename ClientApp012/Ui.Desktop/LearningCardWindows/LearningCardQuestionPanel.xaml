@@ -52,7 +52,7 @@
                       Grid.Row="1"
                       VerticalAlignment="Center"
                       Width="434" />
-        <Label Content="Label"
+        <Label Content="{Binding LearningCardWindowVM.FirstC.QuestionText, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Center"
                Grid.Row="1"
                VerticalAlignment="Center"
@@ -60,6 +60,8 @@
                Width="502"
                Foreground="#FF707070"
                FontFamily="Roboto"
-               FontSize="20" />
+               FontSize="20"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
     </Grid>
 </Page>

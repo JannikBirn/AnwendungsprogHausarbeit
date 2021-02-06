@@ -24,7 +24,7 @@
             <RowDefinition Height="60*" />
             <RowDefinition Height="497*" />
         </Grid.RowDefinitions>
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button 
                 Content="Back"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -64,5 +64,13 @@
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
                 IsEnabled="{Binding LearningCardWindowVM.HasStarted, Source={StaticResource ViewModelLocator}}"
                 Margin="294,186,300,516" />
+        <Label Content="{Binding LearningCardWindowVM.FirstT.Name, Source={StaticResource ViewModelLocator}}"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Width="316"
+               Height="61" 
+               Style="{Binding Source={StaticResource DefaultLabel}}"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
     </Grid>
 </Window>

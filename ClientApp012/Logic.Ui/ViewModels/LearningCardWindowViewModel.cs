@@ -14,7 +14,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
         public RootViewModel RootViewModel { get; set; }
 
-       // public CardViewModel CardViewModel { get; set; }
+        // public CardViewModel CardViewModel { get; set; }
 
         //Open Panel Commands
         public RelayCommand OpenLearningCardQuestionPanel { get; }
@@ -23,26 +23,41 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand StartAnswering { get; }
         public RelayCommand EndAnswering { get; }
 
-        public bool test = true;
+        public bool hasStarted = true;
+
+        public TopicViewModel FirstT
+        {
+            get
+            {
+                return RootViewModel.TopicCollection[0]; ;
+            }
+
+            set
+            {
+                FirstT = value;
+            }
+        }
+
+
+        public CardViewModel FirstC {
+            get { return FirstT[0];  }
+        }
 
         public bool HasStarted
         {
             get
             {
-                return test;
+                return hasStarted;
             }
 
             set
             {
-                test = value;
+                hasStarted = value;
                 OnPropertyChanged("HasStarted");
             }
         }
 
-        public bool starting = true;
-
-
-        public LearningCardWindowViewModel(RootViewModel model)
+         public LearningCardWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
 
@@ -66,11 +81,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void StartAnsweringMethod()
         {
-           // CardViewModel.StartAnswering();
+            TopicViewModel firstTopic = RootViewModel.TopicCollection[0];
+            CardViewModel firstCardinFirstTopic = firstTopic[0];
+            firstCardinFirstTopic.StartAnswering();
+         
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
             HasStarted = false;
         }
-
         private void EndAnsweringMethod()
         {
             HasStarted = true;

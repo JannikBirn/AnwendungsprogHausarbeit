@@ -86,7 +86,7 @@
                 Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
         <Label x:Name="l_question"
-               Content="Label"
+               Content="{Binding FirstC.QuestionText}"
                HorizontalAlignment="Left"
                Margin="237,10,0,0"
                Grid.Row="1"
@@ -95,9 +95,11 @@
                Width="357"
                FontFamily="Roboto"
                FontSize="16"
-               Foreground="#FF707070" />
+               Foreground="#FF707070"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
         <Label x:Name="l_answer"
-               Content="Label"
+               Content="{Binding FirstC.AnswerText}"
                HorizontalAlignment="Center"
                Margin="0,58,0,0"
                Grid.Row="2"
@@ -106,6 +108,8 @@
                Width="399"
                FontFamily="Roboto"
                FontSize="16"
-               Foreground="#FF707070" />
+               Foreground="#FF707070"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
     </Grid>
 </Page>
