@@ -74,7 +74,48 @@
         </Setter>
     </Style>
 
-
+    <!-- Button Template -->
+    <Style x:Key="DefaultButtonStyleJan" TargetType="{x:Type Button}">
+        <Setter Property="Margin" Value="5,10,0,0" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Static.Border}"/>
+        <Setter Property="Foreground" Value="{StaticResource Static.Foreground}"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="3,2"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <!-- Default Grid -->
     <Style x:Key="DefaultGridStyle" TargetType="{x:Type Grid}">
         <Setter Property="Background" Value="{StaticResource Static.Page.Background}" />
@@ -105,11 +146,29 @@
         <Setter Property="VerticalContentAlignment" Value="Top"/>
     </Style>
 
+    <!-- Default Label Jan -->
+    <Style x:Key="DefaultLabelJan" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="{StaticResource Static.Foreground}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Padding" Value="3,2"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        
+    </Style>
+
     <!-- Rectangle as line -->
     <Style x:Key="ReactangleLine" TargetType="{x:Type Rectangle}">
         <Setter Property="Fill" Value="{DynamicResource Static.Foreground}"/>
-        <Setter Property="Height" Value="3"/>
+     
         <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+    
+    <Style x:Key="CheckBoxControlTemplate1" TargetType="{x:Type CheckBox}">
+        <Setter Property="Foreground" Value="{StaticResource Static.Foreground}"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontSize" Value="12"/>
     </Style>
 
 </ResourceDictionary>

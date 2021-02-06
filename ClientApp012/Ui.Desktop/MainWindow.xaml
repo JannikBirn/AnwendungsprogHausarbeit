@@ -7,21 +7,24 @@
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="1000">
+        Title="MainWindow"
+        Height="512"
+        Width="900">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="MainWindowVM"
+                 Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
     <Window.IsEnabled>
-        <Binding Source="{StaticResource MessageListener}" 
+        <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
     <DockPanel LastChildFill="True">
@@ -34,8 +37,10 @@
                     <MenuItem Header="Learn" Command="{Binding Path=OpenLearningCardWindow}"/>
                 </MenuItem>
                 <MenuItem Header="Open Window">
-                    <MenuItem Header="Card Overview" Command="{Binding Path=OpenCardOverView}"/>
-                    <MenuItem Header="Statistics " Command="{Binding Path=OpenStatisticsWindow}"/>
+                    <MenuItem Header="Card Overview"
+                              Command="{Binding Path=OpenCardOverView}" />
+                    <MenuItem Header="Statistics "
+                              Command="{Binding Path=OpenStatisticsWindow}" />
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -68,7 +73,6 @@
                     <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
                 </DataGrid.Columns>
             </DataGrid>
-
         </Grid>
     </DockPanel>
 </Window>

@@ -28,5 +28,10 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop
         {
 
         }
+
+        private void allCards_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

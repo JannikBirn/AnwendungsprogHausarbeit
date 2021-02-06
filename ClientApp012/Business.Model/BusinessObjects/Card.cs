@@ -5,16 +5,16 @@ using System.Collections.Generic;
 public class Card
 {
     public List<CardAnswer> cardAnswers;
-    private CardAnswer CurrentCardAnswer { set; get; }
+    private CardAnswer CurrentCardAnswer { get; set; }
     public enum Difficulty {Leicht, Mittel, Schwer};
-    public String QuestionText { set; get; }
-    public String QuestionVideo { set; get; } //Video reference
-    public String QuestionImage { set; get; }
-    public String QuestionAudio { set; get; }
-    public String AnswerText { set; get; }
-    public String AnswerVideo { set; get; } //Video reference
-    public String AnswerImage { set; get; }
-    public String AnswerAudio { set; get; }
+    public String QuestionText { get; set; }
+    public String QuestionVideo { get; set; } //Video reference
+    public String QuestionImage { get; set; }
+    public String QuestionAudio { get; set; }
+    public String AnswerText { get; set; }
+    public String AnswerVideo { get; set; } //Video reference
+    public String AnswerImage { get; set; }
+    public String AnswerAudio { get; set; }
 
 
     public Card()
