@@ -1,5 +1,4 @@
-﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace De.HsFlensburg.ClientApp012.Ui.Desktop
+namespace De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for LearningCardAnswerPanel.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LearningCardAnswerPanel : Page
     {
-        public MainWindow()
+        public LearningCardAnswerPanel()
         {
             InitializeComponent();
-        }
-
-        private void TopicCollectionDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

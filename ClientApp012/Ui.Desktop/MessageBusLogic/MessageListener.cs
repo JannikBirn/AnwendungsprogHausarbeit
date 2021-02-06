@@ -40,6 +40,14 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 StatisticsWindow myWindow = new StatisticsWindow();
                 myWindow.ShowDialog();
             });
+
+            ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
+             {
+               LearningCardWindow myWindow = new LearningCardWindow();
+               myWindow.ShowDialog();
+            });
+
+
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
                 Frame statisticsFrame = (Frame) messageObject.Frame;

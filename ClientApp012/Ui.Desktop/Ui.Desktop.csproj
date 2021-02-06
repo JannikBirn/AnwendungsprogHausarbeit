@@ -58,6 +58,18 @@
     <Compile Include="CardOverviewWindow.xaml.cs">
       <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LearningCardWindow.xaml.cs">
+      <DependentUpon>LearningCardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LearningCardWindows\LearningCardAnswerPanel.xaml.cs">
+      <DependentUpon>LearningCardAnswerPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LearningCardWindows\LearningCardFinishPanel.xaml.cs">
+      <DependentUpon>LearningCardFinishPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LearningCardWindows\LearningCardQuestionPanel.xaml.cs">
+      <DependentUpon>LearningCardQuestionPanel.xaml</DependentUpon>
+      </Compile>
     <Compile Include="ImageInspectWindow.xaml.cs">
       <DependentUpon>ImageInspectWindow.xaml</DependentUpon>
     </Compile>
@@ -86,6 +98,22 @@
     <Compile Include="TopicOverview.xaml.cs">
       <DependentUpon>TopicOverview.xaml</DependentUpon>
     </Compile>
+    <Page Include="LearningCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LearningCardWindows\LearningCardAnswerPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LearningCardWindows\LearningCardFinishPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LearningCardWindows\LearningCardQuestionPanel.xaml">
+<SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImageInspectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
