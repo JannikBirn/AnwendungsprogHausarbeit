@@ -11,24 +11,18 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml" />
+                <ResourceDictionary Source="../Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     <Window.DataContext>
-        <Binding Path="LearningCardWindowViewModel"
+        <Binding Path="LearningCardWindowVM"
                  Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
-    <Window.IsEnabled>
-        <Binding Source="{StaticResource MessageListener}"
-                 Path="BindableProperty"></Binding>
-    </Window.IsEnabled>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="248*" />
             <RowDefinition Height="497*" />
-            <RowDefinition Height="18*" />
-            <RowDefinition Height="230*" />
         </Grid.RowDefinitions>
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Back"
@@ -53,33 +47,19 @@
                 VerticalAlignment="Center"
                 Width="701"
                 Background="#FF707070" />
-        <Label Content="Question:"
-               VerticalAlignment="Bottom"
-               HorizontalAlignment="Center"
-               Grid.Row="0"
-               FontFamily="Roboto"
-               Foreground="#FF707070"
-               FontSize="36" />
-        <Button x:Name="btn_Next"
-                Content="Next"
-                HorizontalAlignment="Center"
-                Grid.Row="3"
-                VerticalAlignment="Center"
-                Width="74"
-                Height="56" />
-        <Image HorizontalAlignment="Left"
-               Height="328"
+
+        <Frame x:Name="LearningCardFrame"
+               x:FieldModifier="public"
                Grid.Row="1"
-               VerticalAlignment="Top"
-               Width="382"
-               Margin="201,49,0,0" />
-        <MediaElement HorizontalAlignment="Center"
-                      Height="352"
-                      Grid.Row="1"
-                      VerticalAlignment="Center"
-                      Width="434" />
-        <TextBox Text="{Binding LearningCardWindowVM.QuestionText}"
-                 Margin="172,72,172,73"
-                 Grid.Row="1"></TextBox>
+               NavigationUIVisibility="Hidden" />
+        <Button x:Name="btn_start"
+                Content="Start"
+                HorizontalAlignment="Center"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="158"
+                Height="104"
+                Margin="304,171,316,387"
+                Command="{Binding LearningCardWindowVM.OpenLearningCardQuestionPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" />
     </Grid>
 </Window>

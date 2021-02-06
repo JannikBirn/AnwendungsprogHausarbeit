@@ -15,13 +15,30 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public CardViewModel QuestionText { get;}
 
-       public LearningCardWindowViewModel(RootViewModel model)
+        //Open Panel Commands
+        public RelayCommand OpenLearningCardQuestionPanel { get; }
+        public RelayCommand OpenLearningCardAnswerPanel { get; }
+        public RelayCommand OpenLearningCardFinishPanel { get; }
+
+
+        public LearningCardWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
-            if (RootViewModel.TopicCollection != null)
-            {
-                QuestionText = RootViewModel.TopicCollection[0][0];
-            }
+
+            OpenLearningCardQuestionPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL));
+            OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
+            OpenLearningCardFinishPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL));
+
+            //  QuestionText = RootViewModel.TopicCollection[0][0];
+        }
+
+        private void OpenLearningCardPanelMethod(int panelIndex)
+        {
+            OpenLearningCardPanelMessage messageObject = new OpenLearningCardPanelMessage();
+            messageObject.PanelIndex = panelIndex;
+
+
+            Messenger.Instance.Send<OpenLearningCardPanelMessage>(messageObject);
         }
     }
 }
