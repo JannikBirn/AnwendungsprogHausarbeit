@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages
 {
-    public class OpenStatisticsPanelMessage
+    public class OpenTopicSelectionWindowMessage
     {
-        public const int HISTORY_PANEL = 0, TIME_PANEL = 1, QUALITY_PANEL = 2;
-        public int PanelIndex { get; set; }
     }
 }

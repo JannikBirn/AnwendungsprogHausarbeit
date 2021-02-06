@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
@@ -14,6 +15,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
     public class MessageListener
     {
         public bool BindableProperty => true;
+
+        //Window Instances
+        private StatisticsWindow StatisticsWindow { get; set; }
 
         public MessageListener()
         {
@@ -37,8 +41,8 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(this, delegate ()
             {
-                StatisticsWindow myWindow = new StatisticsWindow();
-                myWindow.ShowDialog();
+                    StatisticsWindow = new StatisticsWindow();
+                StatisticsWindow.ShowDialog();
             });
 
             ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
@@ -50,7 +54,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
-                Frame statisticsFrame = (Frame) messageObject.Frame;
+                Frame statisticsFrame = StatisticsWindow.StatisticsFrame;
                 switch (messageObject.PanelIndex)
                 {
                     case OpenStatisticsPanelMessage.HISTORY_PANEL:
@@ -64,6 +68,12 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                         break;
                 }
             });
+            Messenger.Instance.Register<OpenTopicSelectionWindowMessage>(this, delegate (OpenTopicSelectionWindowMessage message)
+            {
+                    StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
+                myWindow.ShowDialog();
+            });
+
         }
     }
 }

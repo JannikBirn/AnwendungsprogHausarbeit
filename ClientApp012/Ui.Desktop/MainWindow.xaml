@@ -54,6 +54,7 @@
                 <ColumnDefinition Width="794*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+
             <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged" Grid.ColumnSpan="3">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
