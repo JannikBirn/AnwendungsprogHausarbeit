@@ -12,8 +12,20 @@ using System.Windows.Media;
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class LineGraphViewModel : INotifyPropertyChanged
-    {        
+    {
         //Axis
+        private string verticalUnit;
+        public string VerticalUnit
+        {
+            get { return verticalUnit; }
+            set
+            {
+                verticalUnit = value;
+                OnPropertyChanged("VerticalUnit");
+
+            }
+
+        }
         private ObservableCollection<string> verticallNumbers;
         public ObservableCollection<string> VerticalNumbers
         {
@@ -25,6 +37,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
+        private string horizontalUnit;
+        public string HorizontalUnit
+        {
+            get { return horizontalUnit; }
+            set
+            {
+                horizontalUnit = value;
+                OnPropertyChanged("HorizontalUnit");
+
+            }
+
+        }
         private ObservableCollection<string> horizontalNumbers;
         public ObservableCollection<string> HorizontalNumbers
         {
@@ -36,7 +60,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        //Shapes - Lines
+        //Shapes - Lines - Paths
         private ObservableCollection<IShape> shapes;
         public ObservableCollection<IShape> Shapes
         {
@@ -54,40 +78,33 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
 
-            for (int i = 0; i < 10; i++)
-            {
-                HorizontalNumbers.Add("" + i);
-            }
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    HorizontalNumbers.Add("" + i);
+            //}
 
             VerticalNumbers = new ObservableCollection<string>();
 
-            for (int i = 10; i < 20; i++)
-            {
-                VerticalNumbers.Add("" + i);
-            }
+            //for (int i = 10; i < 20; i++)
+            //{
+            //    VerticalNumbers.Add("" + i);
+            //}
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
-            Shapes.Add(new ShapeLine(0.1,0,0.1,1));
+            //Shapes.Add(new ShapeLine(0.1,0,0.1,1));
 
 
-            PointCollection myPointCollection = new PointCollection();
+            //var shape = new ShapePath(new Point(0, 1));
 
-            myPointCollection.Add(new Point(0, 1));
-            myPointCollection.Add(new Point(0, 0.9));
-            myPointCollection.Add(new Point(0.1, 0.9));
+            //shape.AddPoint(new Point(0.1, 0.9));
 
-            myPointCollection.Add(new Point(0.1, 0.9));
-            myPointCollection.Add(new Point(0.2, 0.9));
-            myPointCollection.Add(new Point(0.2, 0.8));
+            //shape.AddPoint(new Point(0.2, 0.3));
 
-            myPointCollection.Add(new Point(0.2, 0.8));
-            myPointCollection.Add(new Point(0.2, 0.5));
-            myPointCollection.Add(new Point(0.5, 0.5));
+            //shape.AddPoint(new Point(0.5, 0.5));
 
 
-            Shapes.Add(new ShapePath(myPointCollection));
-
+            //Shapes.Add(shape);
 
 
         }

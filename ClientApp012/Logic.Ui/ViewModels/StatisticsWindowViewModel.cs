@@ -4,6 +4,7 @@ using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -15,10 +16,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
 
         public RootViewModel RootViewModel { get; set; }
+        public LineGraphViewModel LineGraphVM { get; set; }
         private Statistics Statistics { get; set; }
 
         //Open Panel Commands
         public RelayCommand OpenStatisticsHistoryPanel { get; }
+        //public RelayCommand HistoryPanelOpen { get; }
         public RelayCommand OpenStatisticsTimePanel { get; }
         public RelayCommand OpenStatisticsQualityPanel { get; }
 
@@ -56,10 +59,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
 
-        public StatisticsWindowViewModel(RootViewModel model)
+        public StatisticsWindowViewModel(RootViewModel model, LineGraphViewModel lineGraphVM)
         {
             //Refrenzing to the model
             RootViewModel = model;
+            LineGraphVM = lineGraphVM;
 
             //Adding relay commands
             OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
@@ -67,7 +71,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
             ReloadStatistics = new RelayCommand(() => InitStatistics());
-            
+
         }
 
         private void InitStatistics()
@@ -79,7 +83,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
-
+        //private void SetGraph
 
 
         private void OpenTopicSelectionWindowMethod()
@@ -89,9 +93,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenStatisticsPanelMethod(int panelIndex)
         {
+            switch (panelIndex)
+            {
+                case OpenStatisticsPanelMessage.HISTORY_PANEL:
+                    LineGraphVM.VerticalUnit = "%";
+                    LineGraphVM.VerticalNumbers = new ObservableCollection<string>{"100","0"};
+                    LineGraphVM.HorizontalUnit = "date";
+                    break;
+            }
+
+
+            //Sending Message to MessageListener to change Panel
             OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
             messageObject.PanelIndex = panelIndex;
-
 
             Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
         }

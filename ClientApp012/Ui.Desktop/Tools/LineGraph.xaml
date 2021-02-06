@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
              xmlns:shapes="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes;assembly=Logic.Ui"
              mc:Ignorable="d"
-             d:DesignHeight="250"
-             d:DesignWidth="800">
+             d:DesignHeight="326.8"
+             d:DesignWidth="552.8">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -87,7 +87,7 @@
                                                     StartPoint="{Binding StartPoint}">
                                             <PathFigure.Segments>
                                                 <PathSegmentCollection>
-                                                    <PolyBezierSegment Points="{Binding Points}"
+                                                    <PolyBezierSegment Points="{Binding Path}"
                                                                        IsSmoothJoin="True" />
                                                 </PathSegmentCollection>
                                             </PathFigure.Segments>
@@ -114,14 +114,15 @@
                  Grid.Row="0"
                  HorizontalAlignment="Right"
                  VerticalAlignment="Top">
-            <Label  Content="%"
+            <Label  Content="{Binding VerticalUnit}"
                     Style="{StaticResource DefaultLabel}" />
         </Viewbox>
 
+
         <ItemsControl Name="verticalNumbers"
-                      ItemsSource="{Binding Path=VerticalNumbers}"
                       Grid.Column="1"
-                      Grid.Row="0">
+                      Grid.Row="0"
+                      ItemsSource="{Binding Path=VerticalNumbers}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1" />
@@ -144,7 +145,7 @@
                   Grid.Row="4"
                   HorizontalAlignment="Right"
                   VerticalAlignment="Bottom">
-            <Label Content="date"
+            <Label Content="{Binding HorizontalUnit}"
                    Style="{StaticResource DefaultLabel}" />
         </Viewbox>
 
