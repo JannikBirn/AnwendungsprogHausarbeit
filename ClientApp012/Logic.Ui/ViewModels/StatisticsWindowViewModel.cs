@@ -77,9 +77,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void InitStatistics()
         {
             //Setup Statistics
-            Statistics.AddTestData(RootViewModel.TopicCollection[0].Model); // for testing purpose
+            //Statistics.AddTestData(RootViewModel.TopicCollection[0].Model); // for testing purpose
             Statistics = new Statistics(RootViewModel.Model);
-            List<Card> cards = Statistics.topicStatistics[0].CardStatistics.GetCardsBetween(DateTime.Today.Ticks, DateTime.Today.AddDays(3).Ticks);
+            //List<Card> cards = Statistics.topicStatistics[0].CardStatistics.GetCardsBetween(DateTime.Today.Ticks, DateTime.Today.AddDays(3).Ticks);
+
 
         }
 

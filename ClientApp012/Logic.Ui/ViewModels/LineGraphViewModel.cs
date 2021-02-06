@@ -105,8 +105,22 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
 
             Shapes.Add(shape);
+        }
 
+        public void AddPahtUnscaled(List<Point> points)
+        {
+            throw new NotImplementedException();
+        }
 
+        public void AddPath(Point startPoint, List<Point> points)
+        {
+            ShapePath path = new ShapePath(startPoint);
+            Point[] sortedPoints =  points.OrderByDescending(p => p.X).ToArray();
+            foreach (Point point in sortedPoints)
+            {
+                path.AddPoint(point);
+            }
+            Shapes.Add(path);
         }
 
         //For the INotifyPropertyChanged interface
