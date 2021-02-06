@@ -35,6 +35,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,7 @@
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\CardOverViewWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\NewCardWindowViewModel.cs" />
     <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
     <Compile Include="ViewModels\StatisticsWindowViewModel.cs" />
     <Compile Include="Wrapper\AbstractViewModels\IViewModel.cs" />
