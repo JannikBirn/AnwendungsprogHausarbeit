@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using Microsoft.Win32;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -59,9 +60,21 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Topic.Add(cvm);
         }
 
+        private void OpenImage()
+        {
+            Image File;
+            OpenFileDialog f = new OpenFileDialog();
+            f.Filter = "JPG(*.JPG)|*.jpg|";
+            if (f.ShowDialog() == true)
+            {
+                File = Image.FromFile(f.FileName);
+                questionBox.Image = File;
+            }
+        }
+
         private String SaveImage(Image image)
-        {            
-            string sourcePath = Directory.GetCurrentDirectory()+"\\Resources\\";
+        {
+            string sourcePath = Directory.GetCurrentDirectory() + "\\Resources\\";
             //        System.IO.File.Copy(image, sourcePath);
             //        string filePath = sourcePath + Path.GetFullPath(image);
             string filePath = "";

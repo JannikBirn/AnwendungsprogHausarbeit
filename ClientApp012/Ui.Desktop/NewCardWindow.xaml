@@ -26,9 +26,13 @@
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.12*" />
+            <RowDefinition Height="0.04*" />
+            <RowDefinition Height="0.04*" />
             <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.12*" />
+            <RowDefinition Height="0.04*" />
+            <RowDefinition Height="0.04*" />
             <RowDefinition Height="0.2*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -38,14 +42,16 @@
         <Label x:Name="Answer"
                Content="Question"
                HorizontalAlignment="Left"
-               VerticalAlignment="Center"
+               VerticalAlignment="Bottom"
+               Margin="10"
                Grid.Row="0"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer_Copy"
                Content="Answer"
                HorizontalAlignment="Left"
-               VerticalAlignment="Center"
-               Grid.Row="2"
+               VerticalAlignment="Bottom"
+               Margin="10"
+               Grid.Row="4"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer_Copy1"
                Content="Create new Card"
@@ -66,20 +72,20 @@
                  Text="AnswerText"
                  VerticalAlignment="Bottom"
                  Width="200"
-                 Grid.Row="2" />
+                 Grid.Row="4" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Insert Image File to the Question"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Grid.Row="1"
+                Grid.Row="3"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Inspect Image File"
+                Content="Edit Image File"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Grid.Row="1"
+                Grid.Row="2"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
@@ -87,29 +93,31 @@
                 Content="Insert Video File to the Question"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Grid.Row="1"
+                Grid.Row="3"
                 Width="200"
+                Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Insert Audio File to the Question"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Grid.Row="1"
+                Grid.Row="3"
                 Width="200"
+                Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Insert Image File to the Answer"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Grid.Row="3"
+                Grid.Row="7"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Inspect Image File"
+                Content="Edit Image File"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Grid.Row="3"
+                Grid.Row="6"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
@@ -117,16 +125,19 @@
                 Content="Insert Video File to the Answer"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Grid.Row="3"
+                Grid.Row="7"
                 Width="200"
+                Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Insert Audio File to the Answer"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
-                Grid.Row="3"
+                Grid.Row="7"
                 Width="200"
+                Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
+        
         <Button Command="{Binding AddClient, Mode=OneWay}"
                 Content="Back"
                 HorizontalAlignment="Left"
@@ -137,7 +148,7 @@
                 Content="Create Card"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Grid.Row="4"
+                Grid.Row="9"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="10,0" />
@@ -145,11 +156,13 @@
                 Content="Preview Card"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Grid.Row="4"
+                Grid.Row="9"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
-                Margin="10,0"
-                Click="Button_Click" />
-
+                Margin="10,0" />
+        <Image Name="QuestionImage"
+               Grid.Row="3"
+               Width="200"
+               Height="Auto"/>
     </Grid>
 </Window>
