@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages
 {
-    //Wird benötigt, um ein neues Fenster zu öffnen
-    public class OpenNewCardOverViewMessage
+    public class OpenLearningCardWindowMessage
     {
     }
 }

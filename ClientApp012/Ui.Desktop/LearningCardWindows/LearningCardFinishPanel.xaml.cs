@@ -10,23 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace De.HsFlensburg.ClientApp012.Ui.Desktop
+namespace De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows
 {
     /// <summary>
-    /// Interaction logic for NewCardWindow.xaml
+    /// Interaction logic for LearningCardFinishPanel.xaml
     /// </summary>
-    public partial class NewCardWindow : Window
+    public partial class LearningCardFinishPanel : Page
     {
-        public NewCardWindow()
+        public LearningCardFinishPanel()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

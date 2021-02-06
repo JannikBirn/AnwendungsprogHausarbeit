@@ -25,5 +25,10 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop
         {
             InitializeComponent();
         }
+
+        private void TopicCollectionDG_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

@@ -7,21 +7,24 @@
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="1000">
+        Title="MainWindow"
+        Height="512"
+        Width="900">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Window.DataContext>
-        <Binding Path="MainWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="MainWindowVM"
+                 Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
-    
+
     <Window.IsEnabled>
-        <Binding Source="{StaticResource MessageListener}" 
+        <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
     <DockPanel LastChildFill="True">
@@ -31,29 +34,35 @@
                     <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
                     <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
                     <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
+                    <MenuItem Header="Learn" Command="{Binding Path=OpenLearningCardWindow}"/>
                 </MenuItem>
                 <MenuItem Header="Open Window">
-                    <MenuItem Header="Card Overview" Command="{Binding Path=OpenCardOverView}"/>
-                    <MenuItem Header="Statistics " Command="{Binding Path=OpenStatisticsWindow}"/>
+                    <MenuItem Header="Card Overview"
+                              Command="{Binding Path=OpenCardOverView}" />
+                    <MenuItem Header="Statistics "
+                              Command="{Binding Path=OpenStatisticsWindow}" />
                 </MenuItem>
             </Menu>
         </DockPanel>
-    
-    
-    <Grid>
+
+
+        <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="8*"></ColumnDefinition>
+                <ColumnDefinition Width="18*"></ColumnDefinition>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="115*"/>
+                <ColumnDefinition Width="794*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>                
-            </DataGrid.Columns>
-        </DataGrid>
 
-            <DataGrid Grid.Column="1"  Name="CardDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged" Grid.ColumnSpan="3">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                    <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DataGrid Grid.Column="3"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
                     <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>

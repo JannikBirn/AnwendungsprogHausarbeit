@@ -26,6 +26,8 @@
         <Label Content="Topic Collection" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
         <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="36" Height="43" Style="{DynamicResource BackButton}"/>
         <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
-        <Button Content="Create New Topic" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="120" Height="30" Style="{DynamicResource DefaultButtonStyle }"/>
+        <Button Content="Create New Topic" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" 
+                VerticalAlignment="Center" Width="auto" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>
+        
     </Grid>
 </Window>

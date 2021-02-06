@@ -9,7 +9,7 @@ using System.Windows.Documents;
 
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
-    class PrintSingle
+    public class PrintSingle
     {
 
         public PrintSingle()
