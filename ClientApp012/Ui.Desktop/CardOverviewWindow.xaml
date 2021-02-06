@@ -43,11 +43,13 @@
                   Grid.Row="1"
                   ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                   AutoGenerateColumns="False"
-                  Background="#FF202225">
+                  Background="#FF202225"
+                  IsReadOnly="True">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Topic"
-                                    MinWidth="200" />
+                                    MinWidth="200"
+                                    Binding="{Binding Name}" />
             </DataGrid.Columns>
 
         </DataGrid>
@@ -59,15 +61,16 @@
                   AutoGenerateColumns="False"
                   SelectionUnit="CellOrRowHeader"
                   Background="#FF202225"
+                  IsReadOnly="True"
                   ScrollViewer.CanContentScroll="True"
                   ScrollViewer.VerticalScrollBarVisibility="Auto">
             <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
 
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Count}"
+                <!--<DataGridTextColumn Binding="{Binding Count}"
                                     Width="auto"
                                     Header="Number"
-                                    IsReadOnly="True" />
+                                    IsReadOnly="True" />-->
                 <DataGridTextColumn Binding="{Binding QuestionText}"
                                     Width="auto"
                                     MaxWidth="200"
@@ -88,6 +91,7 @@
                    VerticalAlignment="Top"
                    Width="620"
                    Height="auto">
+
             <Menu Background="{x:Null}"
                   Width="auto"
                   Height="auto"
@@ -104,8 +108,9 @@
                         Width="auto"
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleJan }"
-                        Command="{Binding PrintCards}"
+                        Command="{Binding PrintAllCards}"
                         CommandParameter="{Binding ElementName=allCards}" />
+                <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
                 <Button Content="Print Selected Cards"
                         DockPanel.Dock="Bottom"
                         Width="auto"
@@ -142,26 +147,16 @@
                    Grid.Row="2"
                    Style="{DynamicResource DefaultLabelJan}" />
             <!--Should enable direct printing, without opening a Print Window-->
-            <CheckBox Name="DirectPrinting"
-                      Checked="cbDirectPrinting_CheckedChanged"
+            <!--<CheckBox Name="DirectPrinting"
                       Margin="0,5,0,0"
                       DockPanel.Dock="Top"
                       Content="Direct Printing"
                       VerticalAlignment="Center"
                       Grid.Row="2"
                       Style="{DynamicResource CheckBoxControlTemplate1}"
-                      
                       Foreground="#FF707070"
-                      IsChecked="{Binding Mode=OneWay}" />
+                      IsChecked="{Binding Mode=OneWay}" />-->
         </DockPanel>
-        <Label Content="Label"
-               Grid.Column="1"
-               HorizontalAlignment="Left"
-               Margin="194,176,0,0"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-
-               Foreground="White" />
 
 
     </Grid>

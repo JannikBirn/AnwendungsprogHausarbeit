@@ -12,18 +12,21 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
    public class PrintWPFWindow
     {
-        public void PrintWindow(object param) //how to pass a Visual here????
+        public void PrintWindow(object window) //how to pass a Visual here????
         {
-            // Parts of  Code from https://www.c-sharpcorner.com/uploadfile/mahesh/printing-in-wpf/
 
             // Create a PrintDialog  
             PrintDialog printDlg = new PrintDialog();
-            UserControl uc = new UserControl();
+            Window w1 = new Window();
+            w1 = window as Window;
             Nullable<Boolean> print = printDlg.ShowDialog();
-            if (print == true)
+            if (window != null)
             {
-                // Call PrintDocument method to send document to printer 
-                printDlg.PrintVisual(uc, "User Control Printing");
+                if (print == true)
+                {
+                    // Call PrintDocument method to send document to printer 
+                    printDlg.PrintVisual(w1, "User Control Printing");
+                }
             }
         }
        

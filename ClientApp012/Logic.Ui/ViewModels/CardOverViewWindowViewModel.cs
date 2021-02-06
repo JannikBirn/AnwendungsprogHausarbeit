@@ -19,25 +19,24 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand PrintTestPage { get; }
         public RelayCommand PrintWindow { get; }
-        public RelayCommand PrintCards { get; }
+        public RelayCommand PrintAllCards { get; }
         public RelayCommand CloseWindow { get; }
         public bool DirectPrinting { get; } //geht noch nicht
         public CardOverViewWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
-            TopicIndex = 1;
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
-            PrintCards = new RelayCommand(myCardOverviewWindow => PrintCardsMethod(myCardOverviewWindow));
+            PrintAllCards = new RelayCommand(allCards => PrintAllCardsMethod(allCards));
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
         }
 
      
 
-        private void PrintCardsMethod(object myCardOverviewWindow)
+        private void PrintAllCardsMethod(object allCards)
         {
             PrintAllCards instance = new PrintAllCards();
-            instance.PrintCards(myCardOverviewWindow);
+            instance.PrintCards(allCards);
         }
 
         private void PrintTestPageMethod()

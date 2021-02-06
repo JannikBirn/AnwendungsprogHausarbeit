@@ -18,19 +18,17 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         {
             // Create a PrintDialog  
             PrintDialog printDlg = new PrintDialog();
-            //string myCards = cards.ToString(); //Ausgabe: System.Windows.Controls.DataGrid Items.Count:2
-            // Create a FlowDocument dynamically. 
-            //FlowDocument doc = new FlowDocument(new Paragraph(new Run(myCards)));
-            //doc.Name = "FlowDoc";
-            //FormatFlowDocument(doc);
-            // Create IDocumentPaginatorSource from FlowDocument 
-            //IDocumentPaginatorSource idpSource = doc;
-
-            Nullable<Boolean> print = printDlg.ShowDialog();
-            if (print == true)
+            //casts the object cards to DataGrid
+            DataGrid dg = cards as DataGrid;
+            //if passed object is a DataGrid, this will return TRUE
+            if (dg != null)
             {
-                // Call PrintDocument method to send document to printer 
-                //printDlg.PrintVisual(cards , "Grid Printing.");
+                Nullable<Boolean> print = printDlg.ShowDialog();
+                if (print == true)
+                {
+                    // Call PrintDocument method to send document to printer 
+                    printDlg.PrintVisual(dg, "Grid Printing.");
+                }
             }
         }
 
@@ -41,7 +39,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //Create first Paragraph
             Paragraph p1 = new Paragraph();
             //Create and add FontStyle. Got from DataGrid
-            
+
             p1.FontStyle = doc.FontStyle;
             p1.FontSize = doc.FontSize;
             p1.FontFamily = doc.FontFamily;
