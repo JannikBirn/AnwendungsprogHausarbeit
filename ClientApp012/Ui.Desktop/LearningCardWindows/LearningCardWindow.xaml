@@ -21,7 +21,7 @@
     </Window.DataContext>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="248*" />
+            <RowDefinition Height="60*" />
             <RowDefinition Height="497*" />
         </Grid.RowDefinitions>
         <Button Command="{Binding AddClient, Mode=OneWay}"
@@ -34,7 +34,7 @@
                 BorderThickness="1"
                 HorizontalAlignment="Left"
                 Height="4"
-                Margin="0,169,0,0"
+                Margin="0,93,0,0"
                 Grid.Row="0"
                 VerticalAlignment="Top"
                 Width="778"
@@ -43,10 +43,11 @@
                 BorderThickness="1"
                 HorizontalAlignment="Center"
                 Height="4"
-                Grid.Row="2"
-                VerticalAlignment="Center"
-                Width="701"
-                Background="#FF707070" />
+                Grid.Row="1"
+                VerticalAlignment="Bottom"
+                Width="702"
+                Background="#FF707070"
+                Margin="0,0,0,126" />
 
         <Frame x:Name="LearningCardFrame"
                x:FieldModifier="public"
@@ -57,11 +58,11 @@
                 HorizontalAlignment="Center"
                 Grid.Row="1"
                 VerticalAlignment="Center"
-                Width="158"
-                Height="104"
-                Margin="304,171,316,387"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardQuestionPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Style="{Binding Mode=OneWay, Source={StaticResource BackButton}}"
-                />
+                Width="184"
+                Height="116"
+                Command="{Binding LearningCardWindowVM.StartAnswering, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
+                IsEnabled="{Binding LearningCardWindowVM.HasStarted, Source={StaticResource ViewModelLocator}}"
+                Margin="294,186,300,516" />
     </Grid>
 </Window>

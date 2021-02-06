@@ -38,10 +38,12 @@
                 HorizontalAlignment="Center"
                 Grid.Row="3"
                 VerticalAlignment="Center"
-                Width="74"
+                Width="119"
                 Height="56"
-                Margin="255,33,471,32"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" />
+                Margin="0,0,300,0"
+                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+
         <Image HorizontalAlignment="Left"
                Height="196"
                Grid.Row="1"
@@ -78,10 +80,11 @@
                 HorizontalAlignment="Center"
                 Grid.Row="3"
                 VerticalAlignment="Center"
-                Width="74"
+                Width="116"
                 Height="56"
-                Margin="482,33,244,32"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" />
+                Margin="300,0,0,0"
+                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
         <Label x:Name="l_question"
                Content="Label"
                HorizontalAlignment="Left"
@@ -95,8 +98,8 @@
                Foreground="#FF707070" />
         <Label x:Name="l_answer"
                Content="Label"
-               HorizontalAlignment="Left"
-               Margin="199,58,0,0"
+               HorizontalAlignment="Center"
+               Margin="0,58,0,0"
                Grid.Row="2"
                VerticalAlignment="Top"
                Height="289"

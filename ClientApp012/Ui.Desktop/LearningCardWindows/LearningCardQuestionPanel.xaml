@@ -1,11 +1,12 @@
 ﻿<Page x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows.LearningCardQuestionPanel"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows"
-      mc:Ignorable="d" 
-      d:DesignHeight="850" d:DesignWidth="800"
+      mc:Ignorable="d"
+      d:DesignHeight="850"
+      d:DesignWidth="800"
       Title="LearningCardQuestionPanel">
     <Page.Resources>
         <ResourceDictionary>
@@ -17,18 +18,48 @@
     <Page.DataContext>
         <Binding Path="LearningCardWindowVM"
                  Source="{StaticResource ViewModelLocator}" />
-     </Page.DataContext>
-            <Grid>
+    </Page.DataContext>
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Content="Question:" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0"  FontFamily="Roboto" Foreground="#FF707070" FontSize="36" />
-        <Button x:Name="btn_Next" Content="Next" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="74" Height="56"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardAnswerPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" />
-        <Image HorizontalAlignment="Left" Height="328" Grid.Row="1" VerticalAlignment="Top" Width="382" Margin="201,49,0,0"/>
-        <MediaElement HorizontalAlignment="Center" Height="352" Grid.Row="1" VerticalAlignment="Center" Width="434"/>
-        <Label Content="Label" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="416" Width="502" Foreground="#FF707070" FontFamily="Roboto" FontSize="20"/>
+        <Label Content="Question:"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               FontFamily="Roboto"
+               Foreground="#FF707070"
+               FontSize="36" />
+        <Button x:Name="btn_Next"
+                Content="Next"
+                HorizontalAlignment="Center"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                Width="74"
+                Height="56"
+                Command="{Binding LearningCardWindowVM.OpenLearningCardAnswerPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+        <Image HorizontalAlignment="Left"
+               Height="328"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Width="382"
+               Margin="201,49,0,0" />
+        <MediaElement HorizontalAlignment="Center"
+                      Height="352"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="434" />
+        <Label Content="Label"
+               HorizontalAlignment="Center"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               Height="416"
+               Width="502"
+               Foreground="#FF707070"
+               FontFamily="Roboto"
+               FontSize="20" />
     </Grid>
 </Page>
