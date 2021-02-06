@@ -38,17 +38,18 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
         private Topic AddTestData(Topic topic)
         {
             var rand = new Random();
-            long lastEndTime = DateTime.Now.Ticks;
             foreach (Card card in topic)
             {
-                if (rand.NextDouble() > 0.2)
+                long lastEndTime = DateTime.Now.Ticks;
+                lastEndTime +=(long) rand.NextDouble()*(int)TimeSpan.FromHours(10).Ticks;
+                if (rand.NextDouble() > 0.5)
                     for (int i = 0; i < 10; i++)
                     {
                         CardAnswer cardAnswer = new CardAnswer();
                         cardAnswer.IsAnswerCorrect = rand.NextDouble() > 0.5;
                         cardAnswer.Start = lastEndTime;
-                        lastEndTime += rand.Next((int)TimeSpan.FromSeconds(1).Ticks, (int)TimeSpan.FromSeconds(20).Ticks);
-                        if (rand.NextDouble() > 0.9)
+                        lastEndTime += (long)rand.NextDouble() * (int)TimeSpan.FromHours(1).Ticks;
+                        if (rand.NextDouble() > 0.6)
                         {
                             lastEndTime += TimeSpan.FromDays(1).Ticks;
                         }

@@ -28,7 +28,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             TopicStatisticsDaily = GetAnswersPerDay();
         }
 
-        public Dictionary<long, TopicAnswerStatistics> GetAnswersPerDay()
+        private Dictionary<long, TopicAnswerStatistics> GetAnswersPerDay()
         {
             Dictionary<long, TopicAnswerStatistics> answerePerDay = new Dictionary<long, TopicAnswerStatistics>();
 
@@ -73,6 +73,18 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                 }
             }
             return answerePerDay;
+        }
+
+        public Dictionary<long, TopicAnswerStatistics> GetTopicAnswersDaily(long from, long to)
+        {
+            Dictionary<long, TopicAnswerStatistics> statsPerDay = new Dictionary<long, TopicAnswerStatistics>();
+
+            foreach (KeyValuePair<long, TopicAnswerStatistics> topicStatsDaily in TopicStatisticsDaily)
+            {
+                if (topicStatsDaily.Key >= from && topicStatsDaily.Key < to)
+                    statsPerDay.Add(topicStatsDaily.Key, topicStatsDaily.Value);
+            }
+            return statsPerDay;
         }
     }
 }

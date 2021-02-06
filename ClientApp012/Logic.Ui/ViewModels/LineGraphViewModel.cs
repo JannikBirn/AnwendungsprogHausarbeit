@@ -95,27 +95,25 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Shapes.Add(new ShapeLine(0.1, 0, 0.1, 1));
 
 
-            var shape = new ShapePath(new Point(0, 1));
+            //var shape = new ShapePath(new Point(0, 1));
+            //shape.AddPoint(new Point(0.1, 0.9));
+            //shape.AddPoint(new Point(0.2, 0.3));
+            //shape.AddPoint(new Point(0.5, 0.5));
+            //Shapes.Add(shape);
 
-            shape.AddPoint(new Point(0.1, 0.9));
-
-            shape.AddPoint(new Point(0.2, 0.3));
-
-            shape.AddPoint(new Point(0.5, 0.5));
-
-
-            Shapes.Add(shape);
         }
 
-        public void AddPahtUnscaled(List<Point> points)
-        {
-            throw new NotImplementedException();
+        public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin)
+        {            
+            List<Point> normalizedList = points.Select(point => new Point(1.0*(point.X - xMin) / (xMax-xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
+            
+            AddPath(normalizedList[0], normalizedList);
         }
 
         public void AddPath(Point startPoint, List<Point> points)
         {
-            ShapePath path = new ShapePath(startPoint);
-            Point[] sortedPoints =  points.OrderByDescending(p => p.X).ToArray();
+            ShapePath path = new ShapePath(new Point(startPoint.X, 1-startPoint.Y));
+            Point[] sortedPoints = points.Select(point => new Point(point.X,1-point.Y)).ToArray();
             foreach (Point point in sortedPoints)
             {
                 path.AddPoint(point);
