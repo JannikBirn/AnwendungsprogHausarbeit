@@ -97,7 +97,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 case OpenStatisticsPanelMessage.HISTORY_PANEL:
                     LineGraphVM.VerticalUnit = "%";
-                    LineGraphVM.VerticalNumbers = new ObservableCollection<string>{"100","0"};
+                    LineGraphVM.VerticalNumbers = new ObservableCollection<string>{"100",  "  80",  "  60", "  40", "  20", "   0"};
                     LineGraphVM.HorizontalUnit = "date";
                     break;
             }

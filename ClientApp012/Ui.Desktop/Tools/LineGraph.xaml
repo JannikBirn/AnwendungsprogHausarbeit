@@ -118,11 +118,20 @@
                     Style="{StaticResource DefaultLabel}" />
         </Viewbox>
 
+        <!--
+        <UniformGrid Grid.Column="1"
+                     Grid.Row="0"
+                     Columns="1"
+                     >
+            <Label Content="0" />
+            <Label Content="100" VerticalAlignment="Bottom" />
+        </UniformGrid> -->
 
         <ItemsControl Name="verticalNumbers"
                       Grid.Column="1"
                       Grid.Row="0"
-                      ItemsSource="{Binding Path=VerticalNumbers}">
+                      ItemsSource="{Binding Path=VerticalNumbers}"
+                      AlternationCount="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Columns="1" />
@@ -130,10 +139,10 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Viewbox>
+                    <Viewbox x:Name="verticalVb"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right">
                         <Label Content="{Binding}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Right"
                                Style="{StaticResource DefaultLabel}" />
                     </Viewbox>
                 </DataTemplate>
