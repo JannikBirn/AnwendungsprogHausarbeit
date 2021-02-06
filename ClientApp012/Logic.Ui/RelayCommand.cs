@@ -30,7 +30,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         { 
         }
 
-        public RelayCommand(Action<object> methodToExecute) : this(methodToExecute, null) { }
+        public RelayCommand(Action<object> methodToExecute) : this(methodToExecute, null) { } //keine Referenzen, wofür ist das?
        
         public RelayCommand(Action<object> methodToExecute, Func<bool> canExecuteEvaluator)
         {

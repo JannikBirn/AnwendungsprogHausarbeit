@@ -35,4 +35,5 @@ public class Topic : ObservableCollection<Card>
     {
 		//updating the difficulties of the cards of this collection
     }
+
 }
