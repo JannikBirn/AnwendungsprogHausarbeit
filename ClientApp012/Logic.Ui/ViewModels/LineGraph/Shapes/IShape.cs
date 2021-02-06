@@ -9,6 +9,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes
 {
     public class IShape : INotifyPropertyChanged
     {
+        public string Color {get; set;}
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

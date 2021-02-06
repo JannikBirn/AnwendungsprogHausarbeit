@@ -10,6 +10,8 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
     {
         //How many individual cards were answered that day
         public int Answered { get; set; }
+        public int AnsweredTwice { get; set; }
+        public int AnsweredMoreThenTwice { get; set; }
         //How often (wrong, right) all of the cards
         public int Count { get; set; }
         public int Wrong { get; set; }

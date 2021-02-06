@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -113,14 +112,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
-        public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin)
+        public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin, string color)
         {
             List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
 
-            AddPath(normalizedList[0], normalizedList);
+            AddPath(normalizedList[0], normalizedList, color);
         }
 
-        public void AddPath(Point startPoint, List<Point> points)
+        public void AddPath(Point startPoint, List<Point> points, string color)
         {
             ShapePath path = new ShapePath(new Point(startPoint.X, 1 - startPoint.Y));
             Point[] sortedPoints = points.Select(point => new Point(point.X, 1 - point.Y)).ToArray();
@@ -128,6 +127,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 path.AddPoint(point);
             }
+            path.Color = color;
+            path.SetIsCurved(false);
             Shapes.Add(path);
         }
 

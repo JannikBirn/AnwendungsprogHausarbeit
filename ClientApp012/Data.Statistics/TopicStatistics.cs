@@ -53,6 +53,10 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 
                     //Adding one to Answered
                     currentTopicAnswerStatistic.Answered++;
+                    if (cardAnswerDaily.Value.Count > 1)
+                        currentTopicAnswerStatistic.AnsweredTwice++;
+                    if (cardAnswerDaily.Value.Count > 2)
+                        currentTopicAnswerStatistic.AnsweredMoreThenTwice++;
                     //Adding Count, Wrong, Correct
                     currentTopicAnswerStatistic.Count += cardAnswerDaily.Value.Count;
                     currentTopicAnswerStatistic.Wrong += cardAnswerDaily.Value.Wrong;
@@ -81,7 +85,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 
             foreach (KeyValuePair<long, TopicAnswerStatistics> topicStatsDaily in TopicStatisticsDaily)
             {
-                if (topicStatsDaily.Key >= from && topicStatsDaily.Key < to)
+                if (topicStatsDaily.Key >= from && topicStatsDaily.Key <= to)
                     statsPerDay.Add(topicStatsDaily.Key, topicStatsDaily.Value);
             }
             return statsPerDay;

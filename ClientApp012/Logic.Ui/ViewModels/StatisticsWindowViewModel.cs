@@ -83,7 +83,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Setup Graph from and to date at 0:00:00
         //iteration -> default 24 hours
-        //from included, to excluded
+        //from included, to included
         private void SetGraph(int graphType, long from, long to)
         {
             if (Statistics == null)
@@ -105,13 +105,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     //list of all Days as long
                     List<long> dates = new List<long>();
                     long currentdate = new DateTime(from).Date.Ticks; //Start Datum
-                    while (currentdate < to)
+                    while (currentdate <= to)
                     {
                         dates.Add(currentdate);
                         currentdate += TimeSpan.TicksPerDay;
                     }
 
-                    //Points for the Answered Path
+                    //Points for the Paths
                     List<Point> unscaledPointsAnswered = new List<Point>();
 
                     foreach (long date in dates)
@@ -126,13 +126,45 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                         }
                     }
 
+
+                    List<Point> unscaledPointsAnsweredTwice = new List<Point>();
+
+                    foreach (long date in dates)
+                    {
+                        if (topicAnswersDaily.ContainsKey(date))
+                        {
+                            unscaledPointsAnsweredTwice.Add(new Point(date, topicAnswersDaily[date].AnsweredTwice));
+                        }
+                        else
+                        {
+                            unscaledPointsAnsweredTwice.Add(new Point(date, 0));
+                        }
+                    }
+
+                    List<Point> unscaledPointsAnsweredMoreThenTwice = new List<Point>();
+
+                    foreach (long date in dates)
+                    {
+                        if (topicAnswersDaily.ContainsKey(date))
+                        {
+                            unscaledPointsAnsweredMoreThenTwice.Add(new Point(date, topicAnswersDaily[date].AnsweredMoreThenTwice));
+                        }
+                        else
+                        {
+                            unscaledPointsAnsweredMoreThenTwice.Add(new Point(date, 0));
+                        }
+                    }
+
+                    //Adding Paths
                     //Max and Min Values for Skaling 
-                    double xMax = unscaledPointsAnswered.Max(point => point.X);
-                    double xMin = unscaledPointsAnswered.Min(point => point.X);
+                    double xMax = to;
+                    double xMin = from;
                     double yMax = topicStats.CardStatistics.Count;
                     double yMin = 0;
 
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered,xMax,xMin, yMax,yMin);
+                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered,xMax,xMin, yMax,yMin, "#FF0000");
+                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
+                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredMoreThenTwice, xMax, xMin, yMax, yMin, "#00FF00");
 
                     //Graph Axis Setup
 
