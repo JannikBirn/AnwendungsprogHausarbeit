@@ -1,0 +1,109 @@
+﻿<Window x:Class="De.HsFlensburg.ClientApp012.Ui.Desktop.PrintWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:viewmodel="clr.namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels"
+        mc:Ignorable="d"
+        Title="PrintWindow"
+        Height="512"
+        Width="786"
+        x:Name="myPrintWindow">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styleguide.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Style="{DynamicResource DefaultGridStyle}">
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="250" />
+
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <DockPanel VerticalAlignment="Top"
+                   HorizontalAlignment="Center">
+
+            <CheckBox Content="Landscape Mode"
+                      x:Name="myLandscape"
+                      Foreground="White"
+                      Margin="0,10,0,0"
+                      DockPanel.Dock="Top" />
+            <Label Content="Number of copies"
+                   Foreground="White"
+                   DockPanel.Dock="Top"
+                   Margin="0,10,0,0" />
+            <TextBox Text="1"
+                     Name="copyNumber"
+                     DockPanel.Dock="Top"
+                     Width="25"
+                     HorizontalAlignment="Center" />
+            <Label Content="Scale Factor"
+                   Foreground="White"
+                   DockPanel.Dock="Top"
+                   Margin="0,10,0,0" />
+            <Slider Height="20"
+                    Width="100"
+                    DockPanel.Dock="Top"
+                    HorizontalAlignment="Center" />
+            <TextBox Text="1"
+                     Name="SliderNumber"
+                     DockPanel.Dock="Top"
+                     Width="25"
+                     HorizontalAlignment="Center"
+                     Margin="0,10,0,0" />
+            <Button x:Name="BtnPrint"
+                    Content="Print"
+                    DockPanel.Dock="Top"
+                    Margin="0,50,0,0"
+                    Style="{DynamicResource DefaultButtonStyleJan }"
+                    Command="{Binding PrintIt}"
+                    CommandParameter="{Binding ElementName=PreviewD}" />
+        </DockPanel>
+
+        <DataGrid Grid.Column="1"
+                  Name="Grid1"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding QuestionText}"
+                                    Width="*"
+                                    Header="Question"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding AnswerText}"
+                                    Width="*"
+                                    Header="Answer"
+                                    IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--DocumentViewer Grid.Column="1"
+                        x:Name="PreviewD"
+                        ShowPageBorders="True">
+            <DocumentViewer.Resources>
+                -->
+        <!--Hide default toolbar-->
+        <!--
+                <Style TargetType="ToolBar">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </Style>
+                -->
+        <!--Hide default Searchbar-->
+        <!--
+                <Style TargetType="ContentControl">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                </Style>
+
+            </DocumentViewer.Resources>-->
+        <!--</DocumentViewer>-->
+
+    </Grid>
+</Window>

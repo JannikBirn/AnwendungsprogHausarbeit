@@ -15,6 +15,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
     public class MessageListener
     {
         public bool BindableProperty => true;
+        public bool myBindableProperty => true;
 
         //Window Instances
         private StatisticsWindow StatisticsWindow { get; set; }
@@ -50,6 +51,12 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                LearningCardWindow myWindow = new LearningCardWindow();
                myWindow.ShowDialog();
             });
+            Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
+                {
+                    PrintWindow myPrintWindow= new PrintWindow();
+                    myPrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
+                    myPrintWindow.ShowDialog();
+                });
 
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)

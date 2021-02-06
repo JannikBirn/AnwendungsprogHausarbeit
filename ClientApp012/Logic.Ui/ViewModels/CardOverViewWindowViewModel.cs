@@ -10,6 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using De.HsFlensburg.ClientApp012.Services.MessageBus;
+using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -27,16 +30,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
-            PrintAllCards = new RelayCommand(allCards => PrintAllCardsMethod(allCards));
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            PrintAllCards = new RelayCommand((param) => PrintAllCardsMethod(param));
         }
 
      
 
         private void PrintAllCardsMethod(object allCards)
         {
-            PrintAllCards instance = new PrintAllCards();
-            instance.PrintCards(allCards);
+            OpenPrintWindowMessage message = new OpenPrintWindowMessage();
+            message.Grid = allCards;
+            Messenger.Instance.Send(message);
+            
         }
 
         private void PrintTestPageMethod()

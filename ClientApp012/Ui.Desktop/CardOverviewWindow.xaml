@@ -18,10 +18,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    
     <Window.DataContext>
         <Binding  Source="{StaticResource ViewModelLocator}"
                   Path="CardOverViewWindowVM" />
     </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}"
+                 Path="myBindableProperty" />
+    </Window.IsEnabled>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
