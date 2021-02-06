@@ -15,6 +15,10 @@
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.DataContext>
+        <Binding Path="StatisticsTopicSelectionWindowVM" Source="{StaticResource ViewModelLocator}"/>
+    </Page.DataContext>
+
     <Grid Grid.Row="3">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
