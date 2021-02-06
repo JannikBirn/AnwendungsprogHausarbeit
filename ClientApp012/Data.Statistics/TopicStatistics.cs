@@ -10,46 +10,69 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
     {
         public Topic Topic { get; set; }
 
-        public CardStatistics CardStatistics { get; set; }
+        public List<CardStatistics> CardStatistics { get; set; }
+
+        //Topic Statistiks on a daily basis
+        //long is day at 0:00:00, int is times answered that day
+        //if there is no TopicAnswerStatistics for a given day, no cards in this topic were answered that day
+        public Dictionary<long, TopicAnswerStatistics> TopicStatisticsDaily { get; set; }
         internal TopicStatistics(Topic topic)
         {
             this.Topic = topic;
-            CardStatistics = new CardStatistics(Topic.ToList<Card>());
+            CardStatistics = new List<CardStatistics>();
+            foreach (Card card in topic)
+            {
+                CardStatistics.Add(new CardStatistics(card));
+            }
+
+            TopicStatisticsDaily = GetAnswersPerDay();
         }
 
-        //Returning all Cards that have been answered between from-to
-        public List<Card> GetCardsBetween(long from, long to)
+        public Dictionary<long, TopicAnswerStatistics> GetAnswersPerDay()
         {
-            List<Card> result = new List<Card>();
+            Dictionary<long, TopicAnswerStatistics> answerePerDay = new Dictionary<long, TopicAnswerStatistics>();
 
-            foreach (Card card in cards)
+            foreach (CardStatistics cardStatistics in CardStatistics)
             {
-                foreach (CardAnswer cardAnswer in card.cardAnswers)
+
+                foreach (KeyValuePair<long, CardAnswerStatistics> cardAnswerDaily in cardStatistics.AnswereStatisticsDaily)
                 {
-                    if (from < cardAnswer.End && to > cardAnswer.End)
+                    bool isFirstTopicAnswer = false;
+
+                    TopicAnswerStatistics currentTopicAnswerStatistic;
+                    if (answerePerDay.ContainsKey(cardAnswerDaily.Key))
                     {
-                        result.Add(card);
-                        break;
+                        //Get Card Answer from that date
+                        currentTopicAnswerStatistic = answerePerDay[cardAnswerDaily.Key];
                     }
+                    else
+                    {
+                        currentTopicAnswerStatistic = new TopicAnswerStatistics();
+                        isFirstTopicAnswer = true;
+                    }
+
+                    //Adding one to Answered
+                    currentTopicAnswerStatistic.Answered++;
+                    //Adding Count, Wrong, Correct
+                    currentTopicAnswerStatistic.Count += cardAnswerDaily.Value.Count;
+                    currentTopicAnswerStatistic.Wrong += cardAnswerDaily.Value.Wrong;
+                    currentTopicAnswerStatistic.Correct += cardAnswerDaily.Value.Correct;
+
+
+
+                    if (currentTopicAnswerStatistic.TimeMin > cardAnswerDaily.Value.TimeMin)
+                        currentTopicAnswerStatistic.TimeMin = cardAnswerDaily.Value.TimeMin;
+
+                    if (currentTopicAnswerStatistic.TimeMax > cardAnswerDaily.Value.TimeMax)
+                        currentTopicAnswerStatistic.TimeMax = cardAnswerDaily.Value.TimeMax;
+
+                    currentTopicAnswerStatistic.TimeAvg = (currentTopicAnswerStatistic.TimeAvg + cardAnswerDaily.Value.TimeAvg) / 2;
+
+                    if (isFirstTopicAnswer)
+                        answerePerDay.Add(cardAnswerDaily.Key, currentTopicAnswerStatistic);
                 }
             }
-            return result;
-        }
-
-        //Returning all CardAnswers from a Card that were answered from-to
-        public List<CardAnswer> GetCardAnswersBetween(Card card, long from, long to)
-        {
-            List<CardAnswer> cardAnswers = new List<CardAnswer>();
-
-            foreach (CardAnswer cardAnswer in card.cardAnswers)
-            {
-                if (from < cardAnswer.End && to > cardAnswer.End)
-                {
-                    cardAnswers.Add(cardAnswer);
-                }
-            }
-
-            return cardAnswers;
+            return answerePerDay;
         }
     }
 }

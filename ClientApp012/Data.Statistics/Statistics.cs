@@ -16,16 +16,26 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
         public Statistics(Root rootModel)
         {
             this.RootModel = rootModel;
+            Init();
+        }
 
+        public void UpdateStatistics()
+        {
+            Init();
+        }
+
+        private void Init()
+        {
             topicStatistics = new List<TopicStatistics>();
             foreach (Topic topic in RootModel.TopicCollection)
             {
+                AddTestData(topic); //For Testing purpose
                 topicStatistics.Add(new TopicStatistics(topic));
 
             }
         }
 
-        public static Topic AddTestData(Topic topic)
+        private Topic AddTestData(Topic topic)
         {
             var rand = new Random();
             long lastEndTime = DateTime.Now.Ticks;
