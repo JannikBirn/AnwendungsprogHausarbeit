@@ -37,14 +37,14 @@
             <Button Grid.Column="0" Margin="10"  Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Red}">
                 <Button.Content>
                     <Viewbox>
-                        <TextBlock Text="Open" />
+                        <TextBlock Text="Answered" />
                     </Viewbox>
                 </Button.Content>
             </Button>
             <Button Grid.Column="1" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Foreground="{DynamicResource Static.Blue}">
                 <Button.Content>
                     <Viewbox>
-                        <TextBlock Text="Answered" />
+                        <TextBlock Text="Answered 2" />
                     </Viewbox>
                 </Button.Content>
             </Button>
