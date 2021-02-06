@@ -5,28 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="LearningCardWindow" Height="1024" Width="786">
+        Title="LearningCardWindow"
+        Height="1024"
+        Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml"/>
+                <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid  Style="{DynamicResource DefaultGridStyle}">
+    <Window.DataContext>
+        <Binding Path="LearningCardWindowViewModel"
+                 Source="{StaticResource ViewModelLocator}" />
+    </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}"
+                 Path="BindableProperty"></Binding>
+    </Window.IsEnabled>
+    <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="248*"/>
-            <RowDefinition Height="497*"/>
-            <RowDefinition Height="18*"/>
-            <RowDefinition Height="230*"/>
+            <RowDefinition Height="248*" />
+            <RowDefinition Height="497*" />
+            <RowDefinition Height="18*" />
+            <RowDefinition Height="230*" />
         </Grid.RowDefinitions>
-        <Button Command="{Binding AddClient, Mode=OneWay}" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BackButton}" Grid.Row="0"/>
-        <Border x:Name="borderCards" BorderThickness="1" HorizontalAlignment="Left" Height="4" Margin="0,169,0,0" Grid.Row="0" VerticalAlignment="Top" Width="778" Background="#FF707070"/>
-        <Border x:Name="borderCards_Copy" BorderThickness="1" HorizontalAlignment="Center" Height="4"  Grid.Row="2" VerticalAlignment="Center" Width="701" Background="#FF707070"/>
-        <Label Content="Question:" VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="0"  FontFamily="Roboto" Foreground="#FF707070" FontSize="36" />
-        <Button x:Name="btn_Next" Content="Next" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" Width="74" Height="56"/>
-        <Image HorizontalAlignment="Left" Height="328" Grid.Row="1" VerticalAlignment="Top" Width="382" Margin="201,49,0,0"/>
-        <MediaElement HorizontalAlignment="Center" Height="352" Grid.Row="1" VerticalAlignment="Center" Width="434"/>
-        <Label Content="Label" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Height="416" Width="502" Foreground="#FF707070" FontFamily="Roboto" FontSize="20"/>
+        <Button Command="{Binding AddClient, Mode=OneWay}"
+                Content="Back"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Style="{DynamicResource BackButton}"
+                Grid.Row="0" />
+        <Border x:Name="borderCards"
+                BorderThickness="1"
+                HorizontalAlignment="Left"
+                Height="4"
+                Margin="0,169,0,0"
+                Grid.Row="0"
+                VerticalAlignment="Top"
+                Width="778"
+                Background="#FF707070" />
+        <Border x:Name="borderCards_Copy"
+                BorderThickness="1"
+                HorizontalAlignment="Center"
+                Height="4"
+                Grid.Row="2"
+                VerticalAlignment="Center"
+                Width="701"
+                Background="#FF707070" />
+        <Label Content="Question:"
+               VerticalAlignment="Bottom"
+               HorizontalAlignment="Center"
+               Grid.Row="0"
+               FontFamily="Roboto"
+               Foreground="#FF707070"
+               FontSize="36" />
+        <Button x:Name="btn_Next"
+                Content="Next"
+                HorizontalAlignment="Center"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                Width="74"
+                Height="56" />
+        <Image HorizontalAlignment="Left"
+               Height="328"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Width="382"
+               Margin="201,49,0,0" />
+        <MediaElement HorizontalAlignment="Center"
+                      Height="352"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="434" />
+        <TextBox Text="{Binding LearningCardWindowVM.QuestionText}"
+                 Margin="172,72,172,73"
+                 Grid.Row="1"></TextBox>
     </Grid>
 </Window>

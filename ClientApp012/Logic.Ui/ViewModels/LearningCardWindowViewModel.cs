@@ -13,10 +13,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
         public RootViewModel RootViewModel { get; set; }
 
+        public CardViewModel QuestionText { get;}
+
        public LearningCardWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
+            if (RootViewModel.TopicCollection != null)
+            {
+                QuestionText = RootViewModel.TopicCollection[0][0];
+            }
         }
-
     }
 }

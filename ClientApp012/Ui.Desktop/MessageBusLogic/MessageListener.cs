@@ -31,7 +31,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
             {
-                CardOverviewWindow myWindow = new CardOverviewWindow();
+                CardOverviewWindow myWindow = new CardOverviewWindow(); 
                 myWindow.ShowDialog();
             });
 
