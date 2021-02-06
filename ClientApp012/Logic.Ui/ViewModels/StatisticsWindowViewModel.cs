@@ -137,7 +137,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     //Graph Axis Setup
 
                     LineGraphVM.VerticalUnit = "%";
-                    LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "100", "  80", "  60", "  40", "  20", "   0" };
+                    LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
 
                     //Adding Dates for Horizontal Axis
                     LineGraphVM.HorizontalUnit = "date";

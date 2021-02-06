@@ -29,11 +29,21 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private ObservableCollection<string> verticallNumbers;
         public ObservableCollection<string> VerticalNumbers
         {
-            get { return verticallNumbers; }
+            get
+            {
+                return new ObservableCollection<string>(verticallNumbers.Skip(1).Reverse());
+            }
             set
             {
                 verticallNumbers = value;
                 OnPropertyChanged("VerticalNumbers");
+            }
+        }
+        public string VerticalNumberFirst
+        {
+            get
+            {
+                return verticallNumbers.First();
             }
         }
 
@@ -78,17 +88,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
 
-            for (int i = 0; i < 5; i++)
-            {
-                HorizontalNumbers.Add("" + i);
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    HorizontalNumbers.Add("" + i);
+            //}
 
             VerticalNumbers = new ObservableCollection<string>();
 
-            for (int i = 10; i < 15; i++)
-            {
-                VerticalNumbers.Add("" + i);
-            }
+            //for (int i = 10; i < 15; i++)
+            //{
+            //    VerticalNumbers.Add("" + i);
+            //}
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
@@ -104,16 +114,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin)
-        {            
-            List<Point> normalizedList = points.Select(point => new Point(1.0*(point.X - xMin) / (xMax-xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
-            
+        {
+            List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
+
             AddPath(normalizedList[0], normalizedList);
         }
 
         public void AddPath(Point startPoint, List<Point> points)
         {
-            ShapePath path = new ShapePath(new Point(startPoint.X, 1-startPoint.Y));
-            Point[] sortedPoints = points.Select(point => new Point(point.X,1-point.Y)).ToArray();
+            ShapePath path = new ShapePath(new Point(startPoint.X, 1 - startPoint.Y));
+            Point[] sortedPoints = points.Select(point => new Point(point.X, 1 - point.Y)).ToArray();
             foreach (Point point in sortedPoints)
             {
                 path.AddPoint(point);
