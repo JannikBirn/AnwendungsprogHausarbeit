@@ -60,6 +60,8 @@
                 Width="158"
                 Height="104"
                 Margin="304,171,316,387"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardQuestionPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}" />
+                Command="{Binding LearningCardWindowVM.OpenLearningCardQuestionPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Style="{Binding Mode=OneWay, Source={StaticResource BackButton}}"
+                />
     </Grid>
 </Window>

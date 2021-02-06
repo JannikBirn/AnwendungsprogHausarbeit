@@ -15,6 +15,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public CardViewModel QuestionText { get;}
 
+        public bool btnStart = true;
+        public bool BtnStart
+        {
+            get
+            {
+                return btnStart;
+            }
+            set
+            {
+                btnStart = value;
+            }
+        }
+
         //Open Panel Commands
         public RelayCommand OpenLearningCardQuestionPanel { get; }
         public RelayCommand OpenLearningCardAnswerPanel { get; }
@@ -37,6 +50,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenLearningCardPanelMessage messageObject = new OpenLearningCardPanelMessage();
             messageObject.PanelIndex = panelIndex;
 
+            BtnStart = false;
 
             Messenger.Instance.Send<OpenLearningCardPanelMessage>(messageObject);
         }
