@@ -13,7 +13,9 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
     public class PrintAllCards
     {
-
+        public bool landscape;
+        public int scalingFactor;
+        public int numberOfPages;
         public void PrintCards(object cards)
         {
             // Create a PrintDialog  
@@ -31,6 +33,40 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
                 }
             }
         }
+        public void PrintCardsDirectly(object cards)
+        {
+            // Create a PrintDialog  
+            PrintDialog printDlg = new PrintDialog();
+            //casts the object cards to DataGrid
+            DataGrid dg = cards as DataGrid;
+            FormatPrintDialoge(printDlg);
+
+        }
+
+        private PrintDialog FormatPrintDialoge(PrintDialog pd)
+        {
+            //Gets Default Printer
+            pd.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
+            pd.PrintTicket = pd.PrintQueue.DefaultPrintTicket;
+            if (landscape)
+            {
+                pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
+            }
+            else
+            {
+                pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+            }
+            //defines scaling
+            pd.PrintTicket.PageScalingFactor = scalingFactor;
+            //defines page size
+            pd.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
+            //defines number of pages
+            pd.PrintTicket.PagesPerSheet = numberOfPages;
+            pd.PrintTicket.PageBorderless = PageBorderless.Borderless;
+            return pd;
+        }
+
+  
 
         private FlowDocument FormatFlowDocument(FlowDocument doc)
         {

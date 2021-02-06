@@ -41,21 +41,24 @@
         <DataGrid x:Name="allTopics"
                   Grid.Column="0"
                   Grid.Row="1"
+                  Style="{StaticResource DefaultDataGrid}"
                   ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                   AutoGenerateColumns="False"
                   Background="#FF202225"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  FontSize="14">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Topic"
-                                    MinWidth="200"
+                                    Width="1*"
                                     Binding="{Binding Name}" />
             </DataGrid.Columns>
 
         </DataGrid>
 
         <DataGrid x:Name="allCards"
-                  Grid.Column="2"
+                  HeadersVisibility="Column"
+                  Grid.Column="1"
                   Grid.Row="1"
                   ItemsSource="{Binding ElementName=allTopics, Path=SelectedItem}"
                   AutoGenerateColumns="False"
@@ -63,7 +66,9 @@
                   Background="#FF202225"
                   IsReadOnly="True"
                   ScrollViewer.CanContentScroll="True"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  Style="{StaticResource DefaultDataGrid}"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  FontSize="14">
             <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
 
             <DataGrid.Columns>
@@ -72,13 +77,13 @@
                                     Header="Number"
                                     IsReadOnly="True" />-->
                 <DataGridTextColumn Binding="{Binding QuestionText}"
-                                    Width="auto"
-                                    MaxWidth="200"
+                                    CellStyle="{StaticResource DataGridContentCellCentering }"
+                                    Width="*"
                                     Header="Question"
                                     IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding AnswerText}"
-                                    Width="auto"
-                                    MaxWidth="200"
+                                    CellStyle="{StaticResource DataGridContentCellCentering }"
+                                    Width="*"
                                     Header="Answer"
                                     IsReadOnly="True" />
             </DataGrid.Columns>
