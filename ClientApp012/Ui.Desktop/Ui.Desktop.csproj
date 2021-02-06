@@ -72,7 +72,7 @@
     </Compile>
     <Compile Include="LearningCardWindows\LearningCardQuestionPanel.xaml.cs">
       <DependentUpon>LearningCardQuestionPanel.xaml</DependentUpon>
-      </Compile>
+    </Compile>
     <Compile Include="ImageInspectWindow.xaml.cs">
       <DependentUpon>ImageInspectWindow.xaml</DependentUpon>
     </Compile>
@@ -120,7 +120,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LearningCardWindows\LearningCardQuestionPanel.xaml">
-<SubType>Designer</SubType>
+      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImageInspectWindow.xaml">
@@ -229,6 +229,11 @@
       <Project>{65FD0D22-F1F4-4A1D-81CB-B0AA5595C664}</Project>
       <Name>Services.MessageBus</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\BackArrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

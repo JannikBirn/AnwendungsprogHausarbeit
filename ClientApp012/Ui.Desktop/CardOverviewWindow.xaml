@@ -126,14 +126,18 @@
             </Menu>
         </DockPanel>
 
-        <Button Content="Back"
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                Margin="30,36,0,33"
-                Width="78"
-                Command="{Binding CloseWindow}"
-                Style="{DynamicResource BackButton}"
-                CommandParameter="{Binding ElementName=myCardOverviewWindow}" />
+        <Button   Grid.Column="0"
+                  VerticalAlignment="Top"
+                  Margin="50,20,150,20"
+                  HorizontalContentAlignment="Left"
+                  Command="{Binding CloseWindow}"
+                  CommandParameter="{Binding ElementName=myCardOverviewWindow}"
+                  Background="{x:Null}"
+                  BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source=".\Resources\Images\BackArrow.png" />
+            </StackPanel>
+        </Button>
 
         <DockPanel Margin="10"
                    Grid.Row="2"
