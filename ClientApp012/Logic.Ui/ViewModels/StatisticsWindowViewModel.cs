@@ -162,9 +162,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     double yMax = topicStats.CardStatistics.Count;
                     double yMin = 0;
 
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered,xMax,xMin, yMax,yMin, "#FF0000");
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
+                    LineGraphVM.Shapes.Clear();
                     LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredMoreThenTwice, xMax, xMin, yMax, yMin, "#00FF00");
+                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
+                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered,xMax,xMin, yMax,yMin, "#FF0000");
 
                     //Graph Axis Setup
 
