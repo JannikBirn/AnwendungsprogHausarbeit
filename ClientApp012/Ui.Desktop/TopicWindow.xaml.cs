@@ -22,6 +22,6 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop
         public TopicWindow()
         {
             InitializeComponent();
-        }
+        }     
     }
 }

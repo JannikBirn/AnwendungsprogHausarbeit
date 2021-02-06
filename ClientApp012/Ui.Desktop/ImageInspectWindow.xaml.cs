@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop
 {
     /// <summary>
-    /// Interaction logic for NewCardWindow.xaml
+    /// Interaction logic for ImageInspectWindow.xaml
     /// </summary>
-    public partial class NewCardWindow : Window
+    public partial class ImageInspectWindow : Window
     {
-        public NewCardWindow()
+        public ImageInspectWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
