@@ -7,24 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class LineGraphViewModel : INotifyPropertyChanged
-    {        
+    {
         //Axis
+        private string verticalUnit;
+        public string VerticalUnit
+        {
+            get { return verticalUnit; }
+            set
+            {
+                verticalUnit = value;
+                OnPropertyChanged("VerticalUnit");
+
+            }
+
+        }
         private ObservableCollection<string> verticallNumbers;
         public ObservableCollection<string> VerticalNumbers
         {
-            get { return verticallNumbers; }
+            get
+            {
+                return new ObservableCollection<string>(verticallNumbers.Skip(1).Reverse());
+            }
             set
             {
                 verticallNumbers = value;
                 OnPropertyChanged("VerticalNumbers");
             }
         }
+        public string VerticalNumberFirst
+        {
+            get
+            {
+                return verticallNumbers.First();
+            }
+        }
 
+        private string horizontalUnit;
+        public string HorizontalUnit
+        {
+            get { return horizontalUnit; }
+            set
+            {
+                horizontalUnit = value;
+                OnPropertyChanged("HorizontalUnit");
+
+            }
+
+        }
         private ObservableCollection<string> horizontalNumbers;
         public ObservableCollection<string> HorizontalNumbers
         {
@@ -36,7 +69,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        //Shapes - Lines
+        //Shapes - Lines - Paths
         private ObservableCollection<IShape> shapes;
         public ObservableCollection<IShape> Shapes
         {
@@ -54,42 +87,49 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
 
-            for (int i = 0; i < 10; i++)
-            {
-                HorizontalNumbers.Add("" + i);
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    HorizontalNumbers.Add("" + i);
+            //}
 
             VerticalNumbers = new ObservableCollection<string>();
 
-            for (int i = 10; i < 20; i++)
-            {
-                VerticalNumbers.Add("" + i);
-            }
+            //for (int i = 10; i < 15; i++)
+            //{
+            //    VerticalNumbers.Add("" + i);
+            //}
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
-            Shapes.Add(new ShapeLine(0.1,0,0.1,1));
+            Shapes.Add(new ShapeLine(0.1, 0, 0.1, 1));
 
 
-            PointCollection myPointCollection = new PointCollection();
+            //var shape = new ShapePath(new Point(0, 1));
+            //shape.AddPoint(new Point(0.1, 0.9));
+            //shape.AddPoint(new Point(0.2, 0.3));
+            //shape.AddPoint(new Point(0.5, 0.5));
+            //Shapes.Add(shape);
 
-            myPointCollection.Add(new Point(0, 1));
-            myPointCollection.Add(new Point(0, 0.9));
-            myPointCollection.Add(new Point(0.1, 0.9));
+        }
 
-            myPointCollection.Add(new Point(0.1, 0.9));
-            myPointCollection.Add(new Point(0.2, 0.9));
-            myPointCollection.Add(new Point(0.2, 0.8));
+        public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin, string color)
+        {
+            List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
 
-            myPointCollection.Add(new Point(0.2, 0.8));
-            myPointCollection.Add(new Point(0.2, 0.5));
-            myPointCollection.Add(new Point(0.5, 0.5));
+            AddPath(normalizedList[0], normalizedList, color);
+        }
 
-
-            Shapes.Add(new ShapePath(myPointCollection));
-
-
-
+        public void AddPath(Point startPoint, List<Point> points, string color)
+        {
+            ShapePath path = new ShapePath(new Point(startPoint.X, 1 - startPoint.Y));
+            Point[] sortedPoints = points.Select(point => new Point(point.X, 1 - point.Y)).ToArray();
+            foreach (Point point in sortedPoints)
+            {
+                path.AddPoint(point);
+            }
+            path.Color = color;
+            path.SetIsCurved(false);
+            Shapes.Add(path);
         }
 
         //For the INotifyPropertyChanged interface
