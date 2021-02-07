@@ -23,6 +23,11 @@ public class Card
         Id = DateTime.Now.Ticks;
         cardAnswers = new List<CardAnswer>();
     }
+    public Card(long id)
+    {
+        Id = id;
+        cardAnswers = new List<CardAnswer>();
+    }
 
     public void StartAnswering()
     {

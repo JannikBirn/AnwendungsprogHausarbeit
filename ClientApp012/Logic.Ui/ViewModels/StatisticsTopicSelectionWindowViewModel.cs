@@ -20,7 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Commands for StaticsTopicSelectionWindow
         public RelayCommand SelectedTopicCommand { get; }
 
-        public List<KeyValuePair<int, string>> TopicList { get; set; }
+        public List<KeyValuePair<long, string>> TopicList { get; set; }
 
 
         public StatisticsTopicSelectionWindowViewModel(RootViewModel model, StatisticsWindowViewModel statisticsVM)
@@ -38,12 +38,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void RefreshList()
         {
-            TopicList = new List<KeyValuePair<int, string>>();
-            TopicList.Add(new KeyValuePair<int, string>(-1, "All"));
+            TopicList = new List<KeyValuePair<long, string>>();
+            TopicList.Add(new KeyValuePair<long, string>(-1, "All"));
 
             foreach (TopicViewModel topicVM in RootViewModel.TopicCollection)
             {
-                TopicList.Add(new KeyValuePair<int, string>(topicVM.ID, topicVM.Name));
+                TopicList.Add(new KeyValuePair<long, string>(topicVM.ID, topicVM.Name));
             }
         }
 
@@ -56,7 +56,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void SelectedTopicCommandMethod(object topic)
         {
             //TopicViewModel topicVM = (TopicViewModel)topic;
-            KeyValuePair<int, string> topicKey = (KeyValuePair<int, string>)topic;
+            KeyValuePair<long, string> topicKey = (KeyValuePair<long, string>)topic;
             if (topicKey.Key == -1)
             {
                 StatisticsWindowVM.SelectedTopic = null;

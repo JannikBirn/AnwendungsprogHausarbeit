@@ -17,6 +17,11 @@ public class Topic : ObservableCollection<Card>
 		Id = DateTime.Now.Ticks;
 	}
 
+	public Topic(long id)
+	{
+		Id = id;
+	}
+
 	public List<Card> StartQuestioning()
     {
 		TopicStatistics.SetStart();
