@@ -24,7 +24,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PrintWindow { get; }
         public RelayCommand PrintAllCards { get; }
         public RelayCommand CloseWindow { get; }
-        public bool DirectPrinting { get; } //geht noch nicht
+
         public CardOverViewWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
@@ -41,7 +41,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenPrintWindowMessage message = new OpenPrintWindowMessage();
             message.Grid = allCards;
             Messenger.Instance.Send(message);
-            
         }
 
         private void PrintTestPageMethod()

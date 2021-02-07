@@ -9,6 +9,9 @@ using System.Windows.Documents;
 using System.Windows;
 using System.Windows.Media;
 using System.IO;
+using System.Windows.Xps.Packaging;
+using System.Windows.Xps;
+using System.Windows.Documents.Serialization;
 
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
@@ -17,12 +20,11 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         public bool Landscape { get; set; }
         public int ScalingFactor { get; set; }
         public int NumberOfPages { get; set; }
-
         public PrintAllCards()
         {
-            Landscape = false;
-            ScalingFactor = 90;
-            NumberOfPages = 1;
+            //Landscape = false;
+            //ScalingFactor = 90;
+            //NumberOfPages = 1;
         }
 
         public void PrintCards(object cards)
@@ -48,18 +50,46 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             PrintDialog printDlg = new PrintDialog();
             //casts the object cards to DataGrid
             DataGrid dg = cards as DataGrid;
+
+            //maybe formating DataGrid here
+
             //prepares a formatted page
             FormatPrintDialoge(printDlg);
 
+
+        }
+
+        public FixedDocumentSequence PrintWindowPreview(DataGrid dg)
+        {
             //sets a filename an checks, if this name is already taken. in this case, the old file would be deleted
             // .xps is an alternative file type to pdf
-            //string printFileName = "print_preview.xps";
-            //if(File.Exists(printFileName) == true)
-            //{
-            //    File.Delete(printFileName);
-            //}
+            string printFileName = "print_preview.xps";
+            if (File.Exists(printFileName) == true)
+            {
+                File.Delete(printFileName);
+            }
 
+            //create xps doc
+            XpsDocument doc = new XpsDocument(printFileName, FileAccess.ReadWrite);
+            XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(doc);
+
+            //creates new Document wich is shown in PrintWindow.xaml
+            SerializerWriterCollator output_Doument = writer.CreateVisualsCollator();
+            output_Doument.BeginBatchWrite();
+            output_Doument.Write(dg);
+            output_Doument.EndBatchWrite();
+
+            //open it
+            FixedDocumentSequence preview = doc.GetFixedDocumentSequence();
             //cards.Print_Window print_Window = new cards.Print_Window(preview);
+
+            //close 
+            doc.Close();
+            writer = null;
+            output_Doument = null;
+            doc = null;
+
+            return preview;
 
         }
 
@@ -86,26 +116,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             return pd;
         }
 
-  
 
-        private FlowDocument FormatFlowDocument(FlowDocument doc)
-        {
-            //Create Section
-            Section sec = new Section();
-            //Create first Paragraph
-            Paragraph p1 = new Paragraph();
-            //Create and add FontStyle. Got from DataGrid
 
-            p1.FontStyle = doc.FontStyle;
-            p1.FontSize = doc.FontSize;
-            p1.FontFamily = doc.FontFamily;
-
-            //Add Paragraph to Section
-            sec.Blocks.Add(p1);
-            //Add Section to FlowDocument
-            doc.Blocks.Add(sec);
-
-            return doc;
-        }
     }
 }

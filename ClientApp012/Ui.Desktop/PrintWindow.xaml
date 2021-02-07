@@ -18,57 +18,77 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
+    <Window.DataContext>
+        <Binding Path="PrintWindowVM"
+                 Source="{StaticResource ViewModelLocator}" />
+    </Window.DataContext>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="125" />
+            <ColumnDefinition Width="125" />
 
             <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
+        
+        <Button   Grid.Column="0"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Left"
+                  Margin="10,10,0,0"
+                  Height="40"
+                  Width="50"
+                  Command="{Binding CloseWindow}"
+                  CommandParameter="{Binding ElementName=myCardOverviewWindow}"
+                  Background="{x:Null}"
+                  BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source=".\Resources\Images\BackArrow.png" />
+            </StackPanel>
+        </Button>
+        
+        <DockPanel VerticalAlignment="Stretch"
+                   HorizontalAlignment="Center"
+                   Grid.ColumnSpan="2"
+                   LastChildFill="False">
 
-        <DockPanel VerticalAlignment="Top"
-                   HorizontalAlignment="Center">
-
-            <CheckBox Content="Landscape Mode"
+            <CheckBox Content="Landscape"
                       x:Name="myLandscape"
-                      Foreground="White"
-                      Margin="0,10,0,0"
-                      DockPanel.Dock="Top" />
+                      Foreground="#FF707070"
+                      Margin="0,80,0,0"
+                      DockPanel.Dock="Top"
+                      IsChecked="{Binding PrintWindowVM.Landscape, Source={StaticResource ViewModelLocator}}" />
             <Label Content="Number of copies"
-                   Foreground="White"
+                   Foreground="#FF707070"
                    DockPanel.Dock="Top"
-                   Margin="0,10,0,0" />
-            <TextBox Text="1"
-                     Name="copyNumber"
+                   Margin="0,30,0,0" />
+            <TextBox Text="{Binding PrintWindowVM.NumberOfPages, Source={StaticResource ViewModelLocator}}"
+                     x:Name="myNumberOfPages"
                      DockPanel.Dock="Top"
                      Width="25"
                      HorizontalAlignment="Center" />
             <Label Content="Scale Factor"
-                   Foreground="White"
+                   Foreground="#FF707070"
                    DockPanel.Dock="Top"
-                   Margin="0,10,0,0" />
-            <Slider Height="20"
-                    Width="100"
-                    DockPanel.Dock="Top"
-                    HorizontalAlignment="Center" />
-            <TextBox Text="1"
-                     Name="SliderNumber"
+                   Margin="0,30,0,0" />
+            <TextBox Text="{Binding PrintWindowVM.ScalingFactor, 
+                                    Source={StaticResource ViewModelLocator}}"
+                     
+                     x:Name="mySliderNumber"
                      DockPanel.Dock="Top"
                      Width="25"
                      HorizontalAlignment="Center"
                      Margin="0,10,0,0" />
             <Button x:Name="BtnPrint"
                     Content="Print"
-                    DockPanel.Dock="Top"
-                    Margin="0,50,0,0"
+                    DockPanel.Dock="Bottom"
+                    Margin="0,0,0,50"
                     Style="{DynamicResource DefaultButtonStyleJan }"
                     Command="{Binding PrintIt}"
                     CommandParameter="{Binding ElementName=PreviewD}" />
         </DockPanel>
 
-        <DataGrid Grid.Column="1"
+        <DataGrid Grid.Column="2"
                   Name="Grid1"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>

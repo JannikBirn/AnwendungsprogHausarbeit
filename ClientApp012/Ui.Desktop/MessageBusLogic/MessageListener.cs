@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 {
@@ -19,7 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
         //Window Instances
         private StatisticsWindow StatisticsWindow { get; set; }
-
+        private PrintWindow PrintWindow{ get; set; }
         public MessageListener()
         {
             InitMessenger();
@@ -53,9 +54,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
-                    PrintWindow myPrintWindow= new PrintWindow();
-                    myPrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
-                    myPrintWindow.ShowDialog();
+                    PrintWindow  = new PrintWindow();
+                    PrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
+                    PrintWindow.ShowDialog();
                 });
 
 
@@ -81,6 +82,10 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 myWindow.ShowDialog();
             });
 
+            Messenger.Instance.Register<SetPrintPreviewMessage>(this, delegate (SetPrintPreviewMessage message)
+            {
+                //PrintWindow.Grid1 = message.FixedDocumentSequence;
+            });
         }
     }
 }
