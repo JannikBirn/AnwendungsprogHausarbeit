@@ -38,6 +38,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             TopicViewModel topicVM = (TopicViewModel)topic;
             StatisticsWindowVM.SelectedTopic = topicVM;
+            StatisticsWindowVM.UpdateGraph();
         }
 
     }

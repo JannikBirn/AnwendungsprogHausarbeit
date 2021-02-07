@@ -8,6 +8,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 {
     public class TopicAnswerStatistics
     {
+        public int TotalCardAmount { get; set; }
         //How many individual cards were answered that day
         public int Answered { get; set; }
         public int AnsweredTwice { get; set; }

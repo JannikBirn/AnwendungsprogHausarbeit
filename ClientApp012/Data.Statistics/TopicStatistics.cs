@@ -72,6 +72,8 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 
                     currentTopicAnswerStatistic.TimeAvg = (currentTopicAnswerStatistic.TimeAvg + cardAnswerDaily.Value.TimeAvg) / 2;
 
+                    currentTopicAnswerStatistic.TotalCardAmount = Topic.Count;
+
                     if (isFirstTopicAnswer)
                         answerePerDay.Add(cardAnswerDaily.Key, currentTopicAnswerStatistic);
                 }

@@ -64,6 +64,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
+        private int CurrentPanelIndex { get; set; }
+
 
         public StatisticsWindowViewModel(RootViewModel model, LineGraphViewModel lineGraphVM)
         {
@@ -99,6 +101,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Statistics = new Statistics(RootViewModel.Model);
         }
 
+        public void UpdateGraph()
+        {
+            SetGraph(CurrentPanelIndex, DateTime.Now.Date.Ticks, DateTime.Now.Date.Ticks + TimeSpan.FromDays(10).Ticks);
+        }
+
         //Setup Graph from and to date at 0:00:00
         //iteration -> default 24 hours
         //from included, to included
@@ -110,9 +117,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
 
             //TopicStats for that period of time
-            //TODO filter all topics
-            Data.Statistics.TopicStatistics topicStats = Statistics.topicStatistics.Find(param => param.Topic == SelectedTopic.Model);
-            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily = topicStats.GetTopicAnswersDaily(from, to);
+            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily;
+            if (SelectedTopic != null)
+            {
+                Data.Statistics.TopicStatistics topicStats = Statistics.topicStatistics.Find(param => param.Topic == SelectedTopic.Model);
+                topicAnswersDaily = topicStats.GetTopicAnswersDaily(from, to);
+            }
+            else
+            {
+                topicAnswersDaily = Statistics.GetAllTopicAnswersDaily(from, to);
+            }
 
             //For History Panel
 
@@ -177,7 +191,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     //Max and Min Values for Skaling 
                     double xMax = to;
                     double xMin = from;
-                    double yMax = topicStats.CardStatistics.Count;
+                    double yMax = topicAnswersDaily[from].TotalCardAmount;
                     double yMin = 0;
 
                     LineGraphVM.Shapes.Clear();
@@ -218,7 +232,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenStatisticsPanelMethod(int panelIndex)
         {
-            SetGraph(panelIndex, DateTime.Now.Date.Ticks, DateTime.Now.Date.Ticks + TimeSpan.FromDays(10).Ticks);
+            CurrentPanelIndex = panelIndex;
+            UpdateGraph();
 
 
             //Sending Message to MessageListener to change Panel
