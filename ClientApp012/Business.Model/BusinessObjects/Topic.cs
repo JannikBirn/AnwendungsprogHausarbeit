@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 [Serializable]
 public class Topic : ObservableCollection<Card>
@@ -34,6 +35,11 @@ public class Topic : ObservableCollection<Card>
 	public void UpdateDifficulties()
     {
 		//updating the difficulties of the cards of this collection
+    }
+
+	public new void Add(Card card)
+    {
+		card.Id = this.Max(param => param.Id) + 1;
     }
 
 }
