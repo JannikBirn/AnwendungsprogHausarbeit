@@ -1,5 +1,6 @@
 ﻿using De.HsFlensburg.ClientApp012.Data.Statistics;
 using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
+using De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using System;
@@ -31,6 +32,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Relod Command
         public RelayCommand ReloadStatistics { get; }
+        //Buttons
+        public RelayCommand FirstButton { get; }
+        public RelayCommand SecondButton { get; }
+        public RelayCommand ThirdButton { get; }
 
         //Selected Topic
         //If Property is null -> all topics are selected
@@ -72,6 +77,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
             ReloadStatistics = new RelayCommand(() => InitStatistics());
+
+            FirstButton = new RelayCommand(() =>
+            {
+                LineGraphVM.ThirdLine.IsInvisible = !LineGraphVM.ThirdLine.IsInvisible;
+            });
+            SecondButton = new RelayCommand(() =>
+            {
+                LineGraphVM.SecondLine.IsInvisible = !LineGraphVM.SecondLine.IsInvisible;
+            });
+            ThirdButton = new RelayCommand(() =>
+            {
+                LineGraphVM.FirstLine.IsInvisible = !LineGraphVM.FirstLine.IsInvisible;
+            });
 
         }
 
@@ -163,9 +181,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     double yMin = 0;
 
                     LineGraphVM.Shapes.Clear();
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredMoreThenTwice, xMax, xMin, yMax, yMin, "#00FF00");
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
-                    LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered,xMax,xMin, yMax,yMin, "#FF0000");
+                    ShapePath firstPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredMoreThenTwice, xMax, xMin, yMax, yMin, "#00FF00");
+                    ShapePath secondPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
+                    ShapePath thirdPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered, xMax, xMin, yMax, yMin, "#FF0000");
+
+                    LineGraphVM.FirstLine = firstPath;
+                    LineGraphVM.SecondLine = secondPath;
+                    LineGraphVM.ThirdLine = thirdPath;
+                    LineGraphVM.Shapes.Add(firstPath);
+                    LineGraphVM.Shapes.Add(secondPath);
+                    LineGraphVM.Shapes.Add(thirdPath);
 
                     //Graph Axis Setup
 

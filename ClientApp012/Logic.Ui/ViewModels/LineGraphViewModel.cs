@@ -81,6 +81,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
+        public ShapePath FirstLine { get; set; }
+        public ShapePath SecondLine { get; set; }
+        public ShapePath ThirdLine { get; set; }
+
+
         public LineGraphViewModel()
         {
 
@@ -112,14 +117,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
-        public void AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin, string color)
+        public ShapePath AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin, string color)
         {
             List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
 
-            AddPath(normalizedList[0], normalizedList, color);
+            return AddPath(normalizedList[0], normalizedList, color);
         }
 
-        public void AddPath(Point startPoint, List<Point> points, string color)
+        public ShapePath AddPath(Point startPoint, List<Point> points, string color)
         {
             ShapePath path = new ShapePath(new Point(startPoint.X, 1 - startPoint.Y));
             Point[] sortedPoints = points.Select(point => new Point(point.X, 1 - point.Y)).ToArray();
@@ -129,7 +134,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
             path.Color = color;
             path.SetIsCurved(false);
-            Shapes.Add(path);
+            return path;            
         }
 
         //For the INotifyPropertyChanged interface

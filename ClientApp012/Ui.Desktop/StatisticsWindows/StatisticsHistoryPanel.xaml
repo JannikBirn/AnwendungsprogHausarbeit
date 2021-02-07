@@ -19,7 +19,7 @@
     </Page.Resources>
 
     <Page.DataContext>
-        <Binding Path="StatisticsTopicSelectionWindowVM"
+        <Binding Path="StatisticsWindowVM"
                  Source="{StaticResource ViewModelLocator}" />
     </Page.DataContext>
 
@@ -44,7 +44,8 @@
                     Margin="10 5"
                     Grid.Column="0">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Red}">
+                        Foreground="{DynamicResource Static.Red}"
+                        Command="{Binding Path=FirstButton}">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered" />
@@ -60,7 +61,8 @@
                     Margin="10 5"
                     Grid.Column="1">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Blue}">
+                        Foreground="{DynamicResource Static.Blue}"
+                        Command="{Binding Path=SecondButton}">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 2" />
@@ -75,7 +77,8 @@
                     Margin="10 5"
                     Grid.Column="2">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Green}">
+                        Foreground="{DynamicResource Static.Green}"
+                        Command="{Binding Path=ThirdButton}">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 3+" />
