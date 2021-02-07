@@ -62,18 +62,19 @@
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
-                 Text="QuestionText"
+                 Text="{Binding QuestionText}"
                  VerticalAlignment="Bottom"
                  Width="200"
-                 Grid.Row="0" />
+                 Grid.Row="0"
+                 TextChanged="TextBox_TextChanged" />
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
-                 Text="AnswerText"
+                 Text="{Binding AnswerText}"
                  VerticalAlignment="Bottom"
                  Width="200"
                  Grid.Row="4" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding NewCardWindowVM.LoadQuestionImage, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                 Content="Insert Image File to the Question"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
@@ -89,7 +90,7 @@
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadQuestionVideo, Mode=OneWay}"
                 Content="Insert Video File to the Question"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
@@ -97,7 +98,7 @@
                 Width="200"
                 Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadQuestionAudio, Mode=OneWay}"
                 Content="Insert Audio File to the Question"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
@@ -105,7 +106,7 @@
                 Width="200"
                 Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadAnswerImage, Mode=OneWay}"
                 Content="Insert Image File to the Answer"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
@@ -121,7 +122,7 @@
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadAnswerVideo, Mode=OneWay}"
                 Content="Insert Video File to the Answer"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
@@ -129,7 +130,7 @@
                 Width="200"
                 Margin="0"
                 Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadAnswerAudio, Mode=OneWay}"
                 Content="Insert Audio File to the Answer"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
@@ -144,7 +145,7 @@
                 VerticalAlignment="Top"
                 Style="{DynamicResource BackButton}"
                 Grid.Row="0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding AddCard, Mode=OneWay}"
                 Content="Create Card"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"

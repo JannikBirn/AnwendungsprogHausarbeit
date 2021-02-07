@@ -26,6 +26,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
             LineGraphVM = new LineGraphViewModel();
             LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
+            NewCardWindowVM = new NewCardWindowViewModel ( RootViewModel );
 
         }
 
@@ -36,5 +37,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
         public LineGraphViewModel LineGraphVM { get; }
         public LearningCardWindowViewModel LearningCardWindowVM { get; }
+        public NewCardWindowViewModel NewCardWindowVM { get; }
     }
 }

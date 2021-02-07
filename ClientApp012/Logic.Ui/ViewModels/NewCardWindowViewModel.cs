@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using Microsoft.Win32;
+using Services.Serialization;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    class NewCardWindowViewModel
+    public class NewCardWindowViewModel
     {
         public Image QuestionImage = null;
         public Image AnswerImage = null;
 
+       
         public String QuestionText { set; get; }
         public String QuestionVideoPath { set; get; } //Video reference
         public String QuestionAudioPath { set; get; } //Audio reference
@@ -34,7 +36,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LoadAnswerAudio { get; }
 
 
-        public NewCardWindowViewModel(TopicViewModel model)
+        public NewCardWindowViewModel(RootViewModel model)
         {
             AddCard = new RelayCommand(() => AddCardMethod());
             LoadQuestionImage = new RelayCommand(() => LoadQuestionImageMethod());
@@ -43,35 +45,37 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
             LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
             LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
-            Topic = model;
+            Topic = model.TopicCollection[0];
         }
 
         private void AddCardMethod()
         {
             if (QuestionImage != null)
             {
-                QuestionImagePath = SaveImage(QuestionImage, QuestionImagePath);
+                QuestionImagePath = Save(QuestionImagePath, Path.GetFileName(QuestionImagePath));
             }
             if (AnswerImage != null)
             {
-                AnswerImagePath = SaveImage(AnswerImage, AnswerImagePath);
+                AnswerImagePath = Save(AnswerImagePath, Path.GetFileName(AnswerImagePath));
             }
             if (!String.IsNullOrEmpty(QuestionAudioPath))
             {
-                QuestionAudioPath = SaveAudio(QuestionAudioPath);
+                QuestionAudioPath = Save(QuestionAudioPath, Path.GetFileName(QuestionAudioPath));
             }
             if (!String.IsNullOrEmpty(AnswerAudioPath))
             {
-                AnswerAudioPath = SaveAudio(AnswerAudioPath);
+                AnswerAudioPath = Save(AnswerAudioPath, Path.GetFileName(AnswerAudioPath));
             }
             if (!String.IsNullOrEmpty(QuestionVideoPath))
             {
-                QuestionVideoPath = SaveVideo(QuestionVideoPath);
+                QuestionVideoPath = Save(QuestionVideoPath, Path.GetFileName(QuestionVideoPath));
             }
             if (!String.IsNullOrEmpty(AnswerVideoPath))
             {
-                AnswerVideoPath = SaveVideo(AnswerVideoPath);
+                AnswerVideoPath = Save(AnswerVideoPath, Path.GetFileName(AnswerVideoPath));
             }
+
+            // Check ob Text angegeben wurde
 
             CardViewModel cvm = new CardViewModel
             {
@@ -159,9 +163,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 AnswerAudioPath = dialog.FileName; // Audio reference
             }
         }
-        private String SaveImage(Image image, string sourcePath)
+
+        public String Save(string source, string fileName)
         {
-            string assetPath = $@"{Directory.GetCurrentDirectory()}\Assets\ImageFiles";
+            return source;
+        }
+       /* private String SaveImage(Image image, string sourcePath)
+        {
+            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
             if (!Directory.Exists(assetPath))
             {
                 Directory.CreateDirectory(assetPath);
@@ -172,7 +181,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
         private String SaveAudio(string sourcePath)
         {
-            string assetPath = $@"{Directory.GetCurrentDirectory()}\Assets\AudioFiles";
+            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
             if (!Directory.Exists(assetPath))
             {
                 Directory.CreateDirectory(assetPath);
@@ -183,7 +192,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
         private String SaveVideo(string sourcePath)
         {
-            string assetPath = $@"{Directory.GetCurrentDirectory()}\Assets\VideoFiles";
+            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
             if (!Directory.Exists(assetPath))
             {
                 Directory.CreateDirectory(assetPath);
@@ -192,5 +201,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             File.Copy(sourcePath, assetPath);
             return destPath;
         }
+       */
     }
 }
