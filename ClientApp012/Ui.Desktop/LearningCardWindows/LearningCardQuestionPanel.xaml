@@ -26,7 +26,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="Question:"
-               VerticalAlignment="Top"
+               VerticalAlignment="Center"
                HorizontalAlignment="Center"
                Grid.Row="0"
                FontFamily="Roboto"
@@ -35,33 +35,35 @@
         <Button x:Name="btn_Next"
                 Content="Next"
                 HorizontalAlignment="Center"
-                Grid.Row="3"
+                Grid.Row="2"
                 VerticalAlignment="Center"
-                Width="74"
-                Height="56"
+                Width="130"
+                Height="60"
                 Command="{Binding LearningCardWindowVM.OpenLearningCardAnswerPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
+                />
         <Image HorizontalAlignment="Left"
-               Height="328"
+               Height="463"
                Grid.Row="1"
                VerticalAlignment="Top"
-               Width="382"
-               Margin="201,49,0,0" />
+               Width="508"
+               Margin="149,65,0,0" />
         <MediaElement HorizontalAlignment="Center"
                       Height="352"
                       Grid.Row="1"
                       VerticalAlignment="Center"
                       Width="434" />
-        <Label Content="{Binding LearningCardWindowVM.FirstC.QuestionText, Source={StaticResource ViewModelLocator}}"
-               HorizontalAlignment="Center"
+        <Label Content="{Binding FirstC.QuestionText}"
+               HorizontalAlignment="Left"
+               Margin="183,128,0,0"
                Grid.Row="1"
-               VerticalAlignment="Center"
-               Height="416"
-               Width="502"
-               Foreground="#FF707070"
+               VerticalAlignment="Top"
+               Height="352"
+               Width="434"
+               Foreground="Gray"
                FontFamily="Roboto"
                FontSize="20"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" />
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Center" />
     </Grid>
 </Page>

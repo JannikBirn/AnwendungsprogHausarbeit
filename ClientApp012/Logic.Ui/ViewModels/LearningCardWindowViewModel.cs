@@ -31,11 +31,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 return RootViewModel.TopicCollection[0]; ;
             }
-
-            set
-            {
-                FirstT = value;
-            }
         }
 
 
@@ -66,9 +61,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
             OpenLearningCardFinishPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL));
             EndAnswering = new RelayCommand(() => EndAnsweringMethod());
-           
-
-            //  QuestionText = RootViewModel.TopicCollection[0][0];
         }
 
         private void OpenLearningCardPanelMethod(int panelIndex)
@@ -81,13 +73,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void StartAnsweringMethod()
         {
-            TopicViewModel firstTopic = RootViewModel.TopicCollection[0];
-            CardViewModel firstCardinFirstTopic = firstTopic[0];
-            firstCardinFirstTopic.StartAnswering();
+         FirstC.StartAnswering();
          
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
             HasStarted = false;
         }
+
+        private void LearningCardMethod()
+        {
+            FirstC.FinishAnswer(true);
+        }
+
         private void EndAnsweringMethod()
         {
             HasStarted = true;
