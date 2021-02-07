@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
              xmlns:shapes="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes;assembly=Logic.Ui"
              mc:Ignorable="d"
-             d:DesignHeight="250"
-             d:DesignWidth="800">
+             d:DesignHeight="326.8"
+             d:DesignWidth="552.8">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -22,154 +22,184 @@
                  Source="{StaticResource ViewModelLocator}" />
     </UserControl.DataContext>
 
-    <Grid Background="#FF2F3136">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.05*"
-                              MinWidth="15"
-                              MaxWidth="20"></ColumnDefinition>
-            <ColumnDefinition Width="0.05*"
-                              MinWidth="15"
-                              MaxWidth="20"></ColumnDefinition>
-            <ColumnDefinition Width="0.005*"
-                              MinWidth="5"
-                              MaxWidth="10"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition Height="0.005*"
-                           MinHeight="5"
-                           MaxHeight="10"></RowDefinition>
-            <RowDefinition Height="0.05*"
-                           MinHeight="25"
-                           MaxHeight="40"></RowDefinition>
-            <RowDefinition Height="0.05*"
-                           MinHeight="25"
-                           MaxHeight="40"></RowDefinition>
-        </Grid.RowDefinitions>
+    <Border BorderBrush="{StaticResource Static.Background}"
+            BorderThickness="10"
+            CornerRadius="20"
+            RenderOptions.EdgeMode="Aliased">
 
-        <!--Canvas-->
-        <ItemsControl Name="canvasControl"
-                      ItemsSource="{Binding Shapes}"
-                      Grid.Column="3"
-                      Grid.Row="0"
-                      Margin="0">
-            <ItemsControl.Resources>
-                <DataTemplate DataType="{x:Type shapes:ShapeLine}">
-                    <Line X1="{Binding X1}"
-                          X2="{Binding X2}"
-                          Y1="{Binding Y1}"
-                          Y2="{Binding Y2}"
-                          StrokeThickness="0.01"
-                          Stroke="Black">
-                        <Line.RenderTransform>
-                            <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}"
-                                            ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}" />
-                        </Line.RenderTransform>
-                    </Line>
-                </DataTemplate>
+        <Grid Background="{StaticResource Static.Background}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.05*"
+                                  MinWidth="15"
+                                  MaxWidth="20"></ColumnDefinition>
+                <ColumnDefinition Width="0.05*"
+                                  MinWidth="15"
+                                  MaxWidth="20"></ColumnDefinition>
+                <ColumnDefinition Width="0.005*"
+                                  MinWidth="5"
+                                  MaxWidth="10"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="0.005*"
+                               MinHeight="5"
+                               MaxHeight="10"></RowDefinition>
+                <RowDefinition Height="0.05*"
+                               MinHeight="25"
+                               MaxHeight="40"></RowDefinition>
+                <RowDefinition Height="0.05*"
+                               MinHeight="25"
+                               MaxHeight="40"></RowDefinition>
+            </Grid.RowDefinitions>
 
-                <DataTemplate DataType="{x:Type shapes:ShapePath}">
-                    <Path Stroke="#FF56C0E9"
-                          StrokeThickness="4"
-                          Fill="Transparent">
-                        <Path.Data>
-                            <PathGeometry>
-                                <PathGeometry.Transform>
-                                    <TransformGroup>
-                                        <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}"
-                                                        ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}" />
-                                    </TransformGroup>
-                                </PathGeometry.Transform>
-                                <PathGeometry.Figures>
-                                    <PathFigureCollection>
-                                        <PathFigure IsFilled="False"
-                                                    StartPoint="{Binding StartPoint}">
-                                            <PathFigure.Segments>
-                                                <PathSegmentCollection>
-                                                    <PolyBezierSegment Points="{Binding Points}"
-                                                                       IsSmoothJoin="True" />
-                                                </PathSegmentCollection>
-                                            </PathFigure.Segments>
-                                        </PathFigure>
-                                    </PathFigureCollection>
-                                </PathGeometry.Figures>
-                            </PathGeometry>
-                        </Path.Data>
-                    </Path>
-                </DataTemplate>
+            <!--Canvas-->
+            <Border Grid.Column="3"
+                    Grid.Row="0"
+                    BorderBrush="{StaticResource Static.Page.Background}"
+                    BorderThickness="3 0 0 3">
+                <ItemsControl Name="canvasControl"
+                              ItemsSource="{Binding Shapes}"
+                              Margin="0">
+                    <ItemsControl.Resources>
+                        <DataTemplate DataType="{x:Type shapes:ShapeLine}">
+                            <Line X1="{Binding X1}"
+                                  X2="{Binding X2}"
+                                  Y1="{Binding Y1}"
+                                  Y2="{Binding Y2}"
+                                  StrokeThickness="0.006"
+                                  Stroke="{StaticResource Static.Page.Background}">
+                                <Line.RenderTransform>
+                                    <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}"
+                                                    ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}" />
+                                </Line.RenderTransform>
+                            </Line>
+                        </DataTemplate>
 
-            </ItemsControl.Resources>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <Canvas x:Name="LineGraphCanvas"
-                            Background="Violet" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+                        <DataTemplate DataType="{x:Type shapes:ShapePath}">
+                            <Path Stroke="{Binding Color}"
+                                  StrokeThickness="4"
+                                  Fill="Transparent">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Transform>
+                                            <TransformGroup>
+                                                <ScaleTransform ScaleX="{Binding ActualWidth, ElementName=LineGraphCanvas}"
+                                                                ScaleY="{Binding ActualHeight, ElementName=LineGraphCanvas}" />
+                                            </TransformGroup>
+                                        </PathGeometry.Transform>
+                                        <PathGeometry.Figures>
+                                            <PathFigureCollection>
+                                                <PathFigure IsFilled="False"
+                                                            StartPoint="{Binding StartPoint}">
+                                                    <PathFigure.Segments>
+                                                        <PathSegmentCollection>
+                                                            <PolyBezierSegment Points="{Binding Path}"
+                                                                               IsSmoothJoin="True" />
+                                                        </PathSegmentCollection>
+                                                    </PathFigure.Segments>
+                                                </PathFigure>
+                                            </PathFigureCollection>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </DataTemplate>
 
-
-        <!--Vertical Axis-->
-        <Viewbox Grid.Column="0"
-                 Grid.Row="0"
-                 HorizontalAlignment="Right"
-                 VerticalAlignment="Top">
-            <Label  Content="%"
-                    Style="{StaticResource DefaultLabel}" />
-        </Viewbox>
-
-        <ItemsControl Name="verticalNumbers"
-                      ItemsSource="{Binding Path=VerticalNumbers}"
-                      Grid.Column="1"
-                      Grid.Row="0">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Columns="1" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Viewbox>
-                        <Label Content="{Binding}"
-                               VerticalAlignment="Center"
-                               HorizontalAlignment="Right"
-                               Style="{StaticResource DefaultLabel}" />
-                    </Viewbox>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <!--Horizontal Axis-->
-        <Viewbox  Grid.Column="4"
-                  Grid.Row="4"
-                  HorizontalAlignment="Right"
-                  VerticalAlignment="Bottom">
-            <Label Content="date"
-                   Style="{StaticResource DefaultLabel}" />
-        </Viewbox>
-
-        <ItemsControl Name="horizontalNumbers"
-                      ItemsSource="{Binding Path=HorizontalNumbers}"
-                      Grid.Column="3"
-                      Grid.Row="2">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="1" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Viewbox>
-                        <Label Content="{Binding}"
-                               VerticalAlignment="Top"
-                               HorizontalAlignment="Center"
-                               Style="{StaticResource DefaultLabel}" />
-                    </Viewbox>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </ItemsControl.Resources>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas x:Name="LineGraphCanvas"
+                                    Background="Transparent" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </Border>
 
 
+            <!--Vertical Axis-->
+            <Viewbox Grid.Column="0"
+                     Grid.Row="0"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Top">
+                <Label  Content="{Binding VerticalUnit}"
+                        Style="{StaticResource DefaultLabel}" />
+            </Viewbox>
 
-    </Grid>
+            <!--
+        <UniformGrid Grid.Column="1"
+                     Grid.Row="0"
+                     Columns="1"
+                     >
+            <Label Content="0" />
+            <Label Content="100" VerticalAlignment="Bottom" />
+        </UniformGrid> -->
+            <Grid Grid.Column="1"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <ItemsControl Name="verticalNumbers"
+                              Grid.Row="0"
+                              ItemsSource="{Binding Path=VerticalNumbers}"
+                              AlternationCount="{Binding RelativeSource={RelativeSource Self}, Path=Items.Count}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="1"
+                                         HorizontalAlignment="Right"
+                                         VerticalAlignment="Stretch">
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Viewbox VerticalAlignment="Top">
+                                <Label Content="{Binding}"
+                                       Style="{StaticResource DefaultLabel}" />
+                            </Viewbox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Viewbox VerticalAlignment="Bottom"
+                         Grid.Row="1">
+                    <Label Content="{Binding VerticalNumberFirst}"
+                           Style="{StaticResource DefaultLabel}" />
+                </Viewbox>
+            </Grid>
+
+            <!--Horizontal Axis-->
+            <Viewbox  Grid.Column="4"
+                      Grid.Row="4"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Bottom">
+                <Label Content="{Binding HorizontalUnit}"
+                       Style="{StaticResource DefaultLabel}" />
+            </Viewbox>
+
+            <ItemsControl Name="horizontalNumbers"
+                          ItemsSource="{Binding Path=HorizontalNumbers}"
+                          Grid.Column="3"
+                          Grid.Row="2">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Viewbox>
+                            <Label Content="{Binding}"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource DefaultLabel}" />
+                        </Viewbox>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+
+
+        </Grid>
+    </Border>
 </UserControl>

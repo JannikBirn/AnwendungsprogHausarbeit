@@ -8,46 +8,63 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 {
     public class CardStatistics
     {
-        List<Card> cards;
+        //Card Statistiks on a daily basis
+        //long is day at 0:00:00, int is times answered that day
+        //if there is no CardAnswerStatistics for a given day, the card wasn't answered that day
+        public Dictionary<long, CardAnswerStatistics> AnswereStatisticsDaily { get; set; }
 
-        internal CardStatistics(List<Card> cards)
+        public Card Card { get; set; }
+
+        internal CardStatistics(Card card)
         {
-            this.cards = cards;
+            Card = card;
+            AnswereStatisticsDaily = GetAnswersPerDay();
         }
 
-        //Returning all Cards that have been answered between from-to
-        public List<Card> GetCardsBetween(long from, long to)
-        {
-            List<Card> result = new List<Card>();
 
-            foreach (Card card in cards)
+        public Dictionary<long, CardAnswerStatistics> GetAnswersPerDay()
+        {
+            Dictionary<long, CardAnswerStatistics> answerePerDay = new Dictionary<long, CardAnswerStatistics>();
+
+            foreach (CardAnswer cardAnswer in Card.cardAnswers)
             {
-                foreach (CardAnswer cardAnswer in card.cardAnswers)
+                long date = new System.DateTime(cardAnswer.End).Date.Ticks;
+                bool isFirstCardAnswer = false;
+
+                CardAnswerStatistics currentAnswerStatistics;
+                if (answerePerDay.ContainsKey(date))
                 {
-                    if (from < cardAnswer.End && to > cardAnswer.End)
-                    {
-                        result.Add(card);
-                        break;
-                    }
+                    //Get Card Answer from that date
+                    currentAnswerStatistics = answerePerDay[date];
                 }
+                else
+                {
+                    currentAnswerStatistics = new CardAnswerStatistics();
+                    isFirstCardAnswer = true;
+                }
+
+                currentAnswerStatistics.Count++;
+
+                if (cardAnswer.IsAnswerCorrect)
+                    currentAnswerStatistics.Correct++;
+                else
+                    currentAnswerStatistics.Wrong--;
+
+                if (currentAnswerStatistics.TimeMin > cardAnswer.GetSpan())
+                    currentAnswerStatistics.TimeMin = cardAnswer.GetSpan();
+
+                if (currentAnswerStatistics.TimeMax < cardAnswer.GetSpan())
+                    currentAnswerStatistics.TimeMax = cardAnswer.GetSpan();
+
+                currentAnswerStatistics.TimeAvg = (currentAnswerStatistics.TimeAvg + cardAnswer.GetSpan()) / 2;
+
+                if (isFirstCardAnswer)
+                    answerePerDay.Add(date,currentAnswerStatistics);
             }
-            return result;
+
+
+            return answerePerDay;
         }
 
-        //Returning all CardAnswers from a Card that were answered from-to
-        public List<CardAnswer> GetCardAnswersBetween(Card card, long from, long to)
-        {
-            List<CardAnswer> cardAnswers = new List<CardAnswer>();
-
-            foreach (CardAnswer cardAnswer in card.cardAnswers)
-            {
-                if (from < cardAnswer.End && to > cardAnswer.End)
-                {
-                    cardAnswers.Add(cardAnswer);
-                }
-            }
-
-            return cardAnswers;
-        }
     }
 }

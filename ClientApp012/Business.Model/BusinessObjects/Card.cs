@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class Card
 {
+    public int Id { get; set; }
     public List<CardAnswer> cardAnswers;
     private CardAnswer CurrentCardAnswer { get; set; }
     public enum Difficulty {Leicht, Mittel, Schwer};

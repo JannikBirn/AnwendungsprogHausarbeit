@@ -10,7 +10,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
     public class RootViewModel : ViewModelBase<Root>
     {
-        private TopicCollectionViewModel topicCollection;
+        private TopicCollectionViewModel topicCollection; 
 
         public TopicCollectionViewModel TopicCollection
         {

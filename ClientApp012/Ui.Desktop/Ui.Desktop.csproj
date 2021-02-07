@@ -61,7 +61,7 @@
     <Compile Include="CardOverviewWindow.xaml.cs">
       <DependentUpon>CardOverviewWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LearningCardWindow.xaml.cs">
+    <Compile Include="LearningCardWindows\LearningCardWindow.xaml.cs">
       <DependentUpon>LearningCardWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LearningCardWindows\LearningCardAnswerPanel.xaml.cs">
@@ -110,7 +110,7 @@
     <Compile Include="TopicOverview.xaml.cs">
       <DependentUpon>TopicOverview.xaml</DependentUpon>
     </Compile>
-    <Page Include="LearningCardWindow.xaml">
+    <Page Include="LearningCardWindows\LearningCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

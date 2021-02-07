@@ -7,10 +7,24 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
-    public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic> //soll das nicht ne Liste sein?
+    public class TopicViewModel : ViewModelSyncCollection<CardViewModel, Card, Topic> 
     {
-        public TopicViewModel() : base()
+        public TopicViewModel() : base() 
         {
+        }
+
+        public int NextCardId()
+        {
+            return this.Model.NextCardId();
+        }
+
+
+        public int ID
+        {
+            get
+            {
+                return this.Model.Id;
+            }
         }
 
         public String Name
@@ -38,6 +52,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
                 OnPropertyChanged("Img");
             }
         }
+
+
 
         //public TopicStatistics TopicStatistics
         //{

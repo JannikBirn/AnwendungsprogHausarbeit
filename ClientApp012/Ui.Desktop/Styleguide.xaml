@@ -53,8 +53,6 @@
     <!-- Button Template -->
     <Style x:Key="DefaultButtonStyle"
            TargetType="{x:Type Button}">
-        <Setter Property="Margin"
-                Value="10,10,0,0" />
         <Setter Property="FocusVisualStyle"
                 Value="{StaticResource FocusVisual}" />
         <Setter Property="Background"
@@ -67,8 +65,7 @@
                 Value="Roboto" />
         <Setter Property="FontSize"
                 Value="24" />
-        <Setter Property="BorderThickness"
-                Value="1" />
+        <Setter Property="BorderThickness"/>
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
