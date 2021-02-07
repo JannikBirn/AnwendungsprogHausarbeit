@@ -40,25 +40,13 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="7*" />
             </Grid.RowDefinitions>
-            <Button Content="Back"
-                    Grid.Row="0"
-                    HorizontalAlignment="Left"
-                    Style="{DynamicResource BackButton}"
-                    Width="80"
-                    Margin="10" />
-            <Label Content="Statistiken"
-                   Grid.Row="0"
-                   Style="{DynamicResource DefaultLabel}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="10" />
-            <Button Content="R"
-                    Grid.Row="0"
-                    HorizontalAlignment="Right"
-                    Width="80"
-                    Style="{DynamicResource DefaultButtonStyle}"
-                    Command="{Binding Path=ReloadStatistics}"
-                    Margin="10" />
+            <Viewbox Grid.Row="0"
+                     Margin="10"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Label Content="Statistiken"
+                       Style="{DynamicResource DefaultLabel}" />
+            </Viewbox>
 
             <Button Content="{Binding Path=SelectedTopicString}"
                     Grid.Row="1"

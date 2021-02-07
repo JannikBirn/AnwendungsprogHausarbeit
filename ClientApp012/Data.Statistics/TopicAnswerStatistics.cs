@@ -15,6 +15,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             this.Answered = value.Answered;
             this.AnsweredTwice = value.AnsweredTwice;
             this.AnsweredMoreThenTwice = value.AnsweredMoreThenTwice;
+            this.CorrectMoreThenThreeTimes = value.CorrectMoreThenThreeTimes;
             this.Count = value.Count;
             this.Wrong = value.Wrong;
             this.Correct = value.Correct;
@@ -29,6 +30,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             this.Answered = 1;
             this.AnsweredTwice = 0;
             this.AnsweredMoreThenTwice = 0;
+            this.CorrectMoreThenThreeTimes = value.Correct > 2 ? 1 : 0;
             this.Count = value.Count;
             this.Wrong = value.Wrong;
             this.Correct = value.Correct;
@@ -46,6 +48,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
         public int Count { get; set; }
         public int Wrong { get; set; }
         public int Correct { get; set; }
+        public int CorrectMoreThenThreeTimes { get; set; }
 
         //Time avg., min., max.
         public long TimeMin { get; set; }

@@ -48,7 +48,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered" />
+                            <TextBlock Text="Wrong" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -66,7 +66,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered 2" />
+                            <TextBlock Text="Correct" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -83,7 +83,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered 3+" />
+                            <TextBlock Text="Correct 3+" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -108,14 +108,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total words:"
+                <Label  Content="Average Wrong:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding FirstStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="%"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"
@@ -128,14 +128,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total answered:"
+                <Label  Content="Avarege Correct:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding SecondStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="%"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"
@@ -148,14 +148,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total answered 3+:"
+                <Label  Content="Average Correct 3+:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding ThirdStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="%"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"

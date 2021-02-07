@@ -62,6 +62,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                         currentStats.Answered += keyValuePair.Value.Answered;
                         currentStats.AnsweredTwice += keyValuePair.Value.AnsweredTwice;
                         currentStats.AnsweredMoreThenTwice += keyValuePair.Value.AnsweredMoreThenTwice;
+                        currentStats.CorrectMoreThenThreeTimes += keyValuePair.Value.CorrectMoreThenThreeTimes;
                         currentStats.Count += keyValuePair.Value.Count;
                         currentStats.Wrong += keyValuePair.Value.Wrong;
                         currentStats.Correct += keyValuePair.Value.Correct;

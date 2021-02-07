@@ -258,6 +258,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
                     case OpenStatisticsPanelMessage.TIME_PANEL:
 
+                        //Graph Axis Setup
+                        yMax = topicAnswersDaily.Max(param => param.Value.TimeMax);
+                        yMin = topicAnswersDaily.Min(param => param.Value.TimeMin);
 
                         foreach (long date in dates)
                         {
@@ -270,16 +273,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             }
                             else
                             {
-                                unscaledPointsPathOne.Add(new Point(date, 0));
-                                unscaledPointsPathTwo.Add(new Point(date, 0));
-                                unscaledPointsPathThree.Add(new Point(date, 0));
+                                unscaledPointsPathOne.Add(new Point(date, yMin));
+                                unscaledPointsPathTwo.Add(new Point(date, yMin));
+                                unscaledPointsPathThree.Add(new Point(date, yMin));
                             }
                         }
 
 
-                        //Graph Axis Setup
-                        yMax = topicAnswersDaily.Max(param => param.Value.TimeMax);
-                        yMin = topicAnswersDaily.Min(param => param.Value.TimeMin);
 
                         LineGraphVM.VerticalUnit = "sec";
                         ObservableCollection<string> verticalAxisSeconds = new ObservableCollection<string>();
@@ -307,6 +307,55 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                         firstStatisticStat = TimeSpan.FromTicks(overallMaxTime).TotalSeconds.ToString("N0");
                         secondStatisticStat = TimeSpan.FromTicks(overallAvgTime).TotalSeconds.ToString("N0");
                         thirdStatisticStat = TimeSpan.FromTicks(overallMinTime).TotalSeconds.ToString("N0");
+
+                        break;
+
+                    case OpenStatisticsPanelMessage.QUALITY_PANEL:
+
+                        foreach (long date in dates)
+                        {
+                            //Points for Path 1,2,3
+                            if (topicAnswersDaily.ContainsKey(date))
+                            {
+                                double timesAnswered = topicAnswersDaily[date].Count;
+                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].Wrong / timesAnswered));
+                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].Correct / timesAnswered));
+                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].CorrectMoreThenThreeTimes / timesAnswered));
+                            }
+                            else
+                            {
+                                unscaledPointsPathOne.Add(new Point(date, 0));
+                                unscaledPointsPathTwo.Add(new Point(date, 0));
+                                unscaledPointsPathThree.Add(new Point(date, 0));
+                            }
+                        }
+
+
+                        //Graph Axis Setup
+                        yMax = 1;
+                        yMin = 0;
+
+                        LineGraphVM.VerticalUnit = "%";
+                        LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
+
+
+                        //Adding Bottom String Statistics
+                        int totalWrong = 0;
+                        int totalCorrect = 0;
+                        int totalCorrectMoreThenThree = 0;
+                        int totalAnswered = 0;
+
+                        topicAnswersDaily.Select(pair => pair.Value).ToList().ForEach(v =>
+                        {
+                            totalWrong += v.Wrong;
+                            totalCorrect += v.Correct;
+                            totalCorrectMoreThenThree += v.CorrectMoreThenThreeTimes;
+                            totalAnswered += v.Count;
+                        });
+
+                        firstStatisticStat = (100*totalWrong / (double)totalAnswered).ToString("N2");
+                        secondStatisticStat = (100*totalCorrect / (double)totalAnswered).ToString("N2");
+                        thirdStatisticStat = (100*totalCorrectMoreThenThree / (double)totalAnswered).ToString("N2");
 
                         break;
                 }

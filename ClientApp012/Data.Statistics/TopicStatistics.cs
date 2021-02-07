@@ -54,6 +54,10 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                         currentTopicAnswerStatistic.Wrong += cardAnswerDaily.Value.Wrong;
                         currentTopicAnswerStatistic.Correct += cardAnswerDaily.Value.Correct;
 
+                        if (cardAnswerDaily.Value.Correct > 2)
+                        {
+                            currentTopicAnswerStatistic.CorrectMoreThenThreeTimes++;
+                        }
 
 
                         if (currentTopicAnswerStatistic.TimeMin > cardAnswerDaily.Value.TimeMin)
