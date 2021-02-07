@@ -65,8 +65,7 @@
                 Value="Roboto" />
         <Setter Property="FontSize"
                 Value="24" />
-        <Setter Property="BorderThickness"
-                Value="0" />
+        <Setter Property="BorderThickness"/>
         <Setter Property="HorizontalContentAlignment"
                 Value="Center" />
         <Setter Property="VerticalContentAlignment"
@@ -307,6 +306,8 @@
                 Value="{StaticResource Static.Page.Background}" />
         <Setter Property="BorderThickness"
                 Value="0" />
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
         <Setter Property="RowDetailsVisibilityMode"
                 Value="VisibleWhenSelected" />
         <Setter Property="ScrollViewer.CanContentScroll"

@@ -8,11 +8,22 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows;
 using System.Windows.Media;
+using System.IO;
 
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
     public class PrintAllCards
     {
+        public bool Landscape { get; set; }
+        public int ScalingFactor { get; set; }
+        public int NumberOfPages { get; set; }
+
+        public PrintAllCards()
+        {
+            Landscape = false;
+            ScalingFactor = 90;
+            NumberOfPages = 1;
+        }
 
         public void PrintCards(object cards)
         {
@@ -31,6 +42,51 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
                 }
             }
         }
+        public void PrintCardsDirectly(object cards)
+        {
+            // Create a PrintDialog  
+            PrintDialog printDlg = new PrintDialog();
+            //casts the object cards to DataGrid
+            DataGrid dg = cards as DataGrid;
+            //prepares a formatted page
+            FormatPrintDialoge(printDlg);
+
+            //sets a filename an checks, if this name is already taken. in this case, the old file would be deleted
+            // .xps is an alternative file type to pdf
+            //string printFileName = "print_preview.xps";
+            //if(File.Exists(printFileName) == true)
+            //{
+            //    File.Delete(printFileName);
+            //}
+
+            //cards.Print_Window print_Window = new cards.Print_Window(preview);
+
+        }
+
+        private PrintDialog FormatPrintDialoge(PrintDialog pd)
+        {
+            //Gets Default Printer
+            pd.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
+            pd.PrintTicket = pd.PrintQueue.DefaultPrintTicket;
+            if (Landscape)
+            {
+                pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
+            }
+            else
+            {
+                pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+            }
+            //defines scaling
+            pd.PrintTicket.PageScalingFactor = ScalingFactor;
+            //defines page size
+            pd.PrintTicket.PageMediaSize = new PageMediaSize(PageMediaSizeName.ISOA4);
+            //defines number of pages
+            pd.PrintTicket.PagesPerSheet = NumberOfPages;
+            pd.PrintTicket.PageBorderless = PageBorderless.None;
+            return pd;
+        }
+
+  
 
         private FlowDocument FormatFlowDocument(FlowDocument doc)
         {
