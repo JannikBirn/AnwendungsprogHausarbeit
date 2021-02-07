@@ -6,8 +6,8 @@
       xmlns:graph="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
       xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
       mc:Ignorable="d"
-      d:DesignHeight="605.2"
-      d:DesignWidth="656"
+      d:DesignHeight="600"
+      d:DesignWidth="600"
       Title="StatisticsHistoryPanel">
 
     <Page.Resources>
@@ -45,7 +45,8 @@
                     Grid.Column="0">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
                         Foreground="{DynamicResource Static.Red}"
-                        Command="{Binding Path=FirstButton}">
+                        Command="{Binding Path=FirstButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered" />
@@ -62,7 +63,8 @@
                     Grid.Column="1">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
                         Foreground="{DynamicResource Static.Blue}"
-                        Command="{Binding Path=SecondButton}">
+                        Command="{Binding Path=SecondButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 2" />
@@ -78,7 +80,8 @@
                     Grid.Column="2">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
                         Foreground="{DynamicResource Static.Green}"
-                        Command="{Binding Path=ThirdButton}">
+                        Command="{Binding Path=ThirdButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 3+" />
