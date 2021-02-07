@@ -128,15 +128,5 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         {
             //throw new NotImplementedException();
         }
-
-        public void StartAnswering()
-        {
-            Model.StartAnswering();
-        }
-
-        public void FinishAnswer(bool bol)
-        {
-            Model.FinishAnswer(bol);
-        }
     }
 }
