@@ -22,10 +22,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             MainWindowVM = new MainWindowViewModel(RootViewModel);
             //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
             CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
-            StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel);
-            StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
             LineGraphVM = new LineGraphViewModel();
+            StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel, LineGraphVM);
+            StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
             LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
+            NewCardWindowVM = new NewCardWindowViewModel ( RootViewModel );
 
         }
 
@@ -36,5 +37,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
         public LineGraphViewModel LineGraphVM { get; }
         public LearningCardWindowViewModel LearningCardWindowVM { get; }
+        public NewCardWindowViewModel NewCardWindowVM { get; }
     }
 }

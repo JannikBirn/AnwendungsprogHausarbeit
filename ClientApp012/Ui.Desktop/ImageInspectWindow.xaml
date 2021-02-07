@@ -11,12 +11,12 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Image Name="image" Stretch="None" />
+        <!--<Image Source="HIER DEN PATH DER DATEI" Name="image" Stretch="None" />-->
         <StackPanel Grid.Row="1">
             <WrapPanel HorizontalAlignment="Center">
-                <Button Name="stopButton" Margin="10,0">Stop</Button>
-                <Button Name="playButton" Margin="10,0">Play</Button>
-                <Button Name="pauseButton" Margin="10,0">Pause</Button>
+                <!--<Button Name="stopButton" Margin="10,0"  Click="stop_Click">Stop</Button>
+                <Button Name="playButton" Margin="10,0" Click="play_Click">Play</Button>
+                <Button Name="pauseButton" Margin="10,0" Click="pause_Click">Pause</Button> -->
             </WrapPanel>
         </StackPanel>
     </Grid>

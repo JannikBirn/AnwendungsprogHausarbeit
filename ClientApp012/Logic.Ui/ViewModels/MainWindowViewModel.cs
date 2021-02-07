@@ -16,7 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class MainWindowViewModel
     {
-        public const string FILE_NAME = "\\ClientApp012\\appdata.dat";
+        public const string FILE_NAME = "appdata.dat";
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
