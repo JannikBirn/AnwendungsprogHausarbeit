@@ -53,7 +53,7 @@
                       Grid.Row="1"
                       VerticalAlignment="Center"
                       Width="434" />
-        <Label Content="{Binding FirstC.QuestionText}"
+        <Label Content="{Binding LearningCardWindowVM.CurrentTopic/QuestionText, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Left"
                Margin="183,128,0,0"
                Grid.Row="1"

@@ -14,37 +14,41 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
         public RootViewModel RootViewModel { get; set; }
 
-        // public CardViewModel CardViewModel { get; set; }
-
         //Open Panel Commands
         public RelayCommand OpenLearningCardQuestionPanel { get; }
         public RelayCommand OpenLearningCardAnswerPanel { get; }
         public RelayCommand OpenLearningCardFinishPanel { get; }
         public RelayCommand StartAnswering { get; }
         public RelayCommand EndAnswering { get; }
+        public RelayCommand LearingCardsF { get; }
 
-        public bool hasStarted = true;
+        public RelayCommand LearingCardsT { get; }
 
-        public TopicViewModel FirstT
+        
+
+        public int count = 0;
+
+        public int Count
+        {
+            get { return count; }
+            set { count = value;
+                OnPropertyChanged("Count");
+            }
+        }
+        public TopicViewModel CurrentTopic
         {
             get
             {
                 return RootViewModel.TopicCollection[0]; ;
             }
         }
-
-
-        public CardViewModel FirstC {
-            get { return FirstT[0];  }
-        }
-
+        public bool hasStarted = true;
         public bool HasStarted
         {
             get
             {
                 return hasStarted;
             }
-
             set
             {
                 hasStarted = value;
@@ -59,7 +63,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //  OpenLearningCardQuestionPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL));
             StartAnswering = new RelayCommand(() => StartAnsweringMethod());
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
-            OpenLearningCardFinishPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL));
+            LearingCardsF = new RelayCommand(() => LearningCardMethodFalse());
+            LearingCardsT = new RelayCommand(() => LearningCardMethodTrue());
             EndAnswering = new RelayCommand(() => EndAnsweringMethod());
         }
 
@@ -73,21 +78,46 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void StartAnsweringMethod()
         {
-         FirstC.StartAnswering();
+            CurrentTopic[Count].StartAnswering();
          
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
             HasStarted = false;
         }
 
-        private void LearningCardMethod()
+        private void LearningCardMethodFalse()
         {
-            FirstC.FinishAnswer(true);
+            CurrentTopic[Count].FinishAnswer(false);
+            Count++;
+            if (CurrentTopic.Count == Count-1)
+            {
+                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
+            }
+            else
+            {
+                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
+            }
+        }
+
+        private void LearningCardMethodTrue()
+        {
+            CurrentTopic[Count].FinishAnswer(true);
+            Count++;
+            if (CurrentTopic.Count == Count-1)
+            {
+                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
+            }
+            else 
+            {
+                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
+            }
         }
 
         private void EndAnsweringMethod()
         {
             HasStarted = true;
         }
+
+
 
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;

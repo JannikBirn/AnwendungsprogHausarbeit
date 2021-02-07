@@ -64,7 +64,7 @@
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
                 IsEnabled="{Binding LearningCardWindowVM.HasStarted, Source={StaticResource ViewModelLocator}}"
                 Margin="292,374,302,396" />
-        <Label Content="{Binding LearningCardWindowVM.FirstT.Name, Source={StaticResource ViewModelLocator}}"
+        <Label Content="{Binding LearningCardWindowVM.CurrentTopic.Name, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Width="316"

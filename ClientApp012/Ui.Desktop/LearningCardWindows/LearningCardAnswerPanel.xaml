@@ -33,7 +33,7 @@
                 Width="119"
                 Height="56"
                 Margin="0,0,300,0"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Command="{Binding LearningCardWindowVM.LearingCardsT, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
         <Label Content="Answer:"
                VerticalAlignment="Center"
@@ -61,10 +61,10 @@
                 Width="116"
                 Height="56"
                 Margin="300,0,0,0"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardFinishPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Command="{Binding LearningCardWindowVM.LearingCardsF, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
         <Label x:Name="l_answer"
-               Content="{Binding FirstC.AnswerText}"
+               Content="{Binding LearningCardWindowVM.CurrentTopic/AnswerText, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Center"
                Margin="200,167,201,0"
                Grid.Row="1"
