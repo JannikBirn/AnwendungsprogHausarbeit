@@ -6,39 +6,66 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
         mc:Ignorable="d"
         xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-        Title="StatisticsTopicSelectionWindow" Height="512" Width="393">
+        Title="StatisticsTopicSelectionWindow"
+        Height="512"
+        Width="393">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="..\Styleguide.xaml"/>
+                <ResourceDictionary Source="..\Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Path="StatisticsTopicSelectionWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="StatisticsTopicSelectionWindowVM"
+                 Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="0.2*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
-        <Button Content="Back" Grid.Row="0" Style="{StaticResource BackButton}" Width="40" FontSize="12"/>
-        <Label Content="Select a Topic" Grid.Row="0" Style="{StaticResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Rectangle Grid.Row="0"  Style="{DynamicResource ReactangleLine}" />
+        <Button Content="Back"
+                Grid.Row="0"
+                Style="{StaticResource BackButton}"
+                Width="40"
+                FontSize="12" />
+        <Label Content="Select a Topic"
+               Grid.Row="0"
+               Style="{StaticResource DefaultLabel}"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center" />
+        <Rectangle Grid.Row="0"
+                   Style="{DynamicResource ReactangleLine}" />
 
-        <Button Content="All" Grid.Row="2" Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=SelectedTopicCommand}" Margin="0"/>
+        <Button Content="All"
+                Grid.Row="2"
+                Style="{DynamicResource DefaultButtonStyle}"
+                Command="{Binding Path=SelectedTopicCommand}"
+                Margin="0" />
 
-        <DataGrid Grid.Row="3" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" Style="{StaticResource DefaultDataGrid}" IsReadOnly="True" HeadersVisibility="None">
+        <DataGrid Grid.Row="3"
+                  Name="TopicCollectionDG"
+                  ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                  AutoGenerateColumns="False"
+                  Style="{StaticResource DefaultDataGrid}"
+                  IsReadOnly="True"
+                  HeadersVisibility="None">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}" Header="Name" Width="*" CellStyle="{StaticResource DataGridContentCellCentering }" FontSize="36"/>
+                <DataGridTextColumn Binding="{Binding Name}"
+                                    Header="Name"
+                                    Width="*"
+                                    CellStyle="{StaticResource DataGridContentCellCentering }"
+                                    FontSize="36" />
             </DataGrid.Columns>
             <behaviors:Interaction.Triggers>
                 <behaviors:EventTrigger EventName="SelectionChanged">
-                    <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}" CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
+                    <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
+                                                   CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
                 </behaviors:EventTrigger>
             </behaviors:Interaction.Triggers>
         </DataGrid>
