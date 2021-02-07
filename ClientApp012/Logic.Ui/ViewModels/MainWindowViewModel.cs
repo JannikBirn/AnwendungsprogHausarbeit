@@ -27,7 +27,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
 
-
         public MainWindowViewModel(RootViewModel model)
         {
             //Refrenzing to the model

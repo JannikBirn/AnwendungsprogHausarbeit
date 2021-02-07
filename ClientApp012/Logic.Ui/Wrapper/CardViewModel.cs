@@ -114,6 +114,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
             }
         }
 
+        public void StartAnswering()
+        {
+            Model.StartAnswering();
+        }
+
+        public void FinishAnswer(bool bol)
+        {
+            Model.FinishAnswer(bol);
+        }
+
         public override void NewModelAssigned()
         {
             //throw new NotImplementedException();

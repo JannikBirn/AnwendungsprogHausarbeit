@@ -2,6 +2,7 @@
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using De.HsFlensburg.ClientApp012.Services.MessageBusWithParameter;
 using De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows;
+using De.HsFlensburg.ClientApp012.Ui.Desktop.LearningCardWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
         //Window Instances
         private StatisticsWindow StatisticsWindow { get; set; }
 
+        private LearningCardWindow LearningCardWindow { get; set; }
+
         public MessageListener()
         {
             InitMessenger();
@@ -35,21 +38,27 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
             {
-                CardOverviewWindow myWindow = new CardOverviewWindow();
+                CardOverviewWindow myWindow = new CardOverviewWindow(); 
                 myWindow.ShowDialog();
             });
 
             ServiceBus.Instance.Register<OpenStatisticsWindowMessage>(this, delegate ()
             {
-                    StatisticsWindow = new StatisticsWindow();
+                StatisticsWindow = new StatisticsWindow();
                 StatisticsWindow.ShowDialog();
             });
 
             ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
-             {
-               LearningCardWindow myWindow = new LearningCardWindow();
-               myWindow.ShowDialog();
+            {
+                LearningCardWindow = new LearningCardWindow();
+                LearningCardWindow.ShowDialog();
             });
+
+         //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
+        //     {
+        //       LearningCardWindow myWindow = new LearningCardWindow();
+        //       myWindow.ShowDialog();
+         //   });
 
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
@@ -68,6 +77,25 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                         break;
                 }
             });
+
+            Messenger.Instance.Register<OpenLearningCardPanelMessage>(this, delegate (OpenLearningCardPanelMessage messageObject)
+            {
+                Frame learningCardFrame = LearningCardWindow.LearningCardFrame;
+                switch (messageObject.PanelIndex)
+                {
+                    case OpenLearningCardPanelMessage.QUESTION_PANEL:
+                        learningCardFrame.Content = new LearningCardQuestionPanel();
+                        break;
+                    case OpenLearningCardPanelMessage.ANSWER_PANEL:
+                        learningCardFrame.Content = new LearningCardAnswerPanel();
+                        break;
+                    case OpenLearningCardPanelMessage.FINISH_PANEL:
+                        learningCardFrame.Content = new LearningCardFinishPanel();
+                        break;
+                }
+            });
+
+
             Messenger.Instance.Register<OpenTopicSelectionWindowMessage>(this, delegate (OpenTopicSelectionWindowMessage message)
             {
                     StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
