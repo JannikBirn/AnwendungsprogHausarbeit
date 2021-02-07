@@ -40,8 +40,13 @@ public class Topic : ObservableCollection<Card>
 
 	public new void Add(Card card)
     {
-		card.Id = this.Max(param => param.Id) + 1;
+		card.Id = NextCardId();
 		base.Add(card);
     }
+
+	public int NextCardId()
+    {
+		return this.Max(param => param.Id) + 1;
+	}
 
 }
