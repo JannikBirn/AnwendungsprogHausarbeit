@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using Microsoft.Win32;
 using Services.Serialization;
+using De.HsFlensburg.ClientApp012.Services.Serialization;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -52,27 +53,27 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             if (QuestionImage != null)
             {
-                QuestionImagePath = Save(QuestionImagePath, Path.GetFileName(QuestionImagePath));
+                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge");
             }
             if (AnswerImage != null)
             {
-                AnswerImagePath = Save(AnswerImagePath, Path.GetFileName(AnswerImagePath));
+                AnswerImagePath = Save(AnswerImagePath, "AnswerImage");
             }
             if (!String.IsNullOrEmpty(QuestionAudioPath))
             {
-                QuestionAudioPath = Save(QuestionAudioPath, Path.GetFileName(QuestionAudioPath));
+                QuestionAudioPath = Save(QuestionAudioPath, "QuestionAudio");
             }
             if (!String.IsNullOrEmpty(AnswerAudioPath))
             {
-                AnswerAudioPath = Save(AnswerAudioPath, Path.GetFileName(AnswerAudioPath));
+                AnswerAudioPath = Save(AnswerAudioPath, "AnswerAudio");
             }
             if (!String.IsNullOrEmpty(QuestionVideoPath))
             {
-                QuestionVideoPath = Save(QuestionVideoPath, Path.GetFileName(QuestionVideoPath));
+                QuestionVideoPath = Save(QuestionVideoPath, "QuestionVideo");
             }
             if (!String.IsNullOrEmpty(AnswerVideoPath))
             {
-                AnswerVideoPath = Save(AnswerVideoPath, Path.GetFileName(AnswerVideoPath));
+                AnswerVideoPath = Save(AnswerVideoPath, "AnswerVideo");
             }
 
             // Check ob Text angegeben wurde
@@ -164,9 +165,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public String Save(string source, string fileName)
+        public String Save(string source, string folderName)
         {
-            return source;
+            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{Path.GetExtension(source)}");
         }
        /* private String SaveImage(Image image, string sourcePath)
         {
