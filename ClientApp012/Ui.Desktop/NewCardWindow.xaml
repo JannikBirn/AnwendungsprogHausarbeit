@@ -160,9 +160,15 @@
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="10,0" />
-        <Image Name="QuestionImage"
-               Grid.Row="3"
+        <Image Name="QuestionImageElement"
+               Grid.Row="1"
+               HorizontalAlignment="left"
                Width="200"
                Height="Auto"/>
+        <Image Name="AnswerImageElement"
+               Grid.Row="5"
+               HorizontalAlignment="left"
+               Width="200"
+               Height="Auto" />
     </Grid>
 </Window>
