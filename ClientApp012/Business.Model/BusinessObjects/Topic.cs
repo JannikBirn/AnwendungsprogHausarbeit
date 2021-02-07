@@ -6,6 +6,7 @@ using System.Linq;
 [Serializable]
 public class Topic : ObservableCollection<Card>
 {
+	public int Id { set; get; }
 	public String Name { set; get; }
 	public String Img { set; get; }
 
@@ -40,6 +41,7 @@ public class Topic : ObservableCollection<Card>
 	public new void Add(Card card)
     {
 		card.Id = this.Max(param => param.Id) + 1;
+		base.Add(card);
     }
 
 }
