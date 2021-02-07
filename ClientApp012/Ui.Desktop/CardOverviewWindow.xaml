@@ -18,10 +18,15 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    
     <Window.DataContext>
         <Binding  Source="{StaticResource ViewModelLocator}"
                   Path="CardOverViewWindowVM" />
     </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}"
+                 Path="myBindableProperty" />
+    </Window.IsEnabled>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -41,21 +46,24 @@
         <DataGrid x:Name="allTopics"
                   Grid.Column="0"
                   Grid.Row="1"
+                  Style="{StaticResource DefaultDataGrid}"
                   ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                   AutoGenerateColumns="False"
                   Background="#FF202225"
-                  IsReadOnly="True">
+                  IsReadOnly="True"
+                  FontSize="14">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Topic"
-                                    MinWidth="200"
+                                    Width="1*"
                                     Binding="{Binding Name}" />
             </DataGrid.Columns>
 
         </DataGrid>
 
         <DataGrid x:Name="allCards"
-                  Grid.Column="2"
+                  HeadersVisibility="Column"
+                  Grid.Column="1"
                   Grid.Row="1"
                   ItemsSource="{Binding ElementName=allTopics, Path=SelectedItem}"
                   AutoGenerateColumns="False"
@@ -63,7 +71,9 @@
                   Background="#FF202225"
                   IsReadOnly="True"
                   ScrollViewer.CanContentScroll="True"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  Style="{StaticResource DefaultDataGrid}"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  FontSize="14">
             <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
 
             <DataGrid.Columns>
@@ -72,13 +82,13 @@
                                     Header="Number"
                                     IsReadOnly="True" />-->
                 <DataGridTextColumn Binding="{Binding QuestionText}"
-                                    Width="auto"
-                                    MaxWidth="200"
+                                    CellStyle="{StaticResource DataGridContentCellCentering }"
+                                    Width="*"
                                     Header="Question"
                                     IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding AnswerText}"
-                                    Width="auto"
-                                    MaxWidth="200"
+                                    CellStyle="{StaticResource DataGridContentCellCentering }"
+                                    Width="*"
                                     Header="Answer"
                                     IsReadOnly="True" />
             </DataGrid.Columns>
@@ -126,14 +136,18 @@
             </Menu>
         </DockPanel>
 
-        <Button Content="Back"
-                Grid.Column="0"
-                VerticalAlignment="Center"
-                Margin="30,36,0,33"
-                Width="78"
-                Command="{Binding CloseWindow}"
-                Style="{DynamicResource BackButton}"
-                CommandParameter="{Binding ElementName=myCardOverviewWindow}" />
+        <Button   Grid.Column="0"
+                  VerticalAlignment="Top"
+                  Margin="50,20,150,20"
+                  HorizontalContentAlignment="Left"
+                  Command="{Binding CloseWindow}"
+                  CommandParameter="{Binding ElementName=myCardOverviewWindow}"
+                  Background="{x:Null}"
+                  BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source=".\Resources\Images\BackArrow.png" />
+            </StackPanel>
+        </Button>
 
         <DockPanel Margin="10"
                    Grid.Row="2"
