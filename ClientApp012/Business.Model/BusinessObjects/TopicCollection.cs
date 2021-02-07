@@ -12,8 +12,13 @@ public class TopicCollection : ObservableCollection<Topic>
 
     public new void Add(Topic topic)
     {
-        topic.Id = this.Max(param => param.Id) + 1;
+        topic.Id = NextTopicId();
         base.Add(topic);
+    }
+
+    public int NextTopicId()
+    {
+        return this.Max(param => param.Id) + 1;
     }
 
 

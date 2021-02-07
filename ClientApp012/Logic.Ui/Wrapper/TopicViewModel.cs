@@ -13,6 +13,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         {
         }
 
+        public int NextCardId()
+        {
+            return this.Model.NextCardId();
+        }
+
+
         public int ID
         {
             get

@@ -12,18 +12,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
     {
         //private TopicViewModel topicViewModel;
 
-        //public TopicViewModel TopicViewModel
-        //{
-        //    get
-        //    {
-        //        return topicViewModel;
-        //    }
-        //    set
-        //    {
-        //        topicViewModel = value;
-        //        OnPropertyChanged("TopicViewModel");
-        //    }
-        //}
+        public int NextTopicId()
+        {
+            return this.Model.NextTopicId();
+        }
 
         public TopicCollectionViewModel() : base()
         {
