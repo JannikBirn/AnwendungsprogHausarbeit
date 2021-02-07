@@ -13,6 +13,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         {
         }
 
+        public int ID
+        {
+            get
+            {
+                return this.Model.Id;
+            }
+        }
+
         public String Name
         {
             get
