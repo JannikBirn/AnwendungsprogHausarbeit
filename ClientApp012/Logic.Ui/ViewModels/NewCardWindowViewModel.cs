@@ -169,39 +169,5 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{Path.GetExtension(source)}");
         }
-       /* private String SaveImage(Image image, string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            image.Save(destPath);
-            return destPath;
-        }
-        private String SaveAudio(string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            File.Copy(sourcePath, assetPath);
-            return destPath;
-        }
-        private String SaveVideo(string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            File.Copy(sourcePath, assetPath);
-            return destPath;
-        }
-       */
     }
 }
