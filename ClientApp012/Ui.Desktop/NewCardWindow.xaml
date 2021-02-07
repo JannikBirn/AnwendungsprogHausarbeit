@@ -65,8 +65,7 @@
                  Text="{Binding QuestionText}"
                  VerticalAlignment="Bottom"
                  Width="200"
-                 Grid.Row="0"
-                 TextChanged="TextBox_TextChanged" />
+                 Grid.Row="0" />
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"

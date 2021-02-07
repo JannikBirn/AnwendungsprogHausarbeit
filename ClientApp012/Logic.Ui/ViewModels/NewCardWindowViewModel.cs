@@ -46,7 +46,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
             LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
             LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
-            Topic = model.TopicCollection[0];
+            //Topic = model.TopicCollection[0];
         }
 
         private void AddCardMethod()
