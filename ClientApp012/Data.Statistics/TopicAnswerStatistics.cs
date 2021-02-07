@@ -23,6 +23,20 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             this.TimeAvg = value.TimeAvg;
         }
 
+        public TopicAnswerStatistics(CardAnswerStatistics value)
+        {
+            this.TotalCardAmount = 1;
+            this.Answered = 1;
+            this.AnsweredTwice = 0;
+            this.AnsweredMoreThenTwice = 0;
+            this.Count = value.Count;
+            this.Wrong = value.Wrong;
+            this.Correct = value.Correct;
+            this.TimeMin = value.TimeMin;
+            this.TimeMax = value.TimeMax;
+            this.TimeAvg = value.TimeAvg;
+        }
+
         public int TotalCardAmount { get; set; }
         //How many individual cards were answered that day
         public int Answered { get; set; }

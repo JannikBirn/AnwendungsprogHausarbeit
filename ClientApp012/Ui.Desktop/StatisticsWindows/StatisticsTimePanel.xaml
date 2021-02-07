@@ -17,7 +17,7 @@
     </Page.Resources>
 
     <Page.DataContext>
-        <Binding Path="StatisticsTopicSelectionWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="StatisticsWindowVM" Source="{StaticResource ViewModelLocator}"/>
     </Page.DataContext>
 
     <Grid Grid.Row="3">
@@ -46,7 +46,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered" />
+                            <TextBlock Text="Max.Time" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -64,7 +64,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered 2" />
+                            <TextBlock Text="Avg. Time" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -81,7 +81,7 @@
                         Margin="-1">
                     <Button.Content>
                         <Viewbox>
-                            <TextBlock Text="Answered 3+" />
+                            <TextBlock Text="Min. Time" />
                         </Viewbox>
                     </Button.Content>
                 </Button>
@@ -106,14 +106,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total words:"
+                <Label  Content="Overall max. Time"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding FirstStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="sec"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"
@@ -126,14 +126,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total answered:"
+                <Label  Content="Overall avg. Time:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding SecondStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="sec"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"
@@ -146,14 +146,14 @@
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Label  Content="Total answered 3+:"
+                <Label  Content="Overall min. Time:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Label  Content="{Binding ThirdStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
-                <Label  Content="words"
+                <Label  Content="sec"
                         Grid.Column="2"
                         Style="{DynamicResource DefaultLabel}"></Label>
                 <Rectangle Grid.ColumnSpan="3"

@@ -29,37 +29,33 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             foreach (CardAnswer cardAnswer in Card.cardAnswers)
             {
                 long date = new System.DateTime(cardAnswer.End).Date.Ticks;
-                bool isFirstCardAnswer = false;
 
                 CardAnswerStatistics currentAnswerStatistics;
                 if (answerePerDay.ContainsKey(date))
                 {
                     //Get Card Answer from that date
                     currentAnswerStatistics = answerePerDay[date];
+                    currentAnswerStatistics.Count++;
+
+                    if (cardAnswer.IsAnswerCorrect)
+                        currentAnswerStatistics.Correct++;
+                    else
+                        currentAnswerStatistics.Wrong++;
+
+                    if (currentAnswerStatistics.TimeMin > cardAnswer.GetSpan())
+                        currentAnswerStatistics.TimeMin = cardAnswer.GetSpan();
+
+                    if (currentAnswerStatistics.TimeMax < cardAnswer.GetSpan())
+                        currentAnswerStatistics.TimeMax = cardAnswer.GetSpan();
+
+                    currentAnswerStatistics.TimeAvg = (currentAnswerStatistics.TimeAvg + cardAnswer.GetSpan()) / 2;
                 }
                 else
                 {
-                    currentAnswerStatistics = new CardAnswerStatistics();
-                    isFirstCardAnswer = true;
+                    currentAnswerStatistics = new CardAnswerStatistics(cardAnswer);
+                    answerePerDay.Add(date, currentAnswerStatistics);
                 }
 
-                currentAnswerStatistics.Count++;
-
-                if (cardAnswer.IsAnswerCorrect)
-                    currentAnswerStatistics.Correct++;
-                else
-                    currentAnswerStatistics.Wrong--;
-
-                if (currentAnswerStatistics.TimeMin > cardAnswer.GetSpan())
-                    currentAnswerStatistics.TimeMin = cardAnswer.GetSpan();
-
-                if (currentAnswerStatistics.TimeMax < cardAnswer.GetSpan())
-                    currentAnswerStatistics.TimeMax = cardAnswer.GetSpan();
-
-                currentAnswerStatistics.TimeAvg = (currentAnswerStatistics.TimeAvg + cardAnswer.GetSpan()) / 2;
-
-                if (isFirstCardAnswer)
-                    answerePerDay.Add(date,currentAnswerStatistics);
             }
 
 

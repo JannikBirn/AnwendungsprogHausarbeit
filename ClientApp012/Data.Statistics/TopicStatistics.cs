@@ -37,45 +37,42 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
 
                 foreach (KeyValuePair<long, CardAnswerStatistics> cardAnswerDaily in cardStatistics.AnswereStatisticsDaily)
                 {
-                    bool isFirstTopicAnswer = false;
 
                     TopicAnswerStatistics currentTopicAnswerStatistic;
                     if (answerePerDay.ContainsKey(cardAnswerDaily.Key))
                     {
                         //Get Card Answer from that date
                         currentTopicAnswerStatistic = answerePerDay[cardAnswerDaily.Key];
+                        //Adding one to Answered
+                        currentTopicAnswerStatistic.Answered++;
+                        if (cardAnswerDaily.Value.Count > 1)
+                            currentTopicAnswerStatistic.AnsweredTwice++;
+                        if (cardAnswerDaily.Value.Count > 2)
+                            currentTopicAnswerStatistic.AnsweredMoreThenTwice++;
+                        //Adding Count, Wrong, Correct
+                        currentTopicAnswerStatistic.Count += cardAnswerDaily.Value.Count;
+                        currentTopicAnswerStatistic.Wrong += cardAnswerDaily.Value.Wrong;
+                        currentTopicAnswerStatistic.Correct += cardAnswerDaily.Value.Correct;
+
+
+
+                        if (currentTopicAnswerStatistic.TimeMin > cardAnswerDaily.Value.TimeMin)
+                            currentTopicAnswerStatistic.TimeMin = cardAnswerDaily.Value.TimeMin;
+
+                        if (currentTopicAnswerStatistic.TimeMax < cardAnswerDaily.Value.TimeMax)
+                            currentTopicAnswerStatistic.TimeMax = cardAnswerDaily.Value.TimeMax;
+
+                        currentTopicAnswerStatistic.TimeAvg = (currentTopicAnswerStatistic.TimeAvg + cardAnswerDaily.Value.TimeAvg) / 2;
+
+                        currentTopicAnswerStatistic.TotalCardAmount = Topic.Count;
                     }
                     else
                     {
-                        currentTopicAnswerStatistic = new TopicAnswerStatistics();
-                        isFirstTopicAnswer = true;
+                        currentTopicAnswerStatistic = new TopicAnswerStatistics(cardAnswerDaily.Value);
+                        answerePerDay.Add(cardAnswerDaily.Key, currentTopicAnswerStatistic);
                     }
 
-                    //Adding one to Answered
-                    currentTopicAnswerStatistic.Answered++;
-                    if (cardAnswerDaily.Value.Count > 1)
-                        currentTopicAnswerStatistic.AnsweredTwice++;
-                    if (cardAnswerDaily.Value.Count > 2)
-                        currentTopicAnswerStatistic.AnsweredMoreThenTwice++;
-                    //Adding Count, Wrong, Correct
-                    currentTopicAnswerStatistic.Count += cardAnswerDaily.Value.Count;
-                    currentTopicAnswerStatistic.Wrong += cardAnswerDaily.Value.Wrong;
-                    currentTopicAnswerStatistic.Correct += cardAnswerDaily.Value.Correct;
 
-
-
-                    if (currentTopicAnswerStatistic.TimeMin > cardAnswerDaily.Value.TimeMin)
-                        currentTopicAnswerStatistic.TimeMin = cardAnswerDaily.Value.TimeMin;
-
-                    if (currentTopicAnswerStatistic.TimeMax > cardAnswerDaily.Value.TimeMax)
-                        currentTopicAnswerStatistic.TimeMax = cardAnswerDaily.Value.TimeMax;
-
-                    currentTopicAnswerStatistic.TimeAvg = (currentTopicAnswerStatistic.TimeAvg + cardAnswerDaily.Value.TimeAvg) / 2;
-
-                    currentTopicAnswerStatistic.TotalCardAmount = Topic.Count;
-
-                    if (isFirstTopicAnswer)
-                        answerePerDay.Add(cardAnswerDaily.Key, currentTopicAnswerStatistic);
                 }
             }
             return answerePerDay;

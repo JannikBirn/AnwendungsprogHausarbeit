@@ -100,17 +100,17 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                 long lastEndTime = DateTime.Now.Ticks-TimeSpan.FromDays(10).Ticks;
                 lastEndTime += (long)rand.NextDouble() * (int)TimeSpan.FromHours(10).Ticks;
                 if (rand.NextDouble() > 0.5)
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 30; i++)
                     {
                         CardAnswer cardAnswer = new CardAnswer();
                         cardAnswer.IsAnswerCorrect = rand.NextDouble() > 0.5;
                         cardAnswer.Start = lastEndTime;
-                        lastEndTime += (long)rand.NextDouble() * (int)TimeSpan.FromHours(1).Ticks;
+                        lastEndTime += TimeSpan.FromMinutes(rand.NextDouble()).Ticks +TimeSpan.FromSeconds(5).Ticks;
+                        cardAnswer.End = lastEndTime;
                         if (rand.NextDouble() > 0.6)
                         {
                             lastEndTime += TimeSpan.FromDays(1).Ticks;
                         }
-                        cardAnswer.End = lastEndTime;
                         card.cardAnswers.Add(cardAnswer);
                     }
             }

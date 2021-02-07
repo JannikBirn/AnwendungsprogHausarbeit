@@ -117,7 +117,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
-        public ShapePath AddPahtUnscaled(List<Point> points, double xMax, double xMin, double yMax, double yMin, string color)
+        public ShapePath GetPahtUnscaled(List<Point> points, long xMax, long xMin, long yMax, long yMin, string color)
         {
             List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
 

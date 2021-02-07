@@ -174,110 +174,170 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             if (topicAnswersDaily.Count != 0)
             {
+                //list of all Days as long
+                List<long> dates = new List<long>();
+                long currentdate = new DateTime(from).Date.Ticks; //Start Datum
+                while (currentdate <= to)
+                {
+                    dates.Add(currentdate);
+                    currentdate += TimeSpan.TicksPerDay;
+                }
+                //Points for the Paths
+                List<Point> unscaledPointsPathOne = new List<Point>();
+                List<Point> unscaledPointsPathTwo = new List<Point>();
+                List<Point> unscaledPointsPathThree = new List<Point>();
+
+                //Shapes for Path
+                ShapePath firstPath;
+                ShapePath secondPath;
+                ShapePath thirdPath;
+
+                //Max and Min Values for Skaling 
+                long xMax = to;
+                long xMin = from;
+                long yMax = 0;//Will be replaced in switch
+                long yMin = 0;//Will be replaced in switch
+
+                string firstStatisticStat = "";
+                string secondStatisticStat = "";
+                string thirdStatisticStat = "";
+
                 switch (graphType)
                 {
                     case OpenStatisticsPanelMessage.HISTORY_PANEL:
-                        //list of all Days as long
-                        List<long> dates = new List<long>();
-                        long currentdate = new DateTime(from).Date.Ticks; //Start Datum
-                        while (currentdate <= to)
-                        {
-                            dates.Add(currentdate);
-                            currentdate += TimeSpan.TicksPerDay;
-                        }
-
-                        //Points for the Paths
-                        List<Point> unscaledPointsAnswered = new List<Point>();
-
+                        //Points for Paths
                         foreach (long date in dates)
                         {
+                            //Points for Path 1,2,3
                             if (topicAnswersDaily.ContainsKey(date))
                             {
-                                unscaledPointsAnswered.Add(new Point(date, topicAnswersDaily[date].Answered));
+                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].Answered));
+                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].AnsweredTwice));
+                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].AnsweredMoreThenTwice));
                             }
                             else
                             {
-                                unscaledPointsAnswered.Add(new Point(date, 0));
+                                unscaledPointsPathOne.Add(new Point(date, 0));
+                                unscaledPointsPathTwo.Add(new Point(date, 0));
+                                unscaledPointsPathThree.Add(new Point(date, 0));
                             }
+
                         }
 
+                        //Declaring Min-Max
+                        yMax = topicAnswersDaily.First().Value.TotalCardAmount;
+                        yMin = 0;
 
-                        List<Point> unscaledPointsAnsweredTwice = new List<Point>();
+                        //Generating Path
+                        firstPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
+                        secondPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
+                        thirdPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
 
-                        foreach (long date in dates)
-                        {
-                            if (topicAnswersDaily.ContainsKey(date))
-                            {
-                                unscaledPointsAnsweredTwice.Add(new Point(date, topicAnswersDaily[date].AnsweredTwice));
-                            }
-                            else
-                            {
-                                unscaledPointsAnsweredTwice.Add(new Point(date, 0));
-                            }
-                        }
-
-                        List<Point> unscaledPointsAnsweredMoreThenTwice = new List<Point>();
-
-                        foreach (long date in dates)
-                        {
-                            if (topicAnswersDaily.ContainsKey(date))
-                            {
-                                unscaledPointsAnsweredMoreThenTwice.Add(new Point(date, topicAnswersDaily[date].AnsweredMoreThenTwice));
-                            }
-                            else
-                            {
-                                unscaledPointsAnsweredMoreThenTwice.Add(new Point(date, 0));
-                            }
-                        }
-
-                        //Adding Paths
-                        //Max and Min Values for Skaling 
-                        double xMax = to;
-                        double xMin = from;
-                        double yMax = topicAnswersDaily.First().Value.TotalCardAmount;
-                        double yMin = 0;
-
-                        LineGraphVM.Shapes.Clear();
-                        ShapePath firstPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredMoreThenTwice, xMax, xMin, yMax, yMin, "#00FF00");
-                        ShapePath secondPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnsweredTwice, xMax, xMin, yMax, yMin, "#0000FF");
-                        ShapePath thirdPath = LineGraphVM.AddPahtUnscaled(unscaledPointsAnswered, xMax, xMin, yMax, yMin, "#FF0000");
-
-                        LineGraphVM.FirstLine = firstPath;
-                        LineGraphVM.SecondLine = secondPath;
-                        LineGraphVM.ThirdLine = thirdPath;
-                        LineGraphVM.Shapes.Add(firstPath);
-                        LineGraphVM.Shapes.Add(secondPath);
-                        LineGraphVM.Shapes.Add(thirdPath);
 
                         //Graph Axis Setup
 
                         LineGraphVM.VerticalUnit = "%";
                         LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
 
-                        //Adding Dates for Horizontal Axis
-                        LineGraphVM.HorizontalUnit = "date";
-                        List<string> datesFormatted = new List<string>();
-                        foreach (long date in dates)
-                        {
-                            DateTime dateInTime = new DateTime(date);
-                            datesFormatted.Add(dateInTime.ToString("dd-MM"));
-                        }
-                        LineGraphVM.HorizontalNumbers = new ObservableCollection<string>(datesFormatted);
+
 
                         //Adding Bottom String Statistics
-                        FirstStatistic = topicAnswersDaily.First().Value.TotalCardAmount.ToString();
-                        int secondStatisticInt = 0;
-                        int thirdStatisticInt = 0;
+                        firstStatisticStat = topicAnswersDaily.First().Value.TotalCardAmount.ToString();
+                        int totalAnswers = 0;
+                        int totalAnswersMoreThenThree = 0;
                         topicAnswersDaily.Select(pair => pair.Value).ToList().ForEach(v =>
                         {
-                            secondStatisticInt += v.Answered;
-                            thirdStatisticInt += v.AnsweredMoreThenTwice;
+                            totalAnswers += v.Answered;
+                            totalAnswersMoreThenThree += v.AnsweredMoreThenTwice;
                         });
-                        SecondStatistic = secondStatisticInt.ToString();
-                        ThirdStatistic = thirdStatisticInt.ToString();
+
+                        secondStatisticStat = totalAnswers.ToString();
+                        thirdStatisticStat = totalAnswersMoreThenThree.ToString();
+
+                        break;
+
+                    case OpenStatisticsPanelMessage.TIME_PANEL:
+
+
+                        foreach (long date in dates)
+                        {
+                            //Points for Path 1,2,3
+                            if (topicAnswersDaily.ContainsKey(date))
+                            {
+                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].TimeAvg));
+                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].TimeMax));
+                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].TimeMin));
+                            }
+                            else
+                            {
+                                unscaledPointsPathOne.Add(new Point(date, 0));
+                                unscaledPointsPathTwo.Add(new Point(date, 0));
+                                unscaledPointsPathThree.Add(new Point(date, 0));
+                            }
+                        }
+
+
+                        //Graph Axis Setup
+                        yMax = topicAnswersDaily.Max(param => param.Value.TimeMax);
+                        yMin = topicAnswersDaily.Min(param => param.Value.TimeMin);
+
+                        LineGraphVM.VerticalUnit = "sec";
+                        ObservableCollection<string> verticalAxisSeconds = new ObservableCollection<string>();
+
+                        long timeSpan = yMax - yMin;
+                        long timeSegment = timeSpan / 6;
+                        for (int i = 0; i < 6; i++)
+                        {
+                            verticalAxisSeconds.Add(TimeSpan.FromTicks(yMin + (timeSegment * i)).ToString("ss"));
+                        }
+
+                        LineGraphVM.VerticalNumbers = verticalAxisSeconds;
+
+
+                        //Adding Bottom String Statistics
+                        long overallMinTime = topicAnswersDaily.Select(pair => pair.Value).ToList().Min(stat => stat.TimeMin);
+                        long overallMaxTime = topicAnswersDaily.Select(pair => pair.Value).ToList().Max(stat => stat.TimeMax);
+
+                        long overallAvgTime = topicAnswersDaily.First().Value.TimeAvg;
+                        topicAnswersDaily.Select(pair => pair.Value).ToList().ForEach(v =>
+                        {
+                            overallAvgTime = (overallAvgTime + v.TimeAvg) / 2;
+                        });
+
+                        firstStatisticStat = TimeSpan.FromTicks(overallMaxTime).TotalSeconds.ToString("N0");
+                        secondStatisticStat = TimeSpan.FromTicks(overallAvgTime).TotalSeconds.ToString("N0");
+                        thirdStatisticStat = TimeSpan.FromTicks(overallMinTime).TotalSeconds.ToString("N0");
 
                         break;
                 }
+
+
+
+                LineGraphVM.Shapes.Clear();
+                firstPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
+                secondPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
+                thirdPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
+
+                LineGraphVM.FirstLine = firstPath;
+                LineGraphVM.SecondLine = secondPath;
+                LineGraphVM.ThirdLine = thirdPath;
+                LineGraphVM.Shapes.Add(firstPath);
+                LineGraphVM.Shapes.Add(secondPath);
+                LineGraphVM.Shapes.Add(thirdPath);
+
+                //Adding Dates for Horizontal Axis
+                LineGraphVM.HorizontalUnit = "date";
+                List<string> datesFormatted = new List<string>();
+                foreach (long date in dates)
+                {
+                    DateTime dateInTime = new DateTime(date);
+                    datesFormatted.Add(dateInTime.ToString("dd-MM"));
+                }
+                LineGraphVM.HorizontalNumbers = new ObservableCollection<string>(datesFormatted);
+
+                FirstStatistic = firstStatisticStat;
+                SecondStatistic = secondStatisticStat;
+                ThirdStatistic = thirdStatisticStat;
             }
         }
 
