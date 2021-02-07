@@ -27,6 +27,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
 
+        public RelayCommand OpenNewCardWindow { get; }
+
         public MainWindowViewModel(RootViewModel model)
         {
             //Refrenzing to the model
@@ -39,6 +41,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
+            OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
 
         }
 
@@ -63,6 +66,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         //Methods for the Relay Commands to open windows
+
+        private void OpenNewCardWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+        }
 
         private void OpenNewClientWindowMethod() //kann die raus?
         {

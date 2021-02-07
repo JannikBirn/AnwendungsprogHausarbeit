@@ -41,6 +41,8 @@
                               Command="{Binding Path=OpenCardOverView}" />
                     <MenuItem Header="Statistics "
                               Command="{Binding Path=OpenStatisticsWindow}" />
+                    <MenuItem Header="New Card"
+                              Command="{Binding Path=OpenNewCardWindow}" />
                 </MenuItem>
             </Menu>
         </DockPanel>
