@@ -29,7 +29,6 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             topicStatistics = new List<TopicStatistics>();
             foreach (Topic topic in RootModel.TopicCollection)
             {
-                AddTestData(topic); //For Testing purpose
                 topicStatistics.Add(new TopicStatistics(topic));
 
             }
@@ -54,7 +53,7 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
                     if (!result.ContainsKey(keyValuePair.Key))
                     {
                         //Create new key and value 
-                        result.Add(keyValuePair.Key, keyValuePair.Value);
+                        result.Add(keyValuePair.Key, new TopicAnswerStatistics(keyValuePair.Value));
                     }
                     else
                     {
@@ -84,12 +83,21 @@ namespace De.HsFlensburg.ClientApp012.Data.Statistics
             return result;
         }
 
+        public void GenerateExampleData()
+        {
+            foreach (Topic topic in RootModel.TopicCollection)
+            {
+                AddTestData(topic);
+            }
+            Init();
+        }
+
         private Topic AddTestData(Topic topic)
         {
             var rand = new Random();
             foreach (Card card in topic)
             {
-                long lastEndTime = DateTime.Now.Ticks;
+                long lastEndTime = DateTime.Now.Ticks-TimeSpan.FromDays(10).Ticks;
                 lastEndTime += (long)rand.NextDouble() * (int)TimeSpan.FromHours(10).Ticks;
                 if (rand.NextDouble() > 0.5)
                     for (int i = 0; i < 10; i++)

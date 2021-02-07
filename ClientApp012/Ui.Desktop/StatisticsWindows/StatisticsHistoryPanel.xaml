@@ -109,7 +109,7 @@
                 <Label  Content="Total words:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding FirstStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
@@ -129,7 +129,7 @@
                 <Label  Content="Total answered:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding SecondStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
@@ -149,7 +149,7 @@
                 <Label  Content="Total answered 3+:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding ThirdStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>

@@ -1,6 +1,7 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Commands for StaticsTopicSelectionWindow
         public RelayCommand SelectedTopicCommand { get; }
 
+        public List<KeyValuePair<int, string>> TopicList { get; set; }
 
-        
 
         public StatisticsTopicSelectionWindowViewModel(RootViewModel model, StatisticsWindowViewModel statisticsVM)
         {
@@ -28,16 +29,42 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
             StatisticsWindowVM = statisticsVM;
 
+            //Initialising Topic List
+            RootViewModel.TopicCollection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(RefreshList);
+
             //Adding relay commands
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
+        }
 
+        private void RefreshList()
+        {
+            TopicList = new List<KeyValuePair<int, string>>();
+            TopicList.Add(new KeyValuePair<int, string>(-1, "All"));
+
+            foreach (TopicViewModel topicVM in RootViewModel.TopicCollection)
+            {
+                TopicList.Add(new KeyValuePair<int, string>(topicVM.ID, topicVM.Name));
+            }
+        }
+
+        private void RefreshList(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            RefreshList();
         }
 
 
         private void SelectedTopicCommandMethod(object topic)
         {
-            TopicViewModel topicVM = (TopicViewModel)topic;
-            StatisticsWindowVM.SelectedTopic = topicVM;
+            //TopicViewModel topicVM = (TopicViewModel)topic;
+            KeyValuePair<int, string> topicKey = (KeyValuePair<int, string>)topic;
+            if (topicKey.Key == -1)
+            {
+                StatisticsWindowVM.SelectedTopic = null;
+            }
+            else
+            {
+                StatisticsWindowVM.SelectedTopic = RootViewModel.TopicCollection.First(topicVM => topicVM.ID == topicKey.Key && topicVM.Name == topicKey.Value);
+            }
             StatisticsWindowVM.UpdateGraph();
         }
 
