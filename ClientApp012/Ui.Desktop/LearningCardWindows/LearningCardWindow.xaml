@@ -24,11 +24,16 @@
             <RowDefinition Height="60*" />
             <RowDefinition Height="497*" />
         </Grid.RowDefinitions>
-        <Button Content="Back"
-                HorizontalAlignment="Left"
+        <Button HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Style="{DynamicResource BackButton}"
-                Grid.Row="0" />
+                Grid.Row="0"
+                Margin="10,10,0,0"
+                Height="73">
+            <Button.Background>
+                <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/BackArrow.png" />
+            </Button.Background>
+        </Button>
         <Border x:Name="borderCards"
                 BorderThickness="1"
                 HorizontalAlignment="Left"

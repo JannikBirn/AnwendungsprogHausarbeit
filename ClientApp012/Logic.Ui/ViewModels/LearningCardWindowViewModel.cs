@@ -15,12 +15,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RootViewModel RootViewModel { get; set; }
 
         //Open Panel Commands
-        public RelayCommand OpenLearningCardQuestionPanel { get; }
         public RelayCommand OpenLearningCardAnswerPanel { get; }
-        public RelayCommand OpenLearningCardFinishPanel { get; }
-        public RelayCommand StartQuestioning {get; }
+        public RelayCommand CloseFinshWindow { get; }
         public RelayCommand StartAnswering { get; }
-        public RelayCommand EndAnswering { get; }
+        public RelayCommand Reset { get; }
         public RelayCommand LearingCardsF { get; }
         public RelayCommand LearingCardsT { get; }
 
@@ -67,7 +65,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
             LearingCardsF = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_FALSE));
             LearingCardsT = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_TRUE));
-            EndAnswering = new RelayCommand(() => EndAnsweringMethod());
+            Reset = new RelayCommand(() => reset());
         }
 
         public void OpenLearningCardPanelMethod(int panelIndex)
@@ -112,9 +110,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         } 
 
-        public void EndAnsweringMethod()
+        public void reset()
         {
             HasStarted = true;
+            OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.CLOSE_PANEL);
         }
 
 

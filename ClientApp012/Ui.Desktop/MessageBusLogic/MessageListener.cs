@@ -88,6 +88,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                     case OpenLearningCardPanelMessage.FINISH_PANEL:
                         learningCardFrame.Content = new LearningCardFinishPanel();
                         break;
+                    case OpenLearningCardPanelMessage.CLOSE_PANEL:
+                        learningCardFrame.Content = "";
+                        break;
                 }
             });
 
