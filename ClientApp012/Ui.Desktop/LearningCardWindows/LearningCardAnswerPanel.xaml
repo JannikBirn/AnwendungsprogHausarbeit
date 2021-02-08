@@ -64,7 +64,7 @@
                 Command="{Binding LearningCardWindowVM.LearingCardsF, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
         <Label x:Name="l_answer"
-               Content="{Binding Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+               Content="{Binding LearningCardWindowVM.CurrentCard.AnswerText, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Center"
                Margin="200,167,201,0"
                Grid.Row="1"

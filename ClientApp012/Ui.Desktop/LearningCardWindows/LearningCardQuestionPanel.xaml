@@ -52,7 +52,7 @@
                       Grid.Row="1"
                       VerticalAlignment="Center"
                       Width="434" />
-        <Label Content="{Binding Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+        <Label Content="{Binding LearningCardWindowVM.CurrentCard.QuestionText, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
                HorizontalAlignment="Left"
                Margin="183,128,0,0"
                Grid.Row="1"
