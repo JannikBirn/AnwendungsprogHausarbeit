@@ -58,7 +58,6 @@
                                     Width="1*"
                                     Binding="{Binding Name}" />
             </DataGrid.Columns>
-
         </DataGrid>
 
         <DataGrid x:Name="allCards"
@@ -121,7 +120,7 @@
                         Width="auto"
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleJan}"
-                        Command="{Binding PrintAllCards}"
+                        Command="{Binding OpenPrintPreview}"
                         CommandParameter="{Binding ElementName=allCards}"
                         />
                 <Label Content="(To Print all cards)"

@@ -11,12 +11,21 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
     public class ViewModelLocator
     {
         public RootViewModel RootViewModel { get; set; }
+        public MainWindowViewModel MainWindowVM { get; }
+        public NewClientWindowViewModel NewClientWindowVM { get; }
+        public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
+        public StatisticsWindowViewModel StatisticsWindowVM { get; }
+        public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
+        public LineGraphViewModel LineGraphVM { get; }
+        public LearningCardWindowViewModel LearningCardWindowVM { get; }
+        public PrintWindowViewModel PrintWindowVM { get; }
+        public NewCardWindowViewModel NewCardWindowVM { get; }
+        public TopicCollectionWindowViewModel TopicCollectionVM { get; }
 
         public ViewModelLocator()
         {
             //Initialsing Model ViewModel
             RootViewModel = new RootViewModel();
-
 
             // Initialising Window View Models
             MainWindowVM = new MainWindowViewModel(RootViewModel);
@@ -28,17 +37,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
             PrintWindowVM = new PrintWindowViewModel(RootViewModel);
             NewCardWindowVM = new NewCardWindowViewModel ( RootViewModel );
+            TopicCollectionVM = new TopicCollectionWindowViewModel(RootViewModel);
 
         }
 
-        public MainWindowViewModel MainWindowVM { get; }
-        public NewClientWindowViewModel NewClientWindowVM { get; }
-        public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
-        public StatisticsWindowViewModel StatisticsWindowVM { get; }
-        public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
-        public LineGraphViewModel LineGraphVM { get; }
-        public LearningCardWindowViewModel LearningCardWindowVM { get; }
-        public PrintWindowViewModel PrintWindowVM { get; }
-        public NewCardWindowViewModel NewCardWindowVM { get; }
     }
 }

@@ -31,7 +31,7 @@
             <ColumnDefinition Width="*" />
 
         </Grid.ColumnDefinitions>
-        
+
         <Button   Grid.Column="0"
                   VerticalAlignment="Top"
                   HorizontalAlignment="Left"
@@ -46,7 +46,7 @@
                 <Image Source=".\Resources\Images\BackArrow.png" />
             </StackPanel>
         </Button>
-        
+
         <DockPanel VerticalAlignment="Stretch"
                    HorizontalAlignment="Center"
                    Grid.ColumnSpan="2"
@@ -57,12 +57,14 @@
                       Foreground="#FF707070"
                       Margin="0,80,0,0"
                       DockPanel.Dock="Top"
-                      IsChecked="{Binding PrintWindowVM.Landscape, Source={StaticResource ViewModelLocator}}" />
+                      IsChecked="{Binding PrintWindowVM.Landscape, 
+                Source={StaticResource ViewModelLocator}}" />
             <Label Content="Number of copies"
                    Foreground="#FF707070"
                    DockPanel.Dock="Top"
                    Margin="0,30,0,0" />
-            <TextBox Text="{Binding PrintWindowVM.NumberOfPages, Source={StaticResource ViewModelLocator}}"
+            <TextBox Text="{Binding PrintWindowVM.NumberOfPages,
+                                    Source={StaticResource ViewModelLocator}}"
                      x:Name="myNumberOfPages"
                      DockPanel.Dock="Top"
                      Width="25"
@@ -73,7 +75,6 @@
                    Margin="0,30,0,0" />
             <TextBox Text="{Binding PrintWindowVM.ScalingFactor, 
                                     Source={StaticResource ViewModelLocator}}"
-                     
                      x:Name="mySliderNumber"
                      DockPanel.Dock="Top"
                      Width="25"
@@ -88,7 +89,7 @@
                     CommandParameter="{Binding ElementName=PreviewD}" />
         </DockPanel>
 
-        <DataGrid Grid.Column="2"
+        <!--<DataGrid Grid.Column="2"
                   Name="Grid1"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -101,29 +102,26 @@
                                     Header="Answer"
                                     IsReadOnly="True" />
             </DataGrid.Columns>
-        </DataGrid>
+        </DataGrid>-->
 
-        <!--DocumentViewer Grid.Column="1"
-                        x:Name="PreviewD"
+        <DocumentViewer Grid.Column="2"
+                        x:Name="docView"
                         ShowPageBorders="True">
             <DocumentViewer.Resources>
-                -->
+                
         <!--Hide default toolbar-->
-        <!--
                 <Style TargetType="ToolBar">
                     <Setter Property="Visibility"
                             Value="Collapsed" />
                 </Style>
-                -->
         <!--Hide default Searchbar-->
-        <!--
                 <Style TargetType="ContentControl">
                     <Setter Property="Visibility"
                             Value="Collapsed" />
                 </Style>
 
-            </DocumentViewer.Resources>-->
-        <!--</DocumentViewer>-->
+            </DocumentViewer.Resources>
+        </DocumentViewer>
 
     </Grid>
 </Window>

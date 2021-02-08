@@ -24,12 +24,14 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
         private PrintWindow PrintWindow{ get; set; }
 
         private LearningCardWindow LearningCardWindow { get; set; }
+        private TopicCollectionWindow TopicCollectionWindow { get; set; }
+
 
         public MessageListener()
         {
             InitMessenger();
         }
-
+        
         private void InitMessenger()
         {
             // Reaction to a message
@@ -37,6 +39,12 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             {
                 NewClientWindow myWindow = new NewClientWindow();
                 myWindow.ShowDialog();
+            });
+
+            ServiceBus.Instance.Register<OpenTopicCollectionWindowMessage>(this, delegate ()
+            {
+                TopicCollectionWindow = new TopicCollectionWindow();
+                TopicCollectionWindow.ShowDialog();
             });
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
@@ -58,8 +66,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
+                    // vielleicht mit Frame?
                     PrintWindow  = new PrintWindow();
-                    PrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
+                    PrintWindow.docView.Document = ((FixedDocument)message.Grid); //won't work
                     PrintWindow.ShowDialog();
                 });
 
@@ -113,7 +122,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             Messenger.Instance.Register<SetPrintPreviewMessage>(this, delegate (SetPrintPreviewMessage message)
             {
-                //PrintWindow.Grid1 = message.FixedDocumentSequence;
+             //   PrintWindow.Grid1 = message.FixedDocumentSequence;
             });
         }
     }

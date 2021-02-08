@@ -20,11 +20,9 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         public bool Landscape { get; set; }
         public int ScalingFactor { get; set; }
         public int NumberOfPages { get; set; }
+        private DataGrid dataGrid;
         public PrintAllCards()
         {
-            //Landscape = false;
-            //ScalingFactor = 90;
-            //NumberOfPages = 1;
         }
 
         public void PrintCards(object cards)
@@ -44,19 +42,23 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
                 }
             }
         }
+
         public void PrintCardsDirectly(object cards)
         {
             // Create a PrintDialog  
             PrintDialog printDlg = new PrintDialog();
             //casts the object cards to DataGrid
-            DataGrid dg = cards as DataGrid;
-
-            //maybe formating DataGrid here
-
+            dataGrid = cards as DataGrid;
+            //sets Preview
+           // PrintWindowPreview(dataGrid);
             //prepares a formatted page
             FormatPrintDialoge(printDlg);
 
-
+            if (dataGrid != null)
+            {
+                    // Call PrintDocument method to send document to printer 
+                    printDlg.PrintVisual(dataGrid, "Grid Printing.");
+            }
         }
 
         public FixedDocumentSequence PrintWindowPreview(DataGrid dg)

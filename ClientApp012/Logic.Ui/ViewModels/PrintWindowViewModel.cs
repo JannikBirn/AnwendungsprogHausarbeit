@@ -54,6 +54,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("NumberOfPages");
             }
         }
+        public DocumentViewer docView { get; set; }
 
         public PrintWindowViewModel(RootViewModel model)
         {
@@ -61,7 +62,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PrintIt = new RelayCommand(param => PrintItMethod(param));
             PrintWindowPreviewRC = new RelayCommand(param => PrintWindowPreviewMethod(param));
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
-
         }
 
         //For the INotifyPropertyChanged interface

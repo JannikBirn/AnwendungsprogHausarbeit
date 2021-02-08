@@ -18,11 +18,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class CardOverViewWindowViewModel
     {
-        public int TopicIndex { get; set; }
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand PrintTestPage { get; }
         public RelayCommand PrintWindow { get; }
-        public RelayCommand PrintAllCards { get; }
+        public RelayCommand OpenPrintPreview { get; }
         public RelayCommand CloseWindow { get; }
 
         public CardOverViewWindowViewModel(RootViewModel model)
@@ -31,12 +30,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PrintTestPage = new RelayCommand(() => PrintTestPageMethod());
             PrintWindow = new RelayCommand(param => PrintWPFWindowMethod(param));
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
-            PrintAllCards = new RelayCommand((param) => PrintAllCardsMethod(param));
+            OpenPrintPreview = new RelayCommand((param) => OpenPrintPreviewMethod(param));
         }
 
      
 
-        private void PrintAllCardsMethod(object allCards)
+        private void OpenPrintPreviewMethod(object allCards)
         {
             OpenPrintWindowMessage message = new OpenPrintWindowMessage();
             message.Grid = allCards;
