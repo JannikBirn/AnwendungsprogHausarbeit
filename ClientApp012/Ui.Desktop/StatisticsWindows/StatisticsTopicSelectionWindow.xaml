@@ -28,11 +28,6 @@
             <RowDefinition Height="0.2*" />
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
-        <Button Content="Back"
-                Grid.Row="0"
-                Style="{StaticResource BackButton}"
-                Width="40"
-                FontSize="12" />
         <Label Content="Select a Topic"
                Grid.Row="0"
                Style="{StaticResource DefaultLabel}"
