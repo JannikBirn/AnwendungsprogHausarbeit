@@ -100,16 +100,10 @@
     <Compile Include="Tools\LineGraph.xaml.cs">
       <DependentUpon>LineGraph.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TopicWindow.xaml.cs">
-      <DependentUpon>TopicWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="CardOverviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Include="TopicOverview.xaml.cs">
-      <DependentUpon>TopicOverview.xaml</DependentUpon>
-    </Compile>
     <Page Include="LearningCardWindows\LearningCardWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,10 +137,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewCardWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="NewClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,17 +176,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TopicWindow.xaml" />
-    <Page Include="TopicOverview.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageBusLogic\MessageListener.cs" />
-    <Compile Include="NewClientWindow.xaml.cs">
-      <DependentUpon>NewClientWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

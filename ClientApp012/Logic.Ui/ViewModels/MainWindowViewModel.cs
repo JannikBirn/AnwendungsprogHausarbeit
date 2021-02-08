@@ -20,7 +20,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
-        public RelayCommand OpenNewClientWindow { get; }
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
         public RelayCommand OpenCardOverView { get; }
@@ -35,7 +34,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Adding relay commands
-            OpenNewClientWindow = new RelayCommand(() => OpenNewClientWindowMethod());
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
@@ -69,11 +67,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         //Methods for the Relay Commands to open windows
-
-        private void OpenNewClientWindowMethod() //kann die raus?
-        {
-            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
-        }
 
         private void OpenCardOverViewMethod()
         {

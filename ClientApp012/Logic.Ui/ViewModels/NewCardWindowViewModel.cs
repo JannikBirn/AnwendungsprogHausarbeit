@@ -51,34 +51,35 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void AddCardMethod()
         {
+            long cardId = DateTime.Now.Ticks;
             if (QuestionImage != null)
             {
-                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge");
+                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge", cardId);
             }
             if (AnswerImage != null)
             {
-                AnswerImagePath = Save(AnswerImagePath, "AnswerImage");
+                AnswerImagePath = Save(AnswerImagePath, "AnswerImage", cardId);
             }
             if (!String.IsNullOrEmpty(QuestionAudioPath))
             {
-                QuestionAudioPath = Save(QuestionAudioPath, "QuestionAudio");
+                QuestionAudioPath = Save(QuestionAudioPath, "QuestionAudio", cardId);
             }
             if (!String.IsNullOrEmpty(AnswerAudioPath))
             {
-                AnswerAudioPath = Save(AnswerAudioPath, "AnswerAudio");
+                AnswerAudioPath = Save(AnswerAudioPath, "AnswerAudio", cardId);
             }
             if (!String.IsNullOrEmpty(QuestionVideoPath))
             {
-                QuestionVideoPath = Save(QuestionVideoPath, "QuestionVideo");
+                QuestionVideoPath = Save(QuestionVideoPath, "QuestionVideo", cardId);
             }
             if (!String.IsNullOrEmpty(AnswerVideoPath))
             {
-                AnswerVideoPath = Save(AnswerVideoPath, "AnswerVideo");
+                AnswerVideoPath = Save(AnswerVideoPath, "AnswerVideo", cardId);
             }
 
             // Check ob Text angegeben wurde
 
-            CardViewModel cvm = new CardViewModel
+            CardViewModel cvm = new CardViewModel(cardId)
             {
                 QuestionText = QuestionText,
                 QuestionVideo = QuestionVideoPath,
@@ -89,6 +90,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 AnswerImage = AnswerImagePath,
                 AnswerAudio = AnswerAudioPath
             };
+            
             Topic.Add(cvm);
         }
 
@@ -165,9 +167,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public String Save(string source, string folderName)
+        public String Save(string source, string folderName, long id)
         {
-            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{Path.GetExtension(source)}");
+            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{id}\\{folderName}\\{Path.GetExtension(source)}");
         }
        /* private String SaveImage(Image image, string sourcePath)
         {

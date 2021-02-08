@@ -59,7 +59,7 @@
                     BorderBrush="{StaticResource Static.Page.Background}"
                     BorderThickness="3 0 0 3">
                 <ItemsControl Name="canvasControl"
-                              ItemsSource="{Binding Shapes}"
+                              ItemsSource="{Binding Shapes, UpdateSourceTrigger=PropertyChanged}"
                               Margin="0">
                     <ItemsControl.Resources>
                         <DataTemplate DataType="{x:Type shapes:ShapeLine}">
@@ -77,7 +77,7 @@
                         </DataTemplate>
 
                         <DataTemplate DataType="{x:Type shapes:ShapePath}">
-                            <Path Stroke="{Binding Color}"
+                            <Path Stroke="{Binding Color, UpdateSourceTrigger=PropertyChanged}"
                                   StrokeThickness="4"
                                   Fill="Transparent">
                                 <Path.Data>

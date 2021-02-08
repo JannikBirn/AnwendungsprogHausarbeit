@@ -9,7 +9,33 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels.LineGraph.Shapes
 {
     public class IShape : INotifyPropertyChanged
     {
-        public string Color {get; set;}
+        private bool isInvisible;
+        public bool IsInvisible
+        {
+            get => isInvisible;
+            set
+            {
+                isInvisible = value;
+                OnPropertyChanged("IsInvisible");
+                OnPropertyChanged("Color");
+            }
+        }
+        public string color;
+
+        public string Color
+        {
+            get
+            {
+                if (IsInvisible)
+                    return "#00000000";
+                return color;
+            }
+            set
+            {
+                color = value;
+                OnPropertyChanged("Color");
+            }
+        }
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

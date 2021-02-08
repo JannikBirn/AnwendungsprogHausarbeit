@@ -6,8 +6,8 @@
       xmlns:graph="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.Tools"
       xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop.StatisticsWindows"
       mc:Ignorable="d"
-      d:DesignHeight="605.2"
-      d:DesignWidth="656"
+      d:DesignHeight="600"
+      d:DesignWidth="600"
       Title="StatisticsHistoryPanel">
 
     <Page.Resources>
@@ -19,7 +19,7 @@
     </Page.Resources>
 
     <Page.DataContext>
-        <Binding Path="StatisticsTopicSelectionWindowVM"
+        <Binding Path="StatisticsWindowVM"
                  Source="{StaticResource ViewModelLocator}" />
     </Page.DataContext>
 
@@ -44,7 +44,9 @@
                     Margin="10 5"
                     Grid.Column="0">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Red}">
+                        Foreground="{DynamicResource Static.Red}"
+                        Command="{Binding Path=FirstButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered" />
@@ -60,7 +62,9 @@
                     Margin="10 5"
                     Grid.Column="1">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Blue}">
+                        Foreground="{DynamicResource Static.Blue}"
+                        Command="{Binding Path=SecondButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 2" />
@@ -75,7 +79,9 @@
                     Margin="10 5"
                     Grid.Column="2">
                 <Button Style="{DynamicResource DefaultButtonStyle}"
-                        Foreground="{DynamicResource Static.Green}">
+                        Foreground="{DynamicResource Static.Green}"
+                        Command="{Binding Path=ThirdButton}"
+                        Margin="-1">
                     <Button.Content>
                         <Viewbox>
                             <TextBlock Text="Answered 3+" />
@@ -106,7 +112,7 @@
                 <Label  Content="Total words:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding FirstStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
@@ -126,7 +132,7 @@
                 <Label  Content="Total answered:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding SecondStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>
@@ -146,7 +152,7 @@
                 <Label  Content="Total answered 3+:"
                         Grid.Column="0"
                         Style="{DynamicResource DefaultLabel}"></Label>
-                <Label  Content="xxx"
+                <Label  Content="{Binding ThirdStatistic}"
                         Grid.Column="1"
                         Style="{DynamicResource DefaultLabel}"
                         HorizontalAlignment="Right"></Label>

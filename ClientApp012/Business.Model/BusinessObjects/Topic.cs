@@ -6,7 +6,7 @@ using System.Linq;
 [Serializable]
 public class Topic : ObservableCollection<Card>
 {
-	public int Id { set; get; }
+	public long Id { set; get; }
 	public String Name { set; get; }
 	public String Img { set; get; }
 
@@ -14,7 +14,12 @@ public class Topic : ObservableCollection<Card>
 
 	public Topic()
 	{
+		Id = DateTime.Now.Ticks;
+	}
 
+	public Topic(long id)
+	{
+		Id = id;
 	}
 
 	public List<Card> StartQuestioning()
@@ -23,7 +28,6 @@ public class Topic : ObservableCollection<Card>
 		//generating a list of cards, with their difficulty in mind
 		//TODO Sort
 		List<Card> cards = new List<Card>(this);
-
 		return cards;
     }
 
@@ -37,16 +41,5 @@ public class Topic : ObservableCollection<Card>
     {
 		//updating the difficulties of the cards of this collection
     }
-
-	public new void Add(Card card)
-    {
-		card.Id = NextCardId();
-		base.Add(card);
-    }
-
-	public int NextCardId()
-    {
-		return this.Max(param => param.Id) + 1;
-	}
 
 }

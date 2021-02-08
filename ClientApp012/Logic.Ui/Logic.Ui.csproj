@@ -48,7 +48,6 @@
     <Compile Include="MessageBusMessages\OpenLearningCardPanelMessage.cs" />
     <Compile Include="MessageBusMessages\OpenLearningCardWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewCardOverViewMessage.cs" />
-    <Compile Include="MessageBusMessages\OpenNewClientWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenPrintWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenStatisticsPanelMessage.cs" />
     <Compile Include="MessageBusMessages\OpenStatisticsWindowMessage.cs" />
@@ -66,7 +65,6 @@
     <Compile Include="ViewModels\LearningCardWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NewCardWindowViewModel.cs" />
-    <Compile Include="ViewModels\NewClientWindowViewModel.cs" />
     <Compile Include="ViewModels\PrintWindowViewModel.cs" />
     <Compile Include="ViewModels\StatisticsTopicSelectionWindowViewModel.cs" />
     <Compile Include="ViewModels\StatisticsWindowViewModel.cs" />
@@ -75,8 +73,6 @@
     <Compile Include="Wrapper\AbstractViewModels\ViewModelBase.cs" />
     <Compile Include="Wrapper\AbstractViewModels\ViewModelSyncCollection.cs" />
     <Compile Include="Wrapper\CardViewModel.cs" />
-    <Compile Include="Wrapper\ClientCollectionViewModel.cs" />
-    <Compile Include="Wrapper\ClientViewModel.cs" />
     <Compile Include="Wrapper\RootViewModel.cs" />
     <Compile Include="Wrapper\TopicCollectionViewModel.cs" />
     <Compile Include="Wrapper\TopicViewModel.cs" />
