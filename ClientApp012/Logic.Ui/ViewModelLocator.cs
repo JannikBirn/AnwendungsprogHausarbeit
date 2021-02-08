@@ -32,7 +32,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         }
 
         public MainWindowViewModel MainWindowVM { get; }
-        public NewClientWindowViewModel NewClientWindowVM { get; }
         public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
         public StatisticsWindowViewModel StatisticsWindowVM { get; }
         public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }

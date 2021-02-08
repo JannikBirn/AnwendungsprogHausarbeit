@@ -5,43 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="StatisticsWindow" Height="1024" Width="786">
+        Title="StatisticsWindow"
+        Height="1024"
+        Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="..\Styleguide.xaml"/>
+                <ResourceDictionary Source="..\Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
     <Window.DataContext>
-        <Binding Path="StatisticsWindowVM" Source="{StaticResource ViewModelLocator}"/>
+        <Binding Path="StatisticsWindowVM"
+                 Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
 
-    <Grid Style="{DynamicResource DefaultGridStyle}" Margin="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
-        <Button Content="Back" Grid.Row="0" HorizontalAlignment="Left" Style="{DynamicResource BackButton}" Width="80" Margin="10"/>
-        <Label Content="Statistiken" Grid.Row="0" Style="{DynamicResource DefaultLabel}" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10"/>
-        <Button Content="R" Grid.Row="0" HorizontalAlignment="Right" Width="80"  Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=ReloadStatistics}" Margin="10"/>
+    <DockPanel LastChildFill="True">
+        <DockPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="Statisitks">
+                    <MenuItem Header="Generate Example Data"
+                              Command="{Binding Path=GenerateExampleData}" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
 
-        <Button Content="{Binding Path=SelectedTopicString}" Grid.Row="1" Margin="100,20" Style="{DynamicResource DefaultButtonStyle}"  Command="{Binding Path=OpenTopicSelectionWindow}"/>
 
-        <Grid Margin="0 " Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Button Content="History" Grid.Column="0" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsHistoryPanel}"/>
-            <Button Content="Time" Grid.Column="1" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsTimePanel}" />
-            <Button Content="Quality" Grid.Column="2" Margin="10" Style="{DynamicResource DefaultButtonStyle}" Command="{Binding Path=OpenStatisticsQualityPanel}" />
+        <Grid Style="{DynamicResource DefaultGridStyle}"
+              Margin="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="7*" />
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0"
+                     Margin="10"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Label Content="Statistiken"
+                       Style="{DynamicResource DefaultLabel}" />
+            </Viewbox>
+
+            <Button Content="{Binding Path=SelectedTopicString}"
+                    Grid.Row="1"
+                    Margin="100,20"
+                    Style="{DynamicResource DefaultButtonStyle}"
+                    Command="{Binding Path=OpenTopicSelectionWindow}" />
+
+            <Grid Margin="0 "
+                  Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="History"
+                        Grid.Column="0"
+                        Margin="10"
+                        Style="{DynamicResource DefaultButtonStyle}"
+                        Command="{Binding Path=OpenStatisticsHistoryPanel}" />
+                <Button Content="Time"
+                        Grid.Column="1"
+                        Margin="10"
+                        Style="{DynamicResource DefaultButtonStyle}"
+                        Command="{Binding Path=OpenStatisticsTimePanel}" />
+                <Button Content="Quality"
+                        Grid.Column="2"
+                        Margin="10"
+                        Style="{DynamicResource DefaultButtonStyle}"
+                        Command="{Binding Path=OpenStatisticsQualityPanel}" />
+            </Grid>
+
+            <Frame x:Name="StatisticsFrame"
+                   x:FieldModifier="public"
+                   Grid.Row="3"
+                   NavigationUIVisibility="Hidden" />
         </Grid>
-
-        <Frame x:Name="StatisticsFrame" x:FieldModifier="public" Grid.Row="3" NavigationUIVisibility="Hidden"/>
-    </Grid>
+    </DockPanel>
 </Window>
