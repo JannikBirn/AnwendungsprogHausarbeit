@@ -53,6 +53,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
             }
         }
 
+        public List<Card> StartQuestioning()
+        {
+            return this.Model.StartQuestioning();
+        }
+
 
 
         //public TopicStatistics TopicStatistics

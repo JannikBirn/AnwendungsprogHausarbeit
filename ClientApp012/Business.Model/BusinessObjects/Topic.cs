@@ -28,7 +28,6 @@ public class Topic : ObservableCollection<Card>
 		//generating a list of cards, with their difficulty in mind
 		//TODO Sort
 		List<Card> cards = new List<Card>(this);
-
 		return cards;
     }
 
