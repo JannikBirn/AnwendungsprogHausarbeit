@@ -12,10 +12,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
     {
         //private TopicViewModel topicViewModel;
 
-        public int NextTopicId()
-        {
-            return this.Model.NextTopicId();
-        }
 
         public TopicCollectionViewModel() : base()
         {

@@ -11,15 +11,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
     {
         public TopicViewModel() : base() 
         {
+
         }
 
-        public int NextCardId()
+        public TopicViewModel(long id) : base()
         {
-            return this.Model.NextCardId();
+            this.Model.Id = id;
         }
 
-
-        public int ID
+        public long ID
         {
             get
             {
@@ -51,6 +51,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
                 this.Model.Img = value;
                 OnPropertyChanged("Img");
             }
+        }
+
+        public List<Card> StartQuestioning()
+        {
+            return this.Model.StartQuestioning();
         }
 
 

@@ -30,12 +30,6 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
         private void InitMessenger()
         {
-            // Reaction to a message
-            ServiceBus.Instance.Register<OpenNewClientWindowMessage>(this, delegate ()
-            {
-                NewClientWindow myWindow = new NewClientWindow();
-                myWindow.ShowDialog();
-            });
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
             {

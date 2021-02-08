@@ -43,8 +43,6 @@
   <ItemGroup>
     <Compile Include="BusinessObjects\Card.cs" />
     <Compile Include="BusinessObjects\CardAnswer.cs" />
-    <Compile Include="BusinessObjects\Client.cs" />
-    <Compile Include="BusinessObjects\ClientCollection.cs" />
     <Compile Include="BusinessObjects\Root.cs" />
     <Compile Include="BusinessObjects\TimeStamp.cs" />
     <Compile Include="BusinessObjects\Topic.cs" />

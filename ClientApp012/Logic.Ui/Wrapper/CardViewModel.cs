@@ -9,8 +9,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 {
     public class CardViewModel : ViewModelBase<Card>
     {
+        public CardViewModel() : base()
+        {
+
+        }
+
+        public CardViewModel(long id) : base()
+        {
+            this.Model.Id = id;
+        }
         // das 'this' muss raus. Wrapper klassen dürfen nur durchreichen und keine Daten halten. s. Skript S.70
-        public int ID
+        public long ID
         {
             get
             {
