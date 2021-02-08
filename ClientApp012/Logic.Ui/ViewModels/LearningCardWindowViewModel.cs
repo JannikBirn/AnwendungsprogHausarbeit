@@ -21,12 +21,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand StartAnswering { get; }
         public RelayCommand EndAnswering { get; }
         public RelayCommand LearingCardsF { get; }
-
         public RelayCommand LearingCardsT { get; }
 
         
 
-        public int count = 0;
+        public int count = 2;
 
         public int Count
         {
@@ -68,7 +67,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             EndAnswering = new RelayCommand(() => EndAnsweringMethod());
         }
 
-        private void OpenLearningCardPanelMethod(int panelIndex)
+        public void OpenLearningCardPanelMethod(int panelIndex)
         {
             OpenLearningCardPanelMessage messageObject = new OpenLearningCardPanelMessage();
             messageObject.PanelIndex = panelIndex;
@@ -76,7 +75,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Messenger.Instance.Send<OpenLearningCardPanelMessage>(messageObject);
         }
 
-        private void StartAnsweringMethod()
+
+        public void StartAnsweringMethod()
         {
             CurrentTopic[Count].StartAnswering();
          
@@ -84,35 +84,36 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             HasStarted = false;
         }
 
-        private void LearningCardMethodFalse()
+        public void LearningCardMethodFalse()
         {
             CurrentTopic[Count].FinishAnswer(false);
-            Count++;
-            if (CurrentTopic.Count == Count-1)
+            if (CurrentTopic.Count == Count)
             {
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else
             {
-                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
+                Count++;
+                StartAnsweringMethod();
             }
+           
         }
 
-        private void LearningCardMethodTrue()
+        public void LearningCardMethodTrue()
         {
             CurrentTopic[Count].FinishAnswer(true);
-            Count++;
-            if (CurrentTopic.Count == Count-1)
+            if (CurrentTopic.Count == Count)
             {
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else 
             {
-                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
+                Count++;
+                StartAnsweringMethod();
             }
         }
 
-        private void EndAnsweringMethod()
+        public void EndAnsweringMethod()
         {
             HasStarted = true;
         }

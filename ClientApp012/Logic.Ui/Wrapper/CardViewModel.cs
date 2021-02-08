@@ -17,18 +17,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
                 return this.Model.Id;
             }
         }
-
-        public Card.Difficulty Difficulty
-        {
-            get
-            {
-                return this.Difficulty;
-            }
-            set
-            {
-                this.Difficulty = value;
-            }
-        }
  
         public String QuestionText
         {
