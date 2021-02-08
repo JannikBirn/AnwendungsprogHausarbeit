@@ -71,11 +71,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
         }
 
-        private void OpenNewClientWindowMethod() //kann die raus?
-        {
-            ServiceBus.Instance.Send(new OpenNewClientWindowMessage());
-        }
-
         private void OpenCardOverViewMethod()
         {
             ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());

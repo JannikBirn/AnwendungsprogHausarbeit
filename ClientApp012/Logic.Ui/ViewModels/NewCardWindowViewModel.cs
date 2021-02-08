@@ -54,7 +54,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             long cardId = DateTime.Now.Ticks;
             if (QuestionImage != null)
             {
-                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge", cardId);
+                QuestionImagePath = Save(QuestionImagePath, "QuestionImage", cardId);
             }
             if (AnswerImage != null)
             {
@@ -172,8 +172,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public String Save(string source, string folderName, long id)
         {
-            //return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{folderName}{Path.GetExtension(source)}");
-            return ResourceSerializer.SaveFile(source, $"\\Test1\\Test1\\{folderName}\\{folderName}{Path.GetExtension(source)}");
+            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{id}\\{folderName}\\{Path.GetExtension(source)}");
 
         }
     }

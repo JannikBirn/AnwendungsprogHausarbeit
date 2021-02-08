@@ -49,7 +49,6 @@
     <Compile Include="MessageBusMessages\OpenLearningCardWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewCardOverViewMessage.cs" />
     <Compile Include="MessageBusMessages\OpenNewCardWindowMessage.cs" />
-    <Compile Include="MessageBusMessages\OpenNewClientWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenPrintWindowMessage.cs" />
     <Compile Include="MessageBusMessages\OpenStatisticsPanelMessage.cs" />
     <Compile Include="MessageBusMessages\OpenStatisticsWindowMessage.cs" />
