@@ -53,7 +53,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             if (QuestionImage != null)
             {
-                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge");
+                QuestionImagePath = Save(QuestionImagePath, "QuestionImage");
             }
             if (AnswerImage != null)
             {
@@ -77,7 +77,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
 
             // Check ob Text angegeben wurde
-
+            /*
             CardViewModel cvm = new CardViewModel
             {
                 QuestionText = QuestionText,
@@ -90,13 +90,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 AnswerAudio = AnswerAudioPath
             };
             Topic.Add(cvm);
+            */
         }
 
         private void LoadQuestionImageMethod()
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Image files (*.jpg, *.png)|*.jpg; *.png)"
+                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -109,7 +110,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Video files (*.mp4)|*.mp4)"
+                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -121,7 +122,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Image files (*.jpg, *.png)|*.jpg; *.png)"
+                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -134,7 +135,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Video files (*.mp4)|*.mp4)"
+                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -146,7 +147,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Audio files (*.mp3, *.wav)|*.mp3, *.wav)"
+                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -157,7 +158,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Audio files (*.mp3, *.wav)|*.mp3, *.wav)"
+                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -167,7 +168,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public String Save(string source, string folderName)
         {
-            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{Path.GetExtension(source)}");
+            //return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{Topic.NextCardId()}\\{folderName}\\{folderName}{Path.GetExtension(source)}");
+            return ResourceSerializer.SaveFile(source, $"\\Test1\\Test1\\{folderName}\\{folderName}{Path.GetExtension(source)}");
         }
     }
 }
