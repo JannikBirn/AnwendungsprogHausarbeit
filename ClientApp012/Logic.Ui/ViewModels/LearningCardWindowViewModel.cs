@@ -58,6 +58,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
+        public bool questioning = false;
+
          public LearningCardWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
@@ -82,6 +84,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public void StartAnsweringMethod()
         {
+            if (!questioning)
+            {
+                CurrentTopic.StartQuestioning();
+                questioning = true;
+            }
             CurrentCard.StartAnswering();
          
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
@@ -124,6 +131,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             CurrentCard.FinishAnswer(true);
             if (CurrentTopic.Count-1 == Count)
             {
+                CurrentTopic
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else 
