@@ -94,10 +94,14 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             Messenger.Instance.Register<OpenTopicSelectionWindowMessage>(this, delegate (OpenTopicSelectionWindowMessage message)
             {
-                    StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
+                StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
                 myWindow.ShowDialog();
             });
 
+            Messenger.Instance.Register<SendAnswerMessage>(this, delegate (SendAnswerMessage message)
+            {
+              
+            });
         }
     }
 }

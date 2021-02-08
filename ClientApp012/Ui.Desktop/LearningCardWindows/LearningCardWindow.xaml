@@ -24,8 +24,7 @@
             <RowDefinition Height="60*" />
             <RowDefinition Height="497*" />
         </Grid.RowDefinitions>
-        <Button 
-                Content="Back"
+        <Button Content="Back"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Style="{DynamicResource BackButton}"
@@ -68,7 +67,7 @@
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Width="316"
-               Height="61" 
+               Height="61"
                Style="{Binding Source={StaticResource DefaultLabel}}"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" />

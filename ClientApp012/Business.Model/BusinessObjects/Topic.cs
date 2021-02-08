@@ -24,16 +24,17 @@ public class Topic : ObservableCollection<Card>
 
 	public List<Card> StartQuestioning()
     {
-		TopicStatistics.SetStart();
+		//TopicStatistics.SetStart();
 		//generating a list of cards, with their difficulty in mind
 		//TODO Sort
 		List<Card> cards = new List<Card>(this);
+		cards = cards.OrderBy(i => Guid.NewGuid()).ToList();        //schuffle Cards
 		return cards;
     }
 
 	public void FinishQuestioning()
     {
-		TopicStatistics.SetEnd();
+		//TopicStatistics.SetEnd();
 		//End the questioning, genearte end timestap
     }
 

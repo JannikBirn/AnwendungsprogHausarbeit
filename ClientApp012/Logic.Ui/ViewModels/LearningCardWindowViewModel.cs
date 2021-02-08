@@ -23,7 +23,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand EndAnswering { get; }
         public RelayCommand LearingCardsF { get; }
         public RelayCommand LearingCardsT { get; }
-        public RelayCommand LearingCards { get; }
 
         public CardViewModel currentCard;
         public TopicViewModel CurrentTopic
@@ -64,13 +63,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             RootViewModel = model;
 
-            //  OpenLearningCardQuestionPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL));
             StartAnswering = new RelayCommand(() => StartAnsweringMethod());
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
-            LearingCardsF = new RelayCommand(() => LearningCardMethodFalse());
-            LearingCardsT = new RelayCommand(() => LearningCardMethodTrue());
+            LearingCardsF = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_FALSE));
+            LearingCardsT = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_TRUE));
             EndAnswering = new RelayCommand(() => EndAnsweringMethod());
-            //LearingCards = new RelayCommand(() => LearningCardMethod());
         }
 
         public void OpenLearningCardPanelMethod(int panelIndex)
@@ -99,8 +96,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void LearningCardMethod(bool answer)
         {
             CurrentCard.FinishAnswer(answer);
+       
             if (CurrentTopic.Count - 1 == Count)
             {
+                CurrentTopic.FinishQuestioning();
+                questioning = false;
+                Count = 0;
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else
@@ -109,37 +110,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 StartAnsweringMethod();
             }
 
-        }
-
-        public void LearningCardMethodFalse()
-        {
-            CurrentCard.FinishAnswer(false);
-            if (CurrentTopic.Count-1 == Count)
-            {
-                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
-            }
-            else
-            {
-                Count++;
-                StartAnsweringMethod();
-            }
-           
-        }
-
-        public void LearningCardMethodTrue()
-        {
-            CurrentCard.FinishAnswer(true);
-            if (CurrentTopic.Count-1 == Count)
-            {
-                CurrentTopic
-                OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
-            }
-            else 
-            {
-                Count++;
-                StartAnsweringMethod();
-            }
-        }
+        } 
 
         public void EndAnsweringMethod()
         {
