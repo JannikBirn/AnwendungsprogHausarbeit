@@ -25,7 +25,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenCardOverView { get; }
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
-        public RelayCommand OpenTopicCollectionWindow { get; }
         
 
         public MainWindowViewModel(RootViewModel model)
@@ -39,7 +38,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLearningCardWindowMethod());
-            OpenTopicCollectionWindow = new RelayCommand(() => OpenTopicCollectionWindowMethod());
 
 
         }
@@ -82,9 +80,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
         }
-        private void OpenTopicCollectionWindowMethod()
-        {
-            ServiceBus.Instance.Send(new OpenTopicCollectionWindowMessage());
-        }
+    
     }
 }

@@ -28,6 +28,7 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+    
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
@@ -46,9 +47,6 @@
                               Command="{Binding Path=OpenCardOverView}" />
                     <MenuItem Header="Statistics "
                               Command="{Binding Path=OpenStatisticsWindow}" />
-                    <MenuItem Header="TopicCollection"
-                              Command="{Binding Path=OpenTopicCollectionWindow}" />
-
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -104,7 +102,8 @@
                                         Header="AnswerAudio" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid Style="{DynamicResource DefaultGridStyle}"
+            <Grid
+                  Style="{DynamicResource DefaultGridStyle}"
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="5">
@@ -127,8 +126,10 @@
                        Style="{DynamicResource TitleLabelStyle}" />
                 <DataGrid Grid.Column="1"
                           Grid.Row="1"
+                          Name="TopicDataGrid"
                           ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                           Style="{StaticResource DefaultDataGrid}"
+                          IsReadOnly="True"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}"
@@ -142,6 +143,27 @@
                                             HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
                                             IsReadOnly="True" />
                     </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <!--https://www.wpf-tutorial.com/datagrid-control/details-row/-->
+                        <DataTemplate>
+                            <DockPanel Background="GhostWhite">
+                                <Image DockPanel.Dock="Right"
+                                       Source="{Binding Path=Img}"
+                                       Height="64"
+                                       Margin="10" />
+                                <Grid Margin="0 ,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+                        
+                    </DataGrid.RowDetailsTemplate>
                     <behaviors:Interaction.Triggers>
                         <behaviors:EventTrigger EventName="SelectionChanged">
                             <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
@@ -149,6 +171,7 @@
                         </behaviors:EventTrigger>
                     </behaviors:Interaction.Triggers>
                 </DataGrid>
+
                 <StackPanel Grid.Row="2"
                             Grid.Column="1">
                     <Button Content="Create New Topic"
@@ -175,5 +198,5 @@
             </Grid>
         </Grid>
     </DockPanel>
-    
+
 </Window>

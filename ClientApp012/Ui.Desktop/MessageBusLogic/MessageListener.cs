@@ -60,17 +60,21 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
-                    // vielleicht mit Frame?
                     PrintWindow  = new PrintWindow();
-                    PrintWindow.docView.Document = ((FixedDocument)message.Grid); //won't work
                     PrintWindow.ShowDialog();
                 });
 
-         //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
-        //     {
-        //       LearningCardWindow myWindow = new LearningCardWindow();
-        //       myWindow.ShowDialog();
-         //   });
+            Messenger.Instance.Register<SetPrintPreviewMessage>(this, delegate (SetPrintPreviewMessage message)
+            {
+                    //PrintWindow.docView.Document = ((FixedDocument)message.Grid); //won't work
+                //   PrintWindow.Grid1 = message.FixedDocumentSequence;
+            });
+
+            //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
+            //     {
+            //       LearningCardWindow myWindow = new LearningCardWindow();
+            //       myWindow.ShowDialog();
+            //   });
 
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
@@ -114,10 +118,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 myWindow.ShowDialog();
             });
 
-            Messenger.Instance.Register<SetPrintPreviewMessage>(this, delegate (SetPrintPreviewMessage message)
-            {
-             //   PrintWindow.Grid1 = message.FixedDocumentSequence;
-            });
+           
         }
     }
 }

@@ -39,7 +39,7 @@
                   Height="40"
                   Width="50"
                   Command="{Binding CloseWindow}"
-                  CommandParameter="{Binding ElementName=myCardOverviewWindow}"
+                  CommandParameter="{Binding ElementName=myPrintWindow}"
                   Background="{x:Null}"
                   BorderBrush="{x:Null}">
             <StackPanel Orientation="Horizontal">

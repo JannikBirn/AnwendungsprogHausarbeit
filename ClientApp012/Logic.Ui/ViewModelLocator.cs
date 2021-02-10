@@ -12,7 +12,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
     {
         public RootViewModel RootViewModel { get; set; }
         public MainWindowViewModel MainWindowVM { get; }
-        public NewClientWindowViewModel NewClientWindowVM { get; }
         public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
         public StatisticsWindowViewModel StatisticsWindowVM { get; }
         public StatisticsTopicSelectionWindowViewModel StatisticsTopicSelectionWindowVM { get; }
@@ -26,10 +25,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         {
             //Initialsing Model ViewModel
             RootViewModel = new RootViewModel();
-
-            // Initialising Window View Models
             MainWindowVM = new MainWindowViewModel(RootViewModel);
-            //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
             CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
             LineGraphVM = new LineGraphViewModel();
             StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel, LineGraphVM);
