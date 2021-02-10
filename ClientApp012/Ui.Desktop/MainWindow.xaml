@@ -28,7 +28,7 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
-    
+
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
@@ -70,7 +70,8 @@
                       ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                       AutoGenerateColumns="False"
                       SelectionChanged="TopicCollectionDG_SelectionChanged"
-                      Grid.ColumnSpan="4">
+                      Grid.ColumnSpan="4"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}"
                                         Header="Name" />
@@ -102,8 +103,7 @@
                                         Header="AnswerAudio" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid
-                  Style="{DynamicResource DefaultGridStyle}"
+            <Grid Style="{DynamicResource DefaultGridStyle}"
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="5">
@@ -129,7 +129,7 @@
                           Name="TopicDataGrid"
                           ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                           Style="{StaticResource DefaultDataGrid}"
-                          IsReadOnly="True"
+                          IsReadOnly="False"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}"
@@ -162,7 +162,7 @@
                                 </Grid>
                             </DockPanel>
                         </DataTemplate>
-                        
+
                     </DataGrid.RowDetailsTemplate>
                     <behaviors:Interaction.Triggers>
                         <behaviors:EventTrigger EventName="SelectionChanged">
@@ -172,11 +172,23 @@
                     </behaviors:Interaction.Triggers>
                 </DataGrid>
 
-                <StackPanel Grid.Row="2"
-                            Grid.Column="1">
+                <Grid Grid.Row="2"
+                      Grid.Column="1"
+                      
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="450"
+                      Height="160">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
                     <Button Content="Create New Topic"
-                            Grid.Column="1"
-                            Grid.Row="2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Width="auto"
@@ -184,17 +196,54 @@
                             Margin="0,20,0,0"
                             Command="{Binding OpenStatistics }"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Delete Topic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding DeleteTopic}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
                     <Button Content="Statistics"
-                            Grid.Column="1"
-                            Grid.Row="2"
+                            Grid.Column="2"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
-
-                </StackPanel>
+                    <Button Content="CardOverview"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenTopic}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Printing"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenPrinting}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Learning"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenPrinting}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                </Grid>
             </Grid>
         </Grid>
     </DockPanel>
