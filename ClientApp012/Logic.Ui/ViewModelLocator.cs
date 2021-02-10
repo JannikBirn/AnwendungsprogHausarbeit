@@ -11,6 +11,27 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
     public class ViewModelLocator
     {
         public RootViewModel RootViewModel { get; set; }
+
+        public ViewModelLocator()
+        {
+            //Initialsing Model ViewModel
+            RootViewModel = new RootViewModel();
+
+
+            // Initialising Window View Models
+            MainWindowVM = new MainWindowViewModel(RootViewModel);
+            //NewClientWindowVM = new NewClientWindowViewModel(RootVM);
+            CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
+            LineGraphVM = new LineGraphViewModel();
+            StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel, LineGraphVM);
+            StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
+            LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
+            PrintWindowVM = new PrintWindowViewModel(RootViewModel);
+            NewCardWindowVM = new NewCardWindowViewModel(MainWindowVM);
+            NewTopicWindowVM = new NewTopicWindowViewModel(RootViewModel);
+
+        }
+
         public MainWindowViewModel MainWindowVM { get; }
         public CardOverViewWindowViewModel CardOverViewWindowVM { get; }
         public StatisticsWindowViewModel StatisticsWindowVM { get; }
@@ -19,23 +40,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
         public LearningCardWindowViewModel LearningCardWindowVM { get; }
         public PrintWindowViewModel PrintWindowVM { get; }
         public NewCardWindowViewModel NewCardWindowVM { get; }
-        public TopicCollectionWindowViewModel TopicCollectionVM { get; }
-
-        public ViewModelLocator()
-        {
-            //Initialsing Model ViewModel
-            RootViewModel = new RootViewModel();
-            MainWindowVM = new MainWindowViewModel(RootViewModel);
-            CardOverViewWindowVM = new CardOverViewWindowViewModel(RootViewModel);
-            LineGraphVM = new LineGraphViewModel();
-            StatisticsWindowVM = new StatisticsWindowViewModel(RootViewModel, LineGraphVM);
-            StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
-            LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
-            PrintWindowVM = new PrintWindowViewModel(RootViewModel);
-            NewCardWindowVM = new NewCardWindowViewModel ( RootViewModel );
-            TopicCollectionVM = new TopicCollectionWindowViewModel(RootViewModel);
-
-        }
-
+        public NewTopicWindowViewModel NewTopicWindowVM { get; }
     }
 }

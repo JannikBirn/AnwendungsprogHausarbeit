@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="StatisticsWindow"
+        Title="NewCardWindow"
         Height="1024"
         Width="786">
     <Window.Resources>
@@ -39,15 +39,15 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="Answer"
-               Content="Question"
+        <Label x:Name="Question"
+               Content="Question:"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Margin="10"
                Grid.Row="0"
                Style="{DynamicResource DefaultLabel}" />
-        <Label x:Name="Answer_Copy"
-               Content="Answer"
+        <Label x:Name="Answer"
+               Content="Answer:"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Margin="10"
