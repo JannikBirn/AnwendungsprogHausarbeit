@@ -26,6 +26,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
         public RelayCommand OpenNewCardWindow { get; }
+        public RelayCommand OpenNewTopicWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
@@ -40,7 +41,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
-            OpenLearningCardWindow = new RelayCommand(() => OpenLearningCardWindowMethod());
+            OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
 
@@ -73,6 +74,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Methods for the Relay Commands to open windows
 
+        private void OpenNewTopicWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewTopicWindowMessage());
+        }
 
         private void OpenNewCardWindowMethod()
         {

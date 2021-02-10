@@ -196,7 +196,7 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
-                            Command="{Binding OpenStatistics }"
+                            Command="{Binding  OpenNewTopicWindow}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                     <Button Content="Delete Topic"
                             HorizontalAlignment="Center"
@@ -244,7 +244,7 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
-                            Command="{Binding OpenPrinting}"
+                            Command="{Binding OpenLearningCardWindow}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                 </Grid>
             </Grid>
