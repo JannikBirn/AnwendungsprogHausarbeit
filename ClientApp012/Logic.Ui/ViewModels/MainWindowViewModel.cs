@@ -25,6 +25,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenCardOverView { get; }
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
+        public RelayCommand OpenNewCardWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
@@ -37,6 +38,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
+            OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
+            OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLearningCardWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
@@ -70,6 +73,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Methods for the Relay Commands to open windows
 
+
+        private void OpenNewCardWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+        }
+
         private void OpenCardOverViewMethod()
         {
             ServiceBus.Instance.Send(new OpenNewCardOverViewMessage());
@@ -80,10 +89,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ServiceBus.Instance.Send(new OpenStatisticsWindowMessage());
         }
 
-        private void OpenLearningCardWindowMethod()
+        private void OpenLaerningCardWindowMethod()
         {
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
         }
-    
     }
 }

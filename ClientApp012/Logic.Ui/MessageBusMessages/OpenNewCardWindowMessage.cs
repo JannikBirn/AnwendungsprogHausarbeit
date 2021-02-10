@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages
 {
-    public class OpenTopicCollectionWindowMessage
+    public class OpenNewCardWindowMessage
     {
     }
 }

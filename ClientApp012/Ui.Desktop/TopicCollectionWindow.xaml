@@ -5,87 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
-        Title="TopicCollectionWindow"
-        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-        Height="600"
-        Width="786"
-        x:Name="myTopicCollection">
+        Title="TopicCollectionWindow" Height="1024" Width="786">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styleguide.xaml" />
+                <ResourceDictionary Source="Styleguide.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Window.DataContext>
-        <Binding Path="TopicCollectionVM"
-                 Source="{StaticResource ViewModelLocator}" />
-    </Window.DataContext>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="4*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.5*" />
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Label Content="Welcome. Enjoy learning!"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               Width="290"
-               VerticalAlignment="Center"
-               Style="{DynamicResource TitleLabelStyle}" />
-        <DataGrid Grid.Column="1"
-                  Grid.Row="1"
-                  ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
-                  Style="{StaticResource DefaultDataGrid}"
-                  AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name}"
-                                    Width="*"
-                                    Header="Topic"
-                                    HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
-                                    IsReadOnly="True"/>
-                <DataGridTextColumn Binding="{Binding Img}"
-                                    Width="*"
-                                    Header="Img"
-                                    HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
-                                    IsReadOnly="True"/>
-            </DataGrid.Columns>
-            <behaviors:Interaction.Triggers>
-                <behaviors:EventTrigger EventName="SelectionChanged">
-                    <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
-                                                   CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
-                </behaviors:EventTrigger>
-            </behaviors:Interaction.Triggers>
-        </DataGrid>
-        <StackPanel Grid.Row="2"
-                    Grid.Column="1">
-            <Button Content="Create New Topic"
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Width="auto"
-                    Height="40"
-                    Margin="0,20,0,0"
-                    Command="{Binding OpenStatistics }"
-                    Style="{DynamicResource DefaultButtonStyleJan }" />
-            <Button Content="Statistics"
-                    Grid.Column="1"
-                    Grid.Row="2"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Width="auto"
-                    Height="40"
-                    Margin="0,20,0,0"
-                    Style="{DynamicResource DefaultButtonStyleJan }" />
-
-        </StackPanel>
-
+        <Label Content="Topic Collection" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TitleLabelStyle}" />
+        <Button Content="Back" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="36" Height="43" Style="{DynamicResource BackButton}"/>
+        <DataGrid Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Path=MyList}"></DataGrid>
+        <Button Content="Create New Topic" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" 
+                VerticalAlignment="Center" Width="auto" Height="40" Style="{DynamicResource DefaultButtonStyle }"/>
+        
     </Grid>
 </Window>

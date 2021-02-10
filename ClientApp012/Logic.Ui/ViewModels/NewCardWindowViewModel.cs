@@ -37,7 +37,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LoadAnswerAudio { get; }
 
 
-        public NewCardWindowViewModel(RootViewModel model)
+        public NewCardWindowViewModel(MainWindowViewModel model)
         {
             AddCard = new RelayCommand(() => AddCardMethod());
             LoadQuestionImage = new RelayCommand(() => LoadQuestionImageMethod());
@@ -46,7 +46,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
             LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
             LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
-            //Topic = model.TopicCollection[0];
+            Topic = model.CurrentTopic;
         }
 
         private void AddCardMethod()
@@ -54,7 +54,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             long cardId = DateTime.Now.Ticks;
             if (QuestionImage != null)
             {
-                QuestionImagePath = Save(QuestionImagePath, "QuestionIamge", cardId);
+                QuestionImagePath = Save(QuestionImagePath, "QuestionImage", cardId);
             }
             if (AnswerImage != null)
             {
@@ -79,7 +79,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             // Check ob Text angegeben wurde
 
+            
             CardViewModel cvm = new CardViewModel(cardId)
+
             {
                 QuestionText = QuestionText,
                 QuestionVideo = QuestionVideoPath,
@@ -92,13 +94,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             };
             
             Topic.Add(cvm);
+          
         }
 
         private void LoadQuestionImageMethod()
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Image files (*.jpg, *.png)|*.jpg; *.png)"
+                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -111,7 +114,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Video files (*.mp4)|*.mp4)"
+                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -123,7 +126,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Image files (*.jpg, *.png)|*.jpg; *.png)"
+                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -136,7 +139,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Video files (*.mp4)|*.mp4)"
+                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -148,7 +151,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Audio files (*.mp3, *.wav)|*.mp3, *.wav)"
+                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -159,7 +162,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             OpenFileDialog dialog = new OpenFileDialog
             {
-                Filter = "Audio files (*.mp3, *.wav)|*.mp3, *.wav)"
+                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
             };
             if (dialog.ShowDialog() == true)
             {
@@ -170,40 +173,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public String Save(string source, string folderName, long id)
         {
             return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{id}\\{folderName}\\{Path.GetExtension(source)}");
+
         }
-       /* private String SaveImage(Image image, string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            image.Save(destPath);
-            return destPath;
-        }
-        private String SaveAudio(string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            File.Copy(sourcePath, assetPath);
-            return destPath;
-        }
-        private String SaveVideo(string sourcePath)
-        {
-            string assetPath = $@"{BinarySerializer.PERSISTENT_DATA_PATH}";
-            if (!Directory.Exists(assetPath))
-            {
-                Directory.CreateDirectory(assetPath);
-            }
-            string destPath = $@"{assetPath}\{Path.GetFileName(sourcePath)}";
-            File.Copy(sourcePath, assetPath);
-            return destPath;
-        }
-       */
     }
 }
