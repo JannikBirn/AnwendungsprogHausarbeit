@@ -34,6 +34,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Refrenzing to the model
             RootViewModel = model;
 
+            //Auto load cards on startup
+            DeserializeFromBinMethod();
+
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
