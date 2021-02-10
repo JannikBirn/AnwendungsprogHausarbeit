@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="512"
+        Height="800"
         Width="900">
     <Window.Resources>
         <ResourceDictionary>
@@ -27,22 +28,25 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="File">
-                    <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
-                    <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
-                    <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
-                    <MenuItem Header="Learn" Command="{Binding Path=OpenLearningCardWindow}"/>
+                    <MenuItem Header="Load (Bin)"
+                              Command="{Binding Path=DeserializeFromBin}" />
+                    <MenuItem Header="Save (Bin)"
+                              Command="{Binding Path=SerializeToBin}" />
+                    <MenuItem Header="Client Window"
+                              Command="{Binding Path=OpenNewClientWindow}" />
+                    <MenuItem Header="Learn"
+                              Command="{Binding Path=OpenLearningCardWindow}" />
                 </MenuItem>
                 <MenuItem Header="Open Window">
                     <MenuItem Header="Card Overview"
                               Command="{Binding Path=OpenCardOverView}" />
                     <MenuItem Header="Statistics "
                               Command="{Binding Path=OpenStatisticsWindow}" />
-                    <MenuItem Header="New Card"
-                              Command="{Binding Path=OpenNewCardWindow}" />
                 </MenuItem>
             </Menu>
         </DockPanel>
@@ -50,14 +54,19 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="18*"></ColumnDefinition>
-                <ColumnDefinition Width="65*"/>
-                <ColumnDefinition Width="115*"/>
-                <ColumnDefinition Width="794*"></ColumnDefinition>
+                <ColumnDefinition Width="16*"></ColumnDefinition>
+                <ColumnDefinition Width="59*" />
+                <ColumnDefinition Width="11*" />
+                <ColumnDefinition Width="92*" />
+                <ColumnDefinition Width="714*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
             <DataGrid Grid.Column="0"
+                      Grid.Row="0"
                       Name="TopicCollectionDG"
                       ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                       AutoGenerateColumns="False"
@@ -65,21 +74,35 @@
                       Grid.ColumnSpan="4"
                       IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                    <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>
+                    <DataGridTextColumn Binding="{Binding Name}"
+                                        Header="Name" />
+                    <DataGridTextColumn Binding="{Binding Img}"
+                                        Header="Img" />
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid Grid.Column="3"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+            <DataGrid Grid.Column="4"
+                      Grid.Row="0"
+                      Name="TopicDG"
+                      ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
-                    <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
-                    <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
-                    <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
-                    <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
-                    <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
-                    <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
-                    <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
+                    <DataGridTextColumn Binding="{Binding QuestionText}"
+                                        Header="QuestionText" />
+                    <DataGridTextColumn Binding="{Binding QuestionVideo}"
+                                        Header="QuestionVideo" />
+                    <DataGridTextColumn Binding="{Binding QuestionImage}"
+                                        Header="QuestionImage" />
+                    <DataGridTextColumn Binding="{Binding QuestionAudio}"
+                                        Header="QuestionAudio" />
+                    <DataGridTextColumn Binding="{Binding AnswerText}"
+                                        Header="AnswerText" />
+                    <DataGridTextColumn Binding="{Binding AnswerVideo}"
+                                        Header="AnswerVideo" />
+                    <DataGridTextColumn Binding="{Binding AnswerImage}"
+                                        Header="AnswerImage" />
+                    <DataGridTextColumn Binding="{Binding AnswerAudio}"
+                                        Header="AnswerAudio" />
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Style="{DynamicResource DefaultGridStyle}"
@@ -173,7 +196,7 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
-                            Command="{Binding OpenStatistics }"
+                            Command="{Binding  OpenNewTopicWindow}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                     <Button Content="Delete Topic"
                             HorizontalAlignment="Center"
@@ -192,6 +215,7 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
+                            Command="{Binding OpenStatisticsWindow}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                     <Button Content="CardOverview"
                             Grid.Column="1"
@@ -200,7 +224,7 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
-                            Command="{Binding OpenTopic}"
+                            Command="{Binding OpenCardOverView}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                     <Button Content="Printing"
                             Grid.Column="1"
@@ -220,10 +244,11 @@
                             Width="auto"
                             Height="40"
                             Margin="0,20,0,0"
-                            Command="{Binding OpenPrinting}"
+                            Command="{Binding OpenLearningCardWindow}"
                             Style="{DynamicResource DefaultButtonStyleJan }" />
                 </Grid>
             </Grid>
         </Grid>
     </DockPanel>
+
 </Window>
