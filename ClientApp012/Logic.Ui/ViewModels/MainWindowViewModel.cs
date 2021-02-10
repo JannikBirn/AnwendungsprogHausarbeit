@@ -25,8 +25,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenCardOverView { get; }
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
-        
-
+        public RelayCommand SelectedTopicCommand { get; }
+        public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
             //Refrenzing to the model
@@ -38,11 +38,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLearningCardWindowMethod());
+            SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
 
         }
 
-        
+        private void SelectedTopicCommandMethod(object param)
+        {
+            CurrentTopic = param as TopicViewModel;
+        }
 
         //Serialization
 
