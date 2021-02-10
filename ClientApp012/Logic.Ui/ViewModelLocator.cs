@@ -27,7 +27,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui
             StatisticsTopicSelectionWindowVM = new StatisticsTopicSelectionWindowViewModel(RootViewModel, StatisticsWindowVM);
             LearningCardWindowVM = new LearningCardWindowViewModel(RootViewModel);
             PrintWindowVM = new PrintWindowViewModel(RootViewModel);
-            NewCardWindowVM = new NewCardWindowViewModel(RootViewModel);
+            NewCardWindowVM = new NewCardWindowViewModel(MainWindowVM);
             NewTopicWindowVM = new NewTopicWindowViewModel(RootViewModel);
 
         }

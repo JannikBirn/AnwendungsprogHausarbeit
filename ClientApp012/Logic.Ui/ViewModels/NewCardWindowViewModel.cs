@@ -37,7 +37,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LoadAnswerAudio { get; }
 
 
-        public NewCardWindowViewModel(RootViewModel model)
+        public NewCardWindowViewModel(MainWindowViewModel model)
         {
             AddCard = new RelayCommand(() => AddCardMethod());
             LoadQuestionImage = new RelayCommand(() => LoadQuestionImageMethod());
@@ -46,7 +46,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
             LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
             LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
-            Topic = model.TopicCollection[0];
+            Topic = model.CurrentTopic;
         }
 
         private void AddCardMethod()
