@@ -57,7 +57,13 @@
             </Grid.ColumnDefinitions>
 
 
-            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged" Grid.ColumnSpan="3">
+            <DataGrid Grid.Column="0"
+                      Name="TopicCollectionDG"
+                      ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                      AutoGenerateColumns="False"
+                      SelectionChanged="TopicCollectionDG_SelectionChanged"
+                      Grid.ColumnSpan="4"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                     <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>
@@ -76,6 +82,148 @@
                     <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Grid Style="{DynamicResource DefaultGridStyle}"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Label Content="Welcome. Enjoy learning!"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Width="290"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TitleLabelStyle}" />
+                <DataGrid Grid.Column="1"
+                          Grid.Row="1"
+                          Name="TopicDataGrid"
+                          ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                          Style="{StaticResource DefaultDataGrid}"
+                          IsReadOnly="False"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}"
+                                            Width="*"
+                                            Header="Topic"
+                                            HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Img}"
+                                            Width="*"
+                                            Header="Img"
+                                            HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
+                                            IsReadOnly="True" />
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <!--https://www.wpf-tutorial.com/datagrid-control/details-row/-->
+                        <DataTemplate>
+                            <DockPanel Background="GhostWhite">
+                                <Image DockPanel.Dock="Right"
+                                       Source="{Binding Path=Img}"
+                                       Height="64"
+                                       Margin="10" />
+                                <Grid Margin="0 ,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+
+                    </DataGrid.RowDetailsTemplate>
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger EventName="SelectionChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
+                                                           CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                </DataGrid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="1"
+                      
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="450"
+                      Height="160">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button Content="Create New Topic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenStatistics }"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Delete Topic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding DeleteTopic}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Statistics"
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="CardOverview"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenTopic}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Printing"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenPrinting}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Learning"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenPrinting}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                </Grid>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>
