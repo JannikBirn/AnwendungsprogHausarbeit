@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -18,6 +19,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenLearningCardAnswerPanel { get; }
         public RelayCommand CloseFinshWindow { get; }
         public RelayCommand StartAnswering { get; }
+        public RelayCommand CloseWindow { get; }
         public RelayCommand Reset { get; }
         public RelayCommand LearingCardsF { get; }
         public RelayCommand LearingCardsT { get; }
@@ -44,18 +46,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public bool hasStarted = true;
         public bool HasStarted
         {
-            get
-            {
-                return hasStarted;
-            }
-            set
-            {
-                hasStarted = value;
+            get { return hasStarted; }
+            set { hasStarted = value;               
                 OnPropertyChanged("HasStarted");
             }
         }
 
-        public bool questioning = false;
+        public bool topicQuestioningStarted = false;
 
          public LearningCardWindowViewModel(RootViewModel model)
         {
@@ -66,6 +63,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LearingCardsF = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_FALSE));
             LearingCardsT = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_TRUE));
             Reset = new RelayCommand(() => reset());
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
         }
 
         public void OpenLearningCardPanelMethod(int panelIndex)
@@ -79,13 +77,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public void StartAnsweringMethod()
         {
-            if (!questioning)
+            if (!topicQuestioningStarted)
             {
                 CurrentTopic.StartQuestioning();
-                questioning = true;
+                topicQuestioningStarted = true;
             }
+
+            while(!CheckForLearning(CurrentCard))
+            {     
+               Count++;
+            }
+
             CurrentCard.StartAnswering();
-         
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
             HasStarted = false;
         }
@@ -98,8 +101,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             if (CurrentTopic.Count - 1 == Count)
             {
                 CurrentTopic.FinishQuestioning();
-                questioning = false;
-                Count = 0;
+                reset();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else
@@ -113,9 +115,38 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void reset()
         {
             HasStarted = true;
+            Count = 0;
+            topicQuestioningStarted = false;
+
+        }
+        public void Restart()
+        {
+            reset();
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.CLOSE_PANEL);
         }
 
+        private void CloseWindowMethod(object param)
+        {
+            reset();
+            Window window = (Window)param;
+            window.Close();
+        }
+
+        private bool CheckForLearning(CardViewModel card)
+        {
+            int countTrues = 0;
+        
+            if(card.cardAnswers != null)
+            { foreach( CardAnswer answers in card.cardAnswers)
+                {
+                    if(answers.IsAnswerCorrect)
+                    {
+                        countTrues++;
+                    }
+                }
+            }
+            return countTrues <=3;
+        }
 
 
         //For the INotifyPropertyChanged interface

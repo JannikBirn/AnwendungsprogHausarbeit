@@ -72,7 +72,7 @@
                Height="289"
                Width="399"
                FontFamily="Roboto"
-               FontSize="16"
+               FontSize="20"
                Foreground="#FF707070"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" />

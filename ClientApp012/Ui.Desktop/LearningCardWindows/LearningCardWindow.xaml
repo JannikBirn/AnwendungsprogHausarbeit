@@ -27,6 +27,8 @@
         <Button HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Style="{DynamicResource BackButton}"
+                Command="{Binding CloseWindow}"
+                CommandParameter="{Binding ElementName=LearningCardWindow}"
                 Grid.Row="0"
                 Margin="10,10,0,0"
                 Height="73">

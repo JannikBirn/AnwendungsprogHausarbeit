@@ -133,6 +133,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         {
             Model.FinishAnswer(bol);
         }
+        public List<CardAnswer> cardAnswers
+        {
+            get
+            {
+                return this.Model.cardAnswers;
+            }
+        }
 
         public override void NewModelAssigned()
         {
