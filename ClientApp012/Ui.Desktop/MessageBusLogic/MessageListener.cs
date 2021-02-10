@@ -23,6 +23,10 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
         private LearningCardWindow LearningCardWindow { get; set; }
 
+        private NewCardWindow NewCardWindow { get; set; }
+
+        private NewTopicWindow NewTopicWindow { get; set; }
+
         public MessageListener()
         {
             InitMessenger();
@@ -48,6 +52,19 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 LearningCardWindow = new LearningCardWindow();
                 LearningCardWindow.ShowDialog();
             });
+
+            ServiceBus.Instance.Register<OpenNewCardWindowMessage>(this, delegate ()
+            {
+                NewCardWindow = new NewCardWindow();
+                NewCardWindow.ShowDialog();
+            });
+
+            ServiceBus.Instance.Register<OpenNewTopicWindowMessage>(this, delegate ()
+            {
+                NewTopicWindow = new NewTopicWindow();
+                NewTopicWindow.ShowDialog();
+            });
+
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
                     PrintWindow myPrintWindow= new PrintWindow();

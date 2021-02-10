@@ -79,6 +79,9 @@
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NewTopicWindow.xaml.cs">
+      <DependentUpon>NewTopicWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrintWindow.xaml.cs">
       <DependentUpon>PrintWindow.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="NewCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NewTopicWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

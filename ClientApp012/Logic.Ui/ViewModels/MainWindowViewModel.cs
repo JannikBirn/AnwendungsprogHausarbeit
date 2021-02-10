@@ -25,11 +25,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenCardOverView { get; }
         public RelayCommand OpenStatisticsWindow { get; }
         public RelayCommand OpenLearningCardWindow { get; }
-
+        public RelayCommand OpenNewCardWindow { get; }
+        public RelayCommand OpenNewTopicWindow { get; }
+        public RelayCommand SelectedTopicCommand { get; }
+        public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
             //Refrenzing to the model
             RootViewModel = model;
+
+            //Auto load cards on startup
+            DeserializeFromBinMethod();
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -37,7 +43,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
+            OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
+            OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
+            SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
 
+
+        }
+
+        private void SelectedTopicCommandMethod(object param)
+        {
+            CurrentTopic = param as TopicViewModel;
         }
 
         //Serialization
@@ -61,6 +76,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         //Methods for the Relay Commands to open windows
+
+        private void OpenNewTopicWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewTopicWindowMessage());
+        }
+
+        private void OpenNewCardWindowMethod()
+        {
+            ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+        }
 
         private void OpenCardOverViewMethod()
         {

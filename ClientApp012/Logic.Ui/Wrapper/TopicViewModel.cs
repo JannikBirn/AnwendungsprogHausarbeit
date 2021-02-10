@@ -16,7 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
 
         public TopicViewModel(long id) : base()
         {
-            this.Model.Id = id;
+            this.Model.Id = id; 
         }
 
         public long ID

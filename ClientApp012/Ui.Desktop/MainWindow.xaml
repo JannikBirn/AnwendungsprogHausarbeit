@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         xmlns:viewModel="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;assembly=Logic.Ui"
         xmlns:viewModels="clr-namespace:De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels;assembly=Logic.Ui"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow"
-        Height="512"
+        Height="800"
         Width="900">
     <Window.Resources>
         <ResourceDictionary>
@@ -27,14 +28,19 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
                 <MenuItem Header="File">
-                    <MenuItem Header="Load (Bin)" Command="{Binding Path=DeserializeFromBin}"/>
-                    <MenuItem Header="Save (Bin)" Command="{Binding Path=SerializeToBin}"/>
-                    <MenuItem Header="Client Window" Command="{Binding Path=OpenNewClientWindow}"/>
-                    <MenuItem Header="Learn" Command="{Binding Path=OpenLearningCardWindow}"/>
+                    <MenuItem Header="Load (Bin)"
+                              Command="{Binding Path=DeserializeFromBin}" />
+                    <MenuItem Header="Save (Bin)"
+                              Command="{Binding Path=SerializeToBin}" />
+                    <MenuItem Header="Client Window"
+                              Command="{Binding Path=OpenNewClientWindow}" />
+                    <MenuItem Header="Learn"
+                              Command="{Binding Path=OpenLearningCardWindow}" />
                 </MenuItem>
                 <MenuItem Header="Open Window">
                     <MenuItem Header="Card Overview"
@@ -48,32 +54,201 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="18*"></ColumnDefinition>
-                <ColumnDefinition Width="65*"/>
-                <ColumnDefinition Width="115*"/>
-                <ColumnDefinition Width="794*"></ColumnDefinition>
+                <ColumnDefinition Width="16*"></ColumnDefinition>
+                <ColumnDefinition Width="59*" />
+                <ColumnDefinition Width="11*" />
+                <ColumnDefinition Width="92*" />
+                <ColumnDefinition Width="714*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="55" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-
-            <DataGrid Grid.Column="0" Name="TopicCollectionDG" ItemsSource="{Binding Path=RootViewModel.TopicCollection}" AutoGenerateColumns="False" SelectionChanged="TopicCollectionDG_SelectionChanged" Grid.ColumnSpan="3">
+            <DataGrid Grid.Column="0"
+                      Grid.Row="0"
+                      Name="TopicCollectionDG"
+                      ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                      AutoGenerateColumns="False"
+                      SelectionChanged="TopicCollectionDG_SelectionChanged"
+                      Grid.ColumnSpan="4"
+                      IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
-                    <DataGridTextColumn Binding="{Binding Img}" Header="Img"/>
+                    <DataGridTextColumn Binding="{Binding Name}"
+                                        Header="Name" />
+                    <DataGridTextColumn Binding="{Binding Img}"
+                                        Header="Img" />
                 </DataGrid.Columns>
             </DataGrid>
 
-            <DataGrid Grid.Column="3"  Name="TopicDG" ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" AutoGenerateColumns="False">
+            <DataGrid Grid.Column="4"
+                      Grid.Row="0"
+                      Name="TopicDG"
+                      ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}"
+                      AutoGenerateColumns="False">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding QuestionText}" Header="QuestionText"/>
-                    <DataGridTextColumn Binding="{Binding QuestionVideo}" Header="QuestionVideo"/>
-                    <DataGridTextColumn Binding="{Binding QuestionImage}" Header="QuestionImage"/>
-                    <DataGridTextColumn Binding="{Binding QuestionAudio}" Header="QuestionAudio"/>
-                    <DataGridTextColumn Binding="{Binding AnswerText}" Header="AnswerText"/>
-                    <DataGridTextColumn Binding="{Binding AnswerVideo}" Header="AnswerVideo"/>
-                    <DataGridTextColumn Binding="{Binding AnswerImage}" Header="AnswerImage"/>
-                    <DataGridTextColumn Binding="{Binding AnswerAudio}" Header="AnswerAudio"/>
+                    <DataGridTextColumn Binding="{Binding QuestionText}"
+                                        Header="QuestionText" />
+                    <DataGridTextColumn Binding="{Binding QuestionVideo}"
+                                        Header="QuestionVideo" />
+                    <DataGridTextColumn Binding="{Binding QuestionImage}"
+                                        Header="QuestionImage" />
+                    <DataGridTextColumn Binding="{Binding QuestionAudio}"
+                                        Header="QuestionAudio" />
+                    <DataGridTextColumn Binding="{Binding AnswerText}"
+                                        Header="AnswerText" />
+                    <DataGridTextColumn Binding="{Binding AnswerVideo}"
+                                        Header="AnswerVideo" />
+                    <DataGridTextColumn Binding="{Binding AnswerImage}"
+                                        Header="AnswerImage" />
+                    <DataGridTextColumn Binding="{Binding AnswerAudio}"
+                                        Header="AnswerAudio" />
                 </DataGrid.Columns>
             </DataGrid>
+            <Grid Style="{DynamicResource DefaultGridStyle}"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  Grid.ColumnSpan="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="4*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="5*" />
+                    <RowDefinition Height="2*" />
+                </Grid.RowDefinitions>
+                <Label Content="Welcome. Enjoy learning!"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       Width="290"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource TitleLabelStyle}" />
+                <DataGrid Grid.Column="1"
+                          Grid.Row="1"
+                          Name="TopicDataGrid"
+                          ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
+                          Style="{StaticResource DefaultDataGrid}"
+                          IsReadOnly="False"
+                          AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name}"
+                                            Width="*"
+                                            Header="Topic"
+                                            HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
+                                            IsReadOnly="True" />
+                        <DataGridTextColumn Binding="{Binding Img}"
+                                            Width="*"
+                                            Header="Img"
+                                            HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
+                                            IsReadOnly="True" />
+                    </DataGrid.Columns>
+                    <DataGrid.RowDetailsTemplate>
+                        <!--https://www.wpf-tutorial.com/datagrid-control/details-row/-->
+                        <DataTemplate>
+                            <DockPanel Background="GhostWhite">
+                                <Image DockPanel.Dock="Right"
+                                       Source="{Binding Path=Img}"
+                                       Height="64"
+                                       Margin="10" />
+                                <Grid Margin="0 ,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                            </DockPanel>
+                        </DataTemplate>
+
+                    </DataGrid.RowDetailsTemplate>
+                    <behaviors:Interaction.Triggers>
+                        <behaviors:EventTrigger EventName="SelectionChanged">
+                            <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
+                                                           CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
+                        </behaviors:EventTrigger>
+                    </behaviors:Interaction.Triggers>
+                </DataGrid>
+
+                <Grid Grid.Row="2"
+                      Grid.Column="1"
+                      
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Width="450"
+                      Height="160">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Button Content="Create New Topic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding  OpenNewTopicWindow}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Delete Topic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding DeleteTopic}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Statistics"
+                            Grid.Column="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenStatisticsWindow}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="CardOverview"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenCardOverView}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Printing"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenPrinting}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                    <Button Content="Learning"
+                            Grid.Column="2"
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Width="auto"
+                            Height="40"
+                            Margin="0,20,0,0"
+                            Command="{Binding OpenLearningCardWindow}"
+                            Style="{DynamicResource DefaultButtonStyleJan }" />
+                </Grid>
+            </Grid>
         </Grid>
     </DockPanel>
+
 </Window>
