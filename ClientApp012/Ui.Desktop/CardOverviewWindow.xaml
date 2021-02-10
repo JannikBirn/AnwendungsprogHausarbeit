@@ -18,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    
+
     <Window.DataContext>
         <Binding  Source="{StaticResource ViewModelLocator}"
                   Path="CardOverViewWindowVM" />
@@ -58,7 +58,6 @@
                                     Width="1*"
                                     Binding="{Binding Name}" />
             </DataGrid.Columns>
-
         </DataGrid>
 
         <DataGrid x:Name="allCards"
@@ -77,10 +76,6 @@
             <!-- CellOrRowHeader allows to select full Row or just a single Cell -->
 
             <DataGrid.Columns>
-                <!--<DataGridTextColumn Binding="{Binding Count}"
-                                    Width="auto"
-                                    Header="Number"
-                                    IsReadOnly="True" />-->
                 <DataGridTextColumn Binding="{Binding QuestionText}"
                                     CellStyle="{StaticResource DataGridContentCellCentering }"
                                     Width="*"
@@ -99,12 +94,12 @@
                    HorizontalAlignment="Left"
                    LastChildFill="False"
                    VerticalAlignment="Top"
-                   Width="620"
+                   Width="auto"
                    Height="auto">
 
             <Menu Background="{x:Null}"
                   Width="auto"
-                  Height="auto"
+                  Height="90"
                   VerticalAlignment="Top">
                 <Button Content="Test Print"
                         Name="PrintSimpleTestButton"
@@ -113,19 +108,7 @@
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleJan}"
                         Command="{Binding PrintTestPage}" />
-                <Button Content="Print All Cards"
-                        DockPanel.Dock="Top"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }"
-                        Command="{Binding PrintAllCards}"
-                        CommandParameter="{Binding ElementName=allCards}" />
                 <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
-                <Button Content="Print Selected Cards"
-                        DockPanel.Dock="Bottom"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }" />
                 <Button Content="Print Window"
                         DockPanel.Dock="Bottom"
                         Width="auto"
@@ -133,13 +116,25 @@
                         Style="{DynamicResource DefaultButtonStyleJan }"
                         Command="{Binding PrintWindow}"
                         CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
+                <Button Content="Open PrintWindow"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleJan}"
+                        Command="{Binding OpenPrintPreview}"
+                        CommandParameter="{Binding ElementName=allCards}"
+                        />
+                <Label Content="(To Print all cards)"
+                       Foreground="#FFB9B9B9"
+                       Margin="0,10,10,0" />
             </Menu>
         </DockPanel>
 
         <Button   Grid.Column="0"
                   VerticalAlignment="Top"
-                  Margin="50,20,150,20"
-                  HorizontalContentAlignment="Left"
+                  Margin="10,10,0,0"
+                  Height="40"
+                  Width="50"
+                  HorizontalAlignment="Left"
                   Command="{Binding CloseWindow}"
                   CommandParameter="{Binding ElementName=myCardOverviewWindow}"
                   Background="{x:Null}"

@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 {
@@ -20,16 +21,25 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
         //Window Instances
         private StatisticsWindow StatisticsWindow { get; set; }
+        private PrintWindow PrintWindow{ get; set; }
 
         private LearningCardWindow LearningCardWindow { get; set; }
+        private TopicCollectionWindow TopicCollectionWindow { get; set; }
+
 
         public MessageListener()
         {
             InitMessenger();
         }
-
+        
         private void InitMessenger()
         {
+
+            ServiceBus.Instance.Register<OpenTopicCollectionWindowMessage>(this, delegate ()
+            {
+                TopicCollectionWindow = new TopicCollectionWindow();
+                TopicCollectionWindow.ShowDialog();
+            });
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
             {
@@ -50,16 +60,21 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
             });
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
-                    PrintWindow myPrintWindow= new PrintWindow();
-                    myPrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
-                    myPrintWindow.ShowDialog();
+                    PrintWindow  = new PrintWindow();
+                    PrintWindow.ShowDialog();
                 });
 
-         //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
-        //     {
-        //       LearningCardWindow myWindow = new LearningCardWindow();
-        //       myWindow.ShowDialog();
-         //   });
+            Messenger.Instance.Register<SetPrintPreviewMessage>(this, delegate (SetPrintPreviewMessage message)
+            {
+                    //PrintWindow.docView.Document = ((FixedDocument)message.Grid); //won't work
+                //   PrintWindow.Grid1 = message.FixedDocumentSequence;
+            });
+
+            //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
+            //     {
+            //       LearningCardWindow myWindow = new LearningCardWindow();
+            //       myWindow.ShowDialog();
+            //   });
 
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
@@ -103,6 +118,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                 myWindow.ShowDialog();
             });
 
+           
         }
     }
 }
