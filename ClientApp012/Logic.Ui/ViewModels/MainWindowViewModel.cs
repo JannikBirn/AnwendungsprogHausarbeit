@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -28,16 +28,39 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewCardWindow { get; }
         public RelayCommand OpenNewTopicWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
+        public RelayCommand DeleteTopic { get; set; }
         public RelayCommand CloseWindow { get; }
+
+        private string topicImagePath;
+
+        public String TopicImagePath
+        {
+            get => topicImagePath;
+            set
+            {
+                topicImagePath = value;
+            }
+        }
+
+        public BitmapImage Img
+        {
+            get
+            {
+                if (TopicImagePath == null)
+                    return null;
+                return new BitmapImage(new Uri(TopicImagePath));
+            }
+        }
+
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
             //Referenzing to the model
             RootViewModel = model;
 
-            
+
             //Auto load cards on startup
-                DeserializeFromBinMethod();
+            DeserializeFromBinMethod();
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -49,12 +72,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
+            DeleteTopic = new RelayCommand(param => DeleteTopicMethod(param));
+        }
+
+        private void DeleteTopicMethod(object param)
+        {
+            RootViewModel.TopicCollection.Remove(CurrentTopic);
         }
 
         private void SelectedTopicCommandMethod(object param)
         {
-            CurrentTopic = (TopicViewModel) param;
+            CurrentTopic = (TopicViewModel)param;
         }
+
 
         //Serialization
 
@@ -72,7 +102,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
             Console.WriteLine("Reading Data from path:" + fullPath);
 
-            RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
+            RootViewModel.Model = (Root)BinarySerializer.BinaryDeserialize(fullPath);
 
         }
         //Close current window
@@ -91,8 +121,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenNewCardWindowMethod()
         {
-            if (CurrentTopic != null) { 
-            ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+            if (CurrentTopic != null)
+            {
+                ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
             }
         }
 

@@ -62,7 +62,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             Size pageSize = new Size(printDlg.PrintableAreaWidth, printDlg.PrintableAreaHeight + 300);
             dg.Arrange(new Rect(15, 15, pageSize.Height, pageSize.Width));
             // Call PrintDocument method to send document to printer
-            //printDlg.PrintVisual(dg, "GridPrinting");
+            printDlg.PrintVisual(dg, "GridPrinting");
 
         }
 

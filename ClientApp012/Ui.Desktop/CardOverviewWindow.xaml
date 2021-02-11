@@ -51,11 +51,12 @@
                   AutoGenerateColumns="False"
                   Background="#FF202225"
                   IsReadOnly="True"
-                  FontSize="14">
+                  FontSize="14"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Topic"
-                                    Width="1*"
+                                    Width="*"
                                     Binding="{Binding Name}" />
             </DataGrid.Columns>
 

@@ -24,6 +24,28 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             return destinationPath;
         }
 
+        public static void DeleteFile(string data_path, string relativePath)
+        {
+            try
+            {
+                string[] jpgPic = Directory.GetFiles(relativePath, "*.jpg");
+                string[] pngPic = Directory.GetFiles(relativePath, "*.png");
+
+                foreach (string file in jpgPic)
+                {
+                    File.Delete(file);
+                }
+                foreach (string file in pngPic)
+                {
+                    File.Delete(file);
+                }
+              
+            } catch(DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
+        }
+
         public static String LoadImagePath()
         {
             OpenFileDialog dialog = new OpenFileDialog
