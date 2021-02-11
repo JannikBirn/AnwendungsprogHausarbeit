@@ -17,9 +17,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand CloseWindow { get; }
         public RelayCommand PrintIt { get; set; }
-        public RelayCommand BtnNew { get; set; }
 
-        public bool isLandscape;
+        public bool isLandscape=false;
         public bool Landscape
         {
             get
@@ -69,23 +68,32 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("NumberOfPages");
             }
         }
-
+        public int fontSize = 14;
+        public int FontSize
+        {
+            get
+            {
+                return fontSize;
+            }
+            set
+            {
+                //if number of copies is bigger then 20, set it to 1
+                if (value > 100 || value < 5)
+                {
+                    value = 14;
+                }
+                fontSize = value;
+                OnPropertyChanged("FontSize");
+            }
+        }
         public PrintWindowViewModel(RootViewModel model)
         {
             RootViewModel = model;
             PrintIt = new RelayCommand(param => PrintItMethod(param));
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
-            BtnNew = new RelayCommand(param => BtnNewMethod(param));
         }
 
-        private void BtnNewMethod(object param)
-        {
-            PrintAllCards instance = new PrintAllCards();
-            instance.Landscape = Landscape;
-            instance.ScalingFactor = ScalingFactor;
-            instance.NumberOfPages = NumberOfPages;
-            instance.PrintCardsDirectly(param);
-        }
+    
 
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
@@ -105,6 +113,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             instance.Landscape = Landscape;
             instance.ScalingFactor = ScalingFactor;
             instance.NumberOfPages = NumberOfPages;
+            instance.fontSize = FontSize;
             instance.PrintCardsDirectly(param);
         }
 

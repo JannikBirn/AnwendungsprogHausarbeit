@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.IO;
 
+
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
     public class PrintAllCards
@@ -18,14 +19,15 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         public int ScalingFactor { get; set; }
         public int NumberOfPages { get; set; }
 
+        public int fontSize { get; set; }
+
+
         public PrintAllCards()
         {
+
+
         }
 
-        public void TryThisMethod(object cards)
-        {
-            DataGrid dg = cards as DataGrid;
-        }
 
         public void PrintCards(object cards)
         {
@@ -50,10 +52,17 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             PrintDialog printDlg = new PrintDialog();
             //casts the object cards to DataGrid
             DataGrid dg = cards as DataGrid;
-            //prepares a formatted page
+            // sets Font Size
+            dg.FontSize = fontSize;
 
+            //prepares a formatted page
+            FormatPrintDialoge(printDlg);
+
+            //centering the DataGrid to the page
+            Size pageSize = new Size(printDlg.PrintableAreaWidth, printDlg.PrintableAreaHeight + 300);
+            dg.Arrange(new Rect(15, 15, pageSize.Height, pageSize.Width));
             // Call PrintDocument method to send document to printer
-            printDlg.PrintVisual(dg, "Hello WPF Printing");
+            //printDlg.PrintVisual(dg, "GridPrinting");
 
         }
 
@@ -62,6 +71,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //Gets Default Printer
             pd.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
             pd.PrintTicket = pd.PrintQueue.DefaultPrintTicket;
+
             if (Landscape)
             {
                 pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
@@ -77,6 +87,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //defines number of pages
             pd.PrintTicket.PagesPerSheet = NumberOfPages;
             pd.PrintTicket.PageBorderless = PageBorderless.None;
+
             return pd;
         }
 

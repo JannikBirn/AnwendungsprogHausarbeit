@@ -26,7 +26,7 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="myBindableProperty" />
     </Window.IsEnabled>
-    
+
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -78,17 +78,27 @@
                      DockPanel.Dock="Top"
                      Width="25"
                      HorizontalAlignment="Center" />
+            <Label Content="Font Size"
+                   Foreground="White"
+                   DockPanel.Dock="Top"
+                   Margin="0,10,0,0" />
+            <TextBox Text="{Binding FontSize}"
+                     Name="FontSize"
+                     DockPanel.Dock="Top"
+                     Width="25"
+                     HorizontalAlignment="Center" />
             <Button x:Name="BtnPrint"
                     Content="Print"
                     DockPanel.Dock="Top"
                     Margin="0,50,0,0"
                     Style="{DynamicResource DefaultButtonStyleSmall }"
                     Command="{Binding PrintIt}"
-                    CommandParameter="{Binding ElementName=PreviewD}" />
-           </DockPanel>
+                    CommandParameter="{Binding ElementName=Grid1}" />
+        </DockPanel>
 
         <DataGrid Grid.Column="2"
                   Name="Grid1"
+                  FontSize="{Binding ElementName=FontSize}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding QuestionText}"
