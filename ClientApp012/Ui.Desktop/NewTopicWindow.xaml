@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
         Title="NewTopicWindow"
+        x:Name="myNewTopic"
         Height="512"
         Width="786">
     <Window.Resources>
@@ -35,7 +36,7 @@
             <ColumnDefinition Width="0.5*" />
             <ColumnDefinition Width="0.5*" />
         </Grid.ColumnDefinitions>
-        <Label x:Name="Answer_Copy1"
+        <Label x:Name="Title"
                Content="Create new Topic"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
@@ -43,12 +44,21 @@
                Grid.ColumnSpan="2"
                Margin="293,0"
                Width="192" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Back"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Style="{DynamicResource BackButton}"
-                Grid.Row="0" />
+        <Button   Grid.Column="0"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="left"
+                  Margin="20,20,150,20"
+                  Height="60"
+                  Width="60"
+                  HorizontalContentAlignment="Center"
+                  Command="{Binding CloseWindow}"
+                  CommandParameter="{Binding ElementName=myNewTopic}"
+                  Background="{x:Null}"
+                  BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source=".\Resources\Images\BackArrow.png" />
+            </StackPanel>
+        </Button>
         <Label x:Name="Topic"
                Content="Topic title:"
                HorizontalAlignment="Center"
@@ -60,7 +70,7 @@
         <TextBox HorizontalAlignment="Left"
                  Height="50"
                  TextWrapping="Wrap"
-                 Text="{Binding QuestionText}"
+                 Text="{Binding Name}"
                  VerticalAlignment="Bottom"
                  Width="200"
                  Grid.Row="0"
@@ -73,7 +83,7 @@
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyle}"
                 Margin="0,50,0,0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding LoadTopicImage, Mode=OneWay}"
                 Content="Insert Image File"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
@@ -86,7 +96,8 @@
                Grid.Column="1"
                HorizontalAlignment="Left"
                Width="200"
-               Height="200" />
+               Height="200"
+               Source="{Binding TopicImage}" />
         <Button Command="{Binding AddTopic, Mode=OneWay}"
                 Content="Create Topic"
                 HorizontalAlignment="left"

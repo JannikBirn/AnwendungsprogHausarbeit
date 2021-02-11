@@ -35,6 +35,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Referenzing to the model
             RootViewModel = model;
 
+            
             //Auto load cards on startup
                 DeserializeFromBinMethod();
 
@@ -52,7 +53,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void SelectedTopicCommandMethod(object param)
         {
-            CurrentTopic = param as TopicViewModel;
+            CurrentTopic = (TopicViewModel) param;
         }
 
         //Serialization
@@ -90,7 +91,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenNewCardWindowMethod()
         {
+            if (CurrentTopic != null) { 
             ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+            }
         }
 
         private void OpenCardOverViewMethod()

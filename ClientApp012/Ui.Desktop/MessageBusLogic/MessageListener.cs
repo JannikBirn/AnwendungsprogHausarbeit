@@ -72,12 +72,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                     myPrintWindow.ShowDialog();
                 });
 
-         //   ServiceBus.Instance.Register<OpenLearningCardWindowMessage>(this, delegate ()
-        //     {
-        //       LearningCardWindow myWindow = new LearningCardWindow();
-        //       myWindow.ShowDialog();
-         //   });
-
+   
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
@@ -110,16 +105,23 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                     case OpenLearningCardPanelMessage.FINISH_PANEL:
                         learningCardFrame.Content = new LearningCardFinishPanel();
                         break;
+                    case OpenLearningCardPanelMessage.CLOSE_PANEL:
+                        learningCardFrame.Content = "";
+                        break;
                 }
             });
 
 
             Messenger.Instance.Register<OpenTopicSelectionWindowMessage>(this, delegate (OpenTopicSelectionWindowMessage message)
             {
-                    StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
+                StatisticsTopicSelectionWindow myWindow = new StatisticsTopicSelectionWindow();
                 myWindow.ShowDialog();
             });
 
+            Messenger.Instance.Register<SendAnswerMessage>(this, delegate (SendAnswerMessage message)
+            {
+              
+            });
         }
     }
 }

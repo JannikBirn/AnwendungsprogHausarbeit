@@ -169,7 +169,7 @@
                     <behaviors:Interaction.Triggers>
                         <behaviors:EventTrigger EventName="SelectionChanged">
                             <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
-                                                           CommandParameter="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}" />
+                                                           CommandParameter="{Binding ElementName=TopicDataGrid, Path=SelectedItem}" />
                         </behaviors:EventTrigger>
                     </behaviors:Interaction.Triggers>
                 </DataGrid>

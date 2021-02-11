@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="LearningCardWindow"
         Height="1024"
-        Width="786">
+        Width="786"
+        x:Name="myLearningCardWindow">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -24,12 +25,18 @@
             <RowDefinition Height="60*" />
             <RowDefinition Height="497*" />
         </Grid.RowDefinitions>
-        <Button 
-                Content="Back"
-                HorizontalAlignment="Left"
+        <Button HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Style="{DynamicResource BackButton}"
-                Grid.Row="0" />
+                Command="{Binding CloseWindow}"
+                CommandParameter="{Binding ElementName=myLearningCardWindow}"
+                Grid.Row="0"
+                Margin="10,10,0,0"
+                Height="73">
+            <Button.Background>
+                <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/BackArrow.png" />
+            </Button.Background>
+        </Button>
         <Border x:Name="borderCards"
                 BorderThickness="1"
                 HorizontalAlignment="Left"
@@ -60,15 +67,15 @@
                 VerticalAlignment="Center"
                 Width="184"
                 Height="116"
-                Command="{Binding LearningCardWindowVM.StartAnswering, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Command="{Binding StartAnswering, Mode=OneWay}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
-                IsEnabled="{Binding LearningCardWindowVM.HasStarted, Source={StaticResource ViewModelLocator}}"
+                IsEnabled="{Binding HasStarted}"
                 Margin="292,374,302,396" />
-        <Label Content="{Binding LearningCardWindowVM.FirstT.Name, Source={StaticResource ViewModelLocator}}"
+        <Label Content="{Binding Topic.Name}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Width="316"
-               Height="61" 
+               Height="61"
                Style="{Binding Source={StaticResource DefaultLabel}}"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" />
