@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages
 {
-    public class OpenLearningCardPanelMessage
+    public class SendAnswerMessage
     {
-        public const int QUESTION_PANEL = 0, ANSWER_PANEL = 1, FINISH_PANEL = 2, CLOSE_PANEL = 3;
-        public int PanelIndex { get; set; }
+        public const bool ANSWER_TRUE = true;
+        public const bool ANSWER_FALSE = false;
+        public bool Answer { get; set; }
     }
 }

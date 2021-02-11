@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Card
 {
     public long Id { get; set; }
-    public List<CardAnswer> cardAnswers;
+    public List<CardAnswer> cardAnswers { get; set; }
     private CardAnswer CurrentCardAnswer { get; set; }
     public enum Difficulty {Leicht, Mittel, Schwer};
     public String QuestionText { get; set; }
