@@ -61,6 +61,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Auto load cards on startup
             DeserializeFromBinMethod();
+            
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
