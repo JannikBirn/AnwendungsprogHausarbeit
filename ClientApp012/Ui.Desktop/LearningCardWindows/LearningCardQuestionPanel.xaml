@@ -46,13 +46,21 @@
                Grid.Row="1"
                VerticalAlignment="Top"
                Width="508"
-               Margin="149,65,0,0" />
+               Margin="149,65,0,0" 
+               Source="{Binding QuestionImagePathAbsolute}"/>
         <MediaElement HorizontalAlignment="Center"
                       Height="352"
                       Grid.Row="1"
                       VerticalAlignment="Center"
-                      Width="434" />
-        <Label Content="{Binding LearningCardWindowVM.CurrentCard.QuestionText, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                      Width="434"
+                      Source="{Binding QuestionVideoPathAbsolute}"/>
+        <MediaElement HorizontalAlignment="Center"
+                      Height="352"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="434"
+                      Source="{Binding QuestionAudioPathAbsolute}" />
+        <Label Content="{Binding CurrentCard.QuestionText}"
                HorizontalAlignment="Left"
                Margin="183,128,0,0"
                Grid.Row="1"
