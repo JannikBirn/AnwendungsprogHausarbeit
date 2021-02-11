@@ -13,8 +13,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
     public class LearningCardWindowViewModel : INotifyPropertyChanged
     {
-        public RootViewModel RootViewModel { get; set; }
-
         //Open Panel Commands
         public RelayCommand OpenLearningCardAnswerPanel { get; }
         public RelayCommand CloseFinshWindow { get; }
@@ -25,13 +23,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LearingCardsT { get; }
 
         public CardViewModel currentCard;
-        public TopicViewModel CurrentTopic
-        {
-            get { return RootViewModel.TopicCollection[0]; }
-        }
+        public TopicViewModel Topic { get; set; }
         public CardViewModel CurrentCard 
         {
-            get{ return CurrentTopic[Count]; }
+            get{ return Topic[Count]; }
         }
 
         public int count = 0;
@@ -54,9 +49,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public bool topicQuestioningStarted = false;
 
-         public LearningCardWindowViewModel(RootViewModel model)
+         public LearningCardWindowViewModel(MainWindowViewModel model)
         {
-            RootViewModel = model;
+            Topic = model.CurrentTopic;
 
             StartAnswering = new RelayCommand(() => StartAnsweringMethod());
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
@@ -79,7 +74,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             if (!topicQuestioningStarted)
             {
-                CurrentTopic.StartQuestioning();
+                Topic.StartQuestioning();
                 topicQuestioningStarted = true;
             }
 
@@ -98,9 +93,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             CurrentCard.FinishAnswer(answer);
        
-            if (CurrentTopic.Count - 1 == Count)
+            if (Topic.Count - 1 == Count)
             {
-                CurrentTopic.FinishQuestioning();
+                Topic.FinishQuestioning();
                 reset();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
@@ -110,7 +105,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 StartAnsweringMethod();
             }
 
-        } 
+        }
 
         public void reset()
         {
