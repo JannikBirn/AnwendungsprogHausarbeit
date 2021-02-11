@@ -93,14 +93,24 @@
                                     IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
+        <Button Command="{Binding MainWindowVM.OpenNewCardWindow, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Content="Create New Card"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Grid.Row="2"
+                Grid.Column="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyleJan}"
+                Margin="15,30,10,0" />
 
+    
         <DockPanel Grid.Column="1"
                    Grid.Row="2"
                    HorizontalAlignment="Left"
                    LastChildFill="False"
                    VerticalAlignment="Top"
                    Width="620"
-                   Height="auto">
+                   Height="auto">           
 
             <Menu Background="{x:Null}"
                   Width="auto"

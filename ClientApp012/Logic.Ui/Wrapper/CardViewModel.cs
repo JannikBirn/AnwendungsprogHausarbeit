@@ -1,4 +1,5 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper.AbstractViewModels;
+using Services.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
