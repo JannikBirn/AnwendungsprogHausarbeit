@@ -16,7 +16,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public Image TopicImage = null;
 
 
-        public TopicCollectionViewModel TopicCollection;
+        public TopicCollectionViewModel TopicCollection; 
         public String Name { get; set; }
         public String TopicImagePath { get; set; }
         public TopicCollectionViewModel TCVM { get; set; }
@@ -34,7 +34,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void AddTopicMethod()
         {
             
-
             long topicId = DateTime.Now.Ticks;
             if (TopicImage != null)
             {

@@ -72,7 +72,7 @@
                       AutoGenerateColumns="False"
                       SelectionChanged="TopicCollectionDG_SelectionChanged"
                       Grid.ColumnSpan="4"
-                      IsReadOnly="True">
+                      IsReadOnly="False">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}"
                                         Header="Name" />

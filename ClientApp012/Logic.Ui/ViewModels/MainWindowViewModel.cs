@@ -28,6 +28,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewCardWindow { get; }
         public RelayCommand OpenNewTopicWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
+        public RelayCommand CloseWindow { get; }
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
@@ -35,10 +36,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             RootViewModel = model;
 
             //Auto load cards on startup
-            //if (RootViewModel != null)
-            //{
-                //DeserializeFromBinMethod();
-            //}
+                DeserializeFromBinMethod();
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -47,6 +45,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
         }
@@ -74,6 +73,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
 
+        }
+        //Close current window
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
         }
 
         //Methods for the Relay Commands to open windows
