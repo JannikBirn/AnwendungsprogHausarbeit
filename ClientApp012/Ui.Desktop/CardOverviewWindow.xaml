@@ -111,13 +111,13 @@
                         DockPanel.Dock="Top"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan}"
+                        Style="{DynamicResource DefaultButtonStyleSmall}"
                         Command="{Binding PrintTestPage}" />
                 <Button Content="Print All Cards"
                         DockPanel.Dock="Top"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }"
+                        Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintAllCards}"
                         CommandParameter="{Binding ElementName=allCards}" />
                 <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
@@ -125,12 +125,12 @@
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }" />
+                        Style="{DynamicResource DefaultButtonStyleSmall }" />
                 <Button Content="Print Window"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }"
+                        Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintWindow}"
                         CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
             </Menu>
@@ -159,17 +159,8 @@
             <Label DockPanel.Dock="Top"
                    Content="Printing:"
                    Grid.Row="2"
-                   Style="{DynamicResource DefaultLabelJan}" />
-            <!--Should enable direct printing, without opening a Print Window-->
-            <!--<CheckBox Name="DirectPrinting"
-                      Margin="0,5,0,0"
-                      DockPanel.Dock="Top"
-                      Content="Direct Printing"
-                      VerticalAlignment="Center"
-                      Grid.Row="2"
-                      Style="{DynamicResource CheckBoxControlTemplate1}"
-                      Foreground="#FF707070"
-                      IsChecked="{Binding Mode=OneWay}" />-->
+                   Style="{DynamicResource DefaultLabelSmall}" />
+      
         </DockPanel>
 
 

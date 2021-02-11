@@ -31,11 +31,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
-            //Refrenzing to the model
+            //Referenzing to the model
             RootViewModel = model;
 
             //Auto load cards on startup
-            DeserializeFromBinMethod();
+            //if (RootViewModel != null)
+            //{
+                //DeserializeFromBinMethod();
+            //}
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -46,8 +49,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
-
-
         }
 
         private void SelectedTopicCommandMethod(object param)

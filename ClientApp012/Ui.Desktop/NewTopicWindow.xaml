@@ -87,7 +87,7 @@
                HorizontalAlignment="Left"
                Width="200"
                Height="200" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
+        <Button Command="{Binding AddTopic, Mode=OneWay}"
                 Content="Create Topic"
                 HorizontalAlignment="left"
                 VerticalAlignment="Center"
