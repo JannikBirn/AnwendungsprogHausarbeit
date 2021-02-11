@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
         Title="LearningCardWindow"
-        Height="1024"
+        Height="824"
         Width="786"
         x:Name="myLearningCardWindow">
     <Window.Resources>
@@ -31,19 +31,19 @@
                 Command="{Binding CloseWindow}"
                 CommandParameter="{Binding ElementName=myLearningCardWindow}"
                 Grid.Row="0"
-                Margin="10,10,0,0"
-                Height="73">
+                Margin="10,8,0,0"
+                Height="71"
+                Width="55">
             <Button.Background>
                 <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/BackArrow.png" />
             </Button.Background>
         </Button>
         <Border x:Name="borderCards"
                 BorderThickness="1"
-                HorizontalAlignment="Left"
+                HorizontalAlignment="Center"
                 Height="4"
-                Margin="0,93,0,0"
                 Grid.Row="0"
-                VerticalAlignment="Top"
+                VerticalAlignment="Bottom"
                 Width="778"
                 Background="#FF707070" />
         <Border x:Name="borderCards_Copy"
@@ -69,8 +69,7 @@
                 Height="116"
                 Command="{Binding StartAnswering, Mode=OneWay}"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
-                IsEnabled="{Binding HasStarted}"
-                Margin="292,374,302,396" />
+                IsEnabled="{Binding HasStarted}" />
         <Label Content="{Binding Topic.Name}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"

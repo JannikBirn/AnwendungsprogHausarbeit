@@ -25,18 +25,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LearingCardsF { get; set; }
         public RelayCommand LearingCardsT { get; set; }
 
-
-      /*  public BitmapImage QuestionImage
-        {
-            get
-            {
-                if (CurrentCard.QuestionImage == "")
-                { return null; }
-                return new BitmapImage(new Uri(CurrentCard.QuestionImage));
-            }
-        }
-      */
-
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard 
         {
@@ -45,6 +33,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         public int count = 0;
+        public int learnRounds = 3;
         public int Count
         {
             get { return count; }
@@ -52,12 +41,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("Count");
             }
         }
-        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
-        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
-        public String QuestionVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); } }
-        public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
-        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
-        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
 
         public bool hasStarted = true;
         public bool HasStarted
@@ -71,6 +54,22 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         public bool topicQuestioningStarted = false;
+        public int trueAnswers = 0;
+
+        public string TrueAnswers
+        {
+            get { return trueAnswers.ToString(); }
+        }
+     
+
+        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
+        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
+        public String QuestionVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); } }
+        public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
+        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
+        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
+
+    
 
          public LearningCardWindowViewModel(MainWindowViewModel model)
         {
@@ -103,8 +102,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
 
             while(!CheckForLearning(CurrentCard))
-            {     
-               Count++;
+            {
+                if (Count < Topic.Count)
+                {
+                    CurrentCard.FinishAnswer(false);
+                    Count++;
+                }
+                else
+                {
+                    return;
+                }
             }
 
             CurrentCard.StartAnswering();
@@ -116,12 +123,21 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void LearningCardMethod(bool answer)
         {
             CurrentCard.FinishAnswer(answer);
+            if (answer)
+                trueAnswers++;
        
-            if (Topic.Count - 1 == Count)
+            if (Topic.Count - 1 == Count && learnRounds == 1)
             {
                 Topic.FinishQuestioning();
                 Reset();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
+            }
+            else if(Topic.Count - 1 == Count)
+            {
+                learnRounds--;
+                Count = 0;
+                StartAnsweringMethod();
+
             }
             else
             {
@@ -131,16 +147,37 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         }
 
+        //Checking last 3 card answers
+        private bool CheckForLearning(CardViewModel card)
+        {
+            int countTrues = 0;
+
+            if (card.cardAnswers.Count > 3)
+
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (card.cardAnswers[card.cardAnswers.Count -1 - i].IsAnswerCorrect)
+                    {
+                        countTrues++;
+                    }
+                }
+            }
+            return countTrues < 3;
+        }
+
         public void Reset()
         {
-            HasStarted = true;
             Count = 0;
+            learnRounds = 3;
+            trueAnswers = 0;
             topicQuestioningStarted = false;
 
         }
         public void Restart()
         {
             Reset();
+            HasStarted = true;
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.CLOSE_PANEL);
         }
 
@@ -150,23 +187,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Window window = (Window)param;
             window.Close();
         }
-
-        private bool CheckForLearning(CardViewModel card)
-        {
-            int countTrues = 0;
-        
-            if(card.cardAnswers != null)
-            { foreach( CardAnswer answers in card.cardAnswers)
-                {
-                    if(answers.IsAnswerCorrect)
-                    {
-                        countTrues++;
-                    }
-                }
-            }
-            return countTrues <=3;
-        }
-
 
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
