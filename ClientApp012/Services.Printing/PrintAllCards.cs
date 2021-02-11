@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.IO;
 
+
 namespace De.HsFlensburg.ClientApp012.Services.Printing
 {
     public class PrintAllCards
@@ -18,12 +19,15 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         public int ScalingFactor { get; set; }
         public int NumberOfPages { get; set; }
 
+        public int fontSize { get; set; }
+
+
         public PrintAllCards()
         {
-            Landscape = false;
-            ScalingFactor = 90;
-            NumberOfPages = 1;
+
+
         }
+
 
         public void PrintCards(object cards)
         {
@@ -48,18 +52,17 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             PrintDialog printDlg = new PrintDialog();
             //casts the object cards to DataGrid
             DataGrid dg = cards as DataGrid;
+            // sets Font Size
+            dg.FontSize = fontSize;
+
             //prepares a formatted page
             FormatPrintDialoge(printDlg);
 
-            //sets a filename an checks, if this name is already taken. in this case, the old file would be deleted
-            // .xps is an alternative file type to pdf
-            //string printFileName = "print_preview.xps";
-            //if(File.Exists(printFileName) == true)
-            //{
-            //    File.Delete(printFileName);
-            //}
-
-            //cards.Print_Window print_Window = new cards.Print_Window(preview);
+            //centering the DataGrid to the page
+            Size pageSize = new Size(printDlg.PrintableAreaWidth, printDlg.PrintableAreaHeight + 300);
+            dg.Arrange(new Rect(15, 15, pageSize.Height, pageSize.Width));
+            // Call PrintDocument method to send document to printer
+            //printDlg.PrintVisual(dg, "GridPrinting");
 
         }
 
@@ -68,6 +71,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //Gets Default Printer
             pd.PrintQueue = LocalPrintServer.GetDefaultPrintQueue();
             pd.PrintTicket = pd.PrintQueue.DefaultPrintTicket;
+
             if (Landscape)
             {
                 pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
@@ -83,10 +87,11 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //defines number of pages
             pd.PrintTicket.PagesPerSheet = NumberOfPages;
             pd.PrintTicket.PageBorderless = PageBorderless.None;
+
             return pd;
         }
 
-  
+
 
         private FlowDocument FormatFlowDocument(FlowDocument doc)
         {

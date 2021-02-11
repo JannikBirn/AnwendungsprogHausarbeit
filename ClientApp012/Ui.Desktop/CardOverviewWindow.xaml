@@ -103,14 +103,15 @@
                 Style="{DynamicResource DefaultButtonStyleJan}"
                 Margin="15,30,10,0" />
 
-    
-        <DockPanel Grid.Column="1"
+        <DockPanel Grid.Column="0"
                    Grid.Row="2"
                    HorizontalAlignment="Left"
                    LastChildFill="False"
                    VerticalAlignment="Top"
+                   Grid.ColumnSpan="2"
                    Width="620"
-                   Height="auto">           
+                   Margin="170,25,0,0"
+                   Height="auto">
 
             <Menu Background="{x:Null}"
                   Width="auto"
@@ -121,28 +122,29 @@
                         DockPanel.Dock="Top"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan}"
+                        Style="{DynamicResource DefaultButtonStyleSmall}"
                         Command="{Binding PrintTestPage}" />
-                <Button Content="Print All Cards"
-                        DockPanel.Dock="Top"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }"
-                        Command="{Binding PrintAllCards}"
-                        CommandParameter="{Binding ElementName=allCards}" />
+                
                 <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
                 <Button Content="Print Selected Cards"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }" />
-                <Button Content="Print Window"
+                        Style="{DynamicResource DefaultButtonStyleSmall }" />
+                <Button Content="Print all Cards of Topic"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleJan }"
+                        Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintWindow}"
                         CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
+                <Button Content="Open a Print Window"
+                        DockPanel.Dock="Top"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleSmall }"
+                        Command="{Binding PrintAllCards}"
+                        CommandParameter="{Binding ElementName=allCards}" />
             </Menu>
         </DockPanel>
 
@@ -169,17 +171,8 @@
             <Label DockPanel.Dock="Top"
                    Content="Printing:"
                    Grid.Row="2"
-                   Style="{DynamicResource DefaultLabelJan}" />
-            <!--Should enable direct printing, without opening a Print Window-->
-            <!--<CheckBox Name="DirectPrinting"
-                      Margin="0,5,0,0"
-                      DockPanel.Dock="Top"
-                      Content="Direct Printing"
-                      VerticalAlignment="Center"
-                      Grid.Row="2"
-                      Style="{DynamicResource CheckBoxControlTemplate1}"
-                      Foreground="#FF707070"
-                      IsChecked="{Binding Mode=OneWay}" />-->
+                   Style="{DynamicResource DefaultLabelSmall}" />
+      
         </DockPanel>
 
 

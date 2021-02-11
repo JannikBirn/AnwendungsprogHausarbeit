@@ -18,30 +18,54 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
+    <Window.DataContext>
+        <Binding  Source="{StaticResource ViewModelLocator}"
+                  Path="PrintWindowVM" />
+    </Window.DataContext>
+    <Window.IsEnabled>
+        <Binding Source="{StaticResource MessageListener}"
+                 Path="myBindableProperty" />
+    </Window.IsEnabled>
 
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.ColumnDefinitions>
-
-            <ColumnDefinition Width="250" />
-
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*" />
 
         </Grid.ColumnDefinitions>
-
-        <DockPanel VerticalAlignment="Top"
-                   HorizontalAlignment="Center">
+        <Button   Grid.Column="0"
+                  Width="50"
+                  Height="50"
+                  VerticalAlignment="Top"
+                  HorizontalContentAlignment="Left"
+                  Margin="0,10,20,0"
+                  Command="{Binding CloseWindow}"
+                  CommandParameter="{Binding ElementName=myPrintWindow}"
+                  Background="{x:Null}"
+                  BorderBrush="{x:Null}">
+            <StackPanel Orientation="Horizontal"
+                        Width="50">
+                <Image Source=".\Resources\Images\BackArrow.png" />
+            </StackPanel>
+        </Button>
+        <DockPanel VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.ColumnSpan="2"
+                   Margin="56,0,56,48">
 
             <CheckBox Content="Landscape Mode"
-                      x:Name="myLandscape"
+                      x:Name="Landscape"
                       Foreground="White"
-                      Margin="0,10,0,0"
-                      DockPanel.Dock="Top" />
+                      Margin="0,80,0,0"
+                      DockPanel.Dock="Top"
+                      IsChecked="{Binding Landscape}" />
             <Label Content="Number of copies"
                    Foreground="White"
                    DockPanel.Dock="Top"
                    Margin="0,10,0,0" />
-            <TextBox Text="1"
-                     Name="copyNumber"
+            <TextBox Text="{Binding NumberOfPages}"
+                     Name="NumberOfPages"
                      DockPanel.Dock="Top"
                      Width="25"
                      HorizontalAlignment="Center" />
@@ -49,27 +73,32 @@
                    Foreground="White"
                    DockPanel.Dock="Top"
                    Margin="0,10,0,0" />
-            <Slider Height="20"
-                    Width="100"
-                    DockPanel.Dock="Top"
-                    HorizontalAlignment="Center" />
-            <TextBox Text="1"
-                     Name="SliderNumber"
+            <TextBox Text="{Binding ScalingFactor}"
+                     Name="ScalingFactor"
                      DockPanel.Dock="Top"
                      Width="25"
-                     HorizontalAlignment="Center"
-                     Margin="0,10,0,0" />
+                     HorizontalAlignment="Center" />
+            <Label Content="Font Size"
+                   Foreground="White"
+                   DockPanel.Dock="Top"
+                   Margin="0,10,0,0" />
+            <TextBox Text="{Binding FontSize}"
+                     Name="FontSize"
+                     DockPanel.Dock="Top"
+                     Width="25"
+                     HorizontalAlignment="Center" />
             <Button x:Name="BtnPrint"
                     Content="Print"
                     DockPanel.Dock="Top"
                     Margin="0,50,0,0"
-                    Style="{DynamicResource DefaultButtonStyleJan }"
+                    Style="{DynamicResource DefaultButtonStyleSmall }"
                     Command="{Binding PrintIt}"
-                    CommandParameter="{Binding ElementName=PreviewD}" />
+                    CommandParameter="{Binding ElementName=Grid1}" />
         </DockPanel>
 
-        <DataGrid Grid.Column="1"
+        <DataGrid Grid.Column="2"
                   Name="Grid1"
+                  FontSize="{Binding ElementName=FontSize}"
                   AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding QuestionText}"

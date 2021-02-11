@@ -131,7 +131,7 @@
     </Style>
 
     <!-- Button Template -->
-    <Style x:Key="DefaultButtonStyleJan"
+    <Style x:Key="DefaultButtonStyleSmall"
            TargetType="{x:Type Button}">
         <Setter Property="Margin"
                 Value="5,10,0,0" />
@@ -221,6 +221,8 @@
                 Value="{StaticResource Static.Page.Background}" />
     </Style>
 
+
+
     <!-- Back Button -->
     <Style TargetType="Button"
            x:Key="BackButton"
@@ -266,7 +268,7 @@
     </Style>
 
     <!-- Default Label Jan -->
-    <Style x:Key="DefaultLabelJan"
+    <Style x:Key="DefaultLabelSmall"
            TargetType="{x:Type Label}">
         <Setter Property="Foreground"
                 Value="{StaticResource Static.Foreground}" />
@@ -410,6 +412,20 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="CenterGridHeaderStyle"
+           TargetType="DataGridColumnHeader">
+        <Setter Property="HorizontalContentAlignment"
+                Value="Center" />
+        <Setter Property="Foreground"
+                Value="{StaticResource Static.Foreground}" />
+        <Setter Property="Height"
+                Value="auto" />
+        <Setter Property="FontFamily"
+                Value="Roboto" />
+        <Setter Property="FontSize"
+                Value="12" />
     </Style>
 
     <Style x:Key="CheckBoxControlTemplate1"
