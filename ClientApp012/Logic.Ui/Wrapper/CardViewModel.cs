@@ -1,4 +1,5 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper.AbstractViewModels;
+using Services.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
                 return this.Model.Id;
             }
         }
+ 
         public String QuestionText
         {
             get
@@ -131,6 +133,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
         public void FinishAnswer(bool bol)
         {
             Model.FinishAnswer(bol);
+        }
+        public List<CardAnswer> cardAnswers
+        {
+            get
+            {
+                return this.Model.cardAnswers;
+            }
         }
 
         public override void NewModelAssigned()

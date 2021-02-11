@@ -10,7 +10,7 @@ namespace Services.Serialization
 {
     public class BinarySerializer
     {
-        public static string PERSISTENT_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"\\ClientApp012";
+        public static string PERSISTENT_DATA_PATH = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)+"\\ClientApp012\\";
 
         public static void BinarySerialize(object data, string filePath)
         {
@@ -45,6 +45,11 @@ namespace Services.Serialization
             }
 
             return obj;
+        }
+
+        public static string GetAbsolutePath(string relativePath)
+        {
+            return PERSISTENT_DATA_PATH + relativePath;
         }
     }
 }
