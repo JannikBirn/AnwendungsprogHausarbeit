@@ -16,7 +16,7 @@
     </Page.Resources>
     <Page.DataContext>
         <Binding Path="LearningCardWindowVM"
-                 Source="{StaticResource ViewModelLocator}"/>
+                 Source="{StaticResource ViewModelLocator}" />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,6 +31,33 @@
                FontFamily="Roboto"
                Foreground="#FF707070"
                FontSize="36" />
+        <MediaElement Name="questionVideo"
+                      HorizontalAlignment="Center"
+                      Height="405"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="531"
+                      Source="{Binding QuestionVideoPathAbsolute}" />
+        <Image HorizontalAlignment="Left"
+               Height="494"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Width="609"
+               Margin="107,27,0,0"
+               Source="{Binding QuestionImagePathAbsolute}" />
+        <Label x:Name="l_answer"
+               Content="{Binding CurrentCard.QuestionText}"
+               HorizontalAlignment="Center"
+               Margin="134,26,134,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Height="413"
+               Width="532"
+               FontFamily="Roboto"
+               FontSize="20"
+               Foreground="#FF707070"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
         <Button x:Name="btn_Next"
                 Content="Next"
                 HorizontalAlignment="Center"
@@ -38,39 +65,32 @@
                 VerticalAlignment="Center"
                 Width="130"
                 Height="60"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardAnswerPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
-                />
-        <Image HorizontalAlignment="Left"
-               Height="463"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Width="508"
-               Margin="149,65,0,0" 
-               Source="{Binding QuestionImagePathAbsolute}"/>
-        <MediaElement HorizontalAlignment="Center"
-                      Height="352"
-                      Grid.Row="1"
-                      VerticalAlignment="Center"
-                      Width="434"
-                      Source="{Binding QuestionVideoPathAbsolute}"/>
-        <MediaElement HorizontalAlignment="Center"
-                      Height="352"
-                      Grid.Row="1"
-                      VerticalAlignment="Center"
-                      Width="434"
-                      Source="{Binding QuestionAudioPathAbsolute}" />
-        <Label Content="{Binding CurrentCard.QuestionText}"
-               HorizontalAlignment="Left"
-               Margin="183,128,0,0"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Height="352"
-               Width="434"
-               Foreground="Gray"
-               FontFamily="Roboto"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center" />
+                Command="{Binding OpenLearningCardAnswerPanel}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+        <Button x:Name="btn_play"
+                Content="Play"
+                HorizontalAlignment="Left"
+                Margin="702,177,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="47" />
+        <Button x:Name="btn_stop"
+                Content="Stop"
+                HorizontalAlignment="Left"
+                Margin="702,247,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="48" />
+        <Button x:Name="btn_replay"
+                Content="Replay"
+                HorizontalAlignment="Left"
+                Margin="702,108,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="47"
+                Click="Button_Click" />
     </Grid>
 </Page>

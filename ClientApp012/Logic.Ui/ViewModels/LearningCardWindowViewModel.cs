@@ -188,6 +188,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             window.Close();
         }
 
+        public void Play(object param) 
+        {
+            MediaScriptCommandRoutedEventArgs myMediaElement = (MediaScriptCommandRoutedEventArgs)param;
+            
+        }
+
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
