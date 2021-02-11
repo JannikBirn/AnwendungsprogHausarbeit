@@ -20,9 +20,11 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 
         public PrintAllCards()
         {
-            Landscape = false;
-            ScalingFactor = 90;
-            NumberOfPages = 1;
+        }
+
+        public void TryThisMethod(object cards)
+        {
+            DataGrid dg = cards as DataGrid;
         }
 
         public void PrintCards(object cards)
@@ -49,17 +51,9 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //casts the object cards to DataGrid
             DataGrid dg = cards as DataGrid;
             //prepares a formatted page
-            FormatPrintDialoge(printDlg);
 
-            //sets a filename an checks, if this name is already taken. in this case, the old file would be deleted
-            // .xps is an alternative file type to pdf
-            //string printFileName = "print_preview.xps";
-            //if(File.Exists(printFileName) == true)
-            //{
-            //    File.Delete(printFileName);
-            //}
-
-            //cards.Print_Window print_Window = new cards.Print_Window(preview);
+            // Call PrintDocument method to send document to printer
+            printDlg.PrintVisual(dg, "Hello WPF Printing");
 
         }
 
@@ -86,7 +80,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             return pd;
         }
 
-  
+
 
         private FlowDocument FormatFlowDocument(FlowDocument doc)
         {

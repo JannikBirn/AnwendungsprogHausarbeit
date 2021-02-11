@@ -94,12 +94,14 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <DockPanel Grid.Column="1"
+        <DockPanel Grid.Column="0"
                    Grid.Row="2"
                    HorizontalAlignment="Left"
                    LastChildFill="False"
                    VerticalAlignment="Top"
+                   Grid.ColumnSpan="2"
                    Width="620"
+                   Margin="170,25,0,0"
                    Height="auto">
 
             <Menu Background="{x:Null}"
@@ -113,26 +115,27 @@
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleSmall}"
                         Command="{Binding PrintTestPage}" />
-                <Button Content="Print All Cards"
-                        DockPanel.Dock="Top"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleSmall }"
-                        Command="{Binding PrintAllCards}"
-                        CommandParameter="{Binding ElementName=allCards}" />
+                
                 <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
                 <Button Content="Print Selected Cards"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleSmall }" />
-                <Button Content="Print Window"
+                <Button Content="Print all Cards of Topic"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
                         Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintWindow}"
                         CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
+                <Button Content="Open a Print Window"
+                        DockPanel.Dock="Top"
+                        Width="auto"
+                        Height="auto"
+                        Style="{DynamicResource DefaultButtonStyleSmall }"
+                        Command="{Binding PrintAllCards}"
+                        CommandParameter="{Binding ElementName=allCards}" />
             </Menu>
         </DockPanel>
 
