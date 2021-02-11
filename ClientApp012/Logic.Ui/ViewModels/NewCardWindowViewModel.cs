@@ -9,24 +9,65 @@ using System.IO;
 using Microsoft.Win32;
 using Services.Serialization;
 using De.HsFlensburg.ClientApp012.Services.Serialization;
+using System.Windows;
+using System.Windows.Media.Imaging;
+using System.ComponentModel;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class NewCardWindowViewModel
+    public class NewCardWindowViewModel : INotifyPropertyChanged
     {
-        public Image QuestionImage = null;
-        public Image AnswerImage = null;
+        private string questionImagePath;
+        private string answerImagePath;
 
-       
         public String QuestionText { set; get; }
         public String QuestionVideoPath { set; get; } //Video reference
         public String QuestionAudioPath { set; get; } //Audio reference
-        public String QuestionImagePath { set; get; }
+        public String QuestionImagePath
+        {
+            get => questionImagePath;
+            set
+            {
+                questionImagePath = value;
+                OnPropertyChanged("QuestionImagePath");
+                OnPropertyChanged("QuestionImage");
+            }
+        }
+        public BitmapImage QuestionImage
+        {
+            get
+            {
+                if (QuestionImagePath == null)
+                    return null;
+                return new BitmapImage(new Uri(QuestionImagePath));
+            }
+        }
+
+
+
         public String AnswerText { set; get; }
         public String AnswerVideoPath { set; get; } //Video reference
         public String AnswerAudioPath { set; get; } //Audio reference
-        public String AnswerImagePath { set; get; }
 
+        public String AnswerImagePath
+        {
+            get => answerImagePath;
+            set
+            {
+                answerImagePath = value;
+                OnPropertyChanged("AnswerImagePath");
+                OnPropertyChanged("AnswerImage");
+            }
+        }
+        public BitmapImage AnswerImage
+        {
+            get
+            {
+                if (QuestionImagePath == null)
+                    return null;
+                return new BitmapImage(new Uri(QuestionImagePath));
+            }
+        }
         public TopicViewModel Topic { get; set; }
         public RelayCommand AddCard { get; }
         public RelayCommand LoadQuestionImage { get; }
@@ -35,6 +76,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand LoadAnswerVideo { get; }
         public RelayCommand LoadQuestionAudio { get; }
         public RelayCommand LoadAnswerAudio { get; }
+        public RelayCommand CloseWindow { get; }
+        public MainWindowViewModel MainWindow { get; set; }
 
 
         public NewCardWindowViewModel(MainWindowViewModel model)
@@ -46,134 +89,114 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
             LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
             LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            MainWindow = model;
             Topic = model.CurrentTopic;
         }
 
         private void AddCardMethod()
         {
+            string questionimagepath = "";
+            string answerimagepath = "";
+            string questionaudiopath = "";
+            string answeraudiopath = "";
+            string questionvideopath = "";
+            string answervideopath = "";
+
             long cardId = DateTime.Now.Ticks;
-            if (QuestionImage != null)
+            if (!String.IsNullOrEmpty(QuestionImagePath))
             {
-                QuestionImagePath = Save(QuestionImagePath, "QuestionImage", cardId);
+                questionimagepath = Save(QuestionImagePath, "QuestionImage", cardId);
             }
-            if (AnswerImage != null)
+            if (!String.IsNullOrEmpty(AnswerImagePath))
             {
-                AnswerImagePath = Save(AnswerImagePath, "AnswerImage", cardId);
+                answerimagepath = Save(AnswerImagePath, "AnswerImage", cardId);
             }
             if (!String.IsNullOrEmpty(QuestionAudioPath))
             {
-                QuestionAudioPath = Save(QuestionAudioPath, "QuestionAudio", cardId);
+                questionaudiopath = Save(QuestionAudioPath, "QuestionAudio", cardId);
             }
             if (!String.IsNullOrEmpty(AnswerAudioPath))
             {
-                AnswerAudioPath = Save(AnswerAudioPath, "AnswerAudio", cardId);
+                answeraudiopath = Save(AnswerAudioPath, "AnswerAudio", cardId);
             }
             if (!String.IsNullOrEmpty(QuestionVideoPath))
             {
-                QuestionVideoPath = Save(QuestionVideoPath, "QuestionVideo", cardId);
+                questionvideopath = Save(QuestionVideoPath, "QuestionVideo", cardId);
             }
             if (!String.IsNullOrEmpty(AnswerVideoPath))
             {
-                AnswerVideoPath = Save(AnswerVideoPath, "AnswerVideo", cardId);
+                answervideopath = Save(AnswerVideoPath, "AnswerVideo", cardId);
             }
 
             // Check ob Text angegeben wurde
 
-            
-            CardViewModel cvm = new CardViewModel(cardId)
 
+            CardViewModel cvm = new CardViewModel(cardId)
             {
                 QuestionText = QuestionText,
-                QuestionVideo = QuestionVideoPath,
-                QuestionImage = QuestionImagePath,
-                QuestionAudio = QuestionAudioPath,
+                QuestionVideo = questionvideopath,
+                QuestionImage = questionimagepath,
+                QuestionAudio = questionaudiopath,
                 AnswerText = AnswerText,
-                AnswerVideo = AnswerVideoPath,
-                AnswerImage = AnswerImagePath,
-                AnswerAudio = AnswerAudioPath
+                AnswerVideo = answervideopath,
+                AnswerImage = answerimagepath,
+                AnswerAudio = answeraudiopath
             };
-            
-            Topic.Add(cvm);
-          
+            MainWindow.CurrentTopic.Add(cvm);
         }
 
         private void LoadQuestionImageMethod()
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                QuestionImage = Image.FromFile(dialog.FileName);
-                QuestionImagePath = dialog.FileName;
-            }
+            QuestionImagePath = ResourceSerializer.LoadImagePath();
         }
 
         private void LoadQuestionVideoMethod()
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                QuestionVideoPath = dialog.FileName; // Video reference
-            }
+            QuestionVideoPath = ResourceSerializer.LoadVideoPath();
+        }
+        private void LoadQuestionAudioMethod()
+        {
+            QuestionAudioPath = ResourceSerializer.LoadAudioPath();
         }
 
         private void LoadAnswerImageMethod()
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Image Files (*.jpg; *.png) | *.jpg; *.png"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                AnswerImage = Image.FromFile(dialog.FileName);
-                AnswerImagePath = dialog.FileName;
-            }
+            AnswerImagePath = ResourceSerializer.LoadImagePath();
         }
 
         private void LoadAnswerVideoMethod()
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Video Files (*.mp4; *.mpeg; *.mov; *.mkv; *.m4v) | *.mp4; *.mpeg; *.mov; *.mkv; *.m4v"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                AnswerVideoPath = dialog.FileName; // Video reference
-            }
+            AnswerVideoPath = ResourceSerializer.LoadVideoPath();
         }
 
-        private void LoadQuestionAudioMethod()
-        {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                QuestionAudioPath = dialog.FileName; // Audio reference
-            }
-        }
         private void LoadAnswerAudioMethod()
         {
-            OpenFileDialog dialog = new OpenFileDialog
-            {
-                Filter = "Audio Files (*.mp3; *.wav)| *.mp3; *.wav"
-            };
-            if (dialog.ShowDialog() == true)
-            {
-                AnswerAudioPath = dialog.FileName; // Audio reference
-            }
+            AnswerAudioPath = ResourceSerializer.LoadAudioPath();
         }
 
         public String Save(string source, string folderName, long id)
         {
-            return ResourceSerializer.SaveFile(source, $"\\{Topic.ID}\\{id}\\{folderName}\\{Path.GetExtension(source)}");
+            return ResourceSerializer.SaveFile(source, $"{MainWindow.CurrentTopic.ID}\\{id}\\{folderName}\\{Path.GetFileName(source)}");
+        }
 
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
+        }
+
+        //For the INotifyPropertyChanged interface
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
+
 }
