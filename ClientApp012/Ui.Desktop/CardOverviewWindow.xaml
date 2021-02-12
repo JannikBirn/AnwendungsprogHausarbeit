@@ -12,7 +12,6 @@
         x:Name="myCardOverviewWindow">
     <Window.Resources>
         <ResourceDictionary>
-            <!--  <viewmodel:CardOverViewWindowViewModel x:Key="" ></viewmodel:CardOverViewWindowViewModel> -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styleguide.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -94,48 +93,29 @@
                                     IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding MainWindowVM.OpenNewCardWindow, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Content="Create New Card"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                Grid.Row="2"
-                Grid.Column="1"
-                Width="200"
-                Style="{DynamicResource DefaultButtonStyleJan}"
-                Margin="15,30,10,0" />
+
 
         <DockPanel Grid.Column="0"
                    Grid.Row="2"
-                   HorizontalAlignment="Left"
+                   HorizontalAlignment="Right"
                    LastChildFill="False"
                    VerticalAlignment="Top"
                    Grid.ColumnSpan="2"
-                   Width="620"
-                   Margin="170,25,0,0"
+                   Width="400"
+                   Margin="170,5,0,0"
                    Height="auto">
 
             <Menu Background="{x:Null}"
                   Width="auto"
                   Height="auto"
                   VerticalAlignment="Top">
-                <Button Content="Test Print"
-                        Name="PrintSimpleTestButton"
-                        DockPanel.Dock="Top"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleSmall}"
-                        Command="{Binding PrintTestPage}" />
-                
+
                 <!--Command and CommandParameter are passed to CardOverviewWindowVM-->
-                <Button Content="Print Selected Cards"
-                        DockPanel.Dock="Bottom"
-                        Width="auto"
-                        Height="auto"
-                        Style="{DynamicResource DefaultButtonStyleSmall }" />
                 <Button Content="Print all Cards of Topic"
                         DockPanel.Dock="Bottom"
                         Width="auto"
                         Height="auto"
+                        Margin="5"
                         Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintWindow}"
                         CommandParameter="{Binding ElementName=myCardOverviewWindow, Mode=OneWay}" />
@@ -143,9 +123,19 @@
                         DockPanel.Dock="Top"
                         Width="auto"
                         Height="auto"
+                        Margin="5"
                         Style="{DynamicResource DefaultButtonStyleSmall }"
                         Command="{Binding PrintAllCards}"
                         CommandParameter="{Binding ElementName=allCards}" />
+                <Button Command="{Binding MainWindowVM.OpenNewCardWindow, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                        Content="Create New Card"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Width="auto"
+                        Style="{DynamicResource DefaultButtonStyleSmall}"
+                        Margin="5,0,10,0" />
             </Menu>
         </DockPanel>
 
