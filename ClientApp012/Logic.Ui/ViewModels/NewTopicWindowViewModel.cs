@@ -39,7 +39,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public TopicCollectionViewModel TopicCollection;
+        public TopicCollectionViewModel TopicCollection; 
         public String Name { get; set; }
         public TopicCollectionViewModel TCVM { get; set; }
         public RelayCommand AddTopic { get; }
@@ -57,6 +57,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void AddTopicMethod()
         {
+
             if (!String.IsNullOrEmpty(Name) || Name != "Insert a title for the topic!")
             {
                 string localpath = "";

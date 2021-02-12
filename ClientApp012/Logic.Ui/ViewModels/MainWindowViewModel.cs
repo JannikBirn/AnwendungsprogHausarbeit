@@ -28,10 +28,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewCardWindow { get; }
         public RelayCommand OpenNewTopicWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
+        public RelayCommand CloseWindow { get; }
         public TopicViewModel CurrentTopic { get; set; }
         public MainWindowViewModel(RootViewModel model)
         {
-            //Refrenzing to the model
+            //Referenzing to the model
             RootViewModel = model;
 
             /*
@@ -46,10 +47,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
-
-
         }
 
         private void SelectedTopicCommandMethod(object param)
@@ -73,8 +73,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
             Console.WriteLine("Reading Data from path:" + fullPath);
 
-            RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
-
+            object root = BinarySerializer.BinaryDeserialize(fullPath);
+            if (root != null)
+                RootViewModel.Model = (Root) root;
+        }
+        //Close current window
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
         }
 
         //Methods for the Relay Commands to open windows
