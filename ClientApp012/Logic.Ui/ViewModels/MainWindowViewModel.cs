@@ -6,6 +6,7 @@ using De.HsFlensburg.ClientApp012.Services.Printing;
 using Services.Serialization;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,28 +32,34 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand DeleteTopic { get; set; }
         public RelayCommand CloseWindow { get; }
 
-        private string topicImagePath;
-
-        public String TopicImagePath
-        {
-            get => topicImagePath;
-            set
-            {
-                topicImagePath = value;
-            }
-        }
-
-        public BitmapImage Img
+          public BitmapImage TopicImage
         {
             get
             {
-                if (TopicImagePath == null)
+                if(CurrentTopic == null)
+                {
                     return null;
-                return new BitmapImage(new Uri(TopicImagePath));
+                } 
+                if (CurrentTopic.Img == null)
+                    return null;
+                return new BitmapImage(new Uri(BinarySerializer.GetAbsolutePath( CurrentTopic.Img)));
             }
         }
 
-        public TopicViewModel CurrentTopic { get; set; }
+        //Source = new BitmapImage(new Uri("Creek.jpg", UriKind.Relative));  
+
+        private TopicViewModel currentTopic;
+        public TopicViewModel CurrentTopic
+        {
+            get => currentTopic;
+            set
+            {
+                currentTopic = value;
+                OnPropertyChanged("CurrentTopic");
+                OnPropertyChanged("TopicImage");
+            }
+        }
+
         public MainWindowViewModel(RootViewModel model)
         {
             //Referenzing to the model
@@ -61,7 +68,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Auto load cards on startup
             DeserializeFromBinMethod();
-            
+
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -74,6 +81,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
             DeleteTopic = new RelayCommand(param => DeleteTopicMethod(param));
+        }
+
+
+        //For the INotifyPropertyChanged interface
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         private void DeleteTopicMethod(object param)
