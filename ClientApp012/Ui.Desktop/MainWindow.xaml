@@ -103,7 +103,6 @@
                 </DataGrid.Columns>
             </DataGrid>
             <Grid Style="{DynamicResource DefaultGridStyle}"
-                  Background="Transparent"
                   Grid.Column="0"
                   Grid.Row="1"
                   Grid.ColumnSpan="5">
@@ -119,12 +118,7 @@
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
 
-                <Image Name="TopicImage2"
-                       Source="{Binding TopicImage}" />
-
-                <Rectangle Fill="Black"
-                           Margin="0,123,0.2,287.6"
-                           Grid.RowSpan="2" />
+     
 
                 <Label Content="Welcome. Enjoy learning!"
                        Grid.Column="0"
@@ -154,6 +148,10 @@
                         <!--https://www.wpf-tutorial.com/datagrid-control/details-row/-->
                         <DataTemplate>
                             <DockPanel Background="GhostWhite">
+                                <Image Name="TopicImage2"
+                                       Height="auto"
+                                       Width="auto"
+                                       Source="{Binding TopicImage}" />
                                 <Grid Margin="0 ,10">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
