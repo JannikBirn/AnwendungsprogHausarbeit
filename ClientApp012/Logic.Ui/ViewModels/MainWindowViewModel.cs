@@ -73,8 +73,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
             Console.WriteLine("Reading Data from path:" + fullPath);
 
-            RootViewModel.Model = (Root) BinarySerializer.BinaryDeserialize(fullPath);
-
+            object root = BinarySerializer.BinaryDeserialize(fullPath);
+            if (root != null)
+                RootViewModel.Model = (Root) root;
         }
         //Close current window
         private void CloseWindowMethod(object param)
