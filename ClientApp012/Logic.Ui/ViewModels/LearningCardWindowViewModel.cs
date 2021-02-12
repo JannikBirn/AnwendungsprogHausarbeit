@@ -30,13 +30,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
         public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
-
-        public String questionViedeoPath = "";
-        public String QuestionVideoPathAbsolute
-        {
-            get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); }
-            set { questionViedeoPath = value; }
-        }
+        public String QuestionVideoPathAbsolute {  get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); }}
         public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
         public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
         public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
