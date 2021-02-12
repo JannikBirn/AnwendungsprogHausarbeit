@@ -49,7 +49,14 @@ namespace Services.Serialization
 
         public static string GetAbsolutePath(string relativePath)
         {
-            return PERSISTENT_DATA_PATH + relativePath;
+            if (relativePath != "")
+            {
+                return PERSISTENT_DATA_PATH + relativePath;
+            }
+            else 
+            { 
+            return ""; 
+            }
         }
     }
 }

@@ -38,13 +38,13 @@
                       VerticalAlignment="Center"
                       Width="531"
                       Source="{Binding QuestionVideoPathAbsolute}"
-                      LoadedBehavior="{Binding VideoAudioControl}"/>
+                      LoadedBehavior="{Binding VideoAudioControl}" />
         <Image HorizontalAlignment="Left"
-               Height="494"
+               Height="405"
                Grid.Row="1"
                VerticalAlignment="Top"
-               Width="609"
-               Margin="107,27,0,0"
+               Width="532"
+               Margin="134,29.2,0,0"
                Source="{Binding QuestionImagePathAbsolute}" />
         <Label x:Name="l_answer"
                Content="{Binding CurrentCard.QuestionText}"
@@ -78,7 +78,8 @@
                 Width="52"
                 Height="47"
                 Command="{Binding PlayVideo}"
-                CommandParameter="questionVideo"/>
+                CommandParameter="questionVideo"
+                Visibility="{Binding VisibiltyControllButtons}" />
         <Button x:Name="btn_stop"
                 Content="Pause"
                 HorizontalAlignment="Left"
@@ -86,10 +87,10 @@
                 Grid.Row="1"
                 VerticalAlignment="Top"
                 Width="52"
-                Height="48" 
+                Height="48"
                 Command="{Binding PauseVideo}"
                 CommandParameter="questionVideo"
-               />
+                Visibility="{Binding VisibiltyControllButtons}" />
         <Button x:Name="btn_replay"
                 Content="Replay"
                 HorizontalAlignment="Left"
@@ -99,6 +100,31 @@
                 Width="52"
                 Height="47"
                 Command="{Binding ReplayVideo}"
-                CommandParameter="questionVideo" />
+                CommandParameter="questionVideo"
+                Visibility="{Binding VisibiltyControllButtons}" />
+
+        <MediaElement Name="mePlayer"
+                      Grid.Row="1"
+                      LoadedBehavior="Manual"
+                      Stretch="None"
+                      Margin="134,29,134,25" />
+        <Slider HorizontalAlignment="Center"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Height="36"
+                Width="542"
+                RenderTransformOrigin="0.5,0.5"
+                Margin="129,404,129,24"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center">
+            <Slider.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleY="-1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
+                </TransformGroup>
+            </Slider.RenderTransform>
+        </Slider>
     </Grid>
 </Page>
