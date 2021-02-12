@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public const string FILE_NAME = "appdata.dat";
 
@@ -32,7 +32,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand DeleteTopic { get; set; }
         public RelayCommand CloseWindow { get; }
 
-          public BitmapImage TopicImage
+        public BitmapImage TopicImage
         {
             get
             {
@@ -82,20 +82,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
             DeleteTopic = new RelayCommand(param => DeleteTopicMethod(param));
         }
-
-
-        //For the INotifyPropertyChanged interface
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
         private void DeleteTopicMethod(object param)
         {
             RootViewModel.TopicCollection.Remove(CurrentTopic);
@@ -161,6 +147,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void OpenLaerningCardWindowMethod()
         {
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
+        }
+
+        //For the INotifyPropertyChanged interface
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
