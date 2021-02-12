@@ -226,6 +226,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             IndexCard = 0;
             learnRounds = 3;
+            HasStarted = true;
             trueAnswers = 0;
             topicQuestioningStarted = false;
 
@@ -233,7 +234,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void Restart()
         {
             Reset();
-            HasStarted = true;
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.CLOSE_PANEL);
         }
 
