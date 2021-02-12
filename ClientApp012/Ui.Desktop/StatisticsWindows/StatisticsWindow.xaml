@@ -78,10 +78,20 @@
                         Command="{Binding Path=OpenStatisticsQualityPanel}" />
             </Grid>
 
+            <Viewbox Grid.Row="3"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Label Content="{Binding ErrorMessage}"
+                       FontSize="30"
+                       Foreground="Red"
+                       Style="{DynamicResource DefaultLabel}" />
+            </Viewbox>
+
             <Frame x:Name="StatisticsFrame"
                    x:FieldModifier="public"
                    Grid.Row="3"
-                   NavigationUIVisibility="Hidden" />
+                   NavigationUIVisibility="Hidden" />     
+
         </Grid>
     </DockPanel>
 </Window>
