@@ -36,13 +36,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             get
             {
-                if(CurrentTopic == null)
+                if (CurrentTopic == null)
                 {
                     return null;
-                } 
+                }
                 if (CurrentTopic.Img == null)
                     return null;
-                return new BitmapImage(new Uri(BinarySerializer.GetAbsolutePath( CurrentTopic.Img)));
+                return new BitmapImage(new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img)));
             }
         }
 
@@ -82,8 +82,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
             DeleteTopic = new RelayCommand(param => DeleteTopicMethod(param));
         }
+
+        //deletes folder of topic
         private void DeleteTopicMethod(object param)
         {
+            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
+            Console.WriteLine("Writing Data to path:" + fullPath);
+
+            BinarySerializer.GetAbsolutePath(fullPath);
             RootViewModel.TopicCollection.Remove(CurrentTopic);
         }
 
@@ -101,7 +107,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Console.WriteLine("Writing Data to path:" + fullPath);
 
             BinarySerializer.BinarySerialize(RootViewModel.Model, fullPath);
-
         }
 
         private void DeserializeFromBinMethod()
@@ -111,7 +116,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             object root = BinarySerializer.BinaryDeserialize(fullPath);
             if (root != null)
-                RootViewModel.Model = (Root) root;
+                RootViewModel.Model = (Root)root;
         }
         //Close current window
         private void CloseWindowMethod(object param)
