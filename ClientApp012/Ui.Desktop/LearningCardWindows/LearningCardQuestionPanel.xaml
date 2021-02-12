@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
-      d:DesignHeight="850"
+      d:DesignHeight="650"
       d:DesignWidth="800"
       Title="LearningCardQuestionPanel">
     <Page.Resources>
@@ -16,7 +16,7 @@
     </Page.Resources>
     <Page.DataContext>
         <Binding Path="LearningCardWindowVM"
-                 Source="{StaticResource ViewModelLocator}"/>
+                 Source="{StaticResource ViewModelLocator}" />
     </Page.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -31,6 +31,34 @@
                FontFamily="Roboto"
                Foreground="#FF707070"
                FontSize="36" />
+        <MediaElement Name="questionVideo"
+                      HorizontalAlignment="Center"
+                      Height="405"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="531"
+                      Source="{Binding QuestionVideoPathAbsolute}"
+                      LoadedBehavior="{Binding VideoAudioControl}"/>
+        <Image HorizontalAlignment="Left"
+               Height="494"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Width="609"
+               Margin="107,27,0,0"
+               Source="{Binding QuestionImagePathAbsolute}" />
+        <Label x:Name="l_answer"
+               Content="{Binding CurrentCard.QuestionText}"
+               HorizontalAlignment="Center"
+               Margin="134,26,134,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Height="413"
+               Width="532"
+               FontFamily="Roboto"
+               FontSize="20"
+               Foreground="#FF707070"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
         <Button x:Name="btn_Next"
                 Content="Next"
                 HorizontalAlignment="Center"
@@ -38,31 +66,38 @@
                 VerticalAlignment="Center"
                 Width="130"
                 Height="60"
-                Command="{Binding LearningCardWindowVM.OpenLearningCardAnswerPanel, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
-                />
-        <Image HorizontalAlignment="Left"
-               Height="463"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Width="508"
-               Margin="149,65,0,0" />
-        <MediaElement HorizontalAlignment="Center"
-                      Height="352"
-                      Grid.Row="1"
-                      VerticalAlignment="Center"
-                      Width="434" />
-        <Label Content="{Binding LearningCardWindowVM.CurrentCard.QuestionText, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-               HorizontalAlignment="Left"
-               Margin="183,128,0,0"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Height="352"
-               Width="434"
-               Foreground="Gray"
-               FontFamily="Roboto"
-               FontSize="20"
-               VerticalContentAlignment="Center"
-               HorizontalContentAlignment="Center" />
+                Command="{Binding OpenLearningCardAnswerPanel}"
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+        <Button x:Name="btn_play"
+                Content="Play"
+                HorizontalAlignment="Left"
+                Margin="702,177,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="47"
+                Command="{Binding PlayVideo}"
+                CommandParameter="questionVideo"/>
+        <Button x:Name="btn_stop"
+                Content="Pause"
+                HorizontalAlignment="Left"
+                Margin="702,247,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="48" 
+                Command="{Binding PauseVideo}"
+                CommandParameter="questionVideo"
+               />
+        <Button x:Name="btn_replay"
+                Content="Replay"
+                HorizontalAlignment="Left"
+                Margin="702,111.2,0,0"
+                Grid.Row="1"
+                VerticalAlignment="Top"
+                Width="52"
+                Height="47"
+                Command="{Binding ReplayVideo}"
+                CommandParameter="questionVideo" />
     </Grid>
 </Page>
