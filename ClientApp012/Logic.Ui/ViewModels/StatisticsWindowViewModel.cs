@@ -37,6 +37,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand SecondButton { get; }
         public RelayCommand ThirdButton { get; }
 
+        private string errorMessage;
+        public string ErrorMessage
+        {
+            get => errorMessage;
+            set
+            {
+                errorMessage = value;
+                OnPropertyChanged("ErrorMessage");
+            }
+        }
+
         //Strings
         private string firstStatistic;
         public string FirstStatistic
@@ -73,6 +84,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //If Property is null -> all topics are selected
         private TopicViewModel selectedTopic;
 
+
         public TopicViewModel SelectedTopic
         {
             get
@@ -97,7 +109,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        private int CurrentPanelIndex { get; set; }
+        public int CurrentPanelIndex { get; set; }
 
 
         public StatisticsWindowViewModel(RootViewModel model, LineGraphViewModel lineGraphVM)
@@ -105,6 +117,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Refrenzing to the model
             RootViewModel = model;
             LineGraphVM = lineGraphVM;
+
+            ErrorMessage = "";
 
             //Adding relay commands
             OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
@@ -145,24 +159,25 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public void UpdateGraph()
-        {
-            SetGraph(CurrentPanelIndex, DateTime.Now.Date.Ticks - TimeSpan.FromDays(10).Ticks, DateTime.Now.Date.Ticks);
+        public bool UpdateGraph()
+        {            
+            return SetGraph(CurrentPanelIndex, DateTime.Now.Date.Ticks - TimeSpan.FromDays(10).Ticks, DateTime.Now.Date.Ticks);
         }
 
         //Setup Graph from and to date at 0:00:00
         //iteration -> default 24 hours
         //from included, to included
-        private void SetGraph(int graphType, long from, long to)
+        private bool SetGraph(int graphType, long from, long to)
         {
 
             InitStatistics();
 
             //TopicStats for that period of time
-            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily;
+            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily = new Dictionary<long, TopicAnswerStatistics>();
             if (SelectedTopic != null)
             {
                 Data.Statistics.TopicStatistics topicStats = Statistics.topicStatistics.Find(param => param.Topic == SelectedTopic.Model);
+                if(topicStats != null)
                 topicAnswersDaily = topicStats.GetTopicAnswersDaily(from, to);
             }
             else
@@ -353,9 +368,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             totalAnswered += v.Count;
                         });
 
-                        firstStatisticStat = (100*totalWrong / (double)totalAnswered).ToString("N2");
-                        secondStatisticStat = (100*totalCorrect / (double)totalAnswered).ToString("N2");
-                        thirdStatisticStat = (100*totalCorrectMoreThenThree / (double)totalAnswered).ToString("N2");
+                        firstStatisticStat = (100 * totalWrong / (double)totalAnswered).ToString("N2");
+                        secondStatisticStat = (100 * totalCorrect / (double)totalAnswered).ToString("N2");
+                        thirdStatisticStat = (100 * totalCorrectMoreThenThree / (double)totalAnswered).ToString("N2");
 
                         break;
                 }
@@ -388,6 +403,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 SecondStatistic = secondStatisticStat;
                 ThirdStatistic = thirdStatisticStat;
             }
+            else
+            {
+                //Returns false if there is no statistics
+                return false;
+            }
+            return true;
         }
 
 
@@ -396,17 +417,26 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Messenger.Instance.Send<OpenTopicSelectionWindowMessage>(null);
         }
 
-        private void OpenStatisticsPanelMethod(int panelIndex)
+        public void OpenStatisticsPanelMethod(int panelIndex)
         {
             CurrentPanelIndex = panelIndex;
-            UpdateGraph();
+            if (UpdateGraph())
+            {
+                //Graph can be updated, open panel
+                //Sending Message to MessageListener to change Panel
+                ErrorMessage = "";
+                OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
+                messageObject.PanelIndex = panelIndex;
 
-
-            //Sending Message to MessageListener to change Panel
-            OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
-            messageObject.PanelIndex = panelIndex;
-
-            Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
+                Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
+            }
+            else
+            {
+                ErrorMessage = "No Statistiks for the current selection!";
+                OpenStatisticsPanelMessage messageObject = new OpenStatisticsPanelMessage();
+                messageObject.PanelIndex = OpenStatisticsPanelMessage.NO_PANEL;
+                Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
+            }
         }
 
 

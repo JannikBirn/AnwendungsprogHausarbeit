@@ -65,7 +65,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 StatisticsWindowVM.SelectedTopic = RootViewModel.TopicCollection.First(topicVM => topicVM.ID == topicKey.Key && topicVM.Name == topicKey.Value);
             }
-            StatisticsWindowVM.UpdateGraph();
+            StatisticsWindowVM.OpenStatisticsPanelMethod(StatisticsWindowVM.CurrentPanelIndex);
         }
 
     }
