@@ -67,7 +67,8 @@
                 Width="130"
                 Height="60"
                 Command="{Binding OpenLearningCardAnswerPanel}"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
+                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
+                Margin="335,6.2,335,26.6" />
         <Button x:Name="btn_play"
                 Content="Play"
                 HorizontalAlignment="Left"

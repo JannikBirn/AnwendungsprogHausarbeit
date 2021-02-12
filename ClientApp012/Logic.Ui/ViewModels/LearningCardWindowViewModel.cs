@@ -30,12 +30,28 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
         public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
-        public String QuestionVideoPathAbsolute {  get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); }}
+
+        public String questionVideoPathAbsolute ="";
+        public String QuestionVideoPathAbsolute
+        {
+            get
+            {
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo) != "")
+                {
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
+                }
+                else { return questionVideoPathAbsolute; }
+            }
+            set
+            {
+                questionVideoPathAbsolute = value;
+                OnPropertyChanged("QuestionVideoPathAbsolute");
+            }
+        }
+        
         public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
         public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
         public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
-
-       
 
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard 
@@ -219,6 +235,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             QuestionVideoPathAbsolute = "";
             QuestionVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
+            VideoAudioControl = "Play";
 
         }
 
