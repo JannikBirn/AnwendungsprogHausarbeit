@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
@@ -18,12 +19,29 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //Open Panel Commands
         public MainWindowViewModel MainWindow { get; set; }
         public RelayCommand OpenLearningCardAnswerPanel { get; set; }
-        public RelayCommand CloseFinshWindow { get; set; }
         public RelayCommand StartAnswering { get; set; }
         public RelayCommand CloseWindow { get; set; }
         public RelayCommand RestartLearning { get; set; }
         public RelayCommand LearingCardsF { get; set; }
         public RelayCommand LearingCardsT { get; set; }
+        public RelayCommand PlayVideo { get; set; }
+        public RelayCommand PauseVideo { get; set; }
+        public RelayCommand ReplayVideo { get; set; }
+
+        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
+        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
+
+        public String questionViedeoPath = "";
+        public String QuestionVideoPathAbsolute
+        {
+            get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); }
+            set { questionViedeoPath = value; }
+        }
+        public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
+        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
+        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
+
+       
 
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard 
@@ -34,6 +52,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public int count = 0;
         public int learnRounds = 3;
+        public bool topicQuestioningStarted = false;
         public int Count
         {
             get { return count; }
@@ -53,23 +72,22 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public bool topicQuestioningStarted = false;
         public int trueAnswers = 0;
 
         public string TrueAnswers
         {
             get { return trueAnswers.ToString(); }
         }
-     
-
-        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
-        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
-        public String QuestionVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); } }
-        public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
-        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
-        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
-
-    
+        
+        public string videoAudioControl = "play";
+        public string VideoAudioControl
+        { 
+          get { return videoAudioControl; }
+          set {
+                videoAudioControl = value;
+                OnPropertyChanged("VideoAudioControl");
+            } 
+        }  
 
          public LearningCardWindowViewModel(MainWindowViewModel model)
         {
@@ -82,6 +100,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             LearingCardsT = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_TRUE));
             RestartLearning = new RelayCommand(() => Restart());
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            PauseVideo = new RelayCommand(() => PauseVideoMethod());
+            PlayVideo = new RelayCommand(() => PlayVideoMethod());
+            ReplayVideo = new RelayCommand(() => ReplayVideoMethod());
         }
 
         public void OpenLearningCardPanelMethod(int panelIndex)
@@ -188,10 +209,23 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             window.Close();
         }
 
-        public void Play(object param) 
+        public void PlayVideoMethod() 
         {
-            MediaScriptCommandRoutedEventArgs myMediaElement = (MediaScriptCommandRoutedEventArgs)param;
-            
+            VideoAudioControl = "Play";
+
+        }
+
+        public void PauseVideoMethod()
+        {
+            VideoAudioControl = "Pause";
+
+        }
+
+        public void ReplayVideoMethod()
+        {
+            QuestionVideoPathAbsolute = "";
+            QuestionVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
+
         }
 
         //For the INotifyPropertyChanged interface

@@ -37,7 +37,8 @@
                       Grid.Row="1"
                       VerticalAlignment="Center"
                       Width="531"
-                      Source="{Binding QuestionVideoPathAbsolute}" />
+                      Source="{Binding QuestionVideoPathAbsolute}"
+                      LoadedBehavior="{Binding VideoAudioControl}"/>
         <Image HorizontalAlignment="Left"
                Height="494"
                Grid.Row="1"
@@ -74,23 +75,29 @@
                 Grid.Row="1"
                 VerticalAlignment="Top"
                 Width="52"
-                Height="47" />
+                Height="47"
+                Command="{Binding PlayVideo}"
+                CommandParameter="questionVideo"/>
         <Button x:Name="btn_stop"
-                Content="Stop"
+                Content="Pause"
                 HorizontalAlignment="Left"
                 Margin="702,247,0,0"
                 Grid.Row="1"
                 VerticalAlignment="Top"
                 Width="52"
-                Height="48" />
+                Height="48" 
+                Command="{Binding PauseVideo}"
+                CommandParameter="questionVideo"
+               />
         <Button x:Name="btn_replay"
                 Content="Replay"
                 HorizontalAlignment="Left"
-                Margin="702,108,0,0"
+                Margin="702,111.2,0,0"
                 Grid.Row="1"
                 VerticalAlignment="Top"
                 Width="52"
                 Height="47"
-                Click="Button_Click" />
+                Command="{Binding ReplayVideo}"
+                CommandParameter="questionVideo" />
     </Grid>
 </Page>
