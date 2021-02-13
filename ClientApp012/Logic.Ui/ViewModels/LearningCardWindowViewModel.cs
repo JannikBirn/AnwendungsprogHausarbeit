@@ -47,7 +47,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
                  } 
         }
-       
         public BitmapImage AnswerImagePathAbsolute 
         { 
             get 
@@ -75,12 +74,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 if (BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo) != "")
                 {
-                    VisibiltyControllButtons = "Visible";
-                    return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
+                return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
                 }
                 else
                 {
-                    VisibiltyControllButtons = "Hidden";
                     return questionVideoPathAbsolute = "";
                    
                 }
@@ -98,12 +95,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 if (BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo) != "")
                 {
-                    VisibiltyControllButtons = "Visible";
                     return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo);
                 }
                 else 
                 {
-                    VisibiltyControllButtons = "Hidden";
                     return answerVideoPathAbsolute = ""; }
                 }
             set 
@@ -119,12 +114,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             { 
                 if(BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio) != "")
                 {
-                    VisibiltyControllButtons = "Visible";
                     return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio);
                 }
             else
                 {
-                    VisibiltyControllButtons = "Hidden";
                     return questionAudioPathAbsolute = "";
                 }
             }
@@ -140,12 +133,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             get 
             { if(BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio) != "")
                 {
-                    VisibiltyControllButtons = "Visible";
                     return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
                 }
                 else
                 {
-                    VisibiltyControllButtons = "Hidden";
                     return answerAudioPathAbsolute = "";
                 }
             }
@@ -156,27 +147,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public String audioTime = "";
-        public String AudioTime
-        {
-            get
-            {
-                if (QuestionAudioPathAbsolute != "")
-                {
-                    AudioTimer();
-                    return audioTime;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            set
-            {
-                audioTime = value;
-                OnPropertyChanged("AudioTime");
-            }
-        }
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard
         {
@@ -228,12 +198,37 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public String visibiltyControllButtons = "Hidden";
         public String VisibiltyControllButtons
         {
-            get { return visibiltyControllButtons; }
+            get
+            {
+                if (AnswerAudioPathAbsolute != "" || QuestionAudioPathAbsolute != "" || QuestionVideoPathAbsolute != "" || AnswerVideoPathAbsolute != "")
+                {
+                    return "Visible";
+                }
+                else
+                {
+                    return visibiltyControllButtons;
+                }
+            }
             set { visibiltyControllButtons = value;
                 OnPropertyChanged("VisibiltyControllButtons");
                 }
          }
-        
+        public String feedback = "";
+        public String Feedback
+        {
+            get
+            {
+                if (TrueAnswers <= (Topic.Count * 3 / 2))
+                    return "Not bad";
+                else
+                    return "Very good!";
+            }
+            set 
+            {
+                feedback = value;
+                OnPropertyChanged("Feedback");
+            }
+        }
          public LearningCardWindowViewModel(MainWindowViewModel model)
         {
             MainWindow = model;
@@ -352,7 +347,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void PauseVideoMethod()
         {
             VideoAudioControl = "Pause";
-
         }
 
         public void ReplayVideoMethod()
@@ -366,13 +360,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             AnswerAudioPathAbsolute = "";
             AnswerAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
             VideoAudioControl = "Play";
-        }
-
-        public void AudioTimer()
-        {
-                DispatcherTimer timer = new DispatcherTimer();
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Start();
         }
 
 
