@@ -29,8 +29,44 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PauseVideo { get; set; }
         public RelayCommand ReplayVideo { get; set; }
 
-        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
-        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
+        public BitmapImage QuestionImagePathAbsolute 
+        {
+            get {              
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                } else
+                {
+                    return null;
+                }
+
+                 } 
+        }
+       
+        public BitmapImage AnswerImagePathAbsolute 
+        { 
+            get 
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+                else
+                {
+                    return null;
+                }
+            } 
+        }
 
         public String questionVideoPathAbsolute = "";
         public String QuestionVideoPathAbsolute
