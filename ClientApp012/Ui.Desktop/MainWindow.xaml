@@ -29,6 +29,13 @@
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
 
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closing">
+            <behaviors:InvokeCommandAction Command="{Binding SerializeToBin}"
+                                    PassEventArgsToCommand="True" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
+
     <DockPanel LastChildFill="True">
         <DockPanel DockPanel.Dock="Top">
             <Menu>
