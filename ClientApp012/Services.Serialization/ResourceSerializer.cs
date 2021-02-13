@@ -39,6 +39,15 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
                 return LoadImagePath();
             }
         }
+
+        public static void DeleteDirectory(string destination)
+        {
+            if (Directory.Exists(BinarySerializer.PERSISTENT_DATA_PATH + destination))
+            {
+                Directory.Delete(BinarySerializer.PERSISTENT_DATA_PATH + destination, true);
+            }
+        }
+
         public static String LoadVideoPath()
         {
             OpenFileDialog dialog = new OpenFileDialog

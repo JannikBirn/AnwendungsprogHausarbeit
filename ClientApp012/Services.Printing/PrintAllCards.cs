@@ -20,7 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         public int NumberOfPages { get; set; }
 
         public int fontSize { get; set; }
-
+        public string topicTitle { get; set; }
 
         public PrintAllCards()
         {
@@ -33,8 +33,12 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
         {
             // Create a PrintDialog  
             PrintDialog printDlg = new PrintDialog();
+
+            UserControl userControl = new UserControl();
+
             //casts the object cards to DataGrid
             DataGrid dg = cards as DataGrid;
+
             //if passed object is a DataGrid, this will return TRUE
             if (dg != null)
             {
@@ -62,7 +66,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             Size pageSize = new Size(printDlg.PrintableAreaWidth, printDlg.PrintableAreaHeight + 300);
             dg.Arrange(new Rect(15, 15, pageSize.Height, pageSize.Width));
             // Call PrintDocument method to send document to printer
-            //printDlg.PrintVisual(dg, "GridPrinting");
+            printDlg.PrintVisual(dg, "GridPrinting");
 
         }
 

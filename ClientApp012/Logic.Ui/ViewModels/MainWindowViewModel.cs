@@ -3,18 +3,22 @@ using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using De.HsFlensburg.ClientApp012.Services.Printing;
+using De.HsFlensburg.ClientApp012.Services.Serialization;
 using Services.Serialization;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
-    public class MainWindowViewModel
+    public class MainWindowViewModel : INotifyPropertyChanged
     {
         public const string FILE_NAME = "appdata.dat";
 
@@ -28,16 +32,53 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand OpenNewCardWindow { get; }
         public RelayCommand OpenNewTopicWindow { get; }
         public RelayCommand SelectedTopicCommand { get; }
-        public TopicViewModel CurrentTopic { get; set; }
+        public RelayCommand DeleteTopic { get; set; }
+
+        public BitmapImage TopicImage
+        {
+            get
+            {
+                if (CurrentTopic == null)
+                {
+                    return null;
+                }
+                if (CurrentTopic.Img == null)
+
+                    return null;
+
+                //creates a copy of the original so it's possible to delete
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
+                bitmapImage.EndInit();
+                return bitmapImage;
+            }
+        }
+
+        //Source = new BitmapImage(new Uri("Creek.jpg", UriKind.Relative));  
+
+        private TopicViewModel currentTopic;
+        public TopicViewModel CurrentTopic
+        {
+            get => currentTopic;
+            set
+            {
+                currentTopic = value;
+                OnPropertyChanged("CurrentTopic");
+                OnPropertyChanged("TopicImage");
+            }
+        }
+
         public MainWindowViewModel(RootViewModel model)
         {
             //Referenzing to the model
             RootViewModel = model;
 
-            /*
+
             //Auto load cards on startup
             DeserializeFromBinMethod();
-            */
+
 
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
@@ -48,12 +89,26 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
             OpenNewTopicWindow = new RelayCommand(() => OpenNewTopicWindowMethod());
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
+            DeleteTopic = new RelayCommand(param => DeleteTopicMethod(param));
+        }
+
+        //deletes folder of topic
+        private void DeleteTopicMethod(object param)
+        {
+            TopicViewModel topicToDelete = CurrentTopic;
+            CurrentTopic = null;
+
+            ResourceSerializer.DeleteDirectory($"{topicToDelete.ID}");
+            RootViewModel.TopicCollection.Remove(topicToDelete);
+            SerializeToBinMethod();
+
         }
 
         private void SelectedTopicCommandMethod(object param)
         {
-            CurrentTopic = (TopicViewModel) param;
+            CurrentTopic = (TopicViewModel)param;
         }
+
 
         //Serialization
 
@@ -63,7 +118,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             Console.WriteLine("Writing Data to path:" + fullPath);
 
             BinarySerializer.BinarySerialize(RootViewModel.Model, fullPath);
-
         }
 
         private void DeserializeFromBinMethod()
@@ -73,7 +127,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             object root = BinarySerializer.BinaryDeserialize(fullPath);
             if (root != null)
-                RootViewModel.Model = (Root) root;
+                RootViewModel.Model = (Root)root;
         }
 
         //Methods for the Relay Commands to open windows
@@ -85,8 +139,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenNewCardWindowMethod()
         {
-            if (CurrentTopic != null) { 
-            ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
+            if (CurrentTopic != null)
+            {
+                ServiceBus.Instance.Send(new OpenNewCardWindowMessage());
             }
         }
 
@@ -103,6 +158,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void OpenLaerningCardWindowMethod()
         {
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
+        }
+
+        //For the INotifyPropertyChanged interface
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
 }
