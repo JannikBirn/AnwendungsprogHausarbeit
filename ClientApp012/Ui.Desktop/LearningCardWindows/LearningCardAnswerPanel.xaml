@@ -50,6 +50,13 @@
                       Margin="134,23,134,31"
                       Source="{Binding AnswerVideoPathAbsolute}" 
                       />
+        <MediaElement HorizontalAlignment="Center"
+                      Height="70"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="532"
+                      LoadedBehavior="{Binding VideoAudioControl}"
+                      Source="{Binding AnswerAudioPathAbsolute}" />
         <Button x:Name="btn_right"
                 Content="Right"
                 HorizontalAlignment="Center"

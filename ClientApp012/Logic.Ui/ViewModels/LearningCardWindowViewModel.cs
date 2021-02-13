@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -119,7 +120,27 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public String AudioTime { get; set; }
+        public String audioTime = "";
+        public String AudioTime
+        {
+            get
+            {
+                if (QuestionAudioPathAbsolute != "")
+                {
+                    AudioTimer();
+                    return audioTime;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            set
+            {
+                audioTime = value;
+                OnPropertyChanged("AudioTime");
+            }
+        }
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard
         {
@@ -310,6 +331,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             AnswerAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
             VideoAudioControl = "Play";
         }
+
+        public void AudioTimer()
+        {
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
+        }
+
 
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
