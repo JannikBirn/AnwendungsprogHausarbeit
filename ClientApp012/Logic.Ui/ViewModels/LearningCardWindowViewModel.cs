@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -28,35 +29,168 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PauseVideo { get; set; }
         public RelayCommand ReplayVideo { get; set; }
 
-        public String QuestionImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage); } }
-        public String AnswerImagePathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage); } }
+        public BitmapImage QuestionImagePathAbsolute 
+        {
+            get {              
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentCard.QuestionImage));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                } else
+                {
+                    return null;
+                }
 
-        public String questionViedeoPath = "";
+                 } 
+        }
+       
+        public BitmapImage AnswerImagePathAbsolute 
+        { 
+            get 
+            {
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentCard.AnswerImage));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+                else
+                {
+                    return null;
+                }
+            } 
+        }
+
+        public String questionVideoPathAbsolute = "";
         public String QuestionVideoPathAbsolute
         {
-            get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo); }
-            set { questionViedeoPath = value; }
+            get
+            {
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
+                }
+                else
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return questionVideoPathAbsolute = "";
+                   
+                }
+            }
+            set
+            {
+                questionVideoPathAbsolute = value;
+                OnPropertyChanged("QuestionVideoPathAbsolute");
+            }
         }
-        public String AnswerVideoPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo); } }
-        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
-        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
-
-       
-
-        public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
-        public CardViewModel CurrentCard 
+        public String answerVideoPathAbsolute = "";
+        public String AnswerVideoPathAbsolute
         {
-            get { return MainWindow.CurrentTopic[Count]; }
-            set { MainWindow.CurrentTopic[Count] = value;}
+            get
+            {
+                if (BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo);
+                }
+                else 
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return answerVideoPathAbsolute = ""; }
+                }
+            set 
+            {
+                answerVideoPathAbsolute = value;
+                OnPropertyChanged("AnswerVideoPathAbsolute");
+            }
+        }
+        public String questionAudioPathAbsolute = "";
+        public String QuestionAudioPathAbsolute 
+        {
+            get 
+            { 
+                if(BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio);
+                }
+            else
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return questionAudioPathAbsolute = "";
+                }
+            }
+            set
+            {
+                questionAudioPathAbsolute = value;
+                OnPropertyChanged("QuestionAudioPathAbsolute");
+            }
+        }
+        public String answerAudioPathAbsolute ="";
+        public String AnswerAudioPathAbsolute
+        { 
+            get 
+            { if(BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
+                }
+                else
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return answerAudioPathAbsolute = "";
+                }
+            }
+            set
+            {
+                answerAudioPathAbsolute = value;
+                OnPropertyChanged("AnswerAudioPathAbsolute");
+            }
         }
 
-        public int count = 0;
+        public String audioTime = "";
+        public String AudioTime
+        {
+            get
+            {
+                if (QuestionAudioPathAbsolute != "")
+                {
+                    AudioTimer();
+                    return audioTime;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            set
+            {
+                audioTime = value;
+                OnPropertyChanged("AudioTime");
+            }
+        }
+        public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
+        public CardViewModel CurrentCard
+        {
+            get { return MainWindow.CurrentTopic[IndexCard]; }
+            set { MainWindow.CurrentTopic[IndexCard] = value; }
+        }
+
+        public int indexCard = 0;
         public int learnRounds = 3;
         public bool topicQuestioningStarted = false;
-        public int Count
+        public int IndexCard
         {
-            get { return count; }
-            set { count = value;
+            get { return indexCard; }
+            set { indexCard = value;
                 OnPropertyChanged("Count");
             }
         }
@@ -74,25 +208,35 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public int trueAnswers = 0;
 
-        public string TrueAnswers
+        public int TrueAnswers
         {
-            get { return trueAnswers.ToString(); }
+            get { return trueAnswers; }
+            set { trueAnswers = value;
+                OnPropertyChanged("TrueAnswers");
+            }
         }
-        
         public string videoAudioControl = "play";
         public string VideoAudioControl
-        { 
-          get { return videoAudioControl; }
-          set {
+        {
+            get { return videoAudioControl; }
+            set {
                 videoAudioControl = value;
                 OnPropertyChanged("VideoAudioControl");
-            } 
-        }  
+            }
+        }
 
+        public String visibiltyControllButtons = "Hidden";
+        public String VisibiltyControllButtons
+        {
+            get { return visibiltyControllButtons; }
+            set { visibiltyControllButtons = value;
+                OnPropertyChanged("VisibiltyControllButtons");
+                }
+         }
+        
          public LearningCardWindowViewModel(MainWindowViewModel model)
         {
             MainWindow = model;
-            
 
             StartAnswering = new RelayCommand(() => StartAnsweringMethod());
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
@@ -112,8 +256,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             Messenger.Instance.Send<OpenLearningCardPanelMessage>(messageObject);
         }
-
-
         public void StartAnsweringMethod()
         {
             if (!topicQuestioningStarted)
@@ -121,53 +263,45 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 Topic.StartQuestioning();
                 topicQuestioningStarted = true;
             }
-
             while(!CheckForLearning(CurrentCard))
             {
-                if (Count < Topic.Count)
+                if (IndexCard < Topic.Count -1)
                 {
                     CurrentCard.FinishAnswer(false);
-                    Count++;
+                    IndexCard++;
                 }
                 else
                 {
                     return;
                 }
             }
-
             CurrentCard.StartAnswering();
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.QUESTION_PANEL);
             HasStarted = false;
         }
-
-
         public void LearningCardMethod(bool answer)
         {
             CurrentCard.FinishAnswer(answer);
             if (answer)
-                trueAnswers++;
+                TrueAnswers++;
        
-            if (Topic.Count - 1 == Count && learnRounds == 1)
+            if (Topic.Count-1 == IndexCard && learnRounds == 1)
             {
                 Topic.FinishQuestioning();
-                Reset();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
-            else if(Topic.Count - 1 == Count)
+            else if(Topic.Count-1 == IndexCard)
             {
                 learnRounds--;
-                Count = 0;
+                IndexCard = 0;
                 StartAnsweringMethod();
-
             }
             else
             {
-                Count++;
+                IndexCard++;
                 StartAnsweringMethod();
             }
-
         }
-
         //Checking last 3 card answers
         private bool CheckForLearning(CardViewModel card)
         {
@@ -189,8 +323,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public void Reset()
         {
-            Count = 0;
+            IndexCard = 0;
             learnRounds = 3;
+            HasStarted = true;
             trueAnswers = 0;
             topicQuestioningStarted = false;
 
@@ -198,7 +333,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public void Restart()
         {
             Reset();
-            HasStarted = true;
             OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.CLOSE_PANEL);
         }
 
@@ -225,8 +359,22 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             QuestionVideoPathAbsolute = "";
             QuestionVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
-
+            AnswerVideoPathAbsolute = "";
+            AnswerVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo);
+            QuestionAudioPathAbsolute = "";
+            QuestionAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio);
+            AnswerAudioPathAbsolute = "";
+            AnswerAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
+            VideoAudioControl = "Play";
         }
+
+        public void AudioTimer()
+        {
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Start();
+        }
+
 
         //For the INotifyPropertyChanged interface
         public event PropertyChangedEventHandler PropertyChanged;
