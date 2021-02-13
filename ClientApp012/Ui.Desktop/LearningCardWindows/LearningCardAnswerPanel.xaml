@@ -50,24 +50,6 @@
                       Margin="134,23,134,31"
                       Source="{Binding AnswerVideoPathAbsolute}" 
                       />
-        <Slider HorizontalAlignment="Center"
-                Grid.Row="1"
-                VerticalAlignment="Center"
-                Height="30"
-                Width="542"
-                RenderTransformOrigin="0.5,0.5"
-                Margin="129,389,129,14"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center">
-            <Slider.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform ScaleY="-1" />
-                    <SkewTransform />
-                    <RotateTransform />
-                    <TranslateTransform />
-                </TransformGroup>
-            </Slider.RenderTransform>
-        </Slider>
         <Button x:Name="btn_right"
                 Content="Right"
                 HorizontalAlignment="Center"

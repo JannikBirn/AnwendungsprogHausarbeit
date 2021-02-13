@@ -75,9 +75,51 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("AnswerVideoPathAbsolute");
             }
         }
-        public String QuestionAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio); } }
-        public String AnswerAudioPathAbsolute { get { return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio); } }
+        public String questionAudioPathAbsolute = "";
+        public String QuestionAudioPathAbsolute 
+        {
+            get 
+            { 
+                if(BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio);
+                }
+            else
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return questionAudioPathAbsolute = "";
+                }
+            }
+            set
+            {
+                questionAudioPathAbsolute = value;
+                OnPropertyChanged("QuestionAudioPathAbsolute");
+            }
+        }
+        public String answerAudioPathAbsolute ="";
+        public String AnswerAudioPathAbsolute
+        { 
+            get 
+            { if(BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio) != "")
+                {
+                    VisibiltyControllButtons = "Visible";
+                    return BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
+                }
+                else
+                {
+                    VisibiltyControllButtons = "Hidden";
+                    return answerAudioPathAbsolute = "";
+                }
+            }
+            set
+            {
+                answerAudioPathAbsolute = value;
+                OnPropertyChanged("AnswerAudioPathAbsolute");
+            }
+        }
 
+        public String AudioTime { get; set; }
         public TopicViewModel Topic { get { return MainWindow.CurrentTopic; } }
         public CardViewModel CurrentCard
         {
@@ -262,6 +304,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             QuestionVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionVideo);
             AnswerVideoPathAbsolute = "";
             AnswerVideoPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerVideo);
+            QuestionAudioPathAbsolute = "";
+            QuestionAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.QuestionAudio);
+            AnswerAudioPathAbsolute = "";
+            AnswerAudioPathAbsolute = BinarySerializer.GetAbsolutePath(CurrentCard.AnswerAudio);
             VideoAudioControl = "Play";
         }
 
