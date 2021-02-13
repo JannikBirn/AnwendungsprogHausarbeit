@@ -37,7 +37,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             ServiceBus.Instance.Register<OpenNewCardOverViewMessage>(this, delegate ()
             {
-                CardOverviewWindow myWindow = new CardOverviewWindow(); 
+                CardOverviewWindow myWindow = new CardOverviewWindow();
                 myWindow.ShowDialog();
             });
 
@@ -67,12 +67,12 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             Messenger.Instance.Register<OpenPrintWindowMessage>(this, delegate (OpenPrintWindowMessage message)
                 {
-                    PrintWindow myPrintWindow= new PrintWindow();
+                    PrintWindow myPrintWindow = new PrintWindow();
                     myPrintWindow.Grid1.ItemsSource = ((DataGrid)message.Grid).ItemsSource;
                     myPrintWindow.ShowDialog();
                 });
 
-   
+
 
             Messenger.Instance.Register<OpenStatisticsPanelMessage>(this, delegate (OpenStatisticsPanelMessage messageObject)
             {
@@ -87,6 +87,9 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
                         break;
                     case OpenStatisticsPanelMessage.QUALITY_PANEL:
                         statisticsFrame.Content = new StatisticsQualityPanel();
+                        break;
+                    case OpenStatisticsPanelMessage.NO_PANEL:
+                        statisticsFrame.Content =null;
                         break;
                 }
             });
@@ -120,7 +123,7 @@ namespace De.HsFlensburg.ClientApp012.Ui.Desktop.MessageBusLogic
 
             Messenger.Instance.Register<SendAnswerMessage>(this, delegate (SendAnswerMessage message)
             {
-              
+
             });
         }
     }
