@@ -57,7 +57,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void AddTopicMethod()
         {
-
             if (!String.IsNullOrEmpty(Name) || Name != "Insert a title for the topic!")
             {
                 string localpath = "";

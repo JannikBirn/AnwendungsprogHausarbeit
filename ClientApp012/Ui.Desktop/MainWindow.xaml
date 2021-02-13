@@ -44,78 +44,25 @@
                               Command="{Binding Path=DeserializeFromBin}" />
                     <MenuItem Header="Save (Bin)"
                               Command="{Binding Path=SerializeToBin}" />
-                    <MenuItem Header="Client Window"
-                              Command="{Binding Path=OpenNewClientWindow}" />
-                    <MenuItem Header="Learn"
-                              Command="{Binding Path=OpenLearningCardWindow}" />
-                </MenuItem>
-                <MenuItem Header="Open Window">
-                    <MenuItem Header="Card Overview"
-                              Command="{Binding Path=OpenCardOverView}" />
-                    <MenuItem Header="Statistics "
-                              Command="{Binding Path=OpenStatisticsWindow}" />
                 </MenuItem>
             </Menu>
         </DockPanel>
 
-
+     
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="16*"></ColumnDefinition>
-                <ColumnDefinition Width="59*" />
-                <ColumnDefinition Width="11*" />
-                <ColumnDefinition Width="92*" />
-                <ColumnDefinition Width="714*"></ColumnDefinition>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="24*" />
+                <ColumnDefinition Width="10*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="55" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            <DataGrid Grid.Column="0"
-                      Grid.Row="0"
-                      Name="TopicCollectionDG"
-                      ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
-                      AutoGenerateColumns="False"
-                      SelectionChanged="TopicCollectionDG_SelectionChanged"
-                      Grid.ColumnSpan="4"
-                      IsReadOnly="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}"
-                                        Header="Name" />
-                    <DataGridTextColumn Binding="{Binding Img}"
-                                        Header="Img" />
-                </DataGrid.Columns>
-            </DataGrid>
-
-            <DataGrid Grid.Column="4"
-                      Grid.Row="0"
-                      Name="TopicDG"
-                      ItemsSource="{Binding ElementName=TopicCollectionDG, Path=SelectedItem}"
-                      AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding QuestionText}"
-                                        Header="QuestionText" />
-                    <DataGridTextColumn Binding="{Binding QuestionVideo}"
-                                        Header="QuestionVideo" />
-                    <DataGridTextColumn Binding="{Binding QuestionImage}"
-                                        Header="QuestionImage" />
-                    <DataGridTextColumn Binding="{Binding QuestionAudio}"
-                                        Header="QuestionAudio" />
-                    <DataGridTextColumn Binding="{Binding AnswerText}"
-                                        Header="AnswerText" />
-                    <DataGridTextColumn Binding="{Binding AnswerVideo}"
-                                        Header="AnswerVideo" />
-                    <DataGridTextColumn Binding="{Binding AnswerImage}"
-                                        Header="AnswerImage" />
-                    <DataGridTextColumn Binding="{Binding AnswerAudio}"
-                                        Header="AnswerAudio" />
-                </DataGrid.Columns>
-            </DataGrid>
+         
             <Grid Style="{DynamicResource DefaultGridStyle}"
                   Grid.Column="0"
                   Grid.Row="1"
-                  Grid.ColumnSpan="5">
+                  Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="4*"></ColumnDefinition>
@@ -127,52 +74,37 @@
                     <RowDefinition Height="5*" />
                     <RowDefinition Height="2*" />
                 </Grid.RowDefinitions>
+
+
+
                 <Label Content="Welcome. Enjoy learning!"
                        Grid.Column="0"
                        Grid.ColumnSpan="3"
                        Width="290"
                        VerticalAlignment="Center"
                        Style="{DynamicResource TitleLabelStyle}" />
+
                 <DataGrid Grid.Column="1"
                           Grid.Row="1"
+                          Width="250"
                           Name="TopicDataGrid"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          MaxHeight="160"
                           ItemsSource="{Binding Path=RootViewModel.TopicCollection}"
                           Style="{StaticResource DefaultDataGrid}"
-                          IsReadOnly="False"
-                          AutoGenerateColumns="False">
+                          IsReadOnly="True"
+                          AutoGenerateColumns="False"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Name}"
                                             Width="*"
                                             Header="Topic"
                                             HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
                                             IsReadOnly="True" />
-                        <DataGridTextColumn Binding="{Binding Img}"
-                                            Width="*"
-                                            Header="Img"
-                                            HeaderStyle="{DynamicResource CenterGridHeaderStyle}"
-                                            IsReadOnly="True" />
-                    </DataGrid.Columns>
-                    <DataGrid.RowDetailsTemplate>
-                        <!--https://www.wpf-tutorial.com/datagrid-control/details-row/-->
-                        <DataTemplate>
-                            <DockPanel Background="GhostWhite">
-                                <Image DockPanel.Dock="Right"
-                                       Source="{Binding Path=Img}"
-                                       Height="64"
-                                       Margin="10" />
-                                <Grid Margin="0 ,10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                </Grid>
-                            </DockPanel>
-                        </DataTemplate>
 
-                    </DataGrid.RowDetailsTemplate>
+                    </DataGrid.Columns>
+                    
                     <behaviors:Interaction.Triggers>
                         <behaviors:EventTrigger EventName="SelectionChanged">
                             <behaviors:InvokeCommandAction Command="{Binding Path=SelectedTopicCommand}"
@@ -183,7 +115,6 @@
 
                 <Grid Grid.Row="2"
                       Grid.Column="1"
-                      
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       Width="450"
@@ -212,16 +143,17 @@
                             VerticalAlignment="Center"
                             Grid.Column="0"
                             Grid.Row="1"
-                            Width="auto"
+                            Width="118"
                             Height="40"
                             Margin="0,20,0,0"
                             Command="{Binding DeleteTopic}"
+                            CommandParameter="{Binding ElementName=CurrentPicture}"
                             Style="{DynamicResource DefaultButtonStyleSmall }" />
                     <Button Content="Statistics"
                             Grid.Column="2"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Width="auto"
+                            Width="80"
                             Height="40"
                             Margin="0,20,0,0"
                             Command="{Binding OpenStatisticsWindow}"
@@ -246,6 +178,16 @@
                             Command="{Binding OpenLearningCardWindow}"
                             Style="{DynamicResource DefaultButtonStyleSmall }" />
                 </Grid>
+                <Image Grid.Column="1"
+                       Name="CurrentPicture"
+                       HorizontalAlignment="Left"
+                       Height="100"
+                       Width="160"
+                       Margin="10,10,0,0"
+                       Grid.Row="1"
+                       Source="{Binding TopicImage}"
+                       VerticalAlignment="Top"/>
+
             </Grid>
         </Grid>
     </DockPanel>

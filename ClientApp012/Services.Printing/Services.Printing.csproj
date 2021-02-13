@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="PrintAllCards.cs" />
     <Compile Include="PrintSingle.cs" />
-    <Compile Include="PrintTest.cs" />
     <Compile Include="PrintWPFWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
