@@ -3,6 +3,7 @@ using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
 using De.HsFlensburg.ClientApp012.Services.Printing;
+using De.HsFlensburg.ClientApp012.Services.Serialization;
 using Services.Serialization;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
@@ -41,8 +44,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     return null;
                 }
                 if (CurrentTopic.Img == null)
+
                     return null;
-                return new BitmapImage(new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img)));
+
+                //creates a copy of the original so it's possible to delete
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
+                bitmapImage.EndInit();
+                return bitmapImage;
             }
         }
 
@@ -86,11 +97,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         //deletes folder of topic
         private void DeleteTopicMethod(object param)
         {
-            string fullPath = BinarySerializer.PERSISTENT_DATA_PATH + FILE_NAME;
-            Console.WriteLine("Writing Data to path:" + fullPath);
+            TopicViewModel topicToDelete = CurrentTopic;
+            CurrentTopic = null;
 
-            BinarySerializer.GetAbsolutePath(fullPath);
-            RootViewModel.TopicCollection.Remove(CurrentTopic);
+            ResourceSerializer.DeleteDirectory($"{topicToDelete.ID}");
+            RootViewModel.TopicCollection.Remove(topicToDelete);
+            SerializeToBinMethod();
+
         }
 
         private void SelectedTopicCommandMethod(object param)
