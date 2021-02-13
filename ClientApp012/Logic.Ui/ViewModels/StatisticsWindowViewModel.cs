@@ -32,6 +32,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Relod Command
         public RelayCommand GenerateExampleData { get; }
+        public RelayCommand CloseWindow { get; }
         //Buttons
         public RelayCommand FirstButton { get; }
         public RelayCommand SecondButton { get; }
@@ -126,6 +127,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
             OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
             GenerateExampleData = new RelayCommand(() => GenerateExampleDataMethod());
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
 
             FirstButton = new RelayCommand(() =>
             {
@@ -437,6 +439,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 messageObject.PanelIndex = OpenStatisticsPanelMessage.NO_PANEL;
                 Messenger.Instance.Send<OpenStatisticsPanelMessage>(messageObject);
             }
+        }
+
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
         }
 
 
