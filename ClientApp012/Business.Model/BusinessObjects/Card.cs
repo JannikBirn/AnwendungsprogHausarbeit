@@ -7,7 +7,6 @@ public class Card
     public long Id { get; set; }
     public List<CardAnswer> cardAnswers { get; set; }
     private CardAnswer CurrentCardAnswer { get; set; }
-    public enum Difficulty {Leicht, Mittel, Schwer};
     public String QuestionText { get; set; }
     public String QuestionVideo { get; set; } //Video reference
     public String QuestionImage { get; set; }
