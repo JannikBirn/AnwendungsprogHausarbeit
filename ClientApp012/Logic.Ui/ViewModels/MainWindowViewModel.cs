@@ -21,8 +21,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public const string FILE_NAME = "appdata.dat";
-
-        //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
@@ -163,6 +161,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenLaerningCardWindowMethod()
         {
+            if(CurrentTopic != null)
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
         }
 
