@@ -28,6 +28,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand PlayVideo { get; set; }
         public RelayCommand PauseVideo { get; set; }
         public RelayCommand ReplayVideo { get; set; }
+        public RelayCommand ResetLearning { get; set; }
+
 
         public BitmapImage QuestionImagePathAbsolute 
         {
@@ -49,8 +51,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
         public BitmapImage AnswerImagePathAbsolute 
         { 
-            get 
-            {
+            get
+            {    //creates a copy of the original so it's possible to delete
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
@@ -242,6 +244,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PauseVideo = new RelayCommand(() => PauseVideoMethod());
             PlayVideo = new RelayCommand(() => PlayVideoMethod());
             ReplayVideo = new RelayCommand(() => ReplayVideoMethod());
+            ResetLearning = new RelayCommand(() => Reset());
         }
 
         public void OpenLearningCardPanelMethod(int panelIndex)

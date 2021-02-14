@@ -50,9 +50,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
-                bitmapImage.EndInit();
-                return bitmapImage;
+                if (BinarySerializer.GetAbsolutePath(CurrentTopic.Img) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+                else
+                { return null; }
+
             }
         }
 
