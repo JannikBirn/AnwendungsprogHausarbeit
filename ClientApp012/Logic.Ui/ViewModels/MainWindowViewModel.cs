@@ -21,8 +21,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         public const string FILE_NAME = "appdata.dat";
-
-        //public TopicCollectionViewModel TopicCollectionVM { get; set; }
         public RootViewModel RootViewModel { get; set; }
         public RelayCommand SerializeToBin { get; }
         public RelayCommand DeserializeFromBin { get; }
@@ -50,9 +48,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
-                bitmapImage.EndInit();
-                return bitmapImage;
+                if (BinarySerializer.GetAbsolutePath(CurrentTopic.Img) != "")
+                {
+                    bitmapImage.UriSource = new Uri(BinarySerializer.GetAbsolutePath(CurrentTopic.Img));
+                    bitmapImage.EndInit();
+                    return bitmapImage;
+                }
+                else
+                { return null; }
+
             }
         }
 
@@ -157,6 +161,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void OpenLaerningCardWindowMethod()
         {
+            if(CurrentTopic != null)
             ServiceBus.Instance.Send(new OpenLearningCardWindowMessage());
         }
 

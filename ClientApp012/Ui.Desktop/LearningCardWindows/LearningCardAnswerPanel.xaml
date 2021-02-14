@@ -25,6 +25,37 @@
             <RowDefinition Height="5*" />
             <RowDefinition Height="1.5*" />
         </Grid.RowDefinitions>
+        <Image HorizontalAlignment="Center"
+               Height="379"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               Width="532"
+               Source="{Binding AnswerImagePathAbsolute}" />
+        <Label x:Name="l_answer"
+               Content="{Binding CurrentCard.AnswerText}"
+               HorizontalAlignment="Center"
+               Margin="134,20,134,0"
+               Grid.Row="1"
+               VerticalAlignment="Top"
+               Height="382"
+               Width="532"
+               FontFamily="Roboto"
+               FontSize="20"
+               Foreground="#FF707070"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center" />
+        <MediaElement Grid.Row="1"
+                      LoadedBehavior="{Binding VideoAudioControl}"
+                      Margin="134,23,134,31"
+                      Source="{Binding AnswerVideoPathAbsolute}" 
+                      />
+        <MediaElement HorizontalAlignment="Center"
+                      Height="70"
+                      Grid.Row="1"
+                      VerticalAlignment="Center"
+                      Width="532"
+                      LoadedBehavior="{Binding VideoAudioControl}"
+                      Source="{Binding AnswerAudioPathAbsolute}" />
         <Button x:Name="btn_right"
                 Content="Right"
                 HorizontalAlignment="Center"
@@ -41,18 +72,6 @@
                FontFamily="Roboto"
                Foreground="#FF707070"
                FontSize="36" />
-        <MediaElement HorizontalAlignment="Center"
-                      Height="405"
-                      Grid.Row="1"
-                      VerticalAlignment="Center"
-                      Width="531" />
-        <Image HorizontalAlignment="Left"
-               Height="494"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Width="609"
-               Margin="107,27,0,0"
-               Source="{Binding AnswerImagePathAbsolute}" />
         <Button x:Name="btn_wrong"
                 Content="Wrong"
                 HorizontalAlignment="Center"
@@ -63,18 +82,56 @@
                 Margin="300,0,0,0"
                 Command="{Binding LearingCardsF }"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}" />
-        <Label x:Name="l_answer"
-               Content="{Binding CurrentCard.AnswerText}"
-               HorizontalAlignment="Center"
-               Margin="134,10,134,0"
-               Grid.Row="1"
-               VerticalAlignment="Top"
-               Height="413"
-               Width="532"
-               FontFamily="Roboto"
-               FontSize="20"
-               Foreground="#FF707070"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center" />
+        <Button x:Name="btn_play"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="76"
+                Height="66"
+                Command="{Binding PlayVideo}"
+                CommandParameter="questionVideo"
+                Visibility="{Binding VisibiltyControllButtons}"
+                BorderBrush="{x:Null}"
+                RenderTransformOrigin="0.346,0.552"
+                Margin="0,185,26,182">
+            <Button.Background>
+                <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/play.png"
+                            Stretch="UniformToFill" />
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_stop"
+                Content="Pause"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="76"
+                Height="72"
+                Command="{Binding PauseVideo}"
+                CommandParameter="questionVideo"
+                Visibility="{Binding VisibiltyControllButtons}"
+                BorderBrush="{x:Null}"
+                Foreground="{x:Null}"
+                Margin="0,254,26,107">
+            <Button.Background>
+                <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/pause.png"
+                            Stretch="Uniform" />
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_replay"
+                HorizontalAlignment="Right"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                Width="76"
+                Height="70"
+                Command="{Binding ReplayVideo}"
+                CommandParameter="questionVideo"
+                Visibility="{Binding VisibiltyControllButtons}"
+                BorderBrush="{x:Null}"
+                Margin="0,109,26,254">
+            <Button.Background>
+                <ImageBrush ImageSource="/Ui.Desktop;component/Resources/Images/replay.png"
+                            Stretch="Uniform" />
+            </Button.Background>
+        </Button>
     </Grid>
 </Page>
