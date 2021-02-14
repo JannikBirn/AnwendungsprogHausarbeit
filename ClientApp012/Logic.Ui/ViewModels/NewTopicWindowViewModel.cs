@@ -18,6 +18,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
         private string topicImagePath;
 
+        private Visibility topicCanvas = Visibility.Hidden;
+        public Visibility TopicCanvas
+        {
+            get { return topicCanvas; }
+            set
+            {
+                topicCanvas = value;
+                OnPropertyChanged("TopicCanvas");
+            }
+        }
+
         public String TopicImagePath
         {
             get => topicImagePath;
@@ -45,20 +56,23 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand AddTopic { get; }
         public RelayCommand CloseWindow { get; }
         public RelayCommand LoadTopicImage { get; }
+        public RelayCommand DeleteTopicImage { get; }
+
 
 
         public NewTopicWindowViewModel(RootViewModel model)
         {
-            AddTopic = new RelayCommand(() => AddTopicMethod());
+            AddTopic = new RelayCommand(param => AddTopicMethod(param));
             LoadTopicImage = new RelayCommand(() => LoadTopicImageMethod());
+            DeleteTopicImage = new RelayCommand(() => DeleteTopicImageMethod());
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
             TopicCollection = model.TopicCollection;
         }
 
-        private void AddTopicMethod()
+        private void AddTopicMethod(object param)
         {
 
-            if (!String.IsNullOrEmpty(Name) || Name != "Insert a title for the topic!")
+            if (!String.IsNullOrEmpty(Name))
             {
                 string localpath = "";
                 long topicId = DateTime.Now.Ticks;
@@ -69,17 +83,32 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
                 // Check ob Text angegeben wurde
 
-                TopicViewModel tvm = new TopicViewModel(topicId);
-                tvm.Name = Name;
-                tvm.Img = localpath;
+                TopicViewModel tvm = new TopicViewModel(topicId)
+                {
+                    Name = Name,
+                    Img = localpath
+                };
 
                 TopicCollection.Add(tvm);
+
+                topicImagePath = null;
+                Name = null;
+
+                CloseWindowMethod(param);
             }
         }
 
         private void LoadTopicImageMethod()
         {
+            
             TopicImagePath = ResourceSerializer.LoadImagePath();
+            TopicCanvas = Visibility.Visible;
+        }
+        private void DeleteTopicImageMethod()
+        {
+            TopicImagePath = null;
+            topicImagePath = null;
+            TopicCanvas = Visibility.Hidden;
         }
 
 

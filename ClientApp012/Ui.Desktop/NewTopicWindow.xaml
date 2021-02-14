@@ -67,7 +67,7 @@
                Grid.Row="0"
                Style="{DynamicResource DefaultLabel}" />
 
-        <TextBox HorizontalAlignment="Left"
+        <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
                  Text="{Binding Name}"
@@ -75,32 +75,37 @@
                  Width="200"
                  Grid.Row="0"
                  Grid.Column="1" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Edit Image File"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Grid.Row="1"
-                Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="0,50,0,0" />
         <Button Command="{Binding LoadTopicImage, Mode=OneWay}"
                 Content="Insert Image File"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Grid.Row="1"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
                 Margin="0,0,0,50" />
-        <Image Name="AnswerImageElement"
-               Grid.Row="1"
-               Grid.Column="1"
-               HorizontalAlignment="Left"
-               Width="200"
-               Height="200"
-               Source="{Binding TopicImage}" />
+        <Button Command="{Binding DeleteTopicImage, Mode=OneWay}"
+                Content="Remove Image File"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Row="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0,50,0,0" />
+        <InkCanvas Height="230"
+                   Width="300"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   Visibility="{Binding TopicCanvas}">
+            <InkCanvas.Background>
+                <ImageBrush ImageSource="{Binding TopicImage, Mode=OneWay}"
+                            Stretch="Uniform" />
+            </InkCanvas.Background>
+        </InkCanvas>
+        
         <Button Command="{Binding AddTopic, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=myNewTopic}"
                 Content="Create Topic"
-                HorizontalAlignment="left"
+                HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Grid.Row="2"
                 Grid.Column="1"

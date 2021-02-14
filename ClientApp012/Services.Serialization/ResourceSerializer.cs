@@ -36,7 +36,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadImagePath();
+                return null;
             }
         }
         public static String LoadVideoPath()
@@ -51,7 +51,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadVideoPath();
+                return null;
             }
         }
 
@@ -67,8 +67,13 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadAudioPath();
+                return null;
             }
+        }
+
+        public static void DeleteDirectory(string destination)
+        {
+            Directory.Delete(BinarySerializer.PERSISTENT_DATA_PATH + destination);
         }
 
 
