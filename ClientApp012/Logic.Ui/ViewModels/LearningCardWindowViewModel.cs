@@ -149,7 +149,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
        
             if (Topic.Count - 1 == Count && learnRounds == 1)
             {
-                Topic.FinishQuestioning();
                 Reset();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
