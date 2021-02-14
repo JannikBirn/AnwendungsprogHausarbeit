@@ -19,6 +19,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     {
         //Open Panel Commands
         public MainWindowViewModel MainWindow { get; set; }
+        //RelaCommands
         public RelayCommand OpenLearningCardAnswerPanel { get; set; }
         public RelayCommand StartAnswering { get; set; }
         public RelayCommand CloseWindow { get; set; }
@@ -30,10 +31,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public RelayCommand ReplayVideo { get; set; }
         public RelayCommand ResetLearning { get; set; }
 
-
+        // Propertys
         public BitmapImage QuestionImagePathAbsolute 
         {
-            get {              
+            get
+            {      //creates a copy of the original so it's possible to delete   
                     BitmapImage bitmapImage = new BitmapImage();
                     bitmapImage.BeginInit();
                     bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
@@ -157,13 +159,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         public int indexCard = 0;
-        public int learnRounds = 3;
-        public bool topicQuestioningStarted = false;
         public int IndexCard
         {
             get { return indexCard; }
             set { indexCard = value;
-                OnPropertyChanged("Count");
+                OnPropertyChanged("IndexCard");
             }
         }
 
@@ -220,8 +220,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             get
             {
-                if (TrueAnswers <= (Topic.Count * 3 / 2))
+                if (TrueAnswers == 0)
                     return "Not bad";
+                else if (TrueAnswers <= (Topic.Count * 3 / 2))
+                    return "Next time";
                 else
                     return "Very good!";
             }
@@ -231,10 +233,16 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 OnPropertyChanged("Feedback");
             }
         }
-         public LearningCardWindowViewModel(MainWindowViewModel model)
+        //Variables
+        public int learnRounds = 3;
+        public bool topicQuestioningStarted = false;
+
+        public LearningCardWindowViewModel(MainWindowViewModel model)
         {
+            //referenz to the model
             MainWindow = model;
 
+            //adding relaycommands
             StartAnswering = new RelayCommand(() => StartAnsweringMethod());
             OpenLearningCardAnswerPanel = new RelayCommand(() => OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.ANSWER_PANEL));
             LearingCardsF = new RelayCommand(() => LearningCardMethod(SendAnswerMessage.ANSWER_FALSE));
@@ -246,7 +254,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ReplayVideo = new RelayCommand(() => ReplayVideoMethod());
             ResetLearning = new RelayCommand(() => Reset());
         }
-
+        //to open and close panels
         public void OpenLearningCardPanelMethod(int panelIndex)
         {
             OpenLearningCardPanelMessage messageObject = new OpenLearningCardPanelMessage();
@@ -254,6 +262,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             Messenger.Instance.Send<OpenLearningCardPanelMessage>(messageObject);
         }
+
+        //bindet to Start button
         public void StartAnsweringMethod()
         {
             if (!topicQuestioningStarted)
