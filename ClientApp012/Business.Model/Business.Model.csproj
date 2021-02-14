@@ -47,7 +47,6 @@
     <Compile Include="BusinessObjects\TimeStamp.cs" />
     <Compile Include="BusinessObjects\Topic.cs" />
     <Compile Include="BusinessObjects\TopicCollection.cs" />
-    <Compile Include="BusinessObjects\TopicStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
