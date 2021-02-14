@@ -295,7 +295,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
        
             if (Topic.Count-1 == IndexCard && learnRounds == 1)
             {
-                Topic.FinishQuestioning();
                 OpenLearningCardPanelMethod(OpenLearningCardPanelMessage.FINISH_PANEL);
             }
             else if(Topic.Count-1 == IndexCard)

@@ -10,7 +10,6 @@ public class Topic : ObservableCollection<Card>
 	public String Name { set; get; }
 	public String Img { set; get; }
 
-	public TopicStatistics TopicStatistics { set; get; }
 
 	public Topic()
 	{
@@ -24,23 +23,10 @@ public class Topic : ObservableCollection<Card>
 
 	public List<Card> StartQuestioning()
     {
-		//TopicStatistics.SetStart();
 		//generating a list of cards, with their difficulty in mind
 		//TODO Sort
 		List<Card> cards = new List<Card>(this);
 		cards = cards.OrderBy(i => Guid.NewGuid()).ToList();        //schuffle Cards
 		return cards;
     }
-
-	public void FinishQuestioning()
-    {
-		//TopicStatistics.SetEnd();
-		//End the questioning, genearte end timestap
-    }
-
-	public void UpdateDifficulties()
-    {
-		//updating the difficulties of the cards of this collection
-    }
-
 }

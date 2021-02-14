@@ -91,30 +91,11 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
-
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    HorizontalNumbers.Add("" + i);
-            //}
-
             VerticalNumbers = new ObservableCollection<string>();
-
-            //for (int i = 10; i < 15; i++)
-            //{
-            //    VerticalNumbers.Add("" + i);
-            //}
 
             //Shapes
             Shapes = new ObservableCollection<IShape>();
             Shapes.Add(new ShapeLine(0.1, 0, 0.1, 1));
-
-
-            //var shape = new ShapePath(new Point(0, 1));
-            //shape.AddPoint(new Point(0.1, 0.9));
-            //shape.AddPoint(new Point(0.2, 0.3));
-            //shape.AddPoint(new Point(0.5, 0.5));
-            //Shapes.Add(shape);
-
         }
 
         public ShapePath GetPahtUnscaled(List<Point> points, long xMax, long xMin, long yMax, long yMin, string color)
