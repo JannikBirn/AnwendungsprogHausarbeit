@@ -26,7 +26,7 @@
             <RowDefinition Height="1.5
                            *" />
         </Grid.RowDefinitions>
-        <Label Content="Very good!"
+        <Label Content="{Binding Feedback}"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                Grid.Row="0"
@@ -39,11 +39,47 @@
                 VerticalAlignment="Center"
                 Width="136"
                 RenderTransformOrigin="0.04,1.925"
-                Height="65"
+                Height="5"
                 Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
                 FontSize="18"
-                Command="{Binding RestartLearning}"
-                />
+                Command="{Binding RestartLearning}" />
+        <Label Content="{Binding TrueAnswers}"
+               HorizontalAlignment="Center"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               Height="62"
+               Width="74"
+               Foreground="Gray"
+               FontSize="24"
+               FontFamily="Roboto"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Margin="338,185,388,186"
+               FontWeight="Bold" />
+        <Label Content="You answered"
+               HorizontalAlignment="Center"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               Height="62"
+               Width="195"
+               Foreground="Gray"
+               FontSize="24"
+               FontFamily="Roboto"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Margin="138,185,467,186" />
+        <Label Content="cards correctly!"
+               HorizontalAlignment="Center"
+               Grid.Row="1"
+               VerticalAlignment="Center"
+               Height="62"
+               Width="197"
+               Foreground="Gray"
+               FontSize="24"
+               FontFamily="Roboto"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               Margin="417,185,186,186" />
 
     </Grid>
 </Page>

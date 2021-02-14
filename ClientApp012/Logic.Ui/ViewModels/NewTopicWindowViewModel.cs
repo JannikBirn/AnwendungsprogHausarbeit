@@ -73,6 +73,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
 
             if (!String.IsNullOrEmpty(Name))
+
             {
                 string localpath = "";
                 long topicId = DateTime.Now.Ticks;

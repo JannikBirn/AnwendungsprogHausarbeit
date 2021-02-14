@@ -110,6 +110,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private void PrintItMethod(object param)
         {
             PrintAllCards instance = new PrintAllCards();
+            
             instance.Landscape = Landscape;
             instance.ScalingFactor = ScalingFactor;
             instance.NumberOfPages = NumberOfPages;
