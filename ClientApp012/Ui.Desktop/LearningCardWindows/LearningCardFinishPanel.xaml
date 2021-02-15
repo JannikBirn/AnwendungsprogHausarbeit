@@ -39,7 +39,7 @@
                 VerticalAlignment="Center"
                 Width="136"
                 Height="58"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
+                Style="{Binding Source={StaticResource DefaultButtonStyle}}"
                 FontSize="18"
                 Command="{Binding RestartLearning}"
                 Margin="338,42,326,30" />
