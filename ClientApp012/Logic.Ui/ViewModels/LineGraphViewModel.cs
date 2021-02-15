@@ -88,7 +88,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public LineGraphViewModel()
         {
-
             //Axis
             HorizontalNumbers = new ObservableCollection<string>();
             VerticalNumbers = new ObservableCollection<string>();
@@ -100,15 +99,19 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public ShapePath GetPahtUnscaled(List<Point> points, long xMax, long xMin, long yMax, long yMin, string color)
         {
-            List<Point> normalizedList = points.Select(point => new Point(1.0 * (point.X - xMin) / (xMax - xMin), 1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
+            List<Point> normalizedList = points.Select(
+                point => new Point(1.0 * (point.X - xMin) / (xMax - xMin),
+                1.0 * (point.Y - yMin) / (yMax - yMin))).ToList();
 
             return AddPath(normalizedList[0], normalizedList, color);
         }
 
         public ShapePath AddPath(Point startPoint, List<Point> points, string color)
         {
-            ShapePath path = new ShapePath(new Point(startPoint.X, 1 - startPoint.Y));
-            Point[] sortedPoints = points.Select(point => new Point(point.X, 1 - point.Y)).ToArray();
+            ShapePath path = new ShapePath(
+                new Point(startPoint.X, 1 - startPoint.Y));
+            Point[] sortedPoints = points.Select(
+                point => new Point(point.X, 1 - point.Y)).ToArray();
             foreach (Point point in sortedPoints)
             {
                 path.AddPoint(point);

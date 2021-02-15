@@ -113,7 +113,9 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public int CurrentPanelIndex { get; set; }
 
 
-        public StatisticsWindowViewModel(RootViewModel model, LineGraphViewModel lineGraphVM)
+        public StatisticsWindowViewModel(
+            RootViewModel model,
+            LineGraphViewModel lineGraphVM)
         {
             //Refrenzing to the model
             RootViewModel = model;
@@ -122,12 +124,18 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             ErrorMessage = "";
 
             //Adding relay commands
-            OpenStatisticsHistoryPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
-            OpenStatisticsTimePanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.TIME_PANEL));
-            OpenStatisticsQualityPanel = new RelayCommand(() => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
-            OpenTopicSelectionWindow = new RelayCommand(() => OpenTopicSelectionWindowMethod());
-            GenerateExampleData = new RelayCommand(() => GenerateExampleDataMethod());
-            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            OpenStatisticsHistoryPanel = new RelayCommand(
+                () => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.HISTORY_PANEL));
+            OpenStatisticsTimePanel = new RelayCommand(
+                () => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.TIME_PANEL));
+            OpenStatisticsQualityPanel = new RelayCommand(
+                () => OpenStatisticsPanelMethod(OpenStatisticsPanelMessage.QUALITY_PANEL));
+            OpenTopicSelectionWindow = new RelayCommand(
+                () => OpenTopicSelectionWindowMethod());
+            GenerateExampleData = new RelayCommand(
+                () => GenerateExampleDataMethod());
+            CloseWindow = new RelayCommand(
+                param => CloseWindowMethod(param));
 
             FirstButton = new RelayCommand(() =>
             {
@@ -162,8 +170,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
         public bool UpdateGraph()
-        {            
-            return SetGraph(CurrentPanelIndex, DateTime.Now.Date.Ticks - TimeSpan.FromDays(10).Ticks, DateTime.Now.Date.Ticks);
+        {
+            return SetGraph(CurrentPanelIndex,
+                DateTime.Now.Date.Ticks - TimeSpan.FromDays(10).Ticks,
+                DateTime.Now.Date.Ticks);
         }
 
         //Setup Graph from and to date at 0:00:00
@@ -175,12 +185,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             InitStatistics();
 
             //TopicStats for that period of time
-            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily = new Dictionary<long, TopicAnswerStatistics>();
+            Dictionary<long, TopicAnswerStatistics> topicAnswersDaily =
+                new Dictionary<long, TopicAnswerStatistics>();
             if (SelectedTopic != null)
             {
-                Data.Statistics.TopicStatistics topicStats = Statistics.topicStatistics.Find(param => param.Topic == SelectedTopic.Model);
-                if(topicStats != null)
-                topicAnswersDaily = topicStats.GetTopicAnswersDaily(from, to);
+                Data.Statistics.TopicStatistics topicStats =
+                    Statistics.topicStatistics.Find(
+                        param => param.Topic == SelectedTopic.Model);
+                if (topicStats != null)
+                    topicAnswersDaily = topicStats.GetTopicAnswersDaily(from, to);
             }
             else
             {
@@ -228,9 +241,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             //Points for Path 1,2,3
                             if (topicAnswersDaily.ContainsKey(date))
                             {
-                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].Answered));
-                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].AnsweredTwice));
-                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].AnsweredMoreThenTwice));
+                                unscaledPointsPathOne.Add(
+                                    new Point(date, topicAnswersDaily[date].Answered));
+                                unscaledPointsPathTwo.Add(
+                                    new Point(date, topicAnswersDaily[date].AnsweredTwice));
+                                unscaledPointsPathThree.Add(
+                                    new Point(date, topicAnswersDaily[date].AnsweredMoreThenTwice));
                             }
                             else
                             {
@@ -246,23 +262,29 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                         yMin = 0;
 
                         //Generating Path
-                        firstPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
-                        secondPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
-                        thirdPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
+                        firstPath = LineGraphVM.GetPahtUnscaled(
+                            unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
+                        secondPath = LineGraphVM.GetPahtUnscaled(
+                            unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
+                        thirdPath = LineGraphVM.GetPahtUnscaled(
+                            unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
 
 
                         //Graph Axis Setup
 
                         LineGraphVM.VerticalUnit = "%";
-                        LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
+                        LineGraphVM.VerticalNumbers =
+                            new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
 
 
 
                         //Adding Bottom String Statistics
-                        firstStatisticStat = topicAnswersDaily.First().Value.TotalCardAmount.ToString();
+                        firstStatisticStat =
+                            topicAnswersDaily.First().Value.TotalCardAmount.ToString();
                         int totalAnswers = 0;
                         int totalAnswersMoreThenThree = 0;
-                        topicAnswersDaily.Select(pair => pair.Value).ToList().ForEach(v =>
+                        topicAnswersDaily.Select(
+                            pair => pair.Value).ToList().ForEach(v =>
                         {
                             totalAnswers += v.Answered;
                             totalAnswersMoreThenThree += v.AnsweredMoreThenTwice;
@@ -284,9 +306,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             //Points for Path 1,2,3
                             if (topicAnswersDaily.ContainsKey(date))
                             {
-                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].TimeAvg));
-                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].TimeMax));
-                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].TimeMin));
+                                unscaledPointsPathTwo.Add(
+                                    new Point(date, topicAnswersDaily[date].TimeAvg));
+                                unscaledPointsPathOne.Add(
+                                    new Point(date, topicAnswersDaily[date].TimeMax));
+                                unscaledPointsPathThree.Add(
+                                    new Point(date, topicAnswersDaily[date].TimeMin));
                             }
                             else
                             {
@@ -299,21 +324,25 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
 
                         LineGraphVM.VerticalUnit = "sec";
-                        ObservableCollection<string> verticalAxisSeconds = new ObservableCollection<string>();
+                        ObservableCollection<string> verticalAxisSeconds =
+                            new ObservableCollection<string>();
 
                         long timeSpan = yMax - yMin;
                         long timeSegment = timeSpan / 6;
                         for (int i = 0; i < 6; i++)
                         {
-                            verticalAxisSeconds.Add(TimeSpan.FromTicks(yMin + (timeSegment * i)).ToString("ss"));
+                            verticalAxisSeconds.Add(
+                                TimeSpan.FromTicks(yMin + (timeSegment * i)).ToString("ss"));
                         }
 
                         LineGraphVM.VerticalNumbers = verticalAxisSeconds;
 
 
                         //Adding Bottom String Statistics
-                        long overallMinTime = topicAnswersDaily.Select(pair => pair.Value).ToList().Min(stat => stat.TimeMin);
-                        long overallMaxTime = topicAnswersDaily.Select(pair => pair.Value).ToList().Max(stat => stat.TimeMax);
+                        long overallMinTime = topicAnswersDaily.Select(
+                            pair => pair.Value).ToList().Min(stat => stat.TimeMin);
+                        long overallMaxTime = topicAnswersDaily.Select(
+                            pair => pair.Value).ToList().Max(stat => stat.TimeMax);
 
                         long overallAvgTime = topicAnswersDaily.First().Value.TimeAvg;
                         topicAnswersDaily.Select(pair => pair.Value).ToList().ForEach(v =>
@@ -335,9 +364,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             if (topicAnswersDaily.ContainsKey(date))
                             {
                                 double timesAnswered = topicAnswersDaily[date].Count;
-                                unscaledPointsPathTwo.Add(new Point(date, topicAnswersDaily[date].Wrong / timesAnswered));
-                                unscaledPointsPathOne.Add(new Point(date, topicAnswersDaily[date].Correct / timesAnswered));
-                                unscaledPointsPathThree.Add(new Point(date, topicAnswersDaily[date].CorrectMoreThenThreeTimes / timesAnswered));
+                                unscaledPointsPathTwo.Add(
+                                    new Point(date, topicAnswersDaily[date].Wrong / timesAnswered));
+                                unscaledPointsPathOne.Add(
+                                    new Point(date, topicAnswersDaily[date].Correct / timesAnswered));
+                                unscaledPointsPathThree.Add(
+                                    new Point(date, topicAnswersDaily[date].CorrectMoreThenThreeTimes / timesAnswered));
                             }
                             else
                             {
@@ -353,7 +385,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                         yMin = 0;
 
                         LineGraphVM.VerticalUnit = "%";
-                        LineGraphVM.VerticalNumbers = new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
+                        LineGraphVM.VerticalNumbers =
+                            new ObservableCollection<string> { "  0", " 20", " 40", " 60", " 80", "100" };
 
 
                         //Adding Bottom String Statistics
@@ -370,9 +403,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                             totalAnswered += v.Count;
                         });
 
-                        firstStatisticStat = (100 * totalWrong / (double)totalAnswered).ToString("N2");
-                        secondStatisticStat = (100 * totalCorrect / (double)totalAnswered).ToString("N2");
-                        thirdStatisticStat = (100 * totalCorrectMoreThenThree / (double)totalAnswered).ToString("N2");
+                        firstStatisticStat = (100 * totalWrong /
+                            (double)totalAnswered).ToString("N2");
+                        secondStatisticStat = (100 * totalCorrect /
+                            (double)totalAnswered).ToString("N2");
+                        thirdStatisticStat = (100 * totalCorrectMoreThenThree /
+                            (double)totalAnswered).ToString("N2");
 
                         break;
                 }
@@ -380,9 +416,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
 
                 LineGraphVM.Shapes.Clear();
-                firstPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
-                secondPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
-                thirdPath = LineGraphVM.GetPahtUnscaled(unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
+                firstPath = LineGraphVM.GetPahtUnscaled(
+                    unscaledPointsPathThree, xMax, xMin, yMax, yMin, "#00FF00");
+                secondPath = LineGraphVM.GetPahtUnscaled(
+                    unscaledPointsPathTwo, xMax, xMin, yMax, yMin, "#0000FF");
+                thirdPath = LineGraphVM.GetPahtUnscaled(
+                    unscaledPointsPathOne, xMax, xMin, yMax, yMin, "#FF0000");
 
                 LineGraphVM.FirstLine = firstPath;
                 LineGraphVM.SecondLine = secondPath;
@@ -399,7 +438,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     DateTime dateInTime = new DateTime(date);
                     datesFormatted.Add(dateInTime.ToString("dd-MM"));
                 }
-                LineGraphVM.HorizontalNumbers = new ObservableCollection<string>(datesFormatted);
+                LineGraphVM.HorizontalNumbers =
+                    new ObservableCollection<string>(datesFormatted);
 
                 FirstStatistic = firstStatisticStat;
                 SecondStatistic = secondStatisticStat;
