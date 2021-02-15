@@ -1,14 +1,8 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.Serialization;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -17,6 +11,17 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
     public class NewTopicWindowViewModel : INotifyPropertyChanged
     {
         private string topicImagePath;
+
+        private Visibility topicCanvas = Visibility.Hidden;
+        public Visibility TopicCanvas
+        {
+            get { return topicCanvas; }
+            set
+            {
+                topicCanvas = value;
+                OnPropertyChanged("TopicCanvas");
+            }
+        }
 
         public String TopicImagePath
         {
@@ -39,25 +44,30 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public TopicCollectionViewModel TopicCollection; 
+        public TopicCollectionViewModel TopicCollection { get; set; } 
         public String Name { get; set; }
         public TopicCollectionViewModel TCVM { get; set; }
         public RelayCommand AddTopic { get; }
         public RelayCommand CloseWindow { get; }
         public RelayCommand LoadTopicImage { get; }
+        public RelayCommand DeleteTopicImage { get; }
+
 
 
         public NewTopicWindowViewModel(RootViewModel model)
         {
-            AddTopic = new RelayCommand(() => AddTopicMethod());
+            AddTopic = new RelayCommand(param => AddTopicMethod(param));
             LoadTopicImage = new RelayCommand(() => LoadTopicImageMethod());
+            DeleteTopicImage = new RelayCommand(() => DeleteTopicImageMethod());
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
             TopicCollection = model.TopicCollection;
         }
 
-        private void AddTopicMethod()
+        private void AddTopicMethod(object param)
         {
-            if (!String.IsNullOrEmpty(Name) || Name != "Insert a title for the topic!")
+
+            if (!String.IsNullOrEmpty(Name))
+
             {
                 string localpath = "";
                 long topicId = DateTime.Now.Ticks;
@@ -68,26 +78,41 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
                 // Check ob Text angegeben wurde
 
-                TopicViewModel tvm = new TopicViewModel(topicId);
-                tvm.Name = Name;
-                tvm.Img = localpath;
+                TopicViewModel tvm = new TopicViewModel(topicId)
+                {
+                    Name = Name,
+                    Img = localpath
+                };
 
-                TopicCollection.Add(tvm);
+                TopicCollection.Add(tvm);                
+
+                CloseWindowMethod(param);
             }
         }
 
         private void LoadTopicImageMethod()
         {
+            
             TopicImagePath = ResourceSerializer.LoadImagePath();
+            TopicCanvas = Visibility.Visible;
+        }
+        private void DeleteTopicImageMethod()
+        {
+            TopicImagePath = null;
+            topicImagePath = null;
+            TopicCanvas = Visibility.Hidden;
         }
 
 
-        public String Save(string source, string folderName, long id)
+        public string Save(string source, string folderName, long id)
         {
             return ResourceSerializer.SaveFile(source, $"{id}\\TopicImage{Path.GetExtension(source)}");
         }
         private void CloseWindowMethod(object param)
         {
+            topicImagePath = null;
+            Name = null;
+
             Window window = (Window)param;
             window.Close();
         }

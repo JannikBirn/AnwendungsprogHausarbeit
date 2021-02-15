@@ -36,7 +36,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadImagePath();
+                return null;
             }
         }
 
@@ -60,7 +60,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadVideoPath();
+                return null;
             }
         }
 
@@ -76,9 +76,10 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
             else
             {
-                return LoadAudioPath();
+                return null;
             }
         }
+
 
 
     }

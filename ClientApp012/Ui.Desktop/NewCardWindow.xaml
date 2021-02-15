@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="NewCardWindow"
         x:Name="myNewCard"
@@ -24,28 +24,35 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closing">
+            <behaviors:InvokeCommandAction Command="{Binding SerializeToBin}"
+                                           PassEventArgsToCommand="True" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.12*" />
-            <RowDefinition Height="0.04*" />
-            <RowDefinition Height="0.04*" />
-            <RowDefinition Height="0.2*" />
-            <RowDefinition Height="0.12*" />
-            <RowDefinition Height="0.04*" />
-            <RowDefinition Height="0.04*" />
-            <RowDefinition Height="0.2*" />
+            <RowDefinition Height="0.1*" />
+            <RowDefinition Height="0.05*" />
+            <RowDefinition Height="0.20*" />
+            <RowDefinition Height="0.10*" />
+            <RowDefinition Height="0.05*" />
+            <RowDefinition Height="0.20*" />
+            <RowDefinition Height="0.10*" />
+            <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
         <Label x:Name="Question"
                Content="Question:"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Margin="10"
-               Grid.Row="0"
+               Grid.Row="1"
+               Grid.Column="0"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer"
                Content="Answer:"
@@ -53,96 +60,143 @@
                VerticalAlignment="Bottom"
                Margin="10"
                Grid.Row="4"
+               Grid.Column="0"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer_Copy1"
                Content="Create new Card"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
                Grid.Row="0"
+               Grid.Column="1"
                Style="{DynamicResource DefaultLabel}" />
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
                  Text="{Binding QuestionText}"
-                 VerticalAlignment="Bottom"
+                 VerticalAlignment="Center"
                  Width="200"
-                 Grid.Row="0" />
+                 Grid.Row="1"
+                 Grid.Column="1"/>
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
                  Text="{Binding AnswerText}"
-                 VerticalAlignment="Bottom"
+                 VerticalAlignment="Center"
                  Width="200"
-                 Grid.Row="4" />
+                 Grid.Row="4"
+                 Grid.Column="1" />
         <Button Command="{Binding LoadQuestionImage, Mode=OneWay}"
-                Content="Insert Image File to the Question"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
+                Content="Insert Image File"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
                 Grid.Row="3"
+                Grid.Column="1"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Edit Image File"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0,0,0,40" />
+        <Button Content="Remove Image File"
+                HorizontalAlignment="Center"
+                Margin="0,40,0,0"
+                Width="200"
+                Grid.Row="3"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteQuestionImage, Mode=OneWay}" />
+        <Button Command="{Binding LoadQuestionVideo, Mode=OneWay}"
+                Content="Insert Video File"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Grid.Row="3"
+                Grid.Column="2"
+                Width="200"
+                Margin="0,0,0,40"
+                Style="{DynamicResource DefaultButtonStyleSmall}" />
+        <Button Content="Remove Video File"
+                HorizontalAlignment="Right"
+                Margin="0,40,0,0"
+                Width="200"
+                Grid.Row="3"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteQuestionVideo, Mode=OneWay}" />
+        <Button Command="{Binding LoadQuestionAudio, Mode=OneWay}"
+                Content="Insert Audio File"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Grid.Row="2"
-                Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="0" />
-        <Button Command="{Binding LoadQuestionVideo, Mode=OneWay}"
-                Content="Insert Video File to the Question"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
                 Grid.Row="3"
+                Grid.Column="0"
                 Width="200"
-                Margin="0"
-                Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding LoadQuestionAudio, Mode=OneWay}"
-                Content="Insert Audio File to the Question"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Grid.Row="3"
-                Width="200"
-                Margin="0"
-                Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding NewCardWindowVM.LoadAnswerImage, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
-                Content="Insert Image File to the Answer"
+                Margin="0,0,0,40"
+                Style="{DynamicResource DefaultButtonStyleSmall}" />
+        <Button Content="Remove Audio File"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                Grid.Row="7"
+                Margin="0,40,0,0"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Edit Image File"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteQuestionAudio, Mode=OneWay}" />
+        <Button Command="{Binding NewCardWindowVM.LoadAnswerImage, Mode=OneWay, Source={StaticResource ViewModelLocator}}"
+                Content="Insert Image File"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Row="6"
+                Grid.Column="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0,0,0,40" />
+        <Button Content="Remove Image File"
+                HorizontalAlignment="Center"
+                Margin="0,40,0,0"
+                Width="200"
+                Grid.Row="6"
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteAnswerImage, Mode=OneWay}" />
+        <Button Command="{Binding LoadAnswerVideo, Mode=OneWay}"
+                Content="Insert Video File"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Grid.Row="6"
+                Grid.Column="2"
+                Width="200"
+                Margin="0,0,0,40"
+                Style="{DynamicResource DefaultButtonStyleSmall}" />
+        <Button Content="Remove Video File"
+                HorizontalAlignment="Right"
+                Margin="0,40,0,0"
+                Width="200"
+
+                Grid.Row="6"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteAnswerVideo, Mode=OneWay}" />
+        <Button Command="{Binding LoadAnswerAudio, Mode=OneWay}"
+                Content="Insert Audio File"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Grid.Row="6"
+                Grid.Column="0"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="0" />
-        <Button Command="{Binding LoadAnswerVideo, Mode=OneWay}"
-                Content="Insert Video File to the Answer"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Grid.Row="7"
+                Margin="0,0,0,40"
+                Style="{DynamicResource DefaultButtonStyleSmall}" />
+        <Button Content="Remove Audio File"
+                HorizontalAlignment="Left"
+                Margin="0,40,0,0"
                 Width="200"
-                Margin="0"
-                Style="{DynamicResource DefaultButtonStyle}" />
-        <Button Command="{Binding LoadAnswerAudio, Mode=OneWay}"
-                Content="Insert Audio File to the Answer"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                Grid.Row="7"
-                Width="200"
-                Margin="0"
-                Style="{DynamicResource DefaultButtonStyle}" />
-
+                Grid.Row="6"
+                Grid.Column="0"
+                VerticalAlignment="Center"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Command="{Binding DeleteAnswerAudio, Mode=OneWay}" />
         <Button   Grid.Column="0"
+                  Grid.Row="0"
                   VerticalAlignment="Top"
                   HorizontalAlignment="left"
-                  Margin="20,20,150,20"
                   Height="60"
                   Width="60"
                   HorizontalContentAlignment="Center"
@@ -155,32 +209,71 @@
             </StackPanel>
         </Button>
         <Button Command="{Binding AddCard, Mode=OneWay}"
+                CommandParameter="{Binding ElementName=myNewCard}"
                 Content="Create Card"
+                Grid.Row="9"
+                Grid.Column="1"
+                Width="200"
+                Style="{DynamicResource DefaultButtonStyle}" />
+        <InkCanvas Height="230"
+                   Width="250"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   Visibility="{Binding QuestionCanvas}">
+            <InkCanvas.Background>
+                <ImageBrush ImageSource="{Binding QuestionImage, Mode=OneWay}"
+                            Stretch="Uniform" />
+            </InkCanvas.Background>
+        </InkCanvas>
+        <InkCanvas Height="230"
+                   Width="250"
+                   Grid.Row="5"
+                   Grid.Column="1"
+                   Visibility="{Binding AnswerCanvas}">
+            <InkCanvas.Background>
+                <ImageBrush ImageSource="{Binding AnswerImage, Mode=OneWay}"
+                            Stretch="Uniform" />
+            </InkCanvas.Background>
+        </InkCanvas>
+        <Button Content="Play"
                 HorizontalAlignment="Left"
+                Grid.Row="2"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
-                Grid.Row="9"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="10,0" />
-        <Button Command="{Binding AddClient, Mode=OneWay}"
-                Content="Preview Card"
-                HorizontalAlignment="Right"
+                Command="{Binding PlayQuestionAudio, Mode=OneWay}"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0"
+                Visibility="{Binding QuestionPlayBtn}" />
+        <Button Content="Stop"
+                HorizontalAlignment="Left"
+                Grid.Row="2"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
-                Grid.Row="9"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="10,0" />
-        <Image Name="QuestionImageElement"
-               Grid.Row="1"
-               HorizontalAlignment="left"
-               Width="200"
-               Height="Auto"
-               Source="{Binding QuestionImage, Mode=OneWay}" />
-        <Image Name="AnswerImageElement"
-               Grid.Row="5"
-               HorizontalAlignment="left"
-               Width="200"
-               Height="Auto"
-               Source="{Binding AnswerImage, Mode=OneWay}" />
+                Command="{Binding StopAudio, Mode=OneWay}"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0,0,0,40"
+                Visibility="{Binding QuestionStopBtn}" />
+        <Button Content="Play"
+                HorizontalAlignment="Left"
+                Grid.Row="5"
+                Grid.Column="0"
+                VerticalAlignment="Bottom"
+                Width="200"
+                Command="{Binding PlayAnswerAudio, Mode=OneWay}"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0"
+                Visibility="{Binding AnswerPlayBtn}" />
+        <Button Content="Stop"
+                HorizontalAlignment="Left"
+                Grid.Row="5"
+                Grid.Column="0"
+                VerticalAlignment="Bottom"
+                Width="200"
+                Command="{Binding StopAudio, Mode=OneWay}"
+                Style="{DynamicResource DefaultButtonStyleSmall}"
+                Margin="0,4,0,40"
+                Visibility="{Binding AnswerStopBtn}" />
     </Grid>
 </Window>

@@ -73,9 +73,6 @@
     <Compile Include="LearningCardWindows\LearningCardQuestionPanel.xaml.cs">
       <DependentUpon>LearningCardQuestionPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ImageInspectWindow.xaml.cs">
-      <DependentUpon>ImageInspectWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="NewCardWindow.xaml.cs">
       <DependentUpon>NewCardWindow.xaml</DependentUpon>
     </Compile>
@@ -120,10 +117,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LearningCardWindows\LearningCardQuestionPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ImageInspectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
