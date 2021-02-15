@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="LearningCardWindow"
         Height="824"
@@ -20,6 +21,12 @@
         <Binding Path="LearningCardWindowVM"
                  Source="{StaticResource ViewModelLocator}" />
     </Window.DataContext>
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closing">
+            <behaviors:InvokeCommandAction Command="{Binding ResetLearning}"
+                                           PassEventArgsToCommand="True" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60*" />

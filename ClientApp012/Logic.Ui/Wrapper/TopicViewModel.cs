@@ -58,26 +58,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper
             return this.Model.StartQuestioning();
         }
 
-        public void FinishQuestioning()
-        {
-            this.Model.FinishQuestioning();
-        }
-
-
-
-        //public TopicStatistics TopicStatistics
-        //{
-        //    get
-        //    {
-        //        return this.Model.TopicStatistics;
-        //    }
-        //    set
-        //    {
-        //        this.Model.TopicStatistics = value;
-        //        OnPropertyChanged("TopicStatistics");
-        //    }
-        //}
-
 
 
         public override void NewModelAssigned()

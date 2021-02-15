@@ -32,6 +32,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             StatisticsWindowVM = statisticsVM;
 
             //Initialising Topic List
+            RefreshList();
             RootViewModel.TopicCollection.CollectionChanged += new System.Collections.Specialized.NotifyCollectionChangedEventHandler(RefreshList);
 
             //Adding relay commands
