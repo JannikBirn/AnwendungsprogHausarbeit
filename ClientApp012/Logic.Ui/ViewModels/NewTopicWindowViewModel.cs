@@ -44,7 +44,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public TopicCollectionViewModel TopicCollection { get; set; } 
+        public TopicCollectionViewModel TopicCollection { get; set; }
         public String Name { get; set; }
         public TopicCollectionViewModel TCVM { get; set; }
         public RelayCommand AddTopic { get; }
@@ -56,10 +56,14 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public NewTopicWindowViewModel(RootViewModel model)
         {
-            AddTopic = new RelayCommand(param => AddTopicMethod(param));
-            LoadTopicImage = new RelayCommand(() => LoadTopicImageMethod());
-            DeleteTopicImage = new RelayCommand(() => DeleteTopicImageMethod());
-            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            AddTopic =
+                new RelayCommand(param => AddTopicMethod(param));
+            LoadTopicImage =
+                new RelayCommand(() => LoadTopicImageMethod());
+            DeleteTopicImage =
+                new RelayCommand(() => DeleteTopicImageMethod());
+            CloseWindow =
+                new RelayCommand(param => CloseWindowMethod(param));
             TopicCollection = model.TopicCollection;
         }
 
@@ -84,7 +88,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     Img = localpath
                 };
 
-                TopicCollection.Add(tvm);                
+                TopicCollection.Add(tvm);
 
                 CloseWindowMethod(param);
             }
@@ -92,7 +96,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         private void LoadTopicImageMethod()
         {
-            
+
             TopicImagePath = ResourceSerializer.LoadImagePath();
             TopicCanvas = Visibility.Visible;
         }
@@ -106,7 +110,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public string Save(string source, string folderName, long id)
         {
-            return ResourceSerializer.SaveFile(source, $"{id}\\TopicImage{Path.GetExtension(source)}");
+            return ResourceSerializer.SaveFile(source,
+                $"{id}\\TopicImage{Path.GetExtension(source)}");
         }
         private void CloseWindowMethod(object param)
         {
