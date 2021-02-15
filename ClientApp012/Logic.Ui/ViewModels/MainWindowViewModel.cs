@@ -74,7 +74,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
-            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
+            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); 
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
