@@ -31,8 +31,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PrintAllCards = new RelayCommand((param) => PrintAllCardsMethod(param));
         }
 
-     
-
         private void PrintAllCardsMethod(object allCards)
         {
             OpenPrintWindowMessage message = new OpenPrintWindowMessage();

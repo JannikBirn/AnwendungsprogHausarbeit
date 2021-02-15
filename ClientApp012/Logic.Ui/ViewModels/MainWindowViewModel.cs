@@ -2,18 +2,11 @@
 using De.HsFlensburg.ClientApp012.Logic.Ui.MessageBusMessages;
 using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.MessageBus;
-using De.HsFlensburg.ClientApp012.Services.Printing;
 using De.HsFlensburg.ClientApp012.Services.Serialization;
 using Services.Serialization;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
@@ -60,8 +53,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        //Source = new BitmapImage(new Uri("Creek.jpg", UriKind.Relative));  
-
         private TopicViewModel currentTopic;
         public TopicViewModel CurrentTopic
         {
@@ -87,7 +78,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             //Adding relay commands
             SerializeToBin = new RelayCommand(() => SerializeToBinMethod());
             DeserializeFromBin = new RelayCommand(() => DeserializeFromBinMethod());
-            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); //opens new Window for Card Overview
+            OpenCardOverView = new RelayCommand(() => OpenCardOverViewMethod()); 
             OpenStatisticsWindow = new RelayCommand(() => OpenStatisticsWindowMethod());
             OpenLearningCardWindow = new RelayCommand(() => OpenLaerningCardWindowMethod());
             OpenNewCardWindow = new RelayCommand(() => OpenNewCardWindowMethod());
@@ -133,7 +124,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             if (root != null)
                 RootViewModel.Model = (Root)root;
         }
-
         //Methods for the Relay Commands to open windows
 
         private void OpenNewTopicWindowMethod()

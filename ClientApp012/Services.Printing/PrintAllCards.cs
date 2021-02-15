@@ -24,32 +24,9 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 
         public PrintAllCards()
         {
-
-
         }
 
 
-        public void PrintCards(object cards)
-        {
-            // Create a PrintDialog  
-            PrintDialog printDlg = new PrintDialog();
-
-            UserControl userControl = new UserControl();
-
-            //casts the object cards to DataGrid
-            DataGrid dg = cards as DataGrid;
-
-            //if passed object is a DataGrid, this will return TRUE
-            if (dg != null)
-            {
-                Nullable<Boolean> print = printDlg.ShowDialog();
-                if (print == true)
-                {
-                    // Call PrintDocument method to send document to printer 
-                    printDlg.PrintVisual(dg, "Grid Printing.");
-                }
-            }
-        }
         public void PrintCardsDirectly(object cards)
         {
             // Create a PrintDialog  
@@ -65,6 +42,7 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
             //centering the DataGrid to the page
             Size pageSize = new Size(printDlg.PrintableAreaWidth, printDlg.PrintableAreaHeight + 300);
             dg.Arrange(new Rect(15, 15, pageSize.Height, pageSize.Width));
+
             // Call PrintDocument method to send document to printer
             printDlg.PrintVisual(dg, "GridPrinting");
 
@@ -78,11 +56,11 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 
             if (Landscape)
             {
-                pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
+                pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
             }
             else
             {
-                pd.PrintTicket.PageOrientation = PageOrientation.Portrait;
+                pd.PrintTicket.PageOrientation = PageOrientation.Landscape;
             }
             //defines scaling
             pd.PrintTicket.PageScalingFactor = ScalingFactor;
@@ -97,24 +75,27 @@ namespace De.HsFlensburg.ClientApp012.Services.Printing
 
 
 
-        private FlowDocument FormatFlowDocument(FlowDocument doc)
-        {
-            //Create Section
-            Section sec = new Section();
-            //Create first Paragraph
-            Paragraph p1 = new Paragraph();
-            //Create and add FontStyle. Got from DataGrid
+        // Das war einer von mehreren Ansätzen für eine Formatierung, die auch 
+        // zurückgegeben werden kann für eine Preview
 
-            p1.FontStyle = doc.FontStyle;
-            p1.FontSize = doc.FontSize;
-            p1.FontFamily = doc.FontFamily;
+        //private FlowDocument FormatFlowDocument(FlowDocument doc)
+        //{
+        //    //Create Section
+        //    Section sec = new Section();
+        //    //Create first Paragraph
+        //    Paragraph p1 = new Paragraph();
+        //    //Create and add FontStyle. Got from DataGrid
 
-            //Add Paragraph to Section
-            sec.Blocks.Add(p1);
-            //Add Section to FlowDocument
-            doc.Blocks.Add(sec);
+        //    p1.FontStyle = doc.FontStyle;
+        //    p1.FontSize = doc.FontSize;
+        //    p1.FontFamily = doc.FontFamily;
 
-            return doc;
-        }
+        //    //Add Paragraph to Section
+        //    sec.Blocks.Add(p1);
+        //    //Add Section to FlowDocument
+        //    doc.Blocks.Add(sec);
+
+        //    return doc;
+        //}
     }
 }
