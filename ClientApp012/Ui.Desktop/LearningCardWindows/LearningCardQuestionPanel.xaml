@@ -131,13 +131,5 @@
                       Width="532"
                       LoadedBehavior="{Binding VideoAudioControl}"
                       Source="{Binding QuestionAudioPathAbsolute}" />
-        <Label Content="{Binding AudioTime}"
-               HorizontalAlignment="Center"
-               Grid.Row="1"
-               VerticalAlignment="Center"
-               Height="70"
-               Width="172"
-               FontFamily="Roboto"
-               FontSize="48" />
     </Grid>
 </Page>
