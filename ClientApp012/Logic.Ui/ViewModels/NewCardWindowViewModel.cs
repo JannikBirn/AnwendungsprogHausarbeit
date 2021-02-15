@@ -15,7 +15,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         private string questionAudioPath;
         private string answerAudioPath;
 
-        private WMPLib.WindowsMediaPlayer audioPlayer = new WMPLib.WindowsMediaPlayer();
+        private WMPLib.WindowsMediaPlayer audioPlayer =
+        new WMPLib.WindowsMediaPlayer();
 
         private Visibility questionPlayBtn = Visibility.Hidden;
         public Visibility QuestionPlayBtn
@@ -176,30 +177,48 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public NewCardWindowViewModel(MainWindowViewModel mainWindow)
         {
 
-            AddCard = new RelayCommand(param => AddCardMethod(param));
-            LoadQuestionImage = new RelayCommand(() => LoadQuestionImageMethod());
-            LoadAnswerImage = new RelayCommand(() => LoadAnswerImageMethod());
-            LoadQuestionVideo = new RelayCommand(() => LoadQuestionVideoMethod());
-            LoadAnswerVideo = new RelayCommand(() => LoadAnswerVideoMethod());
-            LoadQuestionAudio = new RelayCommand(() => LoadQuestionAudioMethod());
-            LoadAnswerAudio = new RelayCommand(() => LoadAnswerAudioMethod());
-            DeleteQuestionImage = new RelayCommand(() => DeleteQuestionImageMethod());
-            DeleteQuestionAudio = new RelayCommand(() => DeleteQuestionAudioMethod());
-            DeleteQuestionVideo = new RelayCommand(() => DeleteQuestionVideoMethod());
-            DeleteAnswerImage = new RelayCommand(() => DeleteAnswerImageMethod());
-            DeleteAnswerAudio = new RelayCommand(() => DeleteAnswerAudioMethod());
-            DeleteAnswerVideo = new RelayCommand(() => DeleteAnswerVideoMethod());
-            PlayAnswerAudio = new RelayCommand(() => PlayAnswerAudioMethod());
-            PlayQuestionAudio = new RelayCommand(() => PlayQuestionAudioMethod());
-            StopAudio = new RelayCommand(() => StopAudioMethod());
-            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
+            AddCard =
+                new RelayCommand(param => AddCardMethod(param));
+            LoadQuestionImage =
+                new RelayCommand(() => LoadQuestionImageMethod());
+            LoadAnswerImage =
+                new RelayCommand(() => LoadAnswerImageMethod());
+            LoadQuestionVideo =
+                new RelayCommand(() => LoadQuestionVideoMethod());
+            LoadAnswerVideo =
+                new RelayCommand(() => LoadAnswerVideoMethod());
+            LoadQuestionAudio =
+                new RelayCommand(() => LoadQuestionAudioMethod());
+            LoadAnswerAudio =
+                new RelayCommand(() => LoadAnswerAudioMethod());
+            DeleteQuestionImage =
+                new RelayCommand(() => DeleteQuestionImageMethod());
+            DeleteQuestionAudio =
+                new RelayCommand(() => DeleteQuestionAudioMethod());
+            DeleteQuestionVideo =
+                new RelayCommand(() => DeleteQuestionVideoMethod());
+            DeleteAnswerImage =
+                new RelayCommand(() => DeleteAnswerImageMethod());
+            DeleteAnswerAudio =
+                new RelayCommand(() => DeleteAnswerAudioMethod());
+            DeleteAnswerVideo =
+                new RelayCommand(() => DeleteAnswerVideoMethod());
+            PlayAnswerAudio =
+                new RelayCommand(() => PlayAnswerAudioMethod());
+            PlayQuestionAudio =
+                new RelayCommand(() => PlayQuestionAudioMethod());
+            StopAudio =
+                new RelayCommand(() => StopAudioMethod());
+            CloseWindow =
+                new RelayCommand(param => CloseWindowMethod(param));
             MainWindow = mainWindow;
             Topic = mainWindow.CurrentTopic;
         }
 
         private void AddCardMethod(object param)
         {
-            if (!String.IsNullOrEmpty(QuestionText) && !String.IsNullOrEmpty(AnswerText))
+            if (!String.IsNullOrEmpty(QuestionText) &&
+                !String.IsNullOrEmpty(AnswerText))
             {
                 string questionimagepath = "";
                 string answerimagepath = "";
@@ -209,29 +228,37 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 string answervideopath = "";
 
                 long cardId = DateTime.Now.Ticks;
-                if (!String.IsNullOrEmpty(QuestionImagePath) && String.IsNullOrEmpty(QuestionVideoPath))
+                if (!String.IsNullOrEmpty(QuestionImagePath) &&
+                    String.IsNullOrEmpty(QuestionVideoPath))
                 {
-                    questionimagepath = Save(QuestionImagePath, "QuestionImage", cardId);
+                    questionimagepath = Save(QuestionImagePath,
+                        "QuestionImage", cardId);
                 }
-                if (!String.IsNullOrEmpty(AnswerImagePath) && String.IsNullOrEmpty(AnswerVideoPath))
+                if (!String.IsNullOrEmpty(AnswerImagePath) &&
+                    String.IsNullOrEmpty(AnswerVideoPath))
                 {
-                    answerimagepath = Save(AnswerImagePath, "AnswerImage", cardId);
+                    answerimagepath = Save(AnswerImagePath,
+                        "AnswerImage", cardId);
                 }
                 if (!String.IsNullOrEmpty(QuestionAudioPath))
                 {
-                    questionaudiopath = Save(QuestionAudioPath, "QuestionAudio", cardId);
+                    questionaudiopath = Save(QuestionAudioPath,
+                        "QuestionAudio", cardId);
                 }
                 if (!String.IsNullOrEmpty(AnswerAudioPath))
                 {
-                    answeraudiopath = Save(AnswerAudioPath, "AnswerAudio", cardId);
+                    answeraudiopath = Save(AnswerAudioPath,
+                        "AnswerAudio", cardId);
                 }
                 if (!String.IsNullOrEmpty(QuestionVideoPath))
                 {
-                    questionvideopath = Save(QuestionVideoPath, "QuestionVideo", cardId);
+                    questionvideopath = Save(QuestionVideoPath,
+                        "QuestionVideo", cardId);
                 }
                 if (!String.IsNullOrEmpty(AnswerVideoPath))
                 {
-                    answervideopath = Save(AnswerVideoPath, "AnswerVideo", cardId);
+                    answervideopath = Save(AnswerVideoPath,
+                        "AnswerVideo", cardId);
                 }
 
                 CardViewModel cvm = new CardViewModel(cardId)
@@ -322,7 +349,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         public string Save(string source, string folderName, long id)
         {
-            return ResourceSerializer.SaveFile(source, $"{MainWindow.CurrentTopic.ID}\\{id}\\{folderName}\\{Path.GetFileName(source)}");
+            return ResourceSerializer.SaveFile(source,
+            $"{MainWindow.CurrentTopic.ID}\\{id}\\{folderName}\\{Path.GetFileName(source)}");
         }
 
         public void PlayQuestionAudioMethod()
