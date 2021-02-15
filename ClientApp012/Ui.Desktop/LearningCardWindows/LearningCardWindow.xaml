@@ -74,8 +74,8 @@
                 VerticalAlignment="Center"
                 Width="184"
                 Height="116"
-                Command="{Binding StartAnswering, Mode=OneWay}"
-                Style="{Binding Mode=OneWay, Source={StaticResource DefaultButtonStyle}}"
+                Command="{Binding StartAnswering}"
+                Style="{Binding Source={StaticResource DefaultButtonStyle}}"
                 IsEnabled="{Binding HasStarted}" />
         <Label Content="{Binding Topic.Name}"
                HorizontalAlignment="Center"

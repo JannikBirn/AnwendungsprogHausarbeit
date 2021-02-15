@@ -202,7 +202,10 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         {
             get
             {
-                if (AnswerAudioPathAbsolute != "" || QuestionAudioPathAbsolute != "" || QuestionVideoPathAbsolute != "" || AnswerVideoPathAbsolute != "")
+                if (AnswerAudioPathAbsolute != "" 
+                    || QuestionAudioPathAbsolute != "" 
+                    || QuestionVideoPathAbsolute != "" 
+                    || AnswerVideoPathAbsolute != "")
                 {
                     return "Visible";
                 }
