@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -19,6 +20,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
         //Commands for StaticsTopicSelectionWindow
         public RelayCommand SelectedTopicCommand { get; }
+        public RelayCommand CloseWindow { get; }
 
         public List<KeyValuePair<long, string>> TopicList { get; set; }
 
@@ -34,6 +36,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 
             //Adding relay commands
             SelectedTopicCommand = new RelayCommand((param) => SelectedTopicCommandMethod(param));
+            CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
         }
 
         private void RefreshList()
@@ -65,7 +68,13 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             {
                 StatisticsWindowVM.SelectedTopic = RootViewModel.TopicCollection.First(topicVM => topicVM.ID == topicKey.Key && topicVM.Name == topicKey.Value);
             }
-            StatisticsWindowVM.UpdateGraph();
+            StatisticsWindowVM.OpenStatisticsPanelMethod(StatisticsWindowVM.CurrentPanelIndex);
+        }
+
+        private void CloseWindowMethod(object param)
+        {
+            Window window = (Window)param;
+            window.Close();
         }
 
     }

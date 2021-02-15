@@ -120,7 +120,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             if (root != null)
                 RootViewModel.Model = (Root)root;
         }
-   
         //Methods for the Relay Commands to open windows
 
         private void OpenNewTopicWindowMethod()

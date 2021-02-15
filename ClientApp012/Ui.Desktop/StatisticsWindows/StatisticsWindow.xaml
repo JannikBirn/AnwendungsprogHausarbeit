@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
         mc:Ignorable="d"
         Title="StatisticsWindow"
+        x:Name="statisticsWindow"
         Height="1024"
         Width="786">
     <Window.Resources>
@@ -40,6 +41,18 @@
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="7*" />
             </Grid.RowDefinitions>
+            <Viewbox Grid.Column="0"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left">
+                <Button Command="{Binding CloseWindow}"
+                        CommandParameter="{Binding ElementName=statisticsWindow}"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="..\.\Resources\Images\BackArrow.png" />
+                    </StackPanel>
+                </Button>
+            </Viewbox>
             <Viewbox Grid.Row="0"
                      Margin="10"
                      HorizontalAlignment="Center"
@@ -78,10 +91,20 @@
                         Command="{Binding Path=OpenStatisticsQualityPanel}" />
             </Grid>
 
+            <Viewbox Grid.Row="3"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center">
+                <Label Content="{Binding ErrorMessage}"
+                       FontSize="30"
+                       Foreground="Red"
+                       Style="{DynamicResource DefaultLabel}" />
+            </Viewbox>
+
             <Frame x:Name="StatisticsFrame"
                    x:FieldModifier="public"
                    Grid.Row="3"
                    NavigationUIVisibility="Hidden" />
+
         </Grid>
     </DockPanel>
 </Window>
