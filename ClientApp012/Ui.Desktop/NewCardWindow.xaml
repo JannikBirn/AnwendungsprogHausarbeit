@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:De.HsFlensburg.ClientApp012.Ui.Desktop"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="NewCardWindow"
         x:Name="myNewCard"
@@ -24,6 +24,12 @@
         <Binding Source="{StaticResource MessageListener}"
                  Path="BindableProperty"></Binding>
     </Window.IsEnabled>
+    <behaviors:Interaction.Triggers>
+        <behaviors:EventTrigger EventName="Closing">
+            <behaviors:InvokeCommandAction Command="{Binding SerializeToBin}"
+                                           PassEventArgsToCommand="True" />
+        </behaviors:EventTrigger>
+    </behaviors:Interaction.Triggers>
     <Grid Style="{DynamicResource DefaultGridStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*" />
@@ -37,14 +43,16 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
         <Label x:Name="Question"
                Content="Question:"
                HorizontalAlignment="Left"
                VerticalAlignment="Bottom"
                Margin="10"
                Grid.Row="1"
+               Grid.Column="0"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer"
                Content="Answer:"
@@ -52,12 +60,14 @@
                VerticalAlignment="Bottom"
                Margin="10"
                Grid.Row="4"
+               Grid.Column="0"
                Style="{DynamicResource DefaultLabel}" />
         <Label x:Name="Answer_Copy1"
                Content="Create new Card"
                VerticalAlignment="Top"
                HorizontalAlignment="Center"
                Grid.Row="0"
+               Grid.Column="1"
                Style="{DynamicResource DefaultLabel}" />
         <TextBox HorizontalAlignment="Center"
                  Height="50"
@@ -65,19 +75,22 @@
                  Text="{Binding QuestionText}"
                  VerticalAlignment="Center"
                  Width="200"
-                 Grid.Row="1" />
+                 Grid.Row="1"
+                 Grid.Column="1"/>
         <TextBox HorizontalAlignment="Center"
                  Height="50"
                  TextWrapping="Wrap"
                  Text="{Binding AnswerText}"
                  VerticalAlignment="Center"
                  Width="200"
-                 Grid.Row="4" />
+                 Grid.Row="4"
+                 Grid.Column="1" />
         <Button Command="{Binding LoadQuestionImage, Mode=OneWay}"
                 Content="Insert Image File"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Grid.Row="3"
+                Grid.Column="1"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Margin="0,0,0,40" />
@@ -86,6 +99,7 @@
                 Margin="0,40,0,0"
                 Width="200"
                 Grid.Row="3"
+                Grid.Column="1"
                 VerticalAlignment="Center"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Command="{Binding DeleteQuestionImage, Mode=OneWay}" />
@@ -94,6 +108,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Grid.Row="3"
+                Grid.Column="2"
                 Width="200"
                 Margin="0,0,0,40"
                 Style="{DynamicResource DefaultButtonStyleSmall}" />
@@ -102,6 +117,7 @@
                 Margin="0,40,0,0"
                 Width="200"
                 Grid.Row="3"
+                Grid.Column="2"
                 VerticalAlignment="Center"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Command="{Binding DeleteQuestionVideo, Mode=OneWay}" />
@@ -110,6 +126,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Grid.Row="3"
+                Grid.Column="0"
                 Width="200"
                 Margin="0,0,0,40"
                 Style="{DynamicResource DefaultButtonStyleSmall}" />
@@ -126,6 +143,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Grid.Row="6"
+                Grid.Column="1"
                 Width="200"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Margin="0,0,0,40" />
@@ -134,6 +152,7 @@
                 Margin="0,40,0,0"
                 Width="200"
                 Grid.Row="6"
+                Grid.Column="1"
                 VerticalAlignment="Center"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Command="{Binding DeleteAnswerImage, Mode=OneWay}" />
@@ -142,6 +161,7 @@
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 Grid.Row="6"
+                Grid.Column="2"
                 Width="200"
                 Margin="0,0,0,40"
                 Style="{DynamicResource DefaultButtonStyleSmall}" />
@@ -149,7 +169,9 @@
                 HorizontalAlignment="Right"
                 Margin="0,40,0,0"
                 Width="200"
+
                 Grid.Row="6"
+                Grid.Column="2"
                 VerticalAlignment="Center"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Command="{Binding DeleteAnswerVideo, Mode=OneWay}" />
@@ -158,6 +180,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
                 Grid.Row="6"
+                Grid.Column="0"
                 Width="200"
                 Margin="0,0,0,40"
                 Style="{DynamicResource DefaultButtonStyleSmall}" />
@@ -166,13 +189,14 @@
                 Margin="0,40,0,0"
                 Width="200"
                 Grid.Row="6"
+                Grid.Column="0"
                 VerticalAlignment="Center"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Command="{Binding DeleteAnswerAudio, Mode=OneWay}" />
         <Button   Grid.Column="0"
+                  Grid.Row="0"
                   VerticalAlignment="Top"
                   HorizontalAlignment="left"
-                  Margin="20,20,150,20"
                   Height="60"
                   Width="60"
                   HorizontalContentAlignment="Center"
@@ -187,16 +211,14 @@
         <Button Command="{Binding AddCard, Mode=OneWay}"
                 CommandParameter="{Binding ElementName=myNewCard}"
                 Content="Create Card"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
                 Grid.Row="9"
+                Grid.Column="1"
                 Width="200"
-                Style="{DynamicResource DefaultButtonStyle}"
-                Margin="10,0" />
-
+                Style="{DynamicResource DefaultButtonStyle}" />
         <InkCanvas Height="230"
-                   Width="300"
+                   Width="250"
                    Grid.Row="2"
+                   Grid.Column="1"
                    Visibility="{Binding QuestionCanvas}">
             <InkCanvas.Background>
                 <ImageBrush ImageSource="{Binding QuestionImage, Mode=OneWay}"
@@ -204,8 +226,9 @@
             </InkCanvas.Background>
         </InkCanvas>
         <InkCanvas Height="230"
-                   Width="300"
+                   Width="250"
                    Grid.Row="5"
+                   Grid.Column="1"
                    Visibility="{Binding AnswerCanvas}">
             <InkCanvas.Background>
                 <ImageBrush ImageSource="{Binding AnswerImage, Mode=OneWay}"
@@ -215,6 +238,7 @@
         <Button Content="Play"
                 HorizontalAlignment="Left"
                 Grid.Row="2"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
                 Width="200"
                 Command="{Binding PlayQuestionAudio, Mode=OneWay}"
@@ -224,6 +248,7 @@
         <Button Content="Stop"
                 HorizontalAlignment="Left"
                 Grid.Row="2"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
                 Width="200"
                 Command="{Binding StopAudio, Mode=OneWay}"
@@ -233,6 +258,7 @@
         <Button Content="Play"
                 HorizontalAlignment="Left"
                 Grid.Row="5"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
                 Width="200"
                 Command="{Binding PlayAnswerAudio, Mode=OneWay}"
@@ -242,12 +268,12 @@
         <Button Content="Stop"
                 HorizontalAlignment="Left"
                 Grid.Row="5"
+                Grid.Column="0"
                 VerticalAlignment="Bottom"
                 Width="200"
                 Command="{Binding StopAudio, Mode=OneWay}"
                 Style="{DynamicResource DefaultButtonStyleSmall}"
                 Margin="0,4,0,40"
                 Visibility="{Binding AnswerStopBtn}" />
-
     </Grid>
 </Window>

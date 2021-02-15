@@ -5,10 +5,6 @@ using De.HsFlensburg.ClientApp012.Services.Serialization;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.ComponentModel;
-using System.Windows.Controls;
-using Image = System.Windows.Controls.Image;
-using System.Windows.Media;
-using System.Windows.Ink;
 
 namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
 {
@@ -177,7 +173,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         public MainWindowViewModel MainWindow { get; set; }
 
 
-        public NewCardWindowViewModel(MainWindowViewModel model)
+        public NewCardWindowViewModel(MainWindowViewModel mainWindow)
         {
 
             AddCard = new RelayCommand(param => AddCardMethod(param));
@@ -197,8 +193,8 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             PlayQuestionAudio = new RelayCommand(() => PlayQuestionAudioMethod());
             StopAudio = new RelayCommand(() => StopAudioMethod());
             CloseWindow = new RelayCommand(param => CloseWindowMethod(param));
-            MainWindow = model;
-            Topic = model.CurrentTopic;
+            MainWindow = mainWindow;
+            Topic = mainWindow.CurrentTopic;
         }
 
         private void AddCardMethod(object param)
@@ -213,13 +209,12 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 string answervideopath = "";
 
                 long cardId = DateTime.Now.Ticks;
-                if (!String.IsNullOrEmpty(QuestionImagePath))
+                if (!String.IsNullOrEmpty(QuestionImagePath) && String.IsNullOrEmpty(QuestionVideoPath))
                 {
                     questionimagepath = Save(QuestionImagePath, "QuestionImage", cardId);
                 }
-                if (!String.IsNullOrEmpty(AnswerImagePath))
+                if (!String.IsNullOrEmpty(AnswerImagePath) && String.IsNullOrEmpty(AnswerVideoPath))
                 {
-
                     answerimagepath = Save(AnswerImagePath, "AnswerImage", cardId);
                 }
                 if (!String.IsNullOrEmpty(QuestionAudioPath))
@@ -238,17 +233,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                 {
                     answervideopath = Save(AnswerVideoPath, "AnswerVideo", cardId);
                 }
-
-                // Check ob Text angegeben wurde
-
-                if (questionimagepath != "")
-                { questionvideopath = ""; }
-                if (questionvideopath != "")
-                { questionimagepath = ""; }
-                if (answerimagepath != "")
-                { answervideopath = ""; }
-                if (answervideopath != "")
-                { answerimagepath = ""; }
 
                 CardViewModel cvm = new CardViewModel(cardId)
                 {
@@ -336,7 +320,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             AnswerStopBtn = Visibility.Hidden;
         }
 
-        public String Save(string source, string folderName, long id)
+        public string Save(string source, string folderName, long id)
         {
             return ResourceSerializer.SaveFile(source, $"{MainWindow.CurrentTopic.ID}\\{id}\\{folderName}\\{Path.GetFileName(source)}");
         }
@@ -355,7 +339,6 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
         public void StopAudioMethod()
         {
-
             audioPlayer.controls.stop();
         }
 

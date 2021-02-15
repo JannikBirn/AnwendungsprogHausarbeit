@@ -80,10 +80,6 @@ namespace De.HsFlensburg.ClientApp012.Services.Serialization
             }
         }
 
-        public static void DeleteDirectory(string destination)
-        {
-            Directory.Delete(BinarySerializer.PERSISTENT_DATA_PATH + destination);
-        }
 
 
     }

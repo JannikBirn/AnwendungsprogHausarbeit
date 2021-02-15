@@ -1,14 +1,8 @@
 ﻿using De.HsFlensburg.ClientApp012.Logic.Ui.Wrapper;
 using De.HsFlensburg.ClientApp012.Services.Serialization;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
@@ -50,7 +44,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
             }
         }
 
-        public TopicCollectionViewModel TopicCollection; 
+        public TopicCollectionViewModel TopicCollection { get; set; } 
         public String Name { get; set; }
         public TopicCollectionViewModel TCVM { get; set; }
         public RelayCommand AddTopic { get; }
@@ -90,10 +84,7 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
                     Img = localpath
                 };
 
-                TopicCollection.Add(tvm);
-
-                topicImagePath = null;
-                Name = null;
+                TopicCollection.Add(tvm);                
 
                 CloseWindowMethod(param);
             }
@@ -113,12 +104,15 @@ namespace De.HsFlensburg.ClientApp012.Logic.Ui.ViewModels
         }
 
 
-        public String Save(string source, string folderName, long id)
+        public string Save(string source, string folderName, long id)
         {
             return ResourceSerializer.SaveFile(source, $"{id}\\TopicImage{Path.GetExtension(source)}");
         }
         private void CloseWindowMethod(object param)
         {
+            topicImagePath = null;
+            Name = null;
+
             Window window = (Window)param;
             window.Close();
         }
